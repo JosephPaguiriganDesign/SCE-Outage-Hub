@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>F5 — Report confirmation · SCE Outage Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+</head>
+<body>
+<div class="app">
+  <div class="frame-chip">
+    <span class="id">F5 · Confirmation</span>
+    <span class="chip-actions"><span class="badge hifi">Hi-fi</span><span class="badge guest">Guest</span><button type="button" class="dismiss" aria-label="Hide frame label">×</button></span>
+  </div>
+  <div class="os-bar"><span>10:40</span><span class="icons">▮▮▮ ▔ Wi‑Fi</span></div>
+  <div class="app-scroll" style="display:flex;flex-direction:column;justify-content:center;gap:8px">
+
+      <div class="hub-header">
+        <div class="row">
+          <div>
+            <a href="F0-hub-home.html" class="hub-name" style="margin:0;display:inline-flex;align-items:center;gap:6px;color:inherit">← Report</a>
+          </div>
+          <div class="header-meta">Received</div>
+        </div>
+      </div>
+
+      <div class="confirm-hero">
+        <div class="check-circle" aria-hidden="true">✓</div>
+        <h3>SCE has your report</h3>
+        <div class="ref">Ref RPT-2026-77401</div>
+        <div class="detail">Power out at 1847 Maple Ave, Pasadena</div>
+        <div class="lag">You’ll see status in the hub when systems sync (may take ~15–20 min).</div>
+        <a class="btn primary block" href="F1-lookup-result.html?pending=1" id="backStatus">Back to hub status</a>
+      </div>
+      <div class="cta-row">
+        <a class="btn map block" href="F0-hub-home.html?pending=1" id="backHome">Return to hub home</a>
+      </div>
+      <p class="trust-footer">Official outage info · Not a third-party app</p>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  var chip=document.querySelector('.frame-chip');
+  if(chip){
+    var btn=chip.querySelector('.dismiss');
+    if(btn) btn.addEventListener('click',function(){chip.hidden=true;});
+  }
+  try{ sessionStorage.setItem('conh_pending','1'); }catch(e){}
+})();
+</script>
+</body>
+</html>

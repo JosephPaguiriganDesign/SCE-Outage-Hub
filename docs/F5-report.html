@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>F5 — Report · SCE Outage Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+</head>
+<body>
+<div class="app">
+  <div class="frame-chip">
+    <span class="id">F5 · Report</span>
+    <span class="chip-actions"><span class="badge hifi">Hi-fi</span><span class="badge guest">Guest</span><button type="button" class="dismiss" aria-label="Hide frame label">×</button></span>
+  </div>
+  <div class="os-bar"><span>10:40</span><span class="icons">▮▮▮ ▔ Wi‑Fi</span></div>
+  <div class="app-scroll">
+
+      <div class="hub-header">
+        <div class="row">
+          <div>
+            <a href="F0-hub-home.html" class="hub-name" style="margin:0;display:inline-flex;align-items:center;gap:6px;color:inherit">← Report</a>
+          </div>
+          <div class="header-meta">Outage / hazard</div>
+        </div>
+      </div>
+
+      <form action="F5-confirm.html" method="get" style="padding:8px 16px 16px">
+        <div class="form-field">
+          <label for="loc">Location</label>
+          <input id="loc" name="loc" value="1847 Maple Ave, Pasadena, CA 91104"/>
+        </div>
+        <div class="form-field">
+          <label>Type</label>
+          <div class="type-opts">
+            <label><input type="radio" name="type" value="power" checked/> Power out</label>
+            <label><input type="radio" name="type" value="downed"/> Downed line</label>
+            <label><input type="radio" name="type" value="damaged"/> Damaged equipment</label>
+            <label><input type="radio" name="type" value="other"/> Other</label>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="desc">Description</label>
+          <textarea id="desc" name="desc" rows="3">Whole house dark since ~7 AM; neighbors also out</textarea>
+        </div>
+        <div class="form-field">
+          <label>Photo (optional)</label>
+          <div class="input dashed">+ Add photo · stub</div>
+        </div>
+        <button class="btn primary block" type="submit" style="margin:8px 0 8px">Submit report</button>
+        <p class="trust" style="text-align:center;margin-top:8px">Map and status may lag ~15–20 min behind field systems.</p>
+      </form>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  var chip=document.querySelector('.frame-chip');
+  if(!chip) return;
+  var btn=chip.querySelector('.dismiss');
+  if(btn) btn.addEventListener('click',function(){chip.hidden=true;});
+})();
+</script>
+</body>
+</html>
