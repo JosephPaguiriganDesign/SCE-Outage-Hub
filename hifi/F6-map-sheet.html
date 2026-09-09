@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>F6 — Map sheet · SCE Outage Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+</head>
+<body>
+<div class="app">
+  <div class="frame-chip">
+    <span class="id">F6 · Map sheet</span>
+    <span class="chip-actions"><span class="badge guest">Guest</span><button type="button" class="dismiss" aria-label="Hide frame label">×</button></span>
+  </div>
+  <div class="os-bar"><span>10:40</span><span class="icons">▮▮▮ ▔ Wi‑Fi</span></div>
+  <div class="app-scroll">
+
+      <div class="back-bar"><a href="F1-lookup-result.html">← Result</a></div>
+      <div class="hub-header">
+        <div class="hub-title">Map</div>
+        <div class="hub-name">Supports address answer</div>
+      </div>
+      <div class="filters">
+        <span class="filter on">Active</span>
+        <span class="filter">Planned</span>
+        <span class="filter">PSPS</span>
+      </div>
+      <div class="map-area">
+        <div class="poly" title="Outage polygon secondary"></div>
+        <div class="pin" title="Address pin primary"></div>
+        <div class="sheet">
+          <div class="sheet-handle"></div>
+          <div class="hero rail-restore tint-restore" style="margin:0">
+            <div class="hero-inner" style="padding:12px 12px 0 16px">
+              <div class="row-top">
+                <span class="evchip">Repair</span>
+                <span class="pill restore"><span class="mark"></span>Restoring</span>
+              </div>
+              <div class="addr">1847 Maple Ave, Pasadena</div>
+              <div class="status-word" style="font-size:22px;line-height:26px">RESTORING</div>
+              <div class="etr" style="font-size:18px;line-height:24px">Back by 4:45 PM PT</div>
+              <div class="trust">Updated 10:28 AM PT · Info may lag ~15–20 min</div>
+              <div class="actions">
+                <a class="btn primary" href="F2-active-detail.html">Details</a>
+                <a class="btn" href="F5-report.html">Report</a>
+                <a class="btn" href="F9-afn-help.html">Get help</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  var chip=document.querySelector('.frame-chip');
+  if(!chip) return;
+  var btn=chip.querySelector('.dismiss');
+  if(btn) btn.addEventListener('click',function(){chip.hidden=true;});
+})();
+</script>
+</body>
+</html>

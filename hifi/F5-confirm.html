@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>F5 — Report confirmation · SCE Outage Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+</head>
+<body>
+<div class="app">
+  <div class="frame-chip">
+    <span class="id">F5 · Confirmation</span>
+    <span class="chip-actions"><span class="badge guest">Guest</span><button type="button" class="dismiss" aria-label="Hide frame label">×</button></span>
+  </div>
+  <div class="os-bar"><span>10:40</span><span class="icons">▮▮▮ ▔ Wi‑Fi</span></div>
+  <div class="app-scroll">
+
+      <div class="back-bar"><a href="F0-hub-home.html">← Hub</a></div>
+      <div class="hub-header">
+        <div class="hub-title">Report</div>
+        <div class="hub-name">Received</div>
+      </div>
+      <div class="hero" style="border-left:4px solid var(--afn);background:linear-gradient(90deg,#EEF2FF 0%,var(--surface) 28%)">
+        <div class="hero-inner">
+          <div class="row-top">
+            <span class="evchip">Report</span>
+            <span class="pill" style="background:var(--afn)">Received</span>
+          </div>
+          <div class="status-word" style="font-size:22px;line-height:28px;color:var(--afn)">SCE has your report</div>
+          <div class="cause">Ref RPT-2026-77401 · Power out at 1847 Maple Ave</div>
+          <div class="trust">You’ll see status in the hub when systems sync (may take ~15–20 min).</div>
+          <div class="actions">
+            <a class="btn primary" href="F1-lookup-result.html?pending=1" id="backStatus">Back to hub status</a>
+          </div>
+        </div>
+      </div>
+      <div class="cta-row">
+        <a class="btn map block" href="F0-hub-home.html?pending=1" id="backHome">Return to hub home</a>
+      </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  var chip=document.querySelector('.frame-chip');
+  if(chip){
+    var btn=chip.querySelector('.dismiss');
+    if(btn) btn.addEventListener('click',function(){chip.hidden=true;});
+  }
+  try{ sessionStorage.setItem('conh_pending','1'); }catch(e){}
+})();
+</script>
+</body>
+</html>
