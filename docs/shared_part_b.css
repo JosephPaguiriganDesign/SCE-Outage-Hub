@@ -181,3 +181,125 @@ a.sum-chip.link{border-color:var(--line);color:var(--link);font-weight:600}
 
 .hero-inner.compact{padding:12px 12px 0 16px}
 .hero-inner.compact .actions{margin-left:-16px}
+
+/* ——— Page-to-page transitions (VT + fallback) ——— */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 240ms;
+  animation-timing-function: cubic-bezier(.25,.1,.25,1);
+}
+
+html:active-view-transition-type(forward) {
+  &::view-transition-old(root) { animation-name: vt-out-left; }
+  &::view-transition-new(root) { animation-name: vt-in-right; }
+}
+html:active-view-transition-type(back) {
+  &::view-transition-old(root) { animation-name: vt-out-right; }
+  &::view-transition-new(root) { animation-name: vt-in-left; }
+}
+html:active-view-transition-type(sheet) {
+  &::view-transition-old(root) { animation-name: vt-dim-out; }
+  &::view-transition-new(root) { animation-name: vt-sheet-up; }
+}
+
+@keyframes vt-out-left {
+  to { transform: translateX(-18%); opacity: .55; }
+}
+@keyframes vt-in-right {
+  from { transform: translateX(24%); opacity: .9; }
+}
+@keyframes vt-out-right {
+  to { transform: translateX(18%); opacity: .55; }
+}
+@keyframes vt-in-left {
+  from { transform: translateX(-24%); opacity: .9; }
+}
+@keyframes vt-dim-out {
+  to { opacity: .45; filter: brightness(.82); }
+}
+@keyframes vt-sheet-up {
+  from { transform: translateY(36%); opacity: .92; }
+}
+
+/* Fallback when cross-doc View Transitions unavailable */
+html.enter-forward,
+html.enter-back,
+html.enter-sheet,
+html.enter-fade {
+  overflow-x: hidden;
+}
+html:active-view-transition.enter-forward .app,
+html:active-view-transition.enter-back .app,
+html:active-view-transition.enter-sheet .app,
+html:active-view-transition.enter-fade .app {
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.enter-forward .app {
+    animation: fb-in-right 240ms cubic-bezier(.25,.1,.25,1) both;
+  }
+  html.enter-back .app {
+    animation: fb-in-left 240ms cubic-bezier(.25,.1,.25,1) both;
+  }
+  html.enter-sheet .app {
+    animation: fb-sheet-up 260ms cubic-bezier(.25,.1,.25,1) both;
+  }
+  html.enter-sheet body {
+    animation: fb-scrim 260ms cubic-bezier(.25,.1,.25,1) both;
+  }
+}
+
+@keyframes fb-in-right {
+  from { transform: translateX(16%); opacity: .88; }
+  to { transform: none; opacity: 1; }
+}
+@keyframes fb-in-left {
+  from { transform: translateX(-16%); opacity: .88; }
+  to { transform: none; opacity: 1; }
+}
+@keyframes fb-sheet-up {
+  from { transform: translateY(28%); opacity: .92; }
+  to { transform: none; opacity: 1; }
+}
+@keyframes fb-scrim {
+  from { background-color: rgba(16,24,32,.28); }
+  to { background-color: var(--bg); }
+}
+@keyframes fb-fade {
+  from { opacity: .85; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 70ms !important;
+    animation-timing-function: ease !important;
+  }
+  html:active-view-transition-type(forward),
+  html:active-view-transition-type(back),
+  html:active-view-transition-type(sheet) {
+    &::view-transition-old(root) { animation-name: vt-fade-quick; }
+    &::view-transition-new(root) { animation-name: vt-fade-quick-in; }
+  }
+  @keyframes vt-fade-quick {
+    to { opacity: .7; }
+  }
+  @keyframes vt-fade-quick-in {
+    from { opacity: .85; }
+  }
+  html.enter-forward .app,
+  html.enter-back .app,
+  html.enter-sheet .app,
+  html.enter-fade .app {
+    animation: fb-fade 80ms ease both !important;
+  }
+  html.enter-sheet body {
+    animation: none !important;
+  }
+}
