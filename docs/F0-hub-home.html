@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>F0 — Hub home (Guest) · SCE Outage Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+</head>
+<body>
+<div class="app">
+  <div class="frame-chip">
+    <span class="id">F0 · Hub home</span>
+    <span class="chip-actions"><span class="badge hifi">Hi-fi</span><span class="badge guest">Guest</span><button type="button" class="dismiss" aria-label="Hide frame label">×</button></span>
+  </div>
+  <div class="os-bar"><span>10:40</span><span class="icons">▮▮▮ ▔ Wi‑Fi</span></div>
+  <div class="app-scroll">
+
+      <div class="hub-header">
+        <div class="row">
+          <div>
+            <div class="hub-name" style="margin:0">Outage Hub</div>
+          </div>
+          <div class="header-meta">
+            Updated 10:28 AM<br/>
+            <a class="header-link" href="#signin" style="min-height:auto">Sign in</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pending-badge" id="pendingBadge" role="status">
+        <span class="pb-mark" aria-hidden="true"></span>
+        <div>
+          <strong>Pending report</strong>
+          <span>RPT-2026-77401 · Status may take ~15–20 min to sync</span>
+        </div>
+      </div>
+
+      <div class="search-wrap">
+        <a class="search" href="F1-lookup-result.html" aria-label="Search address">
+          <span class="icon" aria-hidden="true"></span>
+          <span class="ph">Search address, outage #, or meter</span>
+        </a>
+      </div>
+
+      <div class="section-label">Recent lookups</div>
+      <div class="recent">
+        <a class="recent-item" href="F1-lookup-result.html">
+          <div>
+            <div class="ri-addr">1847 Maple Ave, Pasadena</div>
+            <div class="ri-meta">Looked up today</div>
+          </div>
+          <span class="pill restore"><span class="mark"></span>Restoring</span>
+        </a>
+        <a class="recent-item" href="F1-lookup-result.html">
+          <div>
+            <div class="ri-addr">1200 E Colorado Blvd, Pasadena</div>
+            <div class="ri-meta">Yesterday</div>
+          </div>
+          <span class="pill on"><span class="mark"></span>On</span>
+        </a>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn primary" href="F5-report.html" style="flex:1">⚑ Report outage</a>
+        <a class="btn map" href="F6-map-sheet.html" style="flex:1">▣ View map</a>
+      </div>
+      <div class="cta-row" style="padding-top:0" id="signin">
+        <a class="btn gold block" href="#signin">Sign in to My Account</a>
+      </div>
+
+      <div class="hero rail-restore tint-restore">
+        <div class="hero-inner">
+          <div class="row-top">
+            <span class="evchip">Repair</span>
+            <span class="pill restore"><span class="mark"></span>Restoring</span>
+          </div>
+          <div class="addr">1847 Maple Ave, Pasadena</div>
+          <div class="status-word sm">RESTORING</div>
+          <div class="subline">Power is off at this address</div>
+          <div class="cause">Equipment failure — distribution transformer</div>
+          <div class="etr">Back by 4:45 PM</div>
+          <div class="trust">Updated 10:28 AM · May lag ~15–20 min</div>
+          <div class="actions">
+            <a class="btn" href="F5-report.html">Report</a>
+            <a class="btn" href="F6-map-sheet.html">Map</a>
+            <a class="btn" href="F9-afn-help.html">Get help</a>
+          </div>
+        </div>
+      </div>
+
+      <p class="trust-footer">Official outage info · Not a third-party app</p>
+
+      <details class="facilitator" id="facilitator">
+        <summary>Facilitator</summary>
+        <div class="fac-body">
+          <a href="F0-hub-home.html">Guest home</a>
+          <a href="F0-signed.html">Signed-in</a>
+          <a href="F0-multi.html">Multi</a>
+          <a href="F10-psps-banner.html">PSPS</a>
+          <a href="F7-portfolio.html">Portfolio</a>
+        </div>
+      </details>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  var chip=document.querySelector('.frame-chip');
+  if(chip){
+    var btn=chip.querySelector('.dismiss');
+    if(btn) btn.addEventListener('click',function(){chip.hidden=true;});
+  }
+  try{
+    var q=new URLSearchParams(location.search);
+    if(q.get('pending')==='1') sessionStorage.setItem('conh_pending','1');
+    if(sessionStorage.getItem('conh_pending')==='1' || q.get('pending')==='1'){
+      var el=document.getElementById('pendingBadge');
+      if(el) el.classList.add('show');
+    }
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

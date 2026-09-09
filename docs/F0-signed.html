@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>F0 — Hub home (Signed-in) · SCE Outage Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+</head>
+<body>
+<div class="app">
+  <div class="frame-chip">
+    <span class="id">F0 · Signed-in</span>
+    <span class="chip-actions"><span class="badge hifi">Hi-fi</span><span class="badge signed">Signed-in</span><button type="button" class="dismiss" aria-label="Hide frame label">×</button></span>
+  </div>
+  <div class="os-bar"><span>10:40</span><span class="icons">▮▮▮ ▔ Wi‑Fi</span></div>
+  <div class="app-scroll">
+
+      <div class="hub-header">
+        <div class="row">
+          <div class="hub-name" style="margin:0">Outage Hub</div>
+          <div class="header-meta">Updated 9:05 AM</div>
+        </div>
+      </div>
+
+      <div class="account">
+        <div class="avatar">JL</div>
+        <div>
+          <strong>Jordan Lee</strong>
+          Account ••••4821
+        </div>
+      </div>
+
+      <div class="search-wrap">
+        <a class="search" href="F1-lookup-result.html" aria-label="Search address">
+          <span class="icon" aria-hidden="true"></span>
+          <span class="ph">Search address, outage #, or meter</span>
+        </a>
+      </div>
+
+      <div class="section-label">My service status</div>
+      <div class="hero rail-planned tint-planned">
+        <div class="hero-inner">
+          <div class="row-top">
+            <span class="evchip">Planned</span>
+            <span class="pill planned"><span class="mark"></span>Upcoming</span>
+          </div>
+          <div class="addr">412 Elm St, Glendale, CA 91205</div>
+          <div class="status-word sm">PLANNED</div>
+          <div class="cause">Pole replacement and line maintenance · PLN-2026-031104</div>
+          <div class="etr" style="font-size:16px;line-height:22px">Thu Sep 11 · 9:00 AM – 1:00 PM PT</div>
+          <div class="trust">Updated 9:05 AM · May lag ~15–20 min</div>
+          <div class="actions">
+            <a class="btn" href="#details-stub">Details</a>
+            <a class="btn" href="F6-map-sheet.html">Map</a>
+            <a class="btn" href="F9-afn-help.html">Get help</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn primary" href="F5-report.html" style="flex:1">⚑ Report outage</a>
+        <a class="btn map" href="F6-map-sheet.html" style="flex:1">▣ View map</a>
+      </div>
+
+      <p class="trust-footer">Need help? <a href="F9-afn-help.html" style="color:var(--link);font-weight:600">AFN &amp; resources</a> · Official SCE</p>
+
+      <p class="meta" style="text-align:center;padding:8px 16px">
+        <a href="F0-hub-home.html" style="color:var(--link);font-weight:600">Guest home</a>
+        ·
+        <a href="F0-multi.html" style="color:var(--link);font-weight:600">Multi</a>
+      </p>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  var chip=document.querySelector('.frame-chip');
+  if(!chip) return;
+  var btn=chip.querySelector('.dismiss');
+  if(btn) btn.addEventListener('click',function(){chip.hidden=true;});
+})();
+</script>
+</body>
+</html>
