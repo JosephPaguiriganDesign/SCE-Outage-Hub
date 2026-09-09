@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>F7 — Portfolio · SCE Outage Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+</head>
+<body>
+<div class="app">
+  <div class="frame-chip">
+    <span class="id">F7 · Portfolio</span>
+    <span class="chip-actions"><span class="badge hifi">Hi-fi</span><span class="badge multi">Multi</span><button type="button" class="dismiss" aria-label="Hide frame label">×</button></span>
+  </div>
+  <div class="os-bar"><span>10:40</span><span class="icons">▮▮▮ ▔ Wi‑Fi</span></div>
+  <div class="app-scroll">
+
+      <div class="hub-header">
+        <div class="row">
+          <div>
+            <a href="F0-multi.html" class="hub-name" style="margin:0;display:inline-flex;align-items:center;gap:6px;color:inherit">← Outage Hub</a>
+          </div>
+          <div class="header-meta">Updated 10:28 AM</div>
+        </div>
+      </div>
+
+      <div class="account">
+        <div class="avatar">JL</div>
+        <div>
+          <strong>Jordan Lee</strong>
+          Account ••••4821 · 3 addresses
+        </div>
+      </div>
+
+      <div class="section-label">My addresses</div>
+
+      <a class="tile rail-restore" href="F2-active-detail.html">
+        <div>
+          <div class="t-addr">1847 Maple Ave, Pasadena</div>
+          <div class="t-status restore">RESTORING</div>
+          <div class="t-sub">Back by 4:45 PM · Active Repair</div>
+        </div>
+        <div class="tile-right"><span class="pill restore"><span class="mark"></span>Restoring</span></div>
+      </a>
+
+      <a class="tile rail-on" href="F1-lookup-result.html">
+        <div>
+          <div class="t-addr">55 N Lake Ave #210, Pasadena</div>
+          <div class="t-status on">ON</div>
+          <div class="t-sub">Service normal</div>
+        </div>
+        <div class="tile-right"><span class="pill on"><span class="mark"></span>On</span></div>
+      </a>
+
+      <a class="tile rail-planned" href="F0-signed.html">
+        <div>
+          <div class="t-addr">412 Elm St, Glendale</div>
+          <div class="t-status planned">PLANNED</div>
+          <div class="t-sub">Thu Sep 11 · 9:00 AM – 1:00 PM · Pole replacement</div>
+        </div>
+        <div class="tile-right"><span class="pill planned"><span class="mark"></span>Planned</span></div>
+      </a>
+
+      <div class="cta-row">
+        <a class="btn primary" href="F5-report.html" style="flex:1">⚑ Report outage</a>
+        <a class="btn map" href="F6-map-sheet.html" style="flex:1">▣ View map</a>
+      </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  var chip=document.querySelector('.frame-chip');
+  if(!chip) return;
+  var btn=chip.querySelector('.dismiss');
+  if(btn) btn.addEventListener('click',function(){chip.hidden=true;});
+})();
+</script>
+</body>
+</html>

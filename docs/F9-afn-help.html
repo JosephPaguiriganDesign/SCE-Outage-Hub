@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>F9 — AFN / Help · SCE Outage Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+</head>
+<body>
+<div class="app">
+  <div class="frame-chip">
+    <span class="id">F9 · AFN / Help</span>
+    <span class="chip-actions"><span class="badge hifi">Hi-fi</span><span class="badge afn">AFN</span> <span class="badge guest">Guest</span><button type="button" class="dismiss" aria-label="Hide frame label">×</button></span>
+  </div>
+  <div class="os-bar"><span>10:40</span><span class="icons">▮▮▮ ▔ Wi‑Fi</span></div>
+  <div class="app-scroll">
+
+      <div class="hub-header">
+        <div class="row">
+          <div>
+            <a href="F2-active-detail.html" class="hub-name" style="margin:0;display:inline-flex;align-items:center;gap:6px;color:inherit">← Help &amp; AFN</a>
+          </div>
+          <div class="header-meta">Resources</div>
+        </div>
+      </div>
+
+      <div class="afn">
+        <h3>Need help during this outage?</h3>
+        <p class="lede">Stay safe · Conserve backup power · Call for local help if needed</p>
+        <a class="btn btn211" href="tel:211">Call 211</a>
+        <div class="links col">
+          <a href="#mbl">Medical Baseline &amp; backup power →</a>
+          <a href="#what-to-do">Food, shelter &amp; transport →</a>
+          <a href="#what-to-do">What to do now →</a>
+        </div>
+      </div>
+      <div class="mod" id="what-to-do">
+        <h4 style="font-size:14px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--ink)">What to do now</h4>
+        <ul>
+          <li>Charge devices &amp; medical equipment</li>
+          <li>Pack essentials / go-bag if PSPS</li>
+          <li>Plan transportation</li>
+          <li>Check on vulnerable neighbors</li>
+        </ul>
+      </div>
+      <div class="mod" id="mbl">
+        <h4 style="font-size:14px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--ink)">AFN / Medical Baseline</h4>
+        <p>If you rely on electricity for medical devices, review Medical Baseline and backup power options.</p>
+      </div>
+      <div class="mod">
+        <h4 style="font-size:14px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--ink)">SCE phone</h4>
+        <p><a href="tel:18006111911" style="color:var(--link);font-weight:600;font-size:15px">1-800-611-1911</a></p>
+      </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  var chip=document.querySelector('.frame-chip');
+  if(!chip) return;
+  var btn=chip.querySelector('.dismiss');
+  if(btn) btn.addEventListener('click',function(){chip.hidden=true;});
+})();
+</script>
+</body>
+</html>
