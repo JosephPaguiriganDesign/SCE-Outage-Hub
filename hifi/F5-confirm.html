@@ -13,33 +13,32 @@
 <div class="app">
   <div class="frame-chip">
     <span class="id">F5 · Confirmation</span>
-    <span class="chip-actions"><span class="badge guest">Guest</span><button type="button" class="dismiss" aria-label="Hide frame label">×</button></span>
+    <span class="chip-actions"><span class="badge hifi">Hi-fi</span><span class="badge guest">Guest</span><button type="button" class="dismiss" aria-label="Hide frame label">×</button></span>
   </div>
   <div class="os-bar"><span>10:40</span><span class="icons">▮▮▮ ▔ Wi‑Fi</span></div>
-  <div class="app-scroll">
+  <div class="app-scroll" style="display:flex;flex-direction:column;justify-content:center;gap:8px">
 
-      <div class="back-bar"><a href="F0-hub-home.html">← Hub</a></div>
       <div class="hub-header">
-        <div class="hub-title">Report</div>
-        <div class="hub-name">Received</div>
-      </div>
-      <div class="hero" style="border-left:4px solid var(--afn);background:linear-gradient(90deg,#EEF2FF 0%,var(--surface) 28%)">
-        <div class="hero-inner">
-          <div class="row-top">
-            <span class="evchip">Report</span>
-            <span class="pill" style="background:var(--afn)">Received</span>
+        <div class="row">
+          <div>
+            <a href="F0-hub-home.html" class="hub-name" style="margin:0;display:inline-flex;align-items:center;gap:6px;color:inherit">← Report</a>
           </div>
-          <div class="status-word" style="font-size:22px;line-height:28px;color:var(--afn)">SCE has your report</div>
-          <div class="cause">Ref RPT-2026-77401 · Power out at 1847 Maple Ave</div>
-          <div class="trust">You’ll see status in the hub when systems sync (may take ~15–20 min).</div>
-          <div class="actions">
-            <a class="btn primary" href="F1-lookup-result.html?pending=1" id="backStatus">Back to hub status</a>
-          </div>
+          <div class="header-meta">Received</div>
         </div>
+      </div>
+
+      <div class="confirm-hero">
+        <div class="check-circle" aria-hidden="true">✓</div>
+        <h3>SCE has your report</h3>
+        <div class="ref">Ref RPT-2026-77401</div>
+        <div class="detail">Power out at 1847 Maple Ave, Pasadena</div>
+        <div class="lag">You’ll see status in the hub when systems sync (may take ~15–20 min).</div>
+        <a class="btn primary block" href="F1-lookup-result.html?pending=1" id="backStatus">Back to hub status</a>
       </div>
       <div class="cta-row">
         <a class="btn map block" href="F0-hub-home.html?pending=1" id="backHome">Return to hub home</a>
       </div>
+      <p class="trust-footer">Official outage info · Not a third-party app</p>
 
   </div>
 </div>

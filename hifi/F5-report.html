@@ -13,16 +13,20 @@
 <div class="app">
   <div class="frame-chip">
     <span class="id">F5 · Report</span>
-    <span class="chip-actions"><span class="badge guest">Guest</span><button type="button" class="dismiss" aria-label="Hide frame label">×</button></span>
+    <span class="chip-actions"><span class="badge hifi">Hi-fi</span><span class="badge guest">Guest</span><button type="button" class="dismiss" aria-label="Hide frame label">×</button></span>
   </div>
   <div class="os-bar"><span>10:40</span><span class="icons">▮▮▮ ▔ Wi‑Fi</span></div>
   <div class="app-scroll">
 
-      <div class="back-bar"><a href="F0-hub-home.html">← Hub</a></div>
       <div class="hub-header">
-        <div class="hub-title">Report</div>
-        <div class="hub-name">Outage / hazard</div>
+        <div class="row">
+          <div>
+            <a href="F0-hub-home.html" class="hub-name" style="margin:0;display:inline-flex;align-items:center;gap:6px;color:inherit">← Report</a>
+          </div>
+          <div class="header-meta">Outage / hazard</div>
+        </div>
       </div>
+
       <form action="F5-confirm.html" method="get" style="padding:8px 16px 16px">
         <div class="form-field">
           <label for="loc">Location</label>
@@ -46,6 +50,7 @@
           <div class="input dashed">+ Add photo · stub</div>
         </div>
         <button class="btn primary block" type="submit" style="margin:8px 0 8px">Submit report</button>
+        <p class="trust" style="text-align:center;margin-top:8px">Map and status may lag ~15–20 min behind field systems.</p>
       </form>
 
   </div>

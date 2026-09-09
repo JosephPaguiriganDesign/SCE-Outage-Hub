@@ -1,12 +1,12 @@
 # SCE Outage Hub — Hi-fi mobile prototype (CONH)
 
-Clickable mobile-first hi-fi for stakeholder review. Built from `wires-mobile/` IA with Pixel visual direction (`visual/direction.md` + `visual/comps.html`).
+Clickable mobile-first hi-fi for stakeholder review. Built from `wires-mobile/` IA with Pixel visual direction (`visual/direction.md` + `visual/comps.html` + `visual/exports/`).
 
 ## How to open
 
 1. Open **`index.html`** or **`F0-hub-home.html`** in a browser.
 2. Use **DevTools device mode** at **390×844** (iPhone 12/13 size works well), or open on a phone.
-3. Optional local server (better than `file://` on some phones):
+3. Optional local server:
 
 ```bash
 cd /workspace/sce-outage-hub/hifi
@@ -20,8 +20,10 @@ Relative links only — works from this folder without a build step.
 
 | Path | Taps |
 |---|---|
-| **Guest active** | F0 → chip **Maple** → F1 → **View details** → F2 → **Map** F6 / **Get help** F9 |
+| **Guest active** | F0 → Recent **Maple** → F1 → **View full details** → F2 → **Map** F6 / **Get help** F9 |
 | **Guest report** | F0 → **Report** → F5 → Submit → F5-confirm → back with **Pending report** badge |
+| **Multi** | F0-multi → chips / **View portfolio** → F7 → Maple → F2 |
+| **PSPS** | F10 → What to do / Get help → F9; **PSPS map** stubs “Opens PSPS map” (not F6) |
 
 Pending badge: F5-confirm writes `sessionStorage.conh_pending` and links with `?pending=1`. F0 / F1 show the badge when either is present.
 
@@ -39,25 +41,31 @@ Pending badge: F5-confirm writes `sessionStorage.conh_pending` and links with `?
 
 | File | Role |
 |---|---|
-| `index.html` | Gallery → open F0 |
+| `index.html` | Gallery |
 | `shared.css` | Hi-fi tokens (direction + comps) |
-| `F0-hub-home.html` | Guest hub (full polish) |
-| `F1-lookup-result.html` | Lookup / Restoring hero (full polish) |
-| `F2-active-detail.html` | Active detail + AFN (full polish) |
-| `F5-report.html` | Report form (light upgrade) |
-| `F5-confirm.html` | Confirmation + pending handoff |
-| `F6-map-sheet.html` | Map sheet (light upgrade) |
-| `F9-afn-help.html` | AFN / help (light upgrade) |
+| `F0-hub-home.html` | Guest hub — recent list + RESTORING hero |
+| `F0-signed.html` | Signed-in single — Elm Planned |
+| `F0-multi.html` | Multi — summary chips + worst RESTORING hero + AFN |
+| `F1-lookup-result.html` | Lookup / Restoring hero + View full details |
+| `F2-active-detail.html` | Active detail · 5-stage · Why ERT · AFN |
+| `F5-report.html` | Report form |
+| `F5-confirm.html` | Confirmation trust beat + pending handoff |
+| `F6-map-sheet.html` | Map · filters · pin halo · bottom sheet |
+| `F7-portfolio.html` | Portfolio drill-in |
+| `F9-afn-help.html` | AFN / help sheet |
+| `F10-psps-banner.html` | PSPS Warning · map stub |
 
-## Out of scope
+## Locked content
 
-- SCE-UI / gold-blue design-system work
-- Coworker desktop dashboard
-- Full F0-signed / F0-multi / F3–F4 / F7–F8 / F10 (Facilitator stubs only on F0)
+- Maple: 1847 Maple Ave Pasadena · OUT-2026-094821 · **RESTORING** · “Power is off at this address” · Back by 4:45 PM · En route 3 of 5
+- PSPS: 891 Canyon Rd Santa Clarita · Warning · Thu Sep 10 · 8:00 PM
+- Report ref: RPT-2026-77401
+- Account: Jordan Lee · ••••4821
 
-## Gaps vs Pixel comps
+## Gaps vs Pixel exports
 
-- Comps are static artboards; this folder is clickable product UI (full-bleed, no gray desktop chrome).
-- F0 uses **chips** for Recent (wires IA), not the comps “recent list” card — visual polish applied to chips.
-- Signed-in / multi / PSPS artboards from comps are not shipped as separate hi-fi frames here (stakeholder path is guest F0→F2).
-- Search placeholder locked to wires: “Search address, outage #, or meter” (comps used a shorter string).
+- Comps are static artboards; this folder is clickable product UI (full-bleed).
+- F5-report has no dedicated export (only F5-report-confirm) — form is hi-fi styled from direction.
+- F7 portfolio layout follows `portfolio.png` tile cards; wires IA kept for filters/sort stubs omitted for clarity.
+- Search placeholder locked to wires: “Search address, outage #, or meter”.
+- No SCE-UI / gold-blue design-system work.

@@ -21,8 +21,7 @@
       <div class="hub-header">
         <div class="row">
           <div>
-            <div class="hub-title">SCE Outage Hub</div>
-            <div class="hub-name">Am I impacted?</div>
+            <div class="hub-name" style="margin:0">Outage Hub</div>
           </div>
           <div class="header-meta">
             Updated 10:28 AM<br/>
@@ -39,40 +38,69 @@
         </div>
       </div>
 
-      <a class="search" href="F1-lookup-result.html" aria-label="Search address">
-        <span class="icon" aria-hidden="true"></span>
-        <span class="ph">Search address, outage #, or meter</span>
-      </a>
+      <div class="search-wrap">
+        <a class="search" href="F1-lookup-result.html" aria-label="Search address">
+          <span class="icon" aria-hidden="true"></span>
+          <span class="ph">Search address, outage #, or meter</span>
+        </a>
+      </div>
 
-      <div class="section-label">Recent</div>
-      <div class="chips">
-        <a class="chip" href="F1-lookup-result.html">1847 Maple Ave, Pasadena <span class="mini-pill">Restoring</span></a>
-        <a class="chip" href="F1-lookup-result.html">1200 E Colorado Blvd, Pasadena</a>
+      <div class="section-label">Recent lookups</div>
+      <div class="recent">
+        <a class="recent-item" href="F1-lookup-result.html">
+          <div>
+            <div class="ri-addr">1847 Maple Ave, Pasadena</div>
+            <div class="ri-meta">Looked up today</div>
+          </div>
+          <span class="pill restore"><span class="mark"></span>Restoring</span>
+        </a>
+        <a class="recent-item" href="F1-lookup-result.html">
+          <div>
+            <div class="ri-addr">1200 E Colorado Blvd, Pasadena</div>
+            <div class="ri-meta">Yesterday</div>
+          </div>
+          <span class="pill on"><span class="mark"></span>On</span>
+        </a>
       </div>
 
       <div class="cta-row">
-        <a class="btn primary" href="F5-report.html" style="flex:1">Report outage / hazard</a>
-        <a class="btn map" href="F6-map-sheet.html" style="flex:1">View map</a>
+        <a class="btn primary" href="F5-report.html" style="flex:1">⚑ Report outage</a>
+        <a class="btn map" href="F6-map-sheet.html" style="flex:1">▣ View map</a>
       </div>
       <div class="cta-row" style="padding-top:0" id="signin">
         <a class="btn gold block" href="#signin">Sign in to My Account</a>
       </div>
 
-      <div class="mod">
-        <h4>Trust chrome</h4>
-        <p>Last updated 10:28 AM PT</p>
-        <p class="trust" style="margin:0">Map and status may lag up to ~15–20 minutes behind field systems.</p>
+      <div class="hero rail-restore tint-restore">
+        <div class="hero-inner">
+          <div class="row-top">
+            <span class="evchip">Repair</span>
+            <span class="pill restore"><span class="mark"></span>Restoring</span>
+          </div>
+          <div class="addr">1847 Maple Ave, Pasadena</div>
+          <div class="status-word sm">RESTORING</div>
+          <div class="subline">Power is off at this address</div>
+          <div class="cause">Equipment failure — distribution transformer</div>
+          <div class="etr">Back by 4:45 PM</div>
+          <div class="trust">Updated 10:28 AM · May lag ~15–20 min</div>
+          <div class="actions">
+            <a class="btn" href="F5-report.html">Report</a>
+            <a class="btn" href="F6-map-sheet.html">Map</a>
+            <a class="btn" href="F9-afn-help.html">Get help</a>
+          </div>
+        </div>
       </div>
-      <a class="footer-link" href="F9-afn-help.html">Need help? AFN &amp; resources →</a>
+
       <p class="trust-footer">Official outage info · Not a third-party app</p>
 
       <details class="facilitator" id="facilitator">
         <summary>Facilitator</summary>
         <div class="fac-body">
           <a href="F0-hub-home.html">Guest home</a>
-          <a href="#signin">Signed-in (stub)</a>
-          <a href="#signin">Multi (stub)</a>
-          <a href="#signin">PSPS (stub)</a>
+          <a href="F0-signed.html">Signed-in</a>
+          <a href="F0-multi.html">Multi</a>
+          <a href="F10-psps-banner.html">PSPS</a>
+          <a href="F7-portfolio.html">Portfolio</a>
         </div>
       </details>
 
