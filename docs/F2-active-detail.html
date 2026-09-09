@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>F2 — Active detail · SCE Outage Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+</head>
+<body>
+<div class="app">
+  <div class="frame-chip">
+    <span class="id">F2 · Active detail</span>
+    <span class="chip-actions"><span class="badge hifi">Hi-fi</span><span class="badge guest">Guest</span> <span class="badge afn">AFN</span><button type="button" class="dismiss" aria-label="Hide frame label">×</button></span>
+  </div>
+  <div class="os-bar"><span>10:40</span><span class="icons">▮▮▮ ▔ Wi‑Fi</span></div>
+  <div class="app-scroll">
+
+      <div class="hub-header">
+        <div class="row">
+          <div>
+            <a href="F1-lookup-result.html" class="hub-name" style="margin:0;display:inline-flex;align-items:center;gap:6px;color:inherit">← Outage detail</a>
+          </div>
+          <div class="header-meta">Updated 10:28 AM</div>
+        </div>
+      </div>
+
+      <div class="hero rail-restore tint-restore">
+        <div class="hero-inner compact">
+          <div class="row-top">
+            <span class="evchip">Repair</span>
+            <span class="pill restore"><span class="mark"></span>Restoring</span>
+          </div>
+          <div class="addr">1847 Maple Ave, Pasadena, CA 91104</div>
+          <div class="status-word sm">RESTORING</div>
+          <div class="subline">Power is off at this address</div>
+          <div class="cause" style="margin-bottom:4px">Equipment failure — distribution transformer</div>
+          <div class="meta-line">Outage # OUT-2026-094821 · 342 customers</div>
+          <div class="etr">Back by 4:45 PM</div>
+          <div class="trust">Updated 10:28 AM · May lag ~15–20 min</div>
+          <div class="why-box">
+            <strong>Why ERT changed</strong>
+            Previous 2:30 PM → now 4:45 PM after additional damaged equipment found.
+          </div>
+          <div class="actions">
+            <a class="btn" href="F5-report.html">Report</a>
+            <a class="btn" href="F6-map-sheet.html">Map</a>
+            <a class="btn" href="F9-afn-help.html">Get help</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label">Restoration journey · 5 stages</div>
+      <div class="timeline" style="padding:10px 12px">
+        <div class="tl-item done" style="padding-bottom:10px">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-title">Reported</div>
+            <div class="tl-meta">Today 7:12 AM</div>
+          </div>
+        </div>
+        <div class="tl-item done" style="padding-bottom:10px">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-title">Crew assigned</div>
+            <div class="tl-meta">Completed</div>
+          </div>
+        </div>
+        <div class="tl-item active" style="padding-bottom:10px">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-title">En route</div>
+            <div class="tl-meta">Now · 3 of 5</div>
+          </div>
+        </div>
+        <div class="tl-item" style="padding-bottom:10px">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-title">On site</div>
+            <div class="tl-meta">Next</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-title">Restored</div>
+            <div class="tl-meta">Est. 4:45 PM</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="afn" style="padding:12px">
+        <h3>Need help during this outage?</h3>
+        <a class="btn btn211" href="tel:211">Call 211</a>
+        <div class="links" style="flex-direction:row;flex-wrap:wrap;gap:8px 14px">
+          <a href="F9-afn-help.html#mbl">Medical Baseline</a>
+          <a href="F9-afn-help.html">Food &amp; shelter</a>
+          <a href="F9-afn-help.html#what-to-do">What to do now</a>
+        </div>
+      </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  var chip=document.querySelector('.frame-chip');
+  if(!chip) return;
+  var btn=chip.querySelector('.dismiss');
+  if(btn) btn.addEventListener('click',function(){chip.hidden=true;});
+})();
+</script>
+</body>
+</html>
