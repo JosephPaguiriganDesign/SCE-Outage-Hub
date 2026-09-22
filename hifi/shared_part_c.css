@@ -1,0 +1,61 @@
+/* Leaflet map (F6) — keep Pixel tokens; stub remains fallback */
+.map-canvas.has-leaflet{
+  background:#E8EBEA;
+}
+.map-canvas.has-leaflet::before{display:none}
+.map-canvas.has-leaflet .map-stub{display:none}
+.map-canvas .leaflet-host{
+  position:absolute;inset:0;z-index:1;
+  width:100%;height:100%;min-height:280px;
+}
+.map-canvas:not(.has-leaflet) .leaflet-host{display:none}
+.map-stub{position:absolute;inset:0;z-index:1;pointer-events:none}
+.map-stub .map-poly,
+.map-stub .map-pin{pointer-events:none}
+.map-stub[data-layer="planned"] .map-poly{
+  background:rgba(37,99,235,.22);border-color:rgba(37,99,235,.55)
+}
+.map-stub[data-layer="planned"] .map-pin .halo{
+  background:rgba(37,99,235,.28);border-color:rgba(37,99,235,.5)
+}
+.map-stub[data-layer="planned"] .map-pin .dot-core{background:var(--st-planned)}
+.map-stub[data-layer="psps"] .map-poly{
+  background:rgba(234,88,12,.22);border-color:rgba(234,88,12,.55)
+}
+.map-stub[data-layer="psps"] .map-pin .halo{
+  background:rgba(234,88,12,.28);border-color:rgba(234,88,12,.5)
+}
+.map-stub[data-layer="psps"] .map-pin .dot-core{background:var(--st-warn)}
+.map-stub.is-empty .map-poly,
+.map-stub.is-empty .map-pin{opacity:0}
+.map-filters{z-index:1100;pointer-events:auto}
+.map-filters .filter{cursor:pointer;-webkit-tap-highlight-color:transparent;pointer-events:auto;position:relative;z-index:1}
+.map-sheet{z-index:1200}
+.map-sheet.is-empty .sheet-empty{display:block;padding:8px 4px 12px;text-align:center}
+.map-sheet .sheet-empty{display:none;color:var(--ink-3);font-size:14px;font-weight:600}
+.map-sheet .sheet-body{display:block}
+.map-sheet.is-empty .sheet-body{display:none}
+.leaflet-container{
+  font:inherit;background:#E8EBEA;width:100%;height:100%
+}
+.leaflet-control-attribution{
+  font-size:10px;max-width:160px;line-height:1.2;
+  background:rgba(255,255,255,.85)!important
+}
+.leaflet-top.leaflet-right{top:52px}
+.conh-pin{
+  width:18px;height:18px;margin-left:-9px;margin-top:-9px;position:relative
+}
+.conh-pin .halo{
+  position:absolute;left:50%;top:50%;width:40px;height:40px;margin:-20px 0 0 -20px;
+  border-radius:50%;border:2px solid currentColor;opacity:.45;background:currentColor
+}
+.conh-pin .halo{opacity:.28}
+.conh-pin .dot{
+  position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;
+  border-radius:50%;background:currentColor;border:3px solid #fff;
+  box-shadow:0 2px 8px rgba(16,24,32,.28)
+}
+.conh-pin.restore{color:var(--st-restore)}
+.conh-pin.planned{color:var(--st-planned)}
+.conh-pin.warn{color:var(--st-warn)}
