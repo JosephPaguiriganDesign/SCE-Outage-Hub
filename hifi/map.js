@@ -171,29 +171,63 @@
     });
   }
 
-  function fitVisible() {
+  function visibleCount() {
+    var n = 0, id;
+    for (id in on) {
+      if (Object.prototype.hasOwnProperty.call(on, id) && on[id]) n++;
+    }
+    return n;
+  }
+
+  function fitVisible(opts) {
+    opts = opts || {};
     if (!map || !leafletOk) return;
     try {
       var bounds = null;
-      var id, g, b;
+      var id, g, b, n;
       for (id in groups) {
         if (!Object.prototype.hasOwnProperty.call(groups, id)) continue;
         if (!on[id]) continue;
         g = groups[id];
+        if (!map.hasLayer(g)) continue;
         b = g.getBounds && g.getBounds();
         if (!b || !b.isValid()) continue;
         if (!bounds) bounds = L.latLngBounds(b.getSouthWest(), b.getNorthEast());
         else bounds.extend(b);
       }
+      n = visibleCount();
+      /* padding: top filters + bottom sheet (~220–260px in 390 frame) */
+      var padTL = L.point(36, 88);
+      var padBR = L.point(36, 250);
       if (bounds && bounds.isValid()) {
-        map.fitBounds(bounds.pad(0.35), { animate: false, maxZoom: 15 });
-      } else {
-        map.setView(LAYERS.active.center, 12, { animate: false });
+        var maxZ = n <= 1 ? 16 : 12;
+        var flyOpts = {
+          paddingTopLeft: padTL,
+          paddingBottomRight: padBR,
+          maxZoom: maxZ,
+          duration: n <= 1 ? 0.55 : 0.75
+        };
+        if (typeof map.flyToBounds === 'function') {
+          map.flyToBounds(bounds, flyOpts);
+        } else {
+          map.fitBounds(bounds, {
+            paddingTopLeft: padTL,
+            paddingBottomRight: padBR,
+            maxZoom: maxZ,
+            animate: true
+          });
+        }
+      } else if (opts.forceOverview) {
+        /* 0 layers on boot only — mild Pasadena overview; otherwise keep last view */
+        if (typeof map.flyTo === 'function') {
+          map.flyTo(L.latLng(34.1478, -118.1445), 11, { duration: 0.5 });
+        } else {
+          map.setView([34.1478, -118.1445], 11, { animate: true });
+        }
       }
+      /* 0 layers after user toggle: keep last camera */
     } catch (err) {
-      try {
-        map.setView(LAYERS.active.center, 12, { animate: false });
-      } catch (e2) {}
+      /* swallow — filters/sheet still update */
     }
   }
 
