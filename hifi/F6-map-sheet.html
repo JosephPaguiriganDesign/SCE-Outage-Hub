@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 <link rel="stylesheet" href="shared.css"/>
 </head>
 <body>
@@ -23,34 +24,40 @@
     </div>
   </div>
   <div class="app-scroll" style="flex:1;padding:0;overflow:hidden;display:flex;flex-direction:column">
-      <div class="map-canvas" style="flex:1">
-        <div class="map-filters">
-          <button class="filter on" type="button">Active</button>
-          <button class="filter" type="button">Planned</button>
-          <button class="filter" type="button">PSPS</button>
+      <div class="map-canvas" id="mapCanvas" style="flex:1">
+        <div class="map-filters" role="group" aria-label="Map layers">
+          <button class="filter on" type="button" data-layer="active" aria-pressed="true">Active</button>
+          <button class="filter" type="button" data-layer="planned" aria-pressed="false">Planned</button>
+          <button class="filter" type="button" data-layer="psps" aria-pressed="false">PSPS</button>
         </div>
-        <div class="map-poly" title="Outage polygon"></div>
-        <div class="map-pin" title="Address pin">
-          <div class="halo"></div>
-          <div class="dot-core"></div>
+        <div id="map" class="leaflet-host" role="application" aria-label="Outage map"></div>
+        <div class="map-stub" id="mapStub" data-layer="active" aria-hidden="true">
+          <div class="map-poly" title="Outage polygon"></div>
+          <div class="map-pin" title="Address pin">
+            <div class="halo"></div>
+            <div class="dot-core"></div>
+          </div>
         </div>
-        <div class="map-sheet">
+        <div class="map-sheet" id="mapSheet">
           <div class="sheet-handle"></div>
-          <div class="hero rail-restore tint-restore">
-            <div class="hero-inner compact">
-              <div class="row-top">
-                <span class="evchip">Repair</span>
-                <span class="pill restore"><span class="mark"></span>Restoring</span>
-              </div>
-              <div class="addr">1847 Maple Ave, Pasadena</div>
-              <div class="status-word" style="font-size:22px;line-height:26px">RESTORING</div>
-              <div class="subline">Power is off at this address</div>
-              <div class="etr sm">Back by 4:45 PM</div>
-              <div class="trust">Updated 10:28 AM · May lag ~15–20 min</div>
-              <div class="actions">
-                <a class="btn" href="F2-active-detail.html">Details</a>
-                <a class="btn" href="F5-report.html">Report</a>
-                <a class="btn" href="F9-afn-help.html">Get help</a>
+          <div class="sheet-empty">Select a layer</div>
+          <div class="sheet-body" id="sheetBody">
+            <div class="hero rail-restore tint-restore">
+              <div class="hero-inner compact">
+                <div class="row-top">
+                  <span class="evchip">Repair</span>
+                  <span class="pill restore"><span class="mark"></span>Restoring</span>
+                </div>
+                <div class="addr">1847 Maple Ave, Pasadena</div>
+                <div class="status-word" style="font-size:22px;line-height:26px">RESTORING</div>
+                <div class="subline">Power is off at this address</div>
+                <div class="etr sm">Back by 4:45 PM</div>
+                <div class="trust">Updated 10:28 AM · May lag ~15–20 min</div>
+                <div class="actions">
+                  <a class="btn" href="F2-active-detail.html">Details</a>
+                  <a class="btn" href="F5-report.html">Report</a>
+                  <a class="btn" href="F9-afn-help.html">Get help</a>
+                </div>
               </div>
             </div>
           </div>
@@ -67,6 +74,8 @@
   if(btn) btn.addEventListener('click',function(){chip.hidden=true;});
 })();
 </script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="map.js" defer></script>
 <script src="transitions.js" defer></script>
 </body>
 </html>
