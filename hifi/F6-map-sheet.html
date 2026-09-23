@@ -27,9 +27,11 @@
       <div class="map-canvas" id="mapCanvas" style="flex:1">
         <div class="map-filters" role="group" aria-label="Map layers">
           <button class="filter on" type="button" data-layer="active" aria-pressed="true">Active</button>
-          <button class="filter" type="button" data-layer="planned" aria-pressed="false">Planned</button>
+          <button class="filter" type="button" data-layer="planned" aria-pressed="false">Scheduled</button>
           <button class="filter" type="button" data-layer="psps" aria-pressed="false">PSPS</button>
+          <button class="filter" type="button" data-layer="consideration" aria-pressed="false">Under consideration</button>
         </div>
+        <p class="map-attr">Prototype map · illustrative outage/PSPS shapes · not live SCE/Esri EMCS data · Production also: HFRA · CRC/CCV</p>
         <div id="map" class="leaflet-host" role="application" aria-label="Outage map"></div>
         <div class="map-stub" id="mapStub" data-layer="active" aria-hidden="true">
           <div class="map-poly" title="Outage polygon"></div>

@@ -51,10 +51,23 @@
           <div class="actions">
             <a class="btn" href="F9-afn-help.html#what-to-do">What to do</a>
             <a class="btn" href="F9-afn-help.html">Get help</a>
-            <button type="button" class="btn" id="pspsMapBtn" style="background:transparent;border:none;border-radius:0;font-size:13px;font-weight:600;color:var(--ink-2);min-height:48px;flex:1">PSPS map</button>
+            <a class="btn" href="F6-map-sheet.html?layer=psps">PSPS map</a>
           </div>
         </div>
       </div>
+
+      <section class="fpi-strip" aria-label="Fire Potential Index outlook">
+        <div class="fpi-label">Fire Potential Index · illustrative · not County_FPI.json</div>
+        <div class="fpi-days">
+          <div class="fpi-pill low"><span class="d">Wed</span><span class="lv">Low</span></div>
+          <div class="fpi-pill elevated"><span class="d">Thu</span><span class="lv">Elevated</span></div>
+          <div class="fpi-pill high"><span class="d">Fri</span><span class="lv">High</span></div>
+          <div class="fpi-pill high"><span class="d">Sat</span><span class="lv">High</span></div>
+          <div class="fpi-pill elevated"><span class="d">Sun</span><span class="lv">Elevated</span></div>
+          <div class="fpi-pill low"><span class="d">Mon</span><span class="lv">Low</span></div>
+          <div class="fpi-pill low"><span class="d">Tue</span><span class="lv">Low</span></div>
+        </div>
+      </section>
 
       <div class="section-label">PSPS stages</div>
       <div class="stage-chips">
@@ -76,23 +89,12 @@
 
   </div>
 </div>
-<div class="stub-toast" id="pspsToast" role="status">Opens PSPS map</div>
-
 <script>
 (function(){
   var chip=document.querySelector('.frame-chip');
   if(chip){
     var btn=chip.querySelector('.dismiss');
     if(btn) btn.addEventListener('click',function(){chip.hidden=true;});
-  }
-  var mapBtn=document.getElementById('pspsMapBtn');
-  var toast=document.getElementById('pspsToast');
-  if(mapBtn && toast){
-    mapBtn.addEventListener('click',function(){
-      toast.classList.add('show');
-      clearTimeout(mapBtn._t);
-      mapBtn._t=setTimeout(function(){toast.classList.remove('show');},2200);
-    });
   }
 })();
 </script>
