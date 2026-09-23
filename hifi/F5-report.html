@@ -27,6 +27,31 @@
         </div>
       </div>
 
+      <div class="safety-card" role="region" aria-label="Life-threatening emergency">
+        <div class="safety-title">Life-threatening emergency?</div>
+        <p class="safety-line">Downed line, gas smell, fire, or medical emergency</p>
+        <a class="btn danger block" href="tel:911">Call 911</a>
+        <p class="safety-hint">Stay back 30+ ft · Call 911 · <a href="#">Downed line guidance</a></p>
+      </div>
+
+      <div class="self-checks" role="group" aria-label="Quick self-checks">
+        <div class="sc-row">
+          <span class="sc-q">Breaker tripped?</span>
+          <div class="sc-tog" role="radiogroup" aria-label="Breaker tripped">
+            <label><input type="radio" name="breaker" value="yes"/> Yes</label>
+            <label><input type="radio" name="breaker" value="no"/> No</label>
+          </div>
+        </div>
+        <p class="sc-hint" id="breakerHint" hidden>Reset breaker if safe — if power returns, you may not need to report.</p>
+        <div class="sc-row">
+          <span class="sc-q">Meter dark or flashing?</span>
+          <div class="sc-tog" role="radiogroup" aria-label="Meter dark or flashing">
+            <label><input type="radio" name="meter" value="yes"/> Yes</label>
+            <label><input type="radio" name="meter" value="no"/> No</label>
+          </div>
+        </div>
+      </div>
+
       <form action="F5-confirm.html" method="get" style="padding:8px 16px 16px">
         <div class="form-field">
           <label for="loc">Location</label>
@@ -62,6 +87,15 @@
   if(!chip) return;
   var btn=chip.querySelector('.dismiss');
   if(btn) btn.addEventListener('click',function(){chip.hidden=true;});
+})();
+(function(){
+  var hint=document.getElementById('breakerHint');
+  if(!hint) return;
+  document.querySelectorAll('input[name="breaker"]').forEach(function(r){
+    r.addEventListener('change',function(){
+      hint.hidden = !(r.value==='yes' && r.checked);
+    });
+  });
 })();
 </script>
 <script src="transitions.js" defer></script>
