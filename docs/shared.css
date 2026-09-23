@@ -1,4 +1,5 @@
-/* CONH hi-fi — split for GitHub push size; same rules as hifi/shared.css */
+/* CONH hi-fi — split for GitHub push size; mirrors monolithic shared.css */
 @import url("shared_part_a.css");
 @import url("shared_part_b.css");
 @import url("shared_part_c.css");
+@import url("shared_part_d.css");
