@@ -35,6 +35,33 @@
         <div class="lag">You’ll see status in the hub when systems sync (may take ~15–20 min).</div>
         <a class="btn primary block" href="F1-lookup-result.html?pending=1" id="backStatus">Back to hub status</a>
       </div>
+
+      <div class="updates-block" id="updatesBlock">
+        <div class="ub-head">
+          <label class="ub-enable">
+            <input type="checkbox" id="updatesEnable"/>
+            <span>Updates for this address</span>
+          </label>
+        </div>
+        <div class="ub-body" id="updatesBody" hidden>
+          <div class="ub-seg" role="tablist" aria-label="Update channel">
+            <button type="button" class="ub-tab on" data-ch="phone" role="tab" aria-selected="true">Phone</button>
+            <button type="button" class="ub-tab" data-ch="email" role="tab" aria-selected="false">Email</button>
+          </div>
+          <div class="form-field ub-field" id="ubPhone">
+            <label for="updPhone">Mobile number</label>
+            <input id="updPhone" name="updPhone" type="tel" inputmode="tel" placeholder="(555) 555-0100" autocomplete="tel"/>
+          </div>
+          <div class="form-field ub-field" id="ubEmail" hidden>
+            <label for="updEmail">Email</label>
+            <input id="updEmail" name="updEmail" type="email" placeholder="you@example.com" autocomplete="email"/>
+          </div>
+          <p class="ub-honest">Scoped to this report/address · Illustrative prefs only · No SMS shortcode</p>
+          <a class="btn gold block" href="F0-signed.html">Save prefs in My Account · Sign in</a>
+          <button type="button" class="btn map block ub-skip" id="updatesSkip">Skip for now</button>
+        </div>
+      </div>
+
       <div class="cta-row">
         <a class="btn map block" href="F0-hub-home.html?pending=1" id="backHome">Return to hub home</a>
       </div>
@@ -51,6 +78,29 @@
     if(btn) btn.addEventListener('click',function(){chip.hidden=true;});
   }
   try{ sessionStorage.setItem('conh_pending','1'); }catch(e){}
+  var en=document.getElementById('updatesEnable');
+  var body=document.getElementById('updatesBody');
+  var skip=document.getElementById('updatesSkip');
+  if(en && body){
+    en.addEventListener('change',function(){ body.hidden=!en.checked; });
+  }
+  if(skip && en && body){
+    skip.addEventListener('click',function(){ en.checked=false; body.hidden=true; });
+  }
+  document.querySelectorAll('.ub-tab').forEach(function(tab){
+    tab.addEventListener('click',function(){
+      document.querySelectorAll('.ub-tab').forEach(function(t){
+        t.classList.toggle('on', t===tab);
+        t.setAttribute('aria-selected', t===tab ? 'true' : 'false');
+      });
+      var phone=document.getElementById('ubPhone');
+      var email=document.getElementById('ubEmail');
+      if(!phone||!email) return;
+      var isPhone=tab.getAttribute('data-ch')==='phone';
+      phone.hidden=!isPhone;
+      email.hidden=isPhone;
+    });
+  });
 })();
 </script>
 <script src="transitions.js" defer></script>
