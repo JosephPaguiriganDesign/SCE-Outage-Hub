@@ -91,3 +91,19 @@ a.btn.danger:active,button.btn.danger:active{background:#000}
 .ub-honest{font-size:11px;line-height:15px;color:var(--ink-3);margin:0 0 10px;text-align:left}
 .ub-skip{margin-top:8px}
 .updates-block .btn.gold{margin-top:2px}
+
+/* F10 light fire-weather nest — dim Low days; quiet under hero */
+.why-warning{margin:8px var(--pad) 4px}
+.why-warning > .why-label{
+  font-size:12px;font-weight:600;color:var(--ink-3);
+  margin:0 0 8px;padding:0 2px;line-height:1.35
+}
+.fpi-strip.nested{
+  margin:0;box-shadow:none;background:var(--surface-2);
+  border-color:var(--line)
+}
+.fpi-label .fpi-honest{font-weight:500;color:var(--ink-3)}
+.fpi-pill.dim{
+  opacity:.4;background:var(--surface);border-color:var(--line)
+}
+.fpi-pill.dim .d,.fpi-pill.dim .lv{color:var(--ink-3);font-weight:600}
