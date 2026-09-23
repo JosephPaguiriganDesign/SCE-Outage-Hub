@@ -44,11 +44,11 @@
         '<div class="hero rail-planned tint-planned">' +
           '<div class="hero-inner compact">' +
             '<div class="row-top">' +
-              '<span class="evchip">Planned</span>' +
+              '<span class="evchip">Scheduled</span>' +
               '<span class="pill planned"><span class="mark"></span>Upcoming</span>' +
             '</div>' +
             '<div class="addr">412 Elm St, Glendale</div>' +
-            '<div class="status-word sm">PLANNED</div>' +
+            '<div class="status-word sm">SCHEDULED</div>' +
             '<div class="subline">Pole replacement and line maintenance</div>' +
             '<div class="etr sm">Thu Sep 11 · 9:00 AM – 1:00 PM PT</div>' +
             '<div class="trust">Updated 9:05 AM · May lag ~15–20 min</div>' +
@@ -87,12 +87,41 @@
             '</div>' +
           '</div>' +
         '</div>'
+    },
+    consideration: {
+      id: 'consideration',
+      /* near Canyon Rd / Santa Clarita — offset from PSPS */
+      center: [34.41, -118.45],
+      zoom: 14,
+      ring: 0.011,
+      color: '#D4A017',
+      fillOpacity: 0.22,
+      dashArray: '6 4',
+      pinClass: 'consideration',
+      html:
+        '<div class="hero rail-warn tint-warn">' +
+          '<div class="hero-inner compact">' +
+            '<div class="row-top">' +
+              '<span class="evchip">Under consideration</span>' +
+              '<span class="pill watch"><span class="mark"></span>Watch</span>' +
+            '</div>' +
+            '<div class="addr">Near Canyon Rd, Santa Clarita</div>' +
+            '<div class="status-word" style="font-size:18px;line-height:24px">UNDER CONSIDERATION</div>' +
+            '<div class="subline">PSPS under consideration · no shutoff ordered</div>' +
+            '<div class="etr sm">Monitoring fire weather · no de-energization ordered</div>' +
+            '<div class="trust">Updated 10:15 AM · Illustrative prototype</div>' +
+            '<div class="actions">' +
+              '<a class="btn" href="F10-psps-banner.html">Details</a>' +
+              '<a class="btn" href="F9-afn-help.html">Get help</a>' +
+            '</div>' +
+          '</div>' +
+        '</div>'
     }
   };
 
-  var ORDER = ['active', 'planned', 'psps'];
+  var ORDER = ['active', 'planned', 'psps', 'consideration'];
   var focus = 'active';
-  var on = { active: true, planned: false, psps: false };
+  var on = { active: true, planned: false, psps: false, consideration: false };
   var groups = {};
   var map = null;
   var leafletOk = false;
@@ -196,7 +225,6 @@
         else bounds.extend(b);
       }
       n = visibleCount();
-      /* padding: top filters + bottom sheet (~220–260px in 390 frame) */
       var padTL = L.point(36, 88);
       var padBR = L.point(36, 250);
       if (bounds && bounds.isValid()) {
@@ -218,16 +246,13 @@
           });
         }
       } else if (opts.forceOverview) {
-        /* 0 layers on boot only — mild Pasadena overview; otherwise keep last view */
         if (typeof map.flyTo === 'function') {
           map.flyTo(L.latLng(34.1478, -118.1445), 11, { duration: 0.5 });
         } else {
           map.setView([34.1478, -118.1445], 11, { animate: true });
         }
       }
-      /* 0 layers after user toggle: keep last camera */
     } catch (err) {
-      /* swallow — filters/sheet still update */
     }
   }
 
@@ -265,6 +290,26 @@
     toggleLayer(btn.getAttribute('data-layer'));
   }
 
+  function applyLayerParam() {
+    try {
+      var q = new URLSearchParams(location.search);
+      var raw = (q.get('layer') || '').toLowerCase();
+      if (!raw) return;
+      var alias = {
+        active: 'active',
+        planned: 'planned',
+        scheduled: 'planned',
+        psps: 'psps',
+        consideration: 'consideration'
+      };
+      var id = alias[raw];
+      if (!id || !LAYERS[id]) return;
+      on[id] = true;
+      focus = id;
+    } catch (err) {
+    }
+  }
+
   function buildLeaflet() {
     if (typeof L === 'undefined') return false;
     var el = document.getElementById('map');
@@ -279,11 +324,11 @@
       L.control.zoom({ position: 'topright' }).addTo(map);
 
       var tiles = L.tileLayer(
-        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
         {
           maxZoom: 19,
           attribution:
-            '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a> · Demo basemap (not SCE EMCS)'
         }
       );
       tiles.addTo(map);
@@ -291,13 +336,15 @@
       ORDER.forEach(function (id) {
         var cfg = LAYERS[id];
         var g = L.layerGroup();
-        L.polygon(blobRing(cfg.center[0], cfg.center[1], cfg.ring), {
+        var polyOpts = {
           color: cfg.color,
           weight: 2,
           fillColor: cfg.color,
-          fillOpacity: 0.28,
+          fillOpacity: cfg.fillOpacity != null ? cfg.fillOpacity : 0.28,
           opacity: 0.75
-        }).addTo(g);
+        };
+        if (cfg.dashArray) polyOpts.dashArray = cfg.dashArray;
+        L.polygon(blobRing(cfg.center[0], cfg.center[1], cfg.ring), polyOpts).addTo(g);
         L.marker(cfg.center, { icon: pinIcon(cfg.pinClass), keyboard: false }).addTo(g);
         groups[id] = g;
       });
@@ -323,8 +370,9 @@
     if (filtersRoot) {
       filtersRoot.addEventListener('click', onFiltersClick);
     }
+    applyLayerParam();
     syncFilters();
-    setSheet('active');
+    setSheet(focus);
 
     if (!buildLeaflet()) {
       leafletOk = false;
