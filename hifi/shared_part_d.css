@@ -107,3 +107,38 @@ a.btn.danger:active,button.btn.danger:active{background:#000}
   opacity:.4;background:var(--surface);border-color:var(--line)
 }
 .fpi-pill.dim .d,.fpi-pill.dim .lv{color:var(--ink-3);font-weight:600}
+
+/* Compact weather banner — amber/neutral; never gold or red */
+.wx-banner{
+  display:flex;align-items:center;gap:8px;
+  margin:6px var(--pad) 2px;padding:7px 10px;
+  min-height:36px;box-sizing:border-box;
+  background:rgba(234,88,12,.08);
+  border:1px solid rgba(234,88,12,.28);
+  border-radius:8px;
+  color:var(--ink);text-decoration:none;
+  font-size:12px;line-height:15px;font-weight:500;
+}
+.wx-banner.wx-neutral{
+  background:var(--surface-2);border-color:var(--line)
+}
+.wx-banner .wx-ico{
+  flex-shrink:0;width:18px;height:18px;border-radius:50%;
+  background:rgba(234,88,12,.16);color:#C2410C;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:11px;line-height:1;font-weight:700
+}
+.wx-banner.wx-neutral .wx-ico{background:rgba(16,24,32,.08);color:var(--ink-2)}
+.wx-banner .wx-copy{flex:1;min-width:0;color:var(--ink-2)}
+.wx-banner .wx-honest{
+  display:inline;font-size:10px;font-weight:500;color:var(--ink-3);
+  margin-left:4px;white-space:nowrap
+}
+.wx-banner .wx-chev{
+  flex-shrink:0;color:var(--ink-3);font-size:16px;line-height:1;font-weight:600;padding-left:2px
+}
+a.wx-banner{cursor:pointer;-webkit-tap-highlight-color:transparent}
+a.wx-banner:active{background:rgba(234,88,12,.14)}
+@media (max-width:360px){
+  .wx-banner{font-size:11px;line-height:14px;padding:6px 8px;gap:6px}
+}
