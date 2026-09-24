@@ -27,6 +27,12 @@
         </div>
       </div>
 
+      <a class="wx-banner" href="#why-warning" id="wxBannerLink">
+        <span class="wx-ico" aria-hidden="true">🌬</span>
+        <span class="wx-copy">High winds + low humidity in Santa Clarita through Sat · PSPS possible<span class="wx-honest">Illustrative</span></span>
+        <span class="wx-chev" aria-hidden="true">›</span>
+      </a>
+
       <div class="psps-banner">
         <div class="row-top" style="margin-bottom:0">
           <span class="evchip">PSPS</span>
@@ -56,7 +62,7 @@
         </div>
       </div>
 
-      <section class="why-warning" aria-label="Why this warning">
+      <section class="why-warning" id="why-warning" aria-label="Why this warning">
         <div class="why-label">Why this warning</div>
         <div class="fpi-strip nested" aria-label="Fire weather outlook">
           <div class="fpi-label">Fire weather outlook (next 7 days) <span class="fpi-honest">· Illustrative outlook</span></div>
@@ -98,6 +104,16 @@
   if(chip){
     var btn=chip.querySelector('.dismiss');
     if(btn) btn.addEventListener('click',function(){chip.hidden=true;});
+  }
+  var wx=document.getElementById('wxBannerLink');
+  if(wx){
+    wx.addEventListener('click',function(){
+      var t=document.getElementById('why-warning');
+      if(!t) return;
+      var d=t.closest('details');
+      if(d) d.open=true;
+      if(t.tagName==='DETAILS') t.open=true;
+    });
   }
 })();
 </script>
