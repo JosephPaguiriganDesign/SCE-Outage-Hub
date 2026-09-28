@@ -1,0 +1,68 @@
+/* ==========================================================================
+   CONH hi-fi — M3 motion layer (page + sheet transitions)
+   Re-times the existing View Transition + fallback keyframes with M3 easing
+   and durations. Keyframe names/flows unchanged (transitions.js untouched).
+   ========================================================================== */
+
+/* Cross-document View Transitions */
+::view-transition-old(root),
+::view-transition-new(root){
+  animation-duration:var(--md-sys-motion-duration-medium2);            /* 300ms */
+  animation-timing-function:var(--md-sys-motion-easing-emphasized);
+}
+/* outgoing page accelerates away, incoming decelerates in (M3 emphasized pair) */
+html:active-view-transition-type(forward)::view-transition-old(root),
+html:active-view-transition-type(back)::view-transition-old(root){
+  animation-duration:var(--md-sys-motion-duration-short4);             /* 200ms */
+  animation-timing-function:var(--md-sys-motion-easing-emphasized-accelerate);
+}
+html:active-view-transition-type(forward)::view-transition-new(root),
+html:active-view-transition-type(back)::view-transition-new(root){
+  animation-duration:var(--md-sys-motion-duration-medium2);            /* 300ms */
+  animation-timing-function:var(--md-sys-motion-easing-emphasized-decelerate);
+}
+/* sheet entrance (F6 / F9): longer emphasized-decelerate rise */
+html:active-view-transition-type(sheet)::view-transition-old(root){
+  animation-duration:var(--md-sys-motion-duration-medium2);
+  animation-timing-function:var(--md-sys-motion-easing-standard);
+}
+html:active-view-transition-type(sheet)::view-transition-new(root){
+  animation-duration:var(--md-sys-motion-duration-long2);              /* 500ms */
+  animation-timing-function:var(--md-sys-motion-easing-emphasized-decelerate);
+}
+/* M3 scrim (32% scrim role) during the sheet hand-off */
+@keyframes vt-dim-out{
+  to{opacity:.68;filter:brightness(.68)}
+}
+
+/* Fallback (no cross-doc VT) — same easing/durations */
+@media (prefers-reduced-motion: no-preference){
+  html.enter-forward .app{animation:fb-in-right var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized-decelerate) both}
+  html.enter-back .app{animation:fb-in-left var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized-decelerate) both}
+  html.enter-sheet .app{animation:fb-sheet-up var(--md-sys-motion-duration-long2) var(--md-sys-motion-easing-emphasized-decelerate) both}
+  html.enter-sheet body{animation:fb-scrim var(--md-sys-motion-duration-long2) var(--md-sys-motion-easing-standard) both}
+
+  /* F6 bottom sheet content swap + chip selection */
+  .map-sheet .sheet-body > *{animation:m3-sheet-content var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized-decelerate) both}
+  .map-filters .filter{transition:background-color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard),
+    border-color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard),
+    padding var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard),--_slo var(--md-sys-motion-duration-short2) linear}
+  /* snackbar enter */
+  .stub-toast.show{animation:m3-snackbar-in var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized-decelerate) both}
+}
+@keyframes fb-scrim{
+  from{background-color:color-mix(in srgb,var(--md-sys-color-scrim) 32%,var(--md-sys-color-background))}
+  to{background-color:var(--md-sys-color-background)}
+}
+@keyframes m3-sheet-content{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes m3-snackbar-in{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translate(-50%,0)}}
+
+/* Reduced motion: keep the existing quick fades; kill new motion + state fades */
+@media (prefers-reduced-motion: reduce){
+  ::view-transition-old(root),
+  ::view-transition-new(root){
+    animation-duration:70ms!important;animation-timing-function:linear!important;
+  }
+  .map-sheet .sheet-body > *,.stub-toast.show{animation:none!important}
+  *,*::before,*::after{transition-duration:0ms!important}
+}

@@ -3,3 +3,7 @@
 @import url("shared_part_b.css");
 @import url("shared_part_c.css");
 @import url("shared_part_d.css");
+/* M3 pass — token + component + motion layers, imported LAST so they override */
+@import url("m3_tokens.css");
+@import url("m3_components.css");
+@import url("m3_motion.css");

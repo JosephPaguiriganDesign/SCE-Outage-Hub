@@ -1,0 +1,371 @@
+/* ==========================================================================
+   CONH hi-fi — M3 component anatomy layer (consumes m3_tokens.css)
+   M3 anatomy / states / spacing; SCE look wins (see m3_tokens.css header).
+   ========================================================================== */
+
+/* ---- State layers (hover 8% / focus 10% / pressed 10%) ------------------
+   Painted as a background-image overlay in currentColor so the container
+   color (ink, white, indigo, gold, amber) is untouched underneath.        */
+:where(.btn,.filter,.chip,a.recent-item,a.search,a.wx-banner,.sc-tog label,
+  .form-field .type-opts label,.ub-tab,a.tile,.gallery a.card,.facilitator summary,
+  .frame-chip .dismiss,.m3-nav,a.sum-chip){
+  --_sl:color-mix(in srgb,currentColor var(--_slo,0%),transparent);
+  background-image:linear-gradient(var(--_sl),var(--_sl))!important; /* survives legacy background shorthands */
+  transition:--_slo var(--md-sys-motion-duration-short2) linear,
+    background-color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard),
+    border-color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard),
+    box-shadow var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard);
+  -webkit-tap-highlight-color:transparent;
+}
+@media (hover:hover){
+  :where(.btn,.filter,.chip,a.recent-item,a.search,a.wx-banner,.sc-tog label,
+    .form-field .type-opts label,.ub-tab,a.tile,.gallery a.card,.facilitator summary,
+    .frame-chip .dismiss,.m3-nav,a.sum-chip):hover{--_slo:var(--md-sys-state-hover-state-layer-opacity)}
+}
+:where(.btn,.filter,.chip,a.recent-item,a.search,a.wx-banner,.ub-tab,a.tile,.gallery a.card,
+  .facilitator summary,.frame-chip .dismiss,.m3-nav,a.sum-chip):focus-visible,
+:where(.sc-tog label,.form-field .type-opts label):has(input:focus-visible){
+  --_slo:var(--md-sys-state-focus-state-layer-opacity)
+}
+:where(.btn,.filter,.chip,a.recent-item,a.search,a.wx-banner,.sc-tog label,
+  .form-field .type-opts label,.ub-tab,a.tile,.gallery a.card,.facilitator summary,
+  .frame-chip .dismiss,.m3-nav,a.sum-chip):active{--_slo:var(--md-sys-state-pressed-state-layer-opacity)}
+@property --_slo{syntax:"<percentage>";inherits:false;initial-value:0%}
+
+/* ---- Focus indicator (visible ring, SCE link blue) ----------------------- */
+a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visible,
+.btn:focus-visible{
+  outline:var(--md-sys-state-focus-indicator-thickness) solid var(--md-sys-state-focus-indicator-color);
+  outline-offset:var(--md-sys-state-focus-indicator-outer-offset);
+}
+.sc-tog label:has(input:focus-visible),.form-field .type-opts label:has(input:focus-visible){
+  outline:var(--md-sys-state-focus-indicator-thickness) solid var(--md-sys-state-focus-indicator-color);
+  outline-offset:2px;
+}
+
+/* ---- Top app bar (M3 small: 64dp, nav icon, title, trailing actions) ---- */
+.hub-header,.map-topbar{
+  min-height:64px;padding:var(--conh-space-2) var(--conh-space-4) var(--conh-space-2) var(--conh-space-4);
+  display:flex;flex-direction:column;justify-content:center;
+  background:var(--md-sys-color-surface-container-lowest);
+  border-bottom:1px solid var(--md-sys-color-outline-variant);
+  box-shadow:var(--md-sys-elevation-level0);
+}
+.hub-header .row,.map-topbar .row{align-items:center;gap:var(--conh-space-3);min-height:48px}
+.hub-name,.map-topbar h2{
+  font-size:var(--md-sys-typescale-title-large-size);
+  line-height:var(--md-sys-typescale-title-large-line-height);
+  font-weight:var(--md-sys-typescale-title-large-weight);
+  letter-spacing:0;color:var(--md-sys-color-on-surface)
+}
+/* back link: leading 48dp nav-icon target, then title */
+.hub-header:has(.m3-nav),.map-topbar:has(.m3-nav){padding-left:var(--conh-space-1)}
+.m3-nav{
+  display:inline-flex!important;align-items:center;gap:var(--conh-space-1)!important;
+  min-height:48px;padding-right:var(--conh-space-2);border-radius:var(--md-sys-shape-corner-extra-small);
+  color:var(--md-sys-color-on-surface)!important
+}
+.m3-nav-icon{
+  width:48px;height:48px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;
+  font-size:22px;line-height:1;font-weight:600;border-radius:var(--md-sys-shape-corner-full)
+}
+.header-meta{
+  font-size:var(--md-sys-typescale-body-small-size);line-height:var(--md-sys-typescale-body-small-line-height);
+  color:var(--md-sys-color-on-surface-variant)
+}
+.header-link{color:var(--sce-color-link);font-size:var(--md-sys-typescale-label-large-size)}
+
+/* ---- Buttons: filled / outlined / text (SCE 4px corners) ---------------- */
+.btn,a.btn,button.btn{
+  min-height:var(--conh-touch-target);padding:0 var(--conh-space-6);
+  border-radius:var(--conh-shape-button);
+  font-size:var(--md-sys-typescale-label-large-size);line-height:var(--md-sys-typescale-label-large-line-height);
+  font-weight:var(--md-sys-typescale-label-large-weight);letter-spacing:.01em;gap:var(--conh-space-2);
+  /* outlined (default): SCE "bordered" = ink outline on white */
+  background-color:var(--md-sys-color-surface-container-lowest);color:var(--md-sys-color-on-surface);
+  border:1px solid var(--md-sys-color-on-surface);box-shadow:var(--md-sys-elevation-level0)
+}
+/* filled — Report / Submit / What to do / Call 911: ink, never gold */
+.btn.primary,a.btn.primary,button.btn.primary,
+.btn.danger,a.btn.danger,button.btn.danger{
+  background-color:var(--md-sys-color-primary);color:var(--md-sys-color-on-primary);
+  border-color:var(--md-sys-color-primary)
+}
+@media (hover:hover){
+  .btn.primary:hover,.btn.danger:hover{box-shadow:var(--md-sys-elevation-level1)}
+}
+/* outlined — View map / Skip / Return home */
+.btn.map,a.btn.map,button.btn.map{
+  background-color:var(--md-sys-color-surface-container-lowest);color:var(--md-sys-color-on-surface);
+  border:1px solid var(--md-sys-color-on-surface)
+}
+/* gold — Sign in / Save prefs ONLY (keeps SCE gradient under the state layer) */
+.btn.gold,a.btn.gold{
+  background-image:linear-gradient(var(--_sl),var(--_sl)),
+    linear-gradient(90deg,var(--sce-color-gold-a),var(--sce-color-gold-b),var(--sce-color-gold-c))!important;
+  color:var(--md-sys-color-on-surface);border:0
+}
+/* Call 211 — indigo filled; state layer re-applied over the legacy !important */
+.btn211,a.btn211,.btn.btn211,a.btn.btn211{
+  background-image:linear-gradient(var(--_sl),var(--_sl))!important;
+  border-radius:var(--conh-shape-button)!important;min-height:var(--conh-touch-target)
+}
+/* text buttons — hero quick-action strip (Report / Map / Get help) */
+.actions .btn,.actions a.btn{
+  min-height:var(--conh-touch-target);padding:0 var(--conh-space-3);
+  background-color:transparent;border-top:0;border-bottom:0;border-left:0;
+  border-right:1px solid var(--md-sys-color-outline-variant);border-radius:0;
+  color:var(--md-sys-color-on-surface-variant);font-size:var(--md-sys-typescale-label-large-size)
+}
+.actions .btn:last-child,.actions a.btn:last-child{border-right:0}
+.actions .btn.primary,.actions a.btn.primary{color:var(--sce-color-link);background-color:transparent}
+.btn.ghost,a.btn.ghost{background-color:var(--md-sys-color-surface-container-lowest)}
+
+/* ---- Text fields: M3 outlined (floating label on the outline) ----------- */
+.form-field{margin-bottom:var(--conh-space-4)}
+.form-field:has(> input, > textarea, > select){position:relative;padding-top:var(--conh-space-2)}
+.form-field:has(> input, > textarea, > select) > label{
+  position:absolute;left:var(--conh-space-3);top:0;z-index:1;margin:0;padding:0 var(--conh-space-1);
+  background:var(--md-sys-color-surface-container-lowest);
+  background:linear-gradient(to bottom,var(--md-sys-color-background) 50%,var(--md-sys-color-surface-container-lowest) 50%);
+  font-size:var(--md-sys-typescale-body-small-size);line-height:var(--md-sys-typescale-body-small-line-height);
+  font-weight:500;letter-spacing:0;text-transform:none;color:var(--md-sys-color-on-surface-variant);
+  transition:color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard)
+}
+.form-field > input,.form-field > textarea,.form-field > select,.form-field .input{
+  min-height:56px;padding:var(--conh-space-4);
+  border:1px solid var(--md-sys-color-outline);border-radius:var(--md-sys-shape-corner-extra-small);
+  background:var(--md-sys-color-surface-container-lowest);color:var(--md-sys-color-on-surface);
+  font-size:var(--md-sys-typescale-body-large-size);line-height:var(--md-sys-typescale-body-large-line-height);
+  box-shadow:none;outline:none;
+  transition:border-color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard),
+    box-shadow var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard)
+}
+@media (hover:hover){
+  .form-field > input:hover,.form-field > textarea:hover,.form-field > select:hover{border-color:var(--md-sys-color-on-surface)}
+}
+/* focus: 2px primary outline (inset shadow keeps layout still) + label tint */
+.form-field > input:focus,.form-field > textarea:focus,.form-field > select:focus{
+  border-color:var(--md-sys-color-primary);box-shadow:inset 0 0 0 1px var(--md-sys-color-primary)
+}
+.form-field > input:focus-visible,.form-field > textarea:focus-visible{
+  outline:var(--md-sys-state-focus-indicator-thickness) solid var(--md-sys-state-focus-indicator-color);outline-offset:2px
+}
+.form-field:has(> input:focus, > textarea:focus, > select:focus) > label{color:var(--md-sys-color-primary);font-weight:600}
+.form-field .input.dashed{border-style:dashed;border-color:var(--md-sys-color-outline);color:var(--md-sys-color-on-surface-variant);font-size:var(--md-sys-typescale-body-medium-size)}
+/* group labels (Type / Photo) — M3 list subheader style */
+.form-field:not(:has(> input, > textarea, > select)) > label{
+  font-size:var(--md-sys-typescale-label-medium-size);line-height:var(--md-sys-typescale-label-medium-line-height);
+  font-weight:600;letter-spacing:.02em;text-transform:none;color:var(--md-sys-color-on-surface-variant);
+  margin-bottom:var(--conh-space-2);padding-left:var(--conh-space-1)
+}
+/* supporting text slot (M3) — for use when copy exists */
+.form-field .supporting-text{
+  display:block;margin-top:var(--conh-space-1);padding:0 var(--conh-space-4);
+  font-size:var(--md-sys-typescale-body-small-size);line-height:var(--md-sys-typescale-body-small-line-height);
+  color:var(--md-sys-color-on-surface-variant)
+}
+/* radio options as M3 list items with leading radio (56dp) */
+.form-field .type-opts{gap:var(--conh-space-2)}
+.form-field .type-opts label{
+  min-height:56px;padding:0 var(--conh-space-4);gap:var(--conh-space-4);
+  border:1px solid var(--md-sys-color-outline-variant);border-radius:var(--md-sys-shape-corner-extra-small);
+  font-size:var(--md-sys-typescale-body-large-size);line-height:var(--md-sys-typescale-body-large-line-height);font-weight:400;
+  background-color:var(--md-sys-color-surface-container-lowest)
+}
+.form-field .type-opts label:has(input:checked){
+  border-color:var(--md-sys-color-primary);background-color:var(--md-sys-color-secondary-container);font-weight:600
+}
+.form-field .type-opts input{flex:0 0 20px;width:20px;height:20px;min-height:0;margin:0;padding:0;border:0;box-shadow:none;accent-color:var(--md-sys-color-primary)}
+
+/* ---- Address search: M3 outlined text field (56dp, leading icon) -------- */
+.search-wrap{margin:var(--conh-space-3) var(--conh-space-4) var(--conh-space-2)}
+.search{
+  margin:0;min-height:56px;padding:0 var(--conh-space-4) 0 var(--conh-space-3);gap:var(--conh-space-3);
+  border:1px solid var(--md-sys-color-outline);border-radius:var(--md-sys-shape-corner-extra-small);
+  background-color:var(--md-sys-color-surface-container-lowest);box-shadow:var(--md-sys-elevation-level0)
+}
+.search .ph{font-size:var(--md-sys-typescale-body-large-size);line-height:var(--md-sys-typescale-body-large-line-height);color:var(--md-sys-color-on-surface-variant)}
+.search .icon{margin:0 2px;border-color:var(--md-sys-color-on-surface-variant)}
+.search .icon::after{background:var(--md-sys-color-on-surface-variant)}
+@media (hover:hover){ a.search:hover{border-color:var(--md-sys-color-on-surface)} }
+a.search:focus-visible{border-color:var(--md-sys-color-primary);box-shadow:inset 0 0 0 1px var(--md-sys-color-primary)}
+.search.filled{border:1px solid var(--md-sys-color-primary);box-shadow:inset 0 0 0 1px var(--md-sys-color-primary)}
+.search.filled .ph{color:var(--md-sys-color-on-surface);font-weight:500}
+
+/* ---- List items (M3: leading · headline/supporting · trailing) ---------- */
+.recent{border-radius:var(--md-sys-shape-corner-large);box-shadow:var(--md-sys-elevation-level1);border-color:var(--md-sys-color-outline-variant)}
+.recent-item{
+  min-height:72px;padding:var(--conh-space-2) var(--conh-space-4);gap:var(--conh-space-4);
+  border-bottom:1px solid var(--md-sys-color-outline-variant);background-color:transparent
+}
+.recent-item:has(.ri-meta:empty),.recent-item:not(:has(.ri-meta)){min-height:56px}
+.recent-item .ri-addr{
+  font-size:var(--md-sys-typescale-body-large-size);line-height:var(--md-sys-typescale-body-large-line-height);
+  font-weight:500;color:var(--md-sys-color-on-surface)
+}
+.recent-item .ri-meta{
+  font-size:var(--md-sys-typescale-body-medium-size);line-height:var(--md-sys-typescale-body-medium-line-height);
+  color:var(--md-sys-color-on-surface-variant);margin-top:0
+}
+.recent-item > .pill{flex-shrink:0}
+a.recent-item:active{background-color:transparent}
+.tile{min-height:72px;padding:var(--conh-space-3) var(--conh-space-4);gap:var(--conh-space-4)}
+.gallery .card{min-height:72px}
+
+/* ---- Chips ---------------------------------------------------------------
+   Filter chip (F6 layers): 32dp visual inside a 48dp target, outline when
+   unselected, secondary-container + leading check when selected.          */
+.map-filters{
+  column-gap:var(--conh-space-2);row-gap:var(--conh-space-4);top:var(--conh-space-3); /* 16dp row gap keeps 48dp targets from overlapping */
+  left:var(--conh-space-3);right:var(--conh-space-3);flex-wrap:wrap;align-items:center
+}
+.map-filters .filter,.filters .filter{
+  position:relative;flex:0 0 auto;min-width:0;height:32px;min-height:32px;margin:0;
+  padding:0 var(--conh-space-4);gap:var(--conh-space-2);
+  display:inline-flex;align-items:center;justify-content:center;
+  border-radius:var(--md-sys-shape-corner-small);border:1px solid var(--md-sys-color-outline);
+  background-color:var(--md-sys-color-surface-container-lowest);color:var(--md-sys-color-on-surface-variant);
+  font-size:var(--md-sys-typescale-label-large-size);line-height:var(--md-sys-typescale-label-large-line-height);
+  font-weight:var(--md-sys-typescale-label-large-weight);white-space:nowrap;box-shadow:var(--md-sys-elevation-level1)
+}
+/* 48dp touch target */
+.map-filters .filter::after,.filters .filter::after{content:"";position:absolute;left:0;right:0;top:-8px;bottom:-8px}
+.map-filters .filter.on,.map-filters .filter[aria-pressed="true"],.filters .filter.on{
+  padding-left:var(--conh-space-2);border-color:transparent;
+  background-color:var(--md-sys-color-secondary-container);color:var(--md-sys-color-on-secondary-container)
+}
+.map-filters .filter.on::before,.map-filters .filter[aria-pressed="true"]::before,.filters .filter.on::before{
+  content:"";width:18px;height:18px;flex-shrink:0;background:currentColor;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/18px 18px no-repeat;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/18px 18px no-repeat
+}
+.map-filters + .map-attr{top:100px}
+/* Assist / suggestion chips (.chip) and summary chips — same 32/48 anatomy */
+.chip{
+  position:relative;min-height:32px;height:32px;padding:0 var(--conh-space-4);margin:0;
+  border-radius:var(--md-sys-shape-corner-small);border:1px solid var(--md-sys-color-outline);
+  font-size:var(--md-sys-typescale-label-large-size);box-shadow:none
+}
+.chip::after{content:"";position:absolute;left:0;right:0;top:-8px;bottom:-8px}
+.sum-chip{height:32px;padding:0 var(--conh-space-4);border-radius:var(--md-sys-shape-corner-small);border-width:1px;font-size:var(--md-sys-typescale-label-large-size)}
+a.sum-chip{position:relative}
+a.sum-chip::after{content:"";position:absolute;left:0;right:0;top:-8px;bottom:-8px}
+/* F5 self-check toggles as filter chips (32/48, selected = container + check) */
+.sc-tog{gap:var(--conh-space-2)}
+.sc-tog label{
+  position:relative;height:32px;min-height:32px;padding:0 var(--conh-space-4);
+  border-radius:var(--md-sys-shape-corner-small);border:1px solid var(--md-sys-color-outline);
+  background-color:var(--md-sys-color-surface-container-lowest);color:var(--md-sys-color-on-surface-variant);
+  font-size:var(--md-sys-typescale-label-large-size);gap:var(--conh-space-2)
+}
+.sc-tog label::after{content:"";position:absolute;left:0;right:0;top:-8px;bottom:-8px}
+.sc-tog label:has(input:checked){
+  padding-left:var(--conh-space-2);border-color:transparent;
+  background-color:var(--md-sys-color-secondary-container);color:var(--md-sys-color-on-secondary-container)
+}
+.sc-tog label:has(input:checked)::before{
+  content:"";width:18px;height:18px;background:currentColor;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/18px 18px no-repeat;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/18px 18px no-repeat
+}
+.self-checks{gap:var(--conh-space-3);padding:var(--conh-space-3) var(--conh-space-4);border-radius:var(--md-sys-shape-corner-medium)}
+/* segmented control (F5 confirm) */
+.ub-seg{border-color:var(--md-sys-color-outline);border-radius:var(--conh-shape-button)}
+.ub-tab{min-height:40px;background-color:var(--md-sys-color-surface-container-lowest);color:var(--md-sys-color-on-surface-variant)}
+.ub-tab + .ub-tab{border-left:1px solid var(--md-sys-color-outline)}
+.ub-tab.on{background-color:var(--md-sys-color-secondary-container);color:var(--md-sys-color-on-secondary-container)}
+
+/* ---- Bottom sheet (F6): M3 standard (non-modal, no scrim) --------------- */
+.map-sheet{
+  background:var(--md-sys-color-surface-container-low);
+  border-radius:var(--md-sys-shape-corner-extra-large-top);
+  box-shadow:var(--conh-elevation-sheet);
+  padding:0 var(--conh-space-3) var(--conh-space-5)
+}
+.map-sheet .sheet-handle,.sheet .sheet-handle{
+  width:32px;height:4px;border-radius:var(--md-sys-shape-corner-full);
+  background:var(--md-sys-color-on-surface-variant);opacity:.4;
+  margin:var(--conh-space-4) auto var(--conh-space-3)
+}
+/* inner status card sits flush on the sheet surface */
+.map-sheet .hero{--surface:var(--md-sys-color-surface-container-low);border-radius:var(--md-sys-shape-corner-large)}
+.map-sheet .sheet-empty{
+  font-size:var(--md-sys-typescale-body-medium-size);line-height:var(--md-sys-typescale-body-medium-line-height);
+  color:var(--md-sys-color-on-surface-variant)
+}
+.sheet{border-radius:var(--md-sys-shape-corner-extra-large-top);background:var(--md-sys-color-surface-container-low);box-shadow:var(--conh-elevation-sheet)}
+/* modal variant hook (scrim 32%) — not used by F6 (standard sheet) */
+.m3-scrim{position:fixed;inset:0;background:color-mix(in srgb,var(--md-sys-color-scrim) 32%,transparent)}
+
+/* ---- Banners (M3: supporting icon · text · optional action) ------------ */
+/* Weather — compact one-line banner, amber/neutral, tiny "Illustrative"   */
+.wx-banner{
+  gap:var(--conh-space-3);margin:var(--conh-space-2) var(--conh-space-4) var(--conh-space-1);
+  padding:var(--conh-space-2) var(--conh-space-3) var(--conh-space-2) var(--conh-space-4);min-height:40px;
+  background-color:var(--sce-color-weather-container);border:1px solid var(--sce-color-weather-outline);
+  border-radius:var(--md-sys-shape-corner-small);
+  font-size:var(--md-sys-typescale-body-small-size);line-height:var(--md-sys-typescale-body-small-line-height)
+}
+a.wx-banner{min-height:var(--conh-touch-target);padding-right:var(--conh-space-1)}
+.wx-banner .wx-ico{width:24px;height:24px;font-size:13px;background:rgba(234,88,12,.16);color:var(--sce-color-on-weather-icon)}
+.wx-banner .wx-copy{display:flex;align-items:baseline;min-width:0;white-space:nowrap;color:var(--md-sys-color-on-surface-variant)}
+.wx-banner .wx-text{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wx-banner .wx-honest{flex-shrink:0;margin-left:var(--conh-space-1);font-size:10px;line-height:16px;color:var(--md-sys-color-outline)}
+.wx-banner .wx-chev{width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;padding:0;font-size:18px;color:var(--md-sys-color-on-surface-variant)}
+a.wx-banner:active{background-color:var(--sce-color-weather-container)}
+.wx-banner.wx-neutral{background-color:var(--md-sys-color-surface-container);border-color:var(--md-sys-color-outline-variant)}
+@media (max-width:360px){ .wx-banner{padding:var(--conh-space-1) var(--conh-space-2);gap:var(--conh-space-2)} }
+
+/* PSPS — two-line M3 banner: 40dp supporting icon, headline, body, action */
+.psps-banner{
+  display:grid;grid-template-columns:40px 1fr;column-gap:var(--conh-space-4);row-gap:0;align-items:start;
+  padding:var(--conh-space-4);border-radius:var(--md-sys-shape-corner-large);
+  box-shadow:var(--md-sys-elevation-level1)
+}
+.psps-banner > *{grid-column:2}
+.psps-banner > .m3-banner-icon{
+  grid-column:1;grid-row:1 / span 3;width:40px;height:40px;border-radius:var(--md-sys-shape-corner-full);
+  display:inline-flex;align-items:center;justify-content:center;
+  background:rgba(234,88,12,.16);color:#C2410C;font-size:20px;line-height:1
+}
+.psps-banner .title{
+  font-size:var(--md-sys-typescale-title-medium-size);line-height:var(--md-sys-typescale-title-medium-line-height);
+  font-weight:var(--md-sys-typescale-title-medium-weight);margin:var(--conh-space-2) 0 var(--conh-space-1)
+}
+.psps-banner .body{
+  font-size:var(--md-sys-typescale-body-medium-size);line-height:var(--md-sys-typescale-body-medium-line-height);
+  color:var(--md-sys-color-on-surface-variant);margin-bottom:var(--conh-space-3)
+}
+.psps-banner > .btn{grid-column:1 / -1}
+.banner{border-radius:var(--md-sys-shape-corner-large);padding:var(--conh-space-4);box-shadow:var(--md-sys-elevation-level1)}
+
+/* ---- Snackbar (M3: inverse-surface, 48dp, 4dp grid, action) ------------ */
+.stub-toast{
+  bottom:var(--conh-space-4);min-height:48px;max-width:calc(100% - 32px);
+  padding:var(--conh-space-3) var(--conh-space-4);
+  background:var(--md-sys-color-inverse-surface);color:var(--md-sys-color-inverse-on-surface);
+  border-radius:var(--md-sys-shape-corner-extra-small);box-shadow:var(--md-sys-elevation-level3);
+  font-size:var(--md-sys-typescale-body-medium-size);line-height:var(--md-sys-typescale-body-medium-line-height);
+  font-weight:400;text-align:left;align-items:center;gap:var(--conh-space-2)
+}
+.stub-toast.show{display:flex}
+.stub-toast .action,.stub-toast a,.stub-toast button{
+  margin-left:auto;min-height:40px;padding:0 var(--conh-space-3);border:0;background:transparent;
+  color:var(--md-sys-color-inverse-primary);font:inherit;font-weight:600;border-radius:var(--conh-shape-button);cursor:pointer
+}
+
+/* ---- Cards / containers: shape + elevation tokens ----------------------- */
+.hero,.mod,.afn,.timeline,.confirm-hero,.fpi-strip,.safety-card,.updates-block,.tile,.gallery .card{
+  border-radius:var(--md-sys-shape-corner-large)
+}
+.hero,.mod,.timeline,.confirm-hero,.safety-card,.updates-block,.tile{box-shadow:var(--md-sys-elevation-level1)}
+.fpi-strip.nested,.map-sheet .hero{box-shadow:var(--md-sys-elevation-level0)}
+.pending-badge{border-radius:var(--md-sys-shape-corner-medium);padding:var(--conh-space-3) var(--conh-space-4)}
+.section-label{padding:var(--conh-space-4) var(--conh-space-4) var(--conh-space-2)}
+.cta-row{gap:var(--conh-space-2);padding:var(--conh-space-2) var(--conh-space-4)}
+
+/* ---- Touch targets ≥ 48dp for remaining inline links -------------------- */
+.afn .links a,.facilitator .fac-body a,.footer-link,.back-bar a{min-height:var(--conh-touch-target)}
+.frame-chip .dismiss{min-height:36px;border-radius:var(--md-sys-shape-corner-full)}
+.facilitator summary{min-height:var(--conh-touch-target)}
