@@ -1,0 +1,148 @@
+/* ==========================================================================
+   CONH hi-fi — Material Design 3 token layer (SCE-mapped)
+   Imported LAST from shared.css (after shared_part_a–d). Plain CSS, no library.
+   M3 supplies roles / anatomy / states / spacing; SCE brand wins on look:
+   Open Sans only (no Roboto), ink #101820, links #1A76C5, 4px CTA corners,
+   gold ONLY for Sign in / brand / Save prefs, 211 = indigo, weather = amber.
+   ========================================================================== */
+:root{
+  /* ---- Color roles: SCE → M3 ------------------------------------------- */
+  /* primary = SCE ink. Filled CTAs (Report, Submit, What to do) use it.     */
+  --md-sys-color-primary:#101820;
+  --md-sys-color-on-primary:#FFFFFF;
+  --md-sys-color-primary-container:#DDE3EA;      /* cool slate wash of ink  */
+  --md-sys-color-on-primary-container:#101820;
+  /* secondary = SCE ink-2 slate; secondary-container = selected chip fill  */
+  --md-sys-color-secondary:#3A4556;
+  --md-sys-color-on-secondary:#FFFFFF;
+  --md-sys-color-secondary-container:#DCE4EE;
+  --md-sys-color-on-secondary-container:#101820;
+  /* tertiary = SCE link blue (links, focus rings, text-button accents)    */
+  --md-sys-color-tertiary:#1A76C5;
+  --md-sys-color-on-tertiary:#FFFFFF;
+  --md-sys-color-tertiary-container:#E3F0FB;
+  --md-sys-color-on-tertiary-container:#0B3F6B;
+  /* error = SCE "off" red (status only — never an emergency CTA fill)      */
+  --md-sys-color-error:#C62828;
+  --md-sys-color-on-error:#FFFFFF;
+  --md-sys-color-error-container:#FDECEC;
+  --md-sys-color-on-error-container:#7F1D1D;
+  /* surfaces = SCE neutral greys (app bg #F4F5F7, cards white)             */
+  --md-sys-color-background:#F4F5F7;
+  --md-sys-color-on-background:#101820;
+  --md-sys-color-surface:#F4F5F7;
+  --md-sys-color-surface-dim:#D8DEE8;
+  --md-sys-color-surface-bright:#FFFFFF;
+  --md-sys-color-surface-container-lowest:#FFFFFF; /* cards, fields, bars   */
+  --md-sys-color-surface-container-low:#F9FAFB;    /* bottom sheet          */
+  --md-sys-color-surface-container:#EEF0F3;        /* = SCE surface-2       */
+  --md-sys-color-surface-container-high:#E7EAEF;
+  --md-sys-color-surface-container-highest:#DFE3E9;
+  --md-sys-color-surface-variant:#EEF0F3;
+  --md-sys-color-on-surface:#101820;               /* = SCE ink             */
+  --md-sys-color-on-surface-variant:#3A4556;       /* = SCE ink-2           */
+  --md-sys-color-outline:#6B778A;                  /* = SCE ink-3           */
+  --md-sys-color-outline-variant:#D8DEE8;          /* = SCE line            */
+  --md-sys-color-inverse-surface:#1E2833;          /* snackbar              */
+  --md-sys-color-inverse-on-surface:#F4F5F7;
+  --md-sys-color-inverse-primary:#8CC4F2;          /* snackbar action (blue, not gold) */
+  --md-sys-color-scrim:#101820;
+  --md-sys-color-shadow:#101820;
+  --md-sys-color-surface-tint:#101820;
+
+  /* ---- SCE extension roles (not in M3 baseline) ------------------------ */
+  --sce-color-link:#1A76C5;
+  --sce-color-gold-a:#FEC711; --sce-color-gold-b:#FED141; --sce-color-gold-c:#FAD665; /* Sign in / brand / Save prefs ONLY */
+  --sce-color-211:#4F46E5;                          /* Call 211 = indigo     */
+  --sce-color-on-211:#FFFFFF;
+  --sce-color-weather:#EA580C;                      /* amber/neutral banner  */
+  --sce-color-weather-container:rgba(234,88,12,.08);
+  --sce-color-weather-outline:rgba(234,88,12,.28);
+  --sce-color-on-weather-icon:#C2410C;
+
+  /* ---- State layers (M3) ---------------------------------------------- */
+  --md-sys-state-hover-state-layer-opacity:8%;
+  --md-sys-state-focus-state-layer-opacity:10%;
+  --md-sys-state-pressed-state-layer-opacity:10%;
+  --md-sys-state-dragged-state-layer-opacity:16%;
+  --md-sys-state-focus-indicator-thickness:3px;
+  --md-sys-state-focus-indicator-outer-offset:2px;
+  --md-sys-state-focus-indicator-color:var(--md-sys-color-tertiary); /* SCE link blue */
+
+  /* ---- Shape (M3 scale; SCE overrides noted) --------------------------- */
+  --md-sys-shape-corner-none:0;
+  --md-sys-shape-corner-extra-small:4px;            /* SCE CTA radius        */
+  --md-sys-shape-corner-small:8px;                  /* chips, banners        */
+  --md-sys-shape-corner-medium:12px;
+  --md-sys-shape-corner-large:16px;                 /* SCE cards (--r-card)  */
+  --md-sys-shape-corner-large-top:16px 16px 0 0;
+  --md-sys-shape-corner-extra-large:28px;
+  --md-sys-shape-corner-extra-large-top:28px 28px 0 0; /* bottom sheet      */
+  --md-sys-shape-corner-full:9999px;                /* status pills only; NOT buttons */
+  --conh-shape-button:var(--md-sys-shape-corner-extra-small); /* SCE: 4px, overrides M3 full */
+
+  /* ---- Elevation (M3 levels, ink-tinted, softened for SCE) ------------- */
+  --md-sys-elevation-level0:none;
+  --md-sys-elevation-level1:0 1px 2px 0 rgba(16,24,32,.10),0 1px 3px 1px rgba(16,24,32,.05);
+  --md-sys-elevation-level2:0 1px 2px 0 rgba(16,24,32,.10),0 2px 6px 2px rgba(16,24,32,.06);
+  --md-sys-elevation-level3:0 1px 3px 0 rgba(16,24,32,.12),0 4px 8px 3px rgba(16,24,32,.07);
+  --md-sys-elevation-level4:0 2px 3px 0 rgba(16,24,32,.12),0 6px 10px 4px rgba(16,24,32,.08);
+  --md-sys-elevation-level5:0 4px 4px 0 rgba(16,24,32,.12),0 8px 12px 6px rgba(16,24,32,.08);
+  /* sheets cast upward */
+  --conh-elevation-sheet:0 -1px 3px 0 rgba(16,24,32,.10),0 -4px 12px 2px rgba(16,24,32,.07);
+
+  /* ---- Motion (M3) ----------------------------------------------------- */
+  --md-sys-motion-easing-standard:cubic-bezier(0.2,0,0,1);
+  --md-sys-motion-easing-standard-decelerate:cubic-bezier(0,0,0,1);
+  --md-sys-motion-easing-standard-accelerate:cubic-bezier(0.3,0,1,1);
+  --md-sys-motion-easing-emphasized:cubic-bezier(0.2,0,0,1);
+  --md-sys-motion-easing-emphasized-decelerate:cubic-bezier(0.05,0.7,0.1,1);
+  --md-sys-motion-easing-emphasized-accelerate:cubic-bezier(0.3,0,0.8,0.15);
+  --md-sys-motion-duration-short1:50ms;
+  --md-sys-motion-duration-short2:100ms;
+  --md-sys-motion-duration-short3:150ms;
+  --md-sys-motion-duration-short4:200ms;
+  --md-sys-motion-duration-medium1:250ms;
+  --md-sys-motion-duration-medium2:300ms;
+  --md-sys-motion-duration-medium3:350ms;
+  --md-sys-motion-duration-medium4:400ms;
+  --md-sys-motion-duration-long1:450ms;
+  --md-sys-motion-duration-long2:500ms;
+
+  /* ---- Typescale — Open Sans everywhere (SCE); M3 sizes/line-heights --- */
+  --md-ref-typeface-brand:"Open Sans",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  --md-ref-typeface-plain:"Open Sans",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  --md-sys-typescale-headline-small-font:var(--md-ref-typeface-brand);
+  --md-sys-typescale-headline-small-size:24px;--md-sys-typescale-headline-small-line-height:32px;--md-sys-typescale-headline-small-weight:700;
+  --md-sys-typescale-title-large-font:var(--md-ref-typeface-brand);
+  --md-sys-typescale-title-large-size:22px;--md-sys-typescale-title-large-line-height:28px;--md-sys-typescale-title-large-weight:700;
+  --md-sys-typescale-title-medium-size:16px;--md-sys-typescale-title-medium-line-height:24px;--md-sys-typescale-title-medium-weight:600;
+  --md-sys-typescale-title-small-size:14px;--md-sys-typescale-title-small-line-height:20px;--md-sys-typescale-title-small-weight:600;
+  --md-sys-typescale-body-large-size:16px;--md-sys-typescale-body-large-line-height:24px;--md-sys-typescale-body-large-weight:400;
+  --md-sys-typescale-body-medium-size:14px;--md-sys-typescale-body-medium-line-height:20px;--md-sys-typescale-body-medium-weight:400;
+  --md-sys-typescale-body-small-size:12px;--md-sys-typescale-body-small-line-height:16px;--md-sys-typescale-body-small-weight:400;
+  --md-sys-typescale-label-large-size:14px;--md-sys-typescale-label-large-line-height:20px;--md-sys-typescale-label-large-weight:600;
+  --md-sys-typescale-label-medium-size:12px;--md-sys-typescale-label-medium-line-height:16px;--md-sys-typescale-label-medium-weight:600;
+  --md-sys-typescale-label-small-size:11px;--md-sys-typescale-label-small-line-height:16px;--md-sys-typescale-label-small-weight:600;
+
+  /* ---- Spacing (4dp / 8dp grid) + touch target -------------------------- */
+  --conh-space-1:4px; --conh-space-2:8px; --conh-space-3:12px; --conh-space-4:16px;
+  --conh-space-5:20px; --conh-space-6:24px; --conh-space-8:32px;
+  --conh-touch-target:48px;
+
+  /* ---- Bridge: legacy SCE tokens now read from M3 roles ----------------- */
+  --bg:var(--md-sys-color-background);
+  --surface:var(--md-sys-color-surface-container-lowest);
+  --surface-2:var(--md-sys-color-surface-container);
+  --ink:var(--md-sys-color-on-surface);
+  --ink-2:var(--md-sys-color-on-surface-variant);
+  --ink-3:var(--md-sys-color-outline);
+  --line:var(--md-sys-color-outline-variant);
+  --link:var(--sce-color-link);
+  --afn:var(--sce-color-211);
+  --r-btn:var(--conh-shape-button);
+  --r-card:var(--md-sys-shape-corner-large);
+  --shadow:var(--md-sys-elevation-level1);
+}
+/* Font lock: Open Sans only — strips Roboto from the legacy fallback stack */
+html,body,button,input,textarea,select{font-family:var(--md-ref-typeface-plain)}
