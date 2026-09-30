@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-aud="multi">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>F0 — Hub home (Multi) · SCE Outage Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/></noscript>
 <link rel="stylesheet" href="shared.css"/>
 </head>
-<body>
+<body data-prop="" data-page="f0multi">
 <div class="app">
   <div class="frame-chip">
     <span class="id">F0 · Multi</span>
@@ -17,103 +18,24 @@
   </div>
   <div class="os-bar"><span>10:40</span><span class="icons">▮▮▮ ▔ Wi‑Fi</span></div>
   <div class="app-scroll">
-
-      <div class="hub-header">
-        <div class="row">
-          <div class="hub-name" style="margin:0">Outage Hub</div>
-          <div class="header-meta">Updated 10:28 AM</div>
-        </div>
-      </div>
-
-      <div class="account">
-        <div class="avatar">JL</div>
-        <div>
-          <strong>Jordan Lee · 3 places</strong>
-          Account ••••4821
-        </div>
-      </div>
-
-      <div class="wx-banner" role="status">
-        <span class="wx-ico" aria-hidden="true">☀</span>
-        <span class="wx-copy"><span class="wx-text">Heat advisory in Pasadena through Thu · higher demand may cause outages</span><span class="wx-honest">Illustrative</span></span>
-      </div>
-
-      <div class="search-wrap">
-        <a class="search" href="F1-lookup-result.html" aria-label="Search address">
-          <span class="icon" aria-hidden="true"></span>
-          <span class="ph">Search address, outage #, or meter</span>
-        </a>
-      </div>
-
-      <div class="section-label">Portfolio summary</div>
-      <div class="sum-chips">
-        <span class="sum-chip active">1 Active</span>
-        <span class="sum-chip planned">1 Planned</span>
-        <span class="sum-chip clear">1 Clear</span>
-        <a class="sum-chip link" href="F7-portfolio.html">View portfolio →</a>
-      </div>
-
-      <div class="section-label">Worst status</div>
-      <div class="hero rail-restore tint-restore">
-        <div class="hero-inner">
-          <div class="row-top">
-            <span class="evchip">Repair</span>
-            <span class="pill restore"><span class="mark"></span>Restoring</span>
-          </div>
-          <div class="addr">1847 Maple Ave, Pasadena</div>
-          <div class="status-word sm">RESTORING</div>
-          <div class="subline">Power is off at this address</div>
-          <div class="cause">Equipment failure — distribution transformer</div>
-          <div class="etr">Back by 4:45 PM</div>
-          <div class="trust">Updated 10:28 AM · May lag ~15–20 min</div>
-          <div class="progress">
-            <span class="dot done"></span>
-            <span class="dot done"></span>
-            <span class="dot now"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="progress-lab">Crew en route (3 of 5)</span>
-          </div>
-          <div class="actions">
-            <a class="btn" href="F2-active-detail.html">Details</a>
-            <a class="btn" href="F6-map-sheet.html">Map</a>
-            <a class="btn" href="F9-afn-help.html">Get help</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="cta-row">
-        <a class="btn primary" href="F5-report.html" style="flex:1">⚑ Report outage</a>
-        <a class="btn map" href="F6-map-sheet.html" style="flex:1">▣ View map</a>
-      </div>
-
-      <div class="afn">
-        <h3>Need help during this outage?</h3>
-        <a class="btn btn211" href="tel:211">Call 211</a>
-        <div class="links" style="flex-direction:row;flex-wrap:wrap;gap:8px 14px">
-          <a href="F9-afn-help.html#mbl">Medical Baseline</a>
-          <a href="F9-afn-help.html">Food &amp; shelter</a>
-          <a href="F9-afn-help.html#what-to-do">What to do now</a>
-        </div>
-      </div>
-
-      <p class="meta" style="text-align:center;padding:8px 16px">
-        <a href="F0-hub-home.html" style="color:var(--link);font-weight:600">Guest</a>
-        ·
-        <a href="F0-signed.html" style="color:var(--link);font-weight:600">Signed-in</a>
-      </p>
-
+<div class="hub-header"><div class="row"><div class="hub-name" style="margin:0">Outage Center</div><div class="hx-topright"><a class="hx-iconbtn" href="F0-signed.html" aria-label="My Account"><span class="hx-avatar">JL</span></a></div></div></div>
+<form class="hx-search" action="F1-lookup-result.html" method="get" role="search"><input type="search" name="q" placeholder="Search address, outage #, or meter" aria-label="Outage Search: service address, outage number, or meter number" autocomplete="off" enterkeyhint="search"/><button type="submit" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button></form>
+<section class="pf-sum" aria-label="Portfolio summary"><div class="hx-k">Needs attention</div><div class="pf-n"><span data-cnt="attention">5</span><small>of 12 properties</small></div><div class="pf-break"><div class="bk"><i style="background:var(--st-off)"></i><b data-cnt="active">2</b>Active Outage</div><div class="bk"><i style="background:var(--st-planned)"></i><b data-cnt="planned">3</b>Planned Outage</div><div class="bk"><i style="background:var(--st-on)"></i><b data-cnt="restored">2</b>Power Restored</div><div class="bk"><i style="background:var(--ink-3)"></i><b data-cnt="on">5</b>Power On</div></div><p class="trust" style="margin:10px 0 0">Last updated <span data-f="updated">10:28 AM</span> · <span data-ph="refreshCadence"><span class="ph-t">May lag ~15–20 min</span></span></p></section>
+<div class="hero rail-restore tint-restore hx-hero" style="margin-top:4px"><div class="hero-inner">
+  <div class="row-top"><span class="evchip">Most urgent · Active outage</span></div>
+  <div class="as-addr no-acct" style="font-weight:600;font-size:15px;line-height:20px">1847 Maple Ave, Pasadena, CA 91104</div>
+  <h2 class="hx-status" style="color:#B45309;margin-top:6px">Restoring</h2>
+  <div class="hx-k">Estimated restoration</div><p class="hx-ert">Back by 4:45 PM</p>
+  <p class="trust">Last updated 10:28 AM · <span data-ph="refreshCadence"><span class="ph-t">May lag ~15–20 min</span></span></p>
+  <div class="actions"><a class="btn" href="S1-active.html?from=pf&amp;prop=maple">Open property</a><a class="btn" href="F6-map-sheet.html">Map</a><a class="btn" href="F9-afn-help.html">Get help</a></div></div></div>
+<div class="cta-row"><a class="btn primary" href="F7-portfolio.html" style="flex:1">View portfolio →</a><a class="btn map" href="F5-report.html?aud=multi&amp;prop=maple" style="flex:1">⚑ Report</a></div>
+<div class="wx-banner" role="status"><span class="wx-ico" aria-hidden="true">☀</span><span class="wx-copy"><span class="wx-text">Heat advisory in Pasadena through Thu · higher demand may cause outages</span><span class="wx-honest">Illustrative</span></span></div>
+<div class="afn"><h3>Need help during this outage?</h3><a class="btn btn211" href="tel:211">Call 211</a><div class="links" style="flex-direction:row;flex-wrap:wrap;gap:8px 14px"><a href="F9-afn-help.html#mbl">Medical Baseline</a><a href="F9-afn-help.html">Food &amp; shelter</a><a href="F9-afn-help.html#what-to-do">What to do now</a></div></div>
+<p class="meta" style="text-align:center;padding:8px 16px"><a class="hx-link" href="F0-hub-home.html">Guest</a> · <a class="hx-link" href="F0-signed.html">Signed-in</a></p>
   </div>
+<nav class="hub-nav" aria-label="Outage Center" data-report="sec"><a href="F0-multi.html" aria-current="page" aria-label="Outage Center home" data-nav-home><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></span>Outage Center</a><a href="F6-map-sheet.html"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg></span>Map</a><a href="F5-report.html" aria-label="Report a Problem" class="hn-report"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg></span>Report</a><a href="F9-afn-help.html"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg></span>Help</a></nav>
 </div>
-
-<script>
-(function(){
-  var chip=document.querySelector('.frame-chip');
-  if(!chip) return;
-  var btn=chip.querySelector('.dismiss');
-  if(btn) btn.addEventListener('click',function(){chip.hidden=true;});
-})();
-</script>
+<script src="hierarchy.js" defer></script>
 <script src="transitions.js" defer></script>
 </body>
 </html>

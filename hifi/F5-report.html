@@ -1,103 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-aud="">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>F5 — Report · SCE Outage Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/></noscript>
 <link rel="stylesheet" href="shared.css"/>
 </head>
-<body>
+<body data-prop="" data-page="f5">
 <div class="app">
   <div class="frame-chip">
     <span class="id">F5 · Report</span>
-    <span class="chip-actions"><span class="badge hifi">Hi-fi</span><span class="badge guest">Guest</span><button type="button" class="dismiss" aria-label="Hide frame label">×</button></span>
+    <span class="chip-actions"><span class="badge hifi">Hi-fi</span><span class="badge guest">Guest / signed-in</span><button type="button" class="dismiss" aria-label="Hide frame label">×</button></span>
   </div>
   <div class="os-bar"><span>10:40</span><span class="icons">▮▮▮ ▔ Wi‑Fi</span></div>
   <div class="app-scroll">
-
-      <div class="hub-header">
-        <div class="row">
-          <div>
-            <a href="F0-hub-home.html" class="hub-name m3-nav" style="margin:0;display:inline-flex;align-items:center;gap:6px;color:inherit"><span class="m3-nav-icon" aria-hidden="true">←</span>Report</a>
-          </div>
-          <div class="header-meta">Outage / hazard</div>
-        </div>
-      </div>
-
-      <div class="safety-card" role="region" aria-label="Life-threatening emergency">
-        <div class="safety-title">Life-threatening emergency?</div>
-        <p class="safety-line">Downed line, gas smell, fire, or medical emergency</p>
-        <a class="btn danger block" href="tel:911">Call 911</a>
-        <p class="safety-hint">Stay back 30+ ft · Call 911 · <a href="#">Downed line guidance</a></p>
-      </div>
-
-      <div class="self-checks" role="group" aria-label="Quick self-checks">
-        <div class="sc-row">
-          <span class="sc-q">Breaker tripped?</span>
-          <div class="sc-tog" role="radiogroup" aria-label="Breaker tripped">
-            <label><input type="radio" name="breaker" value="yes"/> Yes</label>
-            <label><input type="radio" name="breaker" value="no"/> No</label>
-          </div>
-        </div>
-        <p class="sc-hint" id="breakerHint" hidden>Reset breaker if safe — if power returns, you may not need to report.</p>
-        <div class="sc-row">
-          <span class="sc-q">Meter dark or flashing?</span>
-          <div class="sc-tog" role="radiogroup" aria-label="Meter dark or flashing">
-            <label><input type="radio" name="meter" value="yes"/> Yes</label>
-            <label><input type="radio" name="meter" value="no"/> No</label>
-          </div>
-        </div>
-      </div>
-
-      <form action="F5-confirm.html" method="get" style="padding:8px 16px 16px">
-        <div class="form-field">
-          <label for="loc">Location</label>
-          <input id="loc" name="loc" value="1847 Maple Ave, Pasadena, CA 91104"/>
-        </div>
-        <div class="form-field">
-          <label>Type</label>
-          <div class="type-opts">
-            <label><input type="radio" name="type" value="power" checked/> Power out</label>
-            <label><input type="radio" name="type" value="downed"/> Downed line</label>
-            <label><input type="radio" name="type" value="damaged"/> Damaged equipment</label>
-            <label><input type="radio" name="type" value="other"/> Other</label>
-          </div>
-        </div>
-        <div class="form-field">
-          <label for="desc">Description</label>
-          <textarea id="desc" name="desc" rows="3">Whole house dark since ~7 AM; neighbors also out</textarea>
-        </div>
-        <div class="form-field">
-          <label>Photo (optional)</label>
-          <div class="input dashed">+ Add photo · stub</div>
-        </div>
-        <button class="btn primary block" type="submit" style="margin:8px 0 8px">Submit report</button>
-        <p class="trust" style="text-align:center;margin-top:8px">Map and status may lag ~15–20 min behind field systems.</p>
-      </form>
-
+<div class="hub-header"><div class="row"><a href="F0-hub-home.html" class="hub-name m3-nav" style="margin:0;display:inline-flex;align-items:center;gap:6px;color:inherit" data-back><span class="m3-nav-icon" aria-hidden="true">←</span>Report a Problem</a><div class="hx-topright"><span class="header-meta" id="rptMeta">Outage / hazard</span></div></div></div>
+<div class="hx-safety sticky" id="dlSafety" role="alert" data-for="downed" aria-label="Downed power line safety"><strong>Stay away and keep others away.</strong>Treat every downed line as live. Stay at least 30 ft back. Call 911 if anyone is hurt.</div>
+<div class="safety-card" role="region" aria-label="Life-threatening emergency">
+  <div class="safety-title">Life-threatening emergency?</div>
+  <p class="safety-line">Downed line, gas smell, fire, or medical emergency</p>
+  <a class="btn danger block" href="tel:911">Call 911</a>
+  <p class="safety-hint">Stay back 30+ ft · Call 911 · <a href="#downed-guidance" data-pick="downed">Downed line guidance</a></p></div>
+<fieldset class="intent-list hx-sec" style="margin:8px var(--pad) 0" data-intent-pick><legend>What do you want to report?</legend>
+  <label><input type="radio" name="intent" value="power" checked/><span><b>Power outage</b><span class="d">My power is out or flickering</span></span></label>
+  <label><input type="radio" name="intent" value="downed"/><span><b>Downed power line</b><span class="d">A wire is on the ground or hanging low</span></span></label>
+  <label><input type="radio" name="intent" value="hazard"/><span><b>Other hazard</b><span class="d">Something looks wrong near a pole or equipment</span></span></label></fieldset>
+<form id="rptForm" action="F5-confirm.html" method="get" class="hx-form">
+  <input type="hidden" name="intent" id="intentField" value="power"/><input type="hidden" name="aud" id="audField" value=""/>
+  <div class="hx-detect" id="hxDetect" role="alert" hidden><strong>This may be a downed line.</strong> Stay away and keep others away. We moved you to the safety-first downed line report.
+  <button type="button" class="btn primary" data-pick="downed">Continue</button></div><div class="form-field field-guest for-guest"><label for="loc">Location</label><input id="loc" name="loc" value="1847 Maple Ave, Pasadena, CA 91104" autocomplete="street-address"/><p class="hint">Change this if the problem is somewhere else.</p></div><div class="form-field for-signed" id="fieldProp"><label for="propSel">Property</label><select id="propSel" name="prop" aria-describedby="propHint"></select><p class="hint" id="propHint">Prefilled with the property you were viewing. You can pick another address on your account.</p></div><fieldset class="hx-sec q-group" data-for="power"><legend class="q">What is happening?</legend><div class="opt-chips">
+  <label><input type="radio" name="what" value="whole" checked/>Whole home has no power</label><label><input type="radio" name="what" value="part"/>Part of my home</label><label><input type="radio" name="what" value="flicker"/>Lights flicker or dim</label><label><input type="radio" name="what" value="unsure"/>Not sure</label></div></fieldset>
+<fieldset class="hx-sec q-group" data-for="power"><legend class="q">Are your neighbors also out?</legend><div class="opt-chips"><label><input type="radio" name="nb" value="yes"/>Yes</label><label><input type="radio" name="nb" value="no"/>No</label><label><input type="radio" name="nb" value="dk" checked/>Don’t know</label></div>
+  <p class="hint">Please report even if your neighbors may have already. Each report helps SCE find the problem.</p></fieldset>
+<fieldset class="hx-sec q-group" data-for="power"><legend class="q">Does anyone rely on power for medical equipment?</legend><div class="opt-chips"><label><input type="radio" name="med" value="yes"/>Yes</label><label><input type="radio" name="med" value="no" checked/>No</label></div></fieldset><fieldset class="hx-sec q-group" data-for="hazard"><legend class="q">Is a wire or power line touching the ground, a tree, or a car?</legend><div class="opt-chips"><label><input type="radio" name="wire" value="yes"/>Yes</label><label><input type="radio" name="wire" value="no" checked/>No</label><label><input type="radio" name="wire" value="unsure"/>Not sure</label></div></fieldset>
+<div class="form-field" data-for="hazard"><label for="desc">What do you see?</label><textarea id="desc" name="desc" rows="3" placeholder="Example: A pole is leaning over the sidewalk"></textarea><p class="hint">Plain words are fine.</p></div><div class="form-field" data-for="downed"><label for="desc2">What do you see? (optional)</label><textarea id="desc2" name="desc2" rows="2" placeholder="Example: A wire is on the ground near the fence"></textarea></div><div class="form-field" data-for="downed hazard"><label id="photoLbl" style="position:static;background:none;padding:0">Photo <span class="only-opt">(optional)</span></label><label class="photo-btn">📷 Take or add photo<input type="file" name="photo" accept="image/*" capture="environment"/></label><p class="hint" data-for="downed">Take the photo from a safe distance. Do not go closer.</p></div><div class="form-field" data-for="downed hazard power"><label for="phone">Phone for SCE to reach you</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(555) 555-0100"/><p class="hint" data-for="downed">Used only for the response. You do not need to sign in.</p></div><button class="btn primary block" type="submit" id="submitBtn" style="margin:8px 0">Submit report</button>
+  <p class="trust" style="text-align:center;margin-top:8px">Map and status may lag ~15–20 min behind field systems.</p>
+</form>
+<div class="self-checks" id="selfChecks" data-for="power" role="group" aria-label="Quick self-checks (optional, after you report)">
+  <div class="hx-k">Check your breaker · optional</div>
+  <div class="sc-row"><span class="sc-q">Breaker tripped?</span><div class="sc-tog" role="radiogroup" aria-label="Breaker tripped"><label><input type="radio" name="breaker" value="yes"/> Yes</label><label><input type="radio" name="breaker" value="no"/> No</label></div></div>
+  <p class="sc-hint" id="breakerHint" hidden>Reset breaker if safe. If power returns, you may not need to report.</p>
+  <div class="sc-row"><span class="sc-q">Meter dark or flashing?</span><div class="sc-tog" role="radiogroup" aria-label="Meter dark or flashing"><label><input type="radio" name="meter" value="yes"/> Yes</label><label><input type="radio" name="meter" value="no"/> No</label></div></div>
+  <p class="sc-hint">This does not replace your report.</p></div>
   </div>
+<nav class="hub-nav" aria-label="Outage Center" data-report="safety"><a href="F0-hub-home.html" aria-label="Outage Center home" data-nav-home><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></span>Outage Center</a><a href="F6-map-sheet.html"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg></span>Map</a><a href="F5-report.html" aria-current="page" aria-label="Report a Problem" class="hn-report"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg></span>Report</a><a href="F9-afn-help.html"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg></span>Help</a></nav>
 </div>
-
-<script>
-(function(){
-  var chip=document.querySelector('.frame-chip');
-  if(!chip) return;
-  var btn=chip.querySelector('.dismiss');
-  if(btn) btn.addEventListener('click',function(){chip.hidden=true;});
-})();
-(function(){
-  var hint=document.getElementById('breakerHint');
-  if(!hint) return;
-  document.querySelectorAll('input[name="breaker"]').forEach(function(r){
-    r.addEventListener('change',function(){
-      hint.hidden = !(r.value==='yes' && r.checked);
-    });
-  });
-})();
-</script>
+<script src="hierarchy.js" defer></script>
 <script src="transitions.js" defer></script>
 </body>
 </html>

@@ -1,89 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-aud="signed">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>F0 — Hub home (Signed-in) · SCE Outage Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/></noscript>
 <link rel="stylesheet" href="shared.css"/>
 </head>
-<body>
+<body data-prop="elm" data-page="f0signed">
 <div class="app">
   <div class="frame-chip">
-    <span class="id">F0 · Signed-in</span>
+    <span class="id">F0 · Signed-in (planned)</span>
     <span class="chip-actions"><span class="badge hifi">Hi-fi</span><span class="badge signed">Signed-in</span><button type="button" class="dismiss" aria-label="Hide frame label">×</button></span>
   </div>
   <div class="os-bar"><span>10:40</span><span class="icons">▮▮▮ ▔ Wi‑Fi</span></div>
   <div class="app-scroll">
-
-      <div class="hub-header">
-        <div class="row">
-          <div class="hub-name" style="margin:0">Outage Hub</div>
-          <div class="header-meta">Updated 9:05 AM</div>
-        </div>
-      </div>
-
-      <div class="account">
-        <div class="avatar">JL</div>
-        <div>
-          <strong>Jordan Lee</strong>
-          Account ••••4821
-        </div>
-      </div>
-
-      <div class="search-wrap">
-        <a class="search" href="F1-lookup-result.html" aria-label="Search address">
-          <span class="icon" aria-hidden="true"></span>
-          <span class="ph">Search address, outage #, or meter</span>
-        </a>
-      </div>
-
-      <div class="section-label">My service status</div>
-      <div class="hero rail-planned tint-planned">
-        <div class="hero-inner">
-          <div class="row-top">
-            <span class="evchip">Planned</span>
-            <span class="pill planned"><span class="mark"></span>Upcoming</span>
-          </div>
-          <div class="addr">412 Elm St, Glendale, CA 91205</div>
-          <div class="status-word sm">PLANNED</div>
-          <div class="cause">Pole replacement and line maintenance · PLN-2026-031104</div>
-          <div class="etr" style="font-size:16px;line-height:22px">Thu Sep 11 · 9:00 AM – 1:00 PM PT</div>
-          <div class="trust">Updated 9:05 AM · May lag ~15–20 min</div>
-          <div class="actions">
-            <a class="btn" href="#details-stub">Details</a>
-            <a class="btn" href="F6-map-sheet.html">Map</a>
-            <a class="btn" href="F9-afn-help.html">Get help</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="cta-row">
-        <a class="btn primary" href="F5-report.html" style="flex:1">⚑ Report outage</a>
-        <a class="btn map" href="F6-map-sheet.html" style="flex:1">▣ View map</a>
-      </div>
-
-      <p class="trust-footer">Need help? <a href="F9-afn-help.html" style="color:var(--link);font-weight:600">AFN &amp; resources</a> · Official SCE</p>
-
-      <p class="meta" style="text-align:center;padding:8px 16px">
-        <a href="F0-hub-home.html" style="color:var(--link);font-weight:600">Guest home</a>
-        ·
-        <a href="F0-multi.html" style="color:var(--link);font-weight:600">Multi</a>
-      </p>
-
+<div class="hub-header"><div class="row"><div class="hub-name" style="margin:0">Outage Center</div><div class="hx-topright"><a class="hx-iconbtn" href="F0-signed.html" aria-label="My Account"><span class="hx-avatar">JL</span></a></div></div></div>
+<form class="hx-search" action="F1-lookup-result.html" method="get" role="search"><input type="search" name="q" placeholder="Search address, outage #, or meter" aria-label="Outage Search: service address, outage number, or meter number" autocomplete="off" enterkeyhint="search"/><button type="submit" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button></form>
+<section class="addr-strip" aria-label="Address and power state"><div class="as-k">Service address</div><div class="as-addr">412 Elm St, Glendale, CA 91205</div><div class="as-chips"><span class="pchip on">Power On</span><span class="pchip planned">Planned Outage</span></div><details class="as-acct"><summary aria-label="Account details">Account</summary><dl class="kv"><dt>Account holder</dt><dd>Jordan Lee</dd><dt>Account #</dt><dd>••••4821</dd><dt>Meter #</dt><dd>••••2917</dd></dl></details></section>
+<div class="hero rail-planned tint-planned hx-hero" data-card="planned"><div class="hero-inner">
+  <div class="row-top"><span class="evchip">Planned outage</span></div>
+  <h2 class="hx-status" style="color:#1D4ED8">Upcoming</h2>
+  <div class="hx-k">Scheduled window</div>
+  <p class="hx-big" data-f="win">Thu Sep 11 · 9:00 AM – 1:00 PM PT</p>
+  <p class="hx-hero-line">Pole replacement and line maintenance · <span data-f="plan">PLN-2026-031104</span></p>
+  <dl class="kv"><dt>Duration</dt><dd>4 hours</dd></dl>
+  <div style="margin-top:12px"><div class="hx-k" style="margin-bottom:6px">How to prepare</div><ul class="hx-list"><li>Charge phones and backup batteries.</li><li>Plan for medical equipment and refrigerated items.</li><li>Unplug sensitive electronics before the start.</li></ul></div>
+  <div class="hx-mb" data-mb-on role="note" aria-label="Medical Baseline safety guidance"><h3>Medical Baseline: prepare before the outage</h3><ul class="hx-list"><li>Charge medical devices and backup batteries now.</li><li>Line up a place to go if you rely on power for medical equipment.</li><li>Call 211 if you need help getting ready.</li></ul><p style="margin-top:8px"><a class="hx-link" href="F9-afn-help.html#mbl">Medical Baseline and backup power</a></p></div>
+  <div class="hx-btnrow" style="margin-top:12px"><button type="button" class="btn map" data-act="ics" data-title="SCE planned outage" data-start="20250911T090000" data-end="20250911T130000">Add to Calendar</button></div>
+  <label class="hx-toggle" id="notify"><span>Remind me before this outage</span><input type="checkbox" data-act="remind"/><span class="sw" aria-hidden="true"></span></label>
+  <p class="trust" style="margin-top:8px">Last updated <span data-f="updated">9:05 AM</span> · <span data-ph="refreshCadence"><span class="ph-t">May lag ~15–20 min</span></span></p>
+  <div class="actions"><a class="btn" href="F5-report.html?aud=signed&amp;prop=elm">Report</a><a class="btn" href="F6-map-sheet.html">Map</a><a class="btn" href="F9-afn-help.html">Get help</a></div>
+</div></div>
+<p class="meta" style="text-align:center;padding:8px 16px"><a class="hx-link" href="F0-hub-home.html">Guest home</a> · <a class="hx-link" href="F0-multi.html">Multi</a></p>
+<details class="hx-row rail-weather" data-lazy="weather"><summary><span class="hx-sum"><span class="t">Weather: Clear and mild in Glendale</span><span class="s">Fire risk: Low <span class="wx-honest" style="font-size:10px;color:var(--ink-3)">Illustrative</span></span></span></summary><div class="hx-body"><div data-lazy-weather="glendale"><div class="lazy-skel" role="status">Loading conditions…</div></div></div></details>
+<details class="proto-panel" id="protoPanel"><summary>Prototype controls</summary><div class="pp-body"><div class="seg" role="group" aria-label="Medical Baseline"><button type="button" data-act="mb-off" aria-pressed="true">Standard</button><button type="button" data-act="mb-on" aria-pressed="false">Medical Baseline</button></div><p class="hx-fine">Review aid only, not part of the product. Also via URL: ?ert=changed · ?state=refresh-failed · ?mb=1</p></div></details>
   </div>
+<nav class="hub-nav" aria-label="Outage Center" data-report="sec"><a href="F0-signed.html" aria-current="page" aria-label="Outage Center home" data-nav-home><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></span>Outage Center</a><a href="F6-map-sheet.html"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg></span>Map</a><a href="F5-report.html" aria-label="Report a Problem" class="hn-report"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg></span>Report</a><a href="F9-afn-help.html"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg></span>Help</a></nav>
 </div>
-
-<script>
-(function(){
-  var chip=document.querySelector('.frame-chip');
-  if(!chip) return;
-  var btn=chip.querySelector('.dismiss');
-  if(btn) btn.addEventListener('click',function(){chip.hidden=true;});
-})();
-</script>
+<script src="hierarchy.js" defer></script>
 <script src="transitions.js" defer></script>
 </body>
 </html>

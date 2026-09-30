@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 <link rel="stylesheet" href="shared.css"/>
 </head>
-<body>
+<body data-page="f6">
 <div class="app map-mode">
   <div class="frame-chip">
     <span class="id">F6 · Map sheet</span>
@@ -20,7 +20,7 @@
   <div class="map-topbar">
     <div class="row">
       <h2><a href="F1-lookup-result.html" class="m3-nav" style="color:inherit"><span class="m3-nav-icon" aria-hidden="true">←</span>Map</a></h2>
-      <span class="header-meta" style="text-align:right">Updated 10:28 AM</span>
+      <span class="hx-topright"><span class="header-meta" style="text-align:right">Updated 10:28 AM</span><a class="hx-iconbtn" href="F1-lookup-result.html" aria-label="Outage Search"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></a></span>
     </div>
   </div>
   <div class="app-scroll" style="flex:1;padding:0;overflow:hidden;display:flex;flex-direction:column">
@@ -66,6 +66,7 @@
         </div>
       </div>
   </div>
+<nav class="hub-nav" aria-label="Outage Center" data-report="sec"><a href="F0-signed.html" aria-label="Outage Center home" data-nav-home><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></span>Outage Center</a><a href="F6-map-sheet.html" aria-current="page"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg></span>Map</a><a href="F5-report.html" aria-label="Report a Problem" class="hn-report"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg></span>Report</a><a href="F9-afn-help.html"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg></span>Help</a></nav>
 </div>
 
 <script>
@@ -76,8 +77,9 @@
   if(btn) btn.addEventListener('click',function(){chip.hidden=true;});
 })();
 </script>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
 <script src="map.js" defer></script>
+<script src="hierarchy.js" defer></script>
 <script src="transitions.js" defer></script>
 </body>
 </html>

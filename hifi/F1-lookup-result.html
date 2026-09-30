@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-aud="guest">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>F1 — Lookup result · SCE Outage Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/></noscript>
 <link rel="stylesheet" href="shared.css"/>
 </head>
-<body>
+<body data-prop="" data-page="f1">
 <div class="app">
   <div class="frame-chip">
     <span class="id">F1 · Lookup result</span>
@@ -17,95 +18,40 @@
   </div>
   <div class="os-bar"><span>10:40</span><span class="icons">▮▮▮ ▔ Wi‑Fi</span></div>
   <div class="app-scroll">
-
-      <div class="hub-header">
-        <div class="row">
-          <div>
-            <a href="F0-hub-home.html" class="hub-name m3-nav" style="margin:0;display:inline-flex;align-items:center;gap:6px;color:inherit"><span class="m3-nav-icon" aria-hidden="true">←</span>Lookup result</a>
-          </div>
-          <div class="header-meta">Updated 10:28 AM</div>
-        </div>
-      </div>
-
-      <div class="pending-badge" id="pendingBadge" role="status">
-        <span class="pb-mark" aria-hidden="true"></span>
-        <div>
-          <strong>Pending report</strong>
-          <span>RPT-2026-77401 · Waiting for field systems to sync (~15–20 min)</span>
-        </div>
-      </div>
-
-      <div class="search-wrap">
-        <div class="search filled" aria-label="Lookup address">
-          <span class="icon" aria-hidden="true"></span>
-          <span class="ph">1847 Maple Ave, Pasadena, CA 91104</span>
-        </div>
-      </div>
-
-      <div class="wx-banner" role="status">
-        <span class="wx-ico" aria-hidden="true">☀</span>
-        <span class="wx-copy"><span class="wx-text">Heat advisory in Pasadena through Thu · higher demand may cause outages</span><span class="wx-honest">Illustrative</span></span>
-      </div>
-
-      <div class="hero rail-restore tint-restore">
-        <div class="hero-inner">
-          <div class="row-top">
-            <span class="evchip">Repair</span>
-            <span class="pill restore"><span class="mark"></span>Restoring</span>
-          </div>
-          <div class="addr">1847 Maple Ave, Pasadena, CA 91104</div>
-          <div class="status-word sm">RESTORING</div>
-          <div class="subline">Power is off at this address</div>
-          <div class="cause">Equipment failure — distribution transformer</div>
-          <div class="meta-line">Outage # OUT-2026-094821 · 342 customers</div>
-          <div class="etr">Back by 4:45 PM</div>
-          <div class="trust">Updated 10:28 AM · May lag ~15–20 min</div>
-          <div class="progress">
-            <span class="dot done"></span>
-            <span class="dot done"></span>
-            <span class="dot now"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="progress-lab">Crew en route (3 of 5)</span>
-          </div>
-          <div class="actions">
-            <a class="btn" href="F5-report.html">Report</a>
-            <a class="btn" href="F6-map-sheet.html">Map</a>
-            <a class="btn" href="F9-afn-help.html">Get help</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="cta-row">
-        <a class="btn primary block" href="F2-active-detail.html">View full details</a>
-      </div>
-      <div class="cta-row" style="padding-top:0">
-        <a class="btn primary" href="F5-report.html" style="flex:1">⚑ Report outage</a>
-        <a class="btn map" href="F6-map-sheet.html" style="flex:1">▣ View map</a>
-      </div>
-
-      <p class="trust-footer">Official outage info · Not a third-party app</p>
-
+<div class="hub-header"><div class="row"><a href="F0-hub-home.html" class="hub-name m3-nav" style="margin:0;display:inline-flex;align-items:center;gap:6px;color:inherit" data-back><span class="m3-nav-icon" aria-hidden="true">←</span>Outage Search</a><div class="hx-topright"><span class="header-meta">Guest</span></div></div></div>
+<form class="hx-search" action="F1-lookup-result.html" method="get" role="search"><input type="search" name="q" placeholder="Search address, outage #, or meter" aria-label="Outage Search: service address, outage number, or meter number" autocomplete="off" enterkeyhint="search"/><button type="submit" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button></form>
+<div class="gs-try" role="group" aria-label="Try an example search"><button type="button" data-q="1847 Maple Ave">Maple Ave (active)</button><button type="button" data-q="412 Elm St">Elm St (planned)</button><button type="button" data-q="891 Canyon Rd">Canyon Rd (PSPS)</button><button type="button" data-q="OUT-2026-093377">Outage # (restored)</button><button type="button" data-q="4829173">Meter # (area)</button><button type="button" data-q="Brooklyn NY">Out of area</button></div>
+<p class="gs-resolved" id="gsResolved" role="status">Showing results for <b id="gsLabel">1847 Maple Ave, Pasadena, CA 91104</b></p>
+<div class="pending-badge" id="pendingBadge" role="status"><span class="pb-mark" aria-hidden="true"></span><div><strong>Pending report</strong><span>RPT-2026-77401 · Waiting for field systems to sync (~15–20 min)</span></div></div>
+<div data-result="maple" data-label="1847 Maple Ave, Pasadena, CA 91104"><section class="addr-strip" aria-label="Searched location and power state"><div class="as-k">Service address · guest view</div><div class="as-addr no-acct">1847 Maple Ave, Pasadena, CA 91104</div><div class="as-chips"><span class="pchip off">Power Off</span></div><div class="cta-row" style="padding:12px 0 0;align-items:center"><span class="hx-fine" style="flex:1 1 140px">Save this address and get updates</span><a class="btn gold" href="F0-signed.html" style="flex:0 0 auto">Sign in</a></div></section><div class="hero rail-restore tint-restore hx-hero" id="activeHero" data-card="active"><div class="hero-inner">
+  <div class="row-top"><span class="evchip">Active outage</span></div>
+  <h2 class="hx-status" style="color:#B45309">Restoring</h2>
+  <p class="hx-hero-line">Power is off at this address · crew en route</p>
+  <div class="hx-k">Estimated restoration</div>
+  <p class="hx-ert" id="hxErt"><span data-f="ertText">Back by 4:45 PM</span></p>
+  <div class="ert-note" id="ertNote" role="status" hidden>Updated: was <b data-f="ertWas">2:30 PM</b></div>
+  <div class="hx-stale" id="hxStale" role="status" hidden><div><strong>Showing last known info, may not be current.</strong>Last updated <span data-f="updatedStale">10:28 AM</span>. We could not refresh just now.<br/><button type="button" class="btn map" data-act="refresh-ok">Try again</button></div></div>
+  <p class="trust">Last updated <span data-f="updated">10:28 AM</span> · <span data-ph="refreshCadence"><span class="ph-t">May lag ~15–20 min</span></span></p>
+  <div class="progress"><span class="dot done"></span><span class="dot done"></span><span class="dot now"></span><span class="dot"></span><span class="dot"></span><span class="progress-lab">Crew en route (3 of 5)</span></div>
+  
+  <details class="hx-more"><summary>Outage details and timeline</summary><div class="hx-more-body"><dl class="kv"><dt>Outage #</dt><dd>OUT-2026-094821</dd><dt>Cause</dt><dd>Equipment failure — distribution transformer</dd><dt>Crew status</dt><dd>En route</dd><dt>Customers</dt><dd>342 affected</dd><dt>Duration</dt><dd>3 hr 16 min so far</dd></dl><div><div class="hx-k" style="margin-bottom:8px">Restoration timeline</div><ol class="hx-tl"><li><b>Reported</b>Today 7:12 AM</li><li><b>Crew assigned</b>Today 7:40 AM</li><li class="now"><b>Crew en route</b>Now · step 3 of 5</li><li class="next"><b>On site</b>Next</li><li class="next"><b>Restored</b>Est. 4:45 PM</li></ol></div><div class="hx-note"><strong>Latest SCE update:</strong> Additional damaged equipment found. Estimate updated from 2:30 PM to 4:45 PM.</div></div></details>
+</div></div><div class="cta-row" style="padding-bottom:0"><a class="btn map block" href="F2-active-detail.html">View full details</a></div><div class="cta-row"><a class="btn primary" href="F5-report.html?aud=guest&amp;prop=maple" style="flex:1">⚑ Report outage</a><a class="btn map" href="F6-map-sheet.html" style="flex:1">▣ View map</a></div></div><div data-result="elm" data-label="412 Elm St, Glendale, CA 91205" hidden><section class="addr-strip" aria-label="Searched location and power state"><div class="as-k">Service address · guest view</div><div class="as-addr no-acct">412 Elm St, Glendale, CA 91205</div><div class="as-chips"><span class="pchip on">Power On</span><span class="pchip planned">Planned Outage</span></div><div class="cta-row" style="padding:12px 0 0;align-items:center"><span class="hx-fine" style="flex:1 1 140px">Save this address and get updates</span><a class="btn gold" href="F0-signed.html" style="flex:0 0 auto">Sign in</a></div></section><div class="hero rail-planned tint-planned hx-hero"><div class="hero-inner"><div class="row-top"><span class="evchip">Planned outage</span></div>
+      <h2 class="hx-status" style="color:#1D4ED8">Upcoming</h2><div class="hx-k">Scheduled window</div><p class="hx-big">Thu Sep 11 · 9:00 AM – 1:00 PM PT</p>
+      <p class="hx-hero-line">Pole replacement and line maintenance</p><p class="trust">Last updated 9:05 AM · <span data-ph="refreshCadence"><span class="ph-t">May lag ~15–20 min</span></span></p></div></div><div class="cta-row"><a class="btn primary" href="F5-report.html?aud=guest&amp;prop=elm" style="flex:1">⚑ Report outage</a><a class="btn map" href="F6-map-sheet.html" style="flex:1">▣ View map</a></div></div><div data-result="canyon" data-label="891 Canyon Rd, Santa Clarita, CA 91387" hidden><section class="addr-strip" aria-label="Searched location and power state"><div class="as-k">Service address · guest view</div><div class="as-addr no-acct">891 Canyon Rd, Santa Clarita, CA 91387</div><div class="as-chips"><span class="pchip on">Power On</span><span class="pchip ev-watch">PSPS Watch</span></div><div class="cta-row" style="padding:12px 0 0;align-items:center"><span class="hx-fine" style="flex:1 1 140px">Save this address and get updates</span><a class="btn gold" href="F0-signed.html" style="flex:0 0 auto">Sign in</a></div></section><div class="hero rail-warn tint-warn hx-hero"><div class="hero-inner"><div class="row-top"><span class="evchip">PSPS</span></div>
+      <h2 class="hx-status" style="color:#9A3412">Planned shutoff possible</h2><div class="hx-k">May begin as early as</div><p class="hx-big">Thu Sep 10 · 8:00 PM PT</p>
+      <p class="hx-hero-line">High winds and low humidity forecast for local circuits.</p><p class="trust">Last updated 10:15 AM · <span data-ph="refreshCadence"><span class="ph-t">May lag ~15–20 min</span></span></p>
+      <div class="actions"><a class="btn" href="F10-psps-banner.html">Details</a><a class="btn" href="F9-afn-help.html#what-to-do">What to do</a><a class="btn" href="F6-map-sheet.html?layer=psps">PSPS map</a></div></div></div><div class="cta-row"><a class="btn primary" href="F5-report.html?aud=guest&amp;prop=canyon" style="flex:1">⚑ Report outage</a><a class="btn map" href="F6-map-sheet.html" style="flex:1">▣ View map</a></div></div><div data-result="on" data-label="1200 E Colorado Blvd, Pasadena, CA 91106" hidden><section class="addr-strip" aria-label="Searched location and power state"><div class="as-k">Service address · guest view</div><div class="as-addr no-acct">1200 E Colorado Blvd, Pasadena, CA 91106</div><div class="as-chips"><span class="pchip on">Power On</span></div><div class="cta-row" style="padding:12px 0 0;align-items:center"><span class="hx-fine" style="flex:1 1 140px">Save this address and get updates</span><a class="btn gold" href="F0-signed.html" style="flex:0 0 auto">Sign in</a></div></section><div class="hero rail-on tint-on hx-hero"><div class="hero-inner"><div class="row-top"><span class="evchip">Service status</span></div>
+      <h2 class="hx-status" style="color:#0B5C38;text-transform:none;font-size:22px;line-height:28px">Power On</h2><p class="hx-hero-line">No outage is listed for this address right now.</p><p class="trust">Last updated 10:28 AM · <span data-ph="refreshCadence"><span class="ph-t">May lag ~15–20 min</span></span></p></div></div><div class="cta-row"><a class="btn primary" href="F5-report.html?aud=guest&amp;prop=colorado" style="flex:1">⚑ Report outage</a><a class="btn map" href="F6-map-sheet.html" style="flex:1">▣ View map</a></div></div><div data-result="restored" data-label="Outage OUT-2026-093377" hidden><section class="addr-strip" aria-label="Searched location and power state"><div class="as-k">Service address · guest view</div><div class="as-addr no-acct">1847 Maple Ave, Pasadena, CA 91104</div><div class="as-chips"><span class="pchip on">Power On</span></div><div class="cta-row" style="padding:12px 0 0;align-items:center"><span class="hx-fine" style="flex:1 1 140px">Save this address and get updates</span><a class="btn gold" href="F0-signed.html" style="flex:0 0 auto">Sign in</a></div></section><div class="hero rail-on tint-on hx-hero"><div class="hero-inner"><div class="row-top"><span class="evchip">Restored outage</span></div>
+      <h2 class="hx-status" style="color:#0B5C38">Power restored</h2><div class="hx-k">Restored at</div><p class="hx-big">Tue Sep 9 · 6:42 PM</p><p class="hx-hero-line">Outage lasted 2 hr 18 min</p>
+      <dl class="kv"><dt>Outage #</dt><dd>OUT-2026-093377</dd><dt>Cause</dt><dd>Tree branch on line</dd></dl></div></div><div class="cta-row"><a class="btn primary" href="F5-report.html?aud=guest&amp;prop=maple" style="flex:1">⚑ Report outage</a><a class="btn map" href="F6-map-sheet.html" style="flex:1">▣ View map</a></div></div><div data-result="area" data-label="Meter # (area-level match)" data-area=1 hidden><section class="addr-strip" aria-label="Searched location and power state"><div class="as-k">Area · guest view</div><div class="as-addr no-acct">Pasadena area (approximate)</div><div class="as-chips"><span class="pchip off">Outage in this area</span></div><p class="as-note">Showing status for this area, not a specific home.</p><div class="cta-row" style="padding:12px 0 0;align-items:center"><span class="hx-fine" style="flex:1 1 140px">Save this address and get updates</span><a class="btn gold" href="F0-signed.html" style="flex:0 0 auto">Sign in</a></div></section><div class="hero rail-restore tint-restore hx-hero"><div class="hero-inner"><div class="row-top"><span class="evchip">Active outage · area</span></div>
+      <h2 class="hx-status" style="color:#B45309">Restoring in this area</h2><div class="hx-k">Estimated restoration</div><p class="hx-ert">Back by 4:45 PM</p>
+      <p class="hx-hero-line">Meter numbers show area-level status. Search by service address for a specific home.</p><p class="trust">Last updated 10:28 AM · <span data-ph="refreshCadence"><span class="ph-t">May lag ~15–20 min</span></span></p></div></div><div class="cta-row"><a class="btn primary" href="F5-report.html?aud=guest&amp;prop=maple" style="flex:1">⚑ Report outage</a><a class="btn map" href="F6-map-sheet.html" style="flex:1">▣ View map</a></div></div><div data-result="oot" data-label="Outside SCE service area" hidden><div class="hx-card hx-oot" style="margin-top:12px"><h3>Outside SCE service area?</h3><p class="hx-hero-line" data-ph="outOfTerritory"><span class="ph-t">That address looks like it is outside SCE’s service area. Check with your local utility.</span></p><span class="ph-tag" style="margin:0">Placeholder</span></div></div><div data-result="none" data-label="No match" hidden><div class="hx-card" style="margin-top:12px"><h3>No match found</h3><p class="hx-hero-line">Check the spelling, or try an outage # or meter #.</p></div></div>
+<div class="wx-banner" role="status"><span class="wx-ico" aria-hidden="true">☀</span><span class="wx-copy"><span class="wx-text">Heat advisory in Pasadena through Thu · higher demand may cause outages</span><span class="wx-honest">Illustrative</span></span></div>
+<p class="trust-footer">Official outage info · Not a third-party app</p>
   </div>
+<nav class="hub-nav" aria-label="Outage Center" data-report="sec"><a href="F0-hub-home.html" aria-current="page" aria-label="Outage Center home" data-nav-home><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></span>Outage Center</a><a href="F6-map-sheet.html"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg></span>Map</a><a href="F5-report.html" aria-label="Report a Problem" class="hn-report"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg></span>Report</a><a href="F9-afn-help.html"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg></span>Help</a></nav>
 </div>
-
-<script>
-(function(){
-  var chip=document.querySelector('.frame-chip');
-  if(chip){
-    var btn=chip.querySelector('.dismiss');
-    if(btn) btn.addEventListener('click',function(){chip.hidden=true;});
-  }
-  try{
-    var q=new URLSearchParams(location.search);
-    if(q.get('pending')==='1') sessionStorage.setItem('conh_pending','1');
-    if(sessionStorage.getItem('conh_pending')==='1' || q.get('pending')==='1'){
-      var el=document.getElementById('pendingBadge');
-      if(el) el.classList.add('show');
-    }
-  }catch(e){}
-})();
-</script>
+<script src="hierarchy.js" defer></script>
 <script src="transitions.js" defer></script>
 </body>
 </html>

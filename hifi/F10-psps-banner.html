@@ -1,123 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-aud="guest">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>F10 — PSPS Warning · SCE Outage Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/></noscript>
 <link rel="stylesheet" href="shared.css"/>
 </head>
-<body>
+<body data-prop="" data-page="f10">
 <div class="app">
   <div class="frame-chip">
     <span class="id">F10 · PSPS Warning</span>
-    <span class="chip-actions"><span class="badge hifi">Hi-fi</span><span class="badge guest">Guest</span> <span class="badge afn">AFN</span><button type="button" class="dismiss" aria-label="Hide frame label">×</button></span>
+    <span class="chip-actions"><span class="badge hifi">Hi-fi</span><span class="badge guest">Guest</span><span class="badge afn">AFN</span><button type="button" class="dismiss" aria-label="Hide frame label">×</button></span>
   </div>
   <div class="os-bar"><span>10:40</span><span class="icons">▮▮▮ ▔ Wi‑Fi</span></div>
   <div class="app-scroll">
-
-      <div class="hub-header">
-        <div class="row">
-          <div>
-            <a href="F0-hub-home.html" class="hub-name m3-nav" style="margin:0;display:inline-flex;align-items:center;gap:6px;color:inherit"><span class="m3-nav-icon" aria-hidden="true">←</span>PSPS</a>
-          </div>
-          <div class="header-meta">Updated 10:15 AM</div>
-        </div>
-      </div>
-
-      <a class="wx-banner" href="#why-warning" id="wxBannerLink">
-        <span class="wx-ico" aria-hidden="true">🌬</span>
-        <span class="wx-copy"><span class="wx-text">High winds + low humidity in Santa Clarita through Sat · PSPS possible</span><span class="wx-honest">Illustrative</span></span>
-        <span class="wx-chev" aria-hidden="true">›</span>
-      </a>
-
-      <div class="psps-banner">
-        <span class="m3-banner-icon" aria-hidden="true">⚠</span>
-        <div class="row-top" style="margin-bottom:0">
-          <span class="evchip">PSPS</span>
-          <span class="pill warn"><span class="mark"></span>Warning</span>
-        </div>
-        <div class="title">Public Safety Power Shutoff warning for your area</div>
-        <div class="body">Extreme fire weather — high winds and low humidity forecast for local circuits. De-energization may begin as early as Thu Sep 10 · 8:00 PM PT if conditions worsen.</div>
-        <a class="btn primary block" href="F9-afn-help.html#what-to-do">What to do</a>
-      </div>
-
-      <div class="hero rail-warn tint-warn">
-        <div class="hero-inner">
-          <div class="row-top">
-            <span class="evchip">PSPS</span>
-            <span class="pill warn"><span class="mark"></span>Warning</span>
-          </div>
-          <div class="addr">891 Canyon Rd, Santa Clarita, CA 91387</div>
-          <div class="status-word" style="font-size:24px;line-height:30px">WARNING</div>
-          <div class="cause">Extreme fire weather — high winds and low humidity</div>
-          <div class="etr" style="font-size:16px;line-height:22px">May begin as early as Thu Sep 10 · 8:00 PM PT</div>
-          <div class="trust">Updated 10:15 AM · May lag ~15–20 min</div>
-          <div class="actions">
-            <a class="btn" href="F9-afn-help.html#what-to-do">What to do</a>
-            <a class="btn" href="F9-afn-help.html">Get help</a>
-            <a class="btn" href="F6-map-sheet.html?layer=psps">PSPS map</a>
-          </div>
-        </div>
-      </div>
-
-      <section class="why-warning" id="why-warning" aria-label="Why this warning">
-        <div class="why-label">Why this warning</div>
-        <div class="fpi-strip nested" aria-label="Fire weather outlook">
-          <div class="fpi-label">Fire weather outlook (next 7 days) <span class="fpi-honest">· Illustrative outlook</span></div>
-          <div class="fpi-days">
-            <div class="fpi-pill low dim"><span class="d">Wed</span><span class="lv">Low</span></div>
-            <div class="fpi-pill elevated"><span class="d">Thu</span><span class="lv">Elevated</span></div>
-            <div class="fpi-pill high"><span class="d">Fri</span><span class="lv">High</span></div>
-            <div class="fpi-pill high"><span class="d">Sat</span><span class="lv">High</span></div>
-            <div class="fpi-pill elevated"><span class="d">Sun</span><span class="lv">Elevated</span></div>
-            <div class="fpi-pill low dim"><span class="d">Mon</span><span class="lv">Low</span></div>
-            <div class="fpi-pill low dim"><span class="d">Tue</span><span class="lv">Low</span></div>
-          </div>
-        </div>
-      </section>
-
-      <div class="section-label">PSPS stages</div>
-      <div class="stage-chips">
-        <span class="pill watch"><span class="mark"></span>Watch</span>
-        <span class="pill warn"><span class="mark"></span>Warning</span>
-        <span class="pill psps"><span class="mark"></span>Active</span>
-        <span class="pill psps-r"><span class="mark"></span>Restoring</span>
-      </div>
-
-      <div class="afn">
-        <h3>Need help during this outage?</h3>
-        <a class="btn btn211" href="tel:211">Call 211</a>
-        <div class="links" style="flex-direction:row;flex-wrap:wrap;gap:8px 14px">
-          <a href="F9-afn-help.html#mbl">Medical Baseline</a>
-          <a href="F9-afn-help.html">Food &amp; shelter</a>
-          <a href="F9-afn-help.html#what-to-do">What to do now</a>
-        </div>
-      </div>
-
+<div class="hub-header"><div class="row"><a href="F0-hub-home.html" class="hub-name m3-nav" style="margin:0;display:inline-flex;align-items:center;gap:6px;color:inherit" data-back><span class="m3-nav-icon" aria-hidden="true">←</span>PSPS</a><div class="hx-topright"><span class="header-meta">Guest</span></div></div></div>
+<form class="hx-search" action="F1-lookup-result.html" method="get" role="search"><input type="search" name="q" placeholder="Search address, outage #, or meter" aria-label="Outage Search: service address, outage number, or meter number" autocomplete="off" enterkeyhint="search"/><button type="submit" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button></form>
+<section class="addr-strip" aria-label="Searched location and power state"><div class="as-k">Service address · guest view</div><div class="as-addr no-acct">891 Canyon Rd, Santa Clarita, CA 91387</div><div class="as-chips"><span class="pchip on">Power On</span><span class="pchip ev-warn">PSPS Warning</span></div><div class="cta-row" style="padding:12px 0 0;align-items:center"><span class="hx-fine" style="flex:1 1 140px">Save this address and get updates</span><a class="btn gold" href="F0-signed.html" style="flex:0 0 auto">Sign in</a></div></section>
+<div class="hero rail-warn tint-warn hx-hero" data-card="planned"><div class="hero-inner">
+  <div class="row-top"><span class="evchip">PSPS</span></div>
+  <h2 class="hx-status" style="color:#9A3412">Public Safety Power Shutoff warning</h2>
+  <div class="hx-k">May begin as early as</div>
+  <p class="hx-big">Thu Sep 10 · 8:00 PM PT</p>
+  <p class="hx-hero-line">Extreme fire weather: high winds and low humidity forecast for local circuits. De-energization may begin if conditions worsen.</p>
+  <p class="trust">Last updated 10:15 AM · <span data-ph="refreshCadence"><span class="ph-t">May lag ~15–20 min</span></span></p>
+  <div class="actions"><a class="btn" href="F9-afn-help.html#what-to-do">What to do</a><a class="btn" href="F9-afn-help.html">Get help</a><a class="btn" href="F6-map-sheet.html?layer=psps">PSPS map</a></div>
+</div></div>
+<a class="wx-banner" href="#why-warning" id="wxBannerLink"><span class="wx-ico" aria-hidden="true">🌬</span><span class="wx-copy"><span class="wx-text">High winds + low humidity in Santa Clarita through Sat · PSPS possible</span><span class="wx-honest">Illustrative</span></span><span class="wx-chev" aria-hidden="true">›</span></a>
+<section class="why-warning" id="why-warning" aria-label="Why this warning"><div class="why-label">Why this warning</div><div class="fpi-strip nested" aria-label="Fire weather outlook"><div class="fpi-label">Fire weather outlook (next 7 days) <span class="fpi-honest">· Illustrative outlook</span></div><div class="fpi-days">
+<div class="fpi-pill low dim"><span class="d">Wed</span><span class="lv">Low</span></div><div class="fpi-pill elevated"><span class="d">Thu</span><span class="lv">Elevated</span></div><div class="fpi-pill high"><span class="d">Fri</span><span class="lv">High</span></div><div class="fpi-pill high"><span class="d">Sat</span><span class="lv">High</span></div><div class="fpi-pill elevated"><span class="d">Sun</span><span class="lv">Elevated</span></div><div class="fpi-pill low dim"><span class="d">Mon</span><span class="lv">Low</span></div><div class="fpi-pill low dim"><span class="d">Tue</span><span class="lv">Low</span></div></div></div></section>
+<div class="section-label">PSPS stages</div><div class="stage-chips"><span class="pill watch"><span class="mark"></span>Watch</span><span class="pill warn"><span class="mark"></span>Warning</span><span class="pill psps"><span class="mark"></span>Active</span><span class="pill psps-r"><span class="mark"></span>Restoring</span></div>
+<div class="afn"><h3>Need help during this outage?</h3><a class="btn btn211" href="tel:211">Call 211</a><div class="links" style="flex-direction:row;flex-wrap:wrap;gap:8px 14px"><a href="F9-afn-help.html#mbl">Medical Baseline</a><a href="F9-afn-help.html">Food &amp; shelter</a><a href="F9-afn-help.html#what-to-do">What to do now</a></div></div>
   </div>
+<nav class="hub-nav" aria-label="Outage Center" data-report="sec"><a href="F0-hub-home.html" aria-current="page" aria-label="Outage Center home" data-nav-home><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></span>Outage Center</a><a href="F6-map-sheet.html"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg></span>Map</a><a href="F5-report.html" aria-label="Report a Problem" class="hn-report"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg></span>Report</a><a href="F9-afn-help.html"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg></span>Help</a></nav>
 </div>
-<script>
-(function(){
-  var chip=document.querySelector('.frame-chip');
-  if(chip){
-    var btn=chip.querySelector('.dismiss');
-    if(btn) btn.addEventListener('click',function(){chip.hidden=true;});
-  }
-  var wx=document.getElementById('wxBannerLink');
-  if(wx){
-    wx.addEventListener('click',function(){
-      var t=document.getElementById('why-warning');
-      if(!t) return;
-      var d=t.closest('details');
-      if(d) d.open=true;
-      if(t.tagName==='DETAILS') t.open=true;
-    });
-  }
-})();
-</script>
+<script src="hierarchy.js" defer></script>
 <script src="transitions.js" defer></script>
 </body>
 </html>
