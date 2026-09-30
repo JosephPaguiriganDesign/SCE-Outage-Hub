@@ -7,3 +7,5 @@
 @import url("m3_tokens.css");
 @import url("m3_components.css");
 @import url("m3_motion.css");
+/* Outage Dashboard Hierarchy v0.03 layer — imported LAST */
+@import url("hierarchy.css");

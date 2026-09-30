@@ -69,3 +69,26 @@ Pending badge: F5-confirm writes `sessionStorage.conh_pending` and links with `?
 - F7 portfolio layout follows `portfolio.png` tile cards; wires IA kept for filters/sort stubs omitted for clarity.
 - Search placeholder locked to wires: “Search address, outage #, or meter”.
 - No SCE-UI / gold-blue design-system work.
+
+
+## Hierarchy v0.03 update (Outage Dashboard Information Hierarchy)
+
+New/changed on top of the screens above. All plain static files; `hierarchy.css` is imported last from `shared.css`, `hierarchy.js` is deferred.
+
+| Scenario | Screen | Notes |
+|---|---|---|
+| S1 / S2 | `S1-active.html` (`?ert=changed`, `?state=refresh-failed`, `?mb=1`) | Signed-in Maple. ERT change in place, refresh-failed, Medical Baseline |
+| S3 | `S3-no-outage.html` | Neutral "No outage known", Report = primary CTA |
+| S4 / S5 | `F5-report.html?aud=guest&intent=downed` / `&intent=hazard` | Three intents; hazard escalates to downed line |
+| S6 | `S6-psps-watch.html` | Power On + PSPS Watch |
+| S7 | `S7-psps-active.html` | Power On + PSPS Event Active (placeholder wording) |
+| S8 | `F1-lookup-result.html?q=...` | Address / outage # / meter #, out-of-area |
+| S9 | `S9-restored.html` (`?psps=temp`, `?psps=ended`) | Restored hero |
+| S10 | `F0-multi.html` -> `F7-portfolio.html` | Summary, tiles, filters, sort, ZIP, pages, scroll restore |
+| S12 | `S12-weather.html` | Conditions hero |
+| S13 | `S13-disconnected.html` | No bill-pay prompt |
+| NEW 1 / NEW 2 | `N1-active-planned.html`, `N2-active-planned-restored.html` (`?lookback=expired`) | Draft scenarios |
+
+Placeholders (unresolved spec items) live in the `HX_CONFIG` block at the top of `hierarchy.js` and show a small dashed "Placeholder" tag. See `open-items.md` in the design folder.
+
+Extra files: `hierarchy.css`, `hierarchy.js`, `S*.html`, `N*.html`.

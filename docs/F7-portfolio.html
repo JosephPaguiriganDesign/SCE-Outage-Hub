@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-aud="multi">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>F7 — Portfolio · SCE Outage Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/></noscript>
 <link rel="stylesheet" href="shared.css"/>
 </head>
-<body>
+<body data-prop="" data-page="f7">
 <div class="app">
   <div class="frame-chip">
     <span class="id">F7 · Portfolio</span>
@@ -17,69 +18,26 @@
   </div>
   <div class="os-bar"><span>10:40</span><span class="icons">▮▮▮ ▔ Wi‑Fi</span></div>
   <div class="app-scroll">
-
-      <div class="hub-header">
-        <div class="row">
-          <div>
-            <a href="F0-multi.html" class="hub-name m3-nav" style="margin:0;display:inline-flex;align-items:center;gap:6px;color:inherit"><span class="m3-nav-icon" aria-hidden="true">←</span>Outage Hub</a>
-          </div>
-          <div class="header-meta">Updated 10:28 AM</div>
-        </div>
-      </div>
-
-      <div class="account">
-        <div class="avatar">JL</div>
-        <div>
-          <strong>Jordan Lee</strong>
-          Account ••••4821 · 3 addresses
-        </div>
-      </div>
-
-      <div class="section-label">My addresses</div>
-
-      <a class="tile rail-restore" href="F2-active-detail.html">
-        <div>
-          <div class="t-addr">1847 Maple Ave, Pasadena</div>
-          <div class="t-status restore">RESTORING</div>
-          <div class="t-sub">Back by 4:45 PM · Active Repair</div>
-        </div>
-        <div class="tile-right"><span class="pill restore"><span class="mark"></span>Restoring</span></div>
-      </a>
-
-      <a class="tile rail-on" href="F1-lookup-result.html">
-        <div>
-          <div class="t-addr">55 N Lake Ave #210, Pasadena</div>
-          <div class="t-status on">ON</div>
-          <div class="t-sub">Service normal</div>
-        </div>
-        <div class="tile-right"><span class="pill on"><span class="mark"></span>On</span></div>
-      </a>
-
-      <a class="tile rail-planned" href="F0-signed.html">
-        <div>
-          <div class="t-addr">412 Elm St, Glendale</div>
-          <div class="t-status planned">PLANNED</div>
-          <div class="t-sub">Thu Sep 11 · 9:00 AM – 1:00 PM · Pole replacement</div>
-        </div>
-        <div class="tile-right"><span class="pill planned"><span class="mark"></span>Planned</span></div>
-      </a>
-
-      <div class="cta-row">
-        <a class="btn primary" href="F5-report.html" style="flex:1">⚑ Report outage</a>
-        <a class="btn map" href="F6-map-sheet.html" style="flex:1">▣ View map</a>
-      </div>
-
-  </div>
+<div class="hub-header"><div class="row"><a href="F0-multi.html" class="hub-name m3-nav" style="margin:0;display:inline-flex;align-items:center;gap:6px;color:inherit" data-back><span class="m3-nav-icon" aria-hidden="true">←</span>Portfolio</a><div class="hx-topright"><a class="hx-iconbtn" href="F0-signed.html" aria-label="My Account"><span class="hx-avatar">JL</span></a></div></div></div>
+<form class="hx-search" action="F1-lookup-result.html" method="get" role="search"><input type="search" name="q" placeholder="Search address, outage #, or meter" aria-label="Outage Search: service address, outage number, or meter number" autocomplete="off" enterkeyhint="search"/><button type="submit" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button></form>
+<section class="pf-sum" aria-label="Portfolio summary"><div class="hx-k">Needs attention</div><div class="pf-n"><span data-cnt="attention">5</span><small>of 12 properties</small></div><div class="pf-break"><div class="bk"><i style="background:var(--st-off)"></i><b data-cnt="active">2</b>Active Outage</div><div class="bk"><i style="background:var(--st-planned)"></i><b data-cnt="planned">3</b>Planned Outage</div><div class="bk"><i style="background:var(--st-on)"></i><b data-cnt="restored">2</b>Power Restored</div><div class="bk"><i style="background:var(--ink-3)"></i><b data-cnt="on">5</b>Power On</div></div><p class="trust" style="margin:10px 0 0">Last updated <span data-f="updated">10:28 AM</span> · <span data-ph="refreshCadence"><span class="ph-t">May lag ~15–20 min</span></span></p></section>
+<div id="pfList" aria-live="polite"><a class="tile pf-tile rail-active" href="S1-active.html?from=pf&amp;prop=maple" data-id="maple" data-state="active" data-zip="91104" data-addr="1847 maple ave, pasadena, ca 91104" data-rank="0" data-href="S1-active.html"><div><div class="t-addr">1847 Maple Ave, Pasadena, CA 91104</div><div class="t-status active">ACTIVE OUTAGE</div><div class="t-sub">Back by 4:45 PM</div><div class="t-open">Open dashboard →</div></div><div class="tile-right"><span class="pill off"><span class="mark"></span>Active</span></div></a><a class="tile pf-tile rail-active" href="S1-active.html?from=pf&amp;prop=lincoln" data-id="lincoln" data-state="active" data-zip="91001" data-addr="2210 lincoln ave, altadena, ca 91001" data-rank="1" data-href="S1-active.html"><div><div class="t-addr">2210 Lincoln Ave, Altadena, CA 91001</div><div class="t-status active">ACTIVE OUTAGE</div><div class="t-sub">Back by 6:30 PM</div><div class="t-open">Open dashboard →</div></div><div class="tile-right"><span class="pill off"><span class="mark"></span>Active</span></div></a><a class="tile pf-tile rail-planned" href="F0-signed.html?from=pf&amp;prop=elm" data-id="elm" data-state="planned" data-zip="91205" data-addr="412 elm st, glendale, ca 91205" data-rank="2" data-href="F0-signed.html"><div><div class="t-addr">412 Elm St, Glendale, CA 91205</div><div class="t-status planned">PLANNED OUTAGE</div><div class="t-sub">Thu Sep 11 · 9:00 AM – 1:00 PM</div><div class="t-open">Open dashboard →</div></div><div class="tile-right"><span class="pill planned"><span class="mark"></span>Planned</span></div></a><a class="tile pf-tile rail-planned" href="S6-psps-watch.html?from=pf&amp;prop=canyon" data-id="canyon" data-state="planned" data-zip="91387" data-addr="891 canyon rd, santa clarita, ca 91387" data-rank="3" data-href="S6-psps-watch.html"><div><div class="t-addr">891 Canyon Rd, Santa Clarita, CA 91387</div><div class="t-status planned">PLANNED OUTAGE</div><div class="t-sub">PSPS Watch · may begin Thu Sep 10 · 8:00 PM</div><div class="t-open">Open dashboard →</div></div><div class="tile-right"><span class="pill planned"><span class="mark"></span>Planned</span></div></a><a class="tile pf-tile rail-planned" href="F0-signed.html?from=pf&amp;prop=orange" data-id="orange" data-state="planned" data-zip="91103" data-addr="77 orange grove blvd, pasadena, ca 91103" data-rank="4" data-href="F0-signed.html"><div><div class="t-addr">77 Orange Grove Blvd, Pasadena, CA 91103</div><div class="t-status planned">PLANNED OUTAGE</div><div class="t-sub">Sat Sep 13 · 9:00 AM – 1:00 PM</div><div class="t-open">Open dashboard →</div></div><div class="tile-right"><span class="pill planned"><span class="mark"></span>Planned</span></div></a><a class="tile pf-tile rail-restored" href="S9-restored.html?from=pf&amp;prop=fairoaks" data-id="fairoaks" data-state="restored" data-zip="91030" data-addr="1520 fair oaks ave, south pasadena, ca 91030" data-rank="5" data-href="S9-restored.html"><div><div class="t-addr">1520 Fair Oaks Ave, South Pasadena, CA 91030</div><div class="t-status restored">POWER RESTORED</div><div class="t-sub">Restored today 2:12 PM</div><div class="t-open">Open dashboard →</div></div><div class="tile-right"><span class="pill on"><span class="mark"></span>Restored</span></div></a><a class="tile pf-tile rail-restored" href="S9-restored.html?from=pf&amp;prop=mtnview" data-id="mtnview" data-state="restored" data-zip="91103" data-addr="640 mountain view ave, pasadena, ca 91103" data-rank="6" data-href="S9-restored.html"><div><div class="t-addr">640 Mountain View Ave, Pasadena, CA 91103</div><div class="t-status restored">POWER RESTORED</div><div class="t-sub">Restored today 11:48 AM</div><div class="t-open">Open dashboard →</div></div><div class="tile-right"><span class="pill on"><span class="mark"></span>Restored</span></div></a><a class="tile pf-tile rail-on" href="S12-weather.html?from=pf&amp;prop=lake" data-id="lake" data-state="on" data-zip="91101" data-addr="55 n lake ave #210, pasadena, ca 91101" data-rank="7" data-href="S12-weather.html"><div><div class="t-addr">55 N Lake Ave #210, Pasadena, CA 91101</div><div class="t-status on">POWER ON</div><div class="t-sub">No outage</div><div class="t-open">Open dashboard →</div></div><div class="tile-right"><span class="pill on"><span class="mark"></span>On</span></div></a><a class="tile pf-tile rail-on" href="S12-weather.html?from=pf&amp;prop=colorado" data-id="colorado" data-state="on" data-zip="91106" data-addr="1200 e colorado blvd, pasadena, ca 91106" data-rank="8" data-href="S12-weather.html"><div><div class="t-addr">1200 E Colorado Blvd, Pasadena, CA 91106</div><div class="t-status on">POWER ON</div><div class="t-sub">No outage</div><div class="t-open">Open dashboard →</div></div><div class="tile-right"><span class="pill on"><span class="mark"></span>On</span></div></a><a class="tile pf-tile rail-on" href="S12-weather.html?from=pf&amp;prop=foothill" data-id="foothill" data-state="on" data-zip="91214" data-addr="3300 foothill blvd, la crescenta, ca 91214" data-rank="9" data-href="S12-weather.html"><div><div class="t-addr">3300 Foothill Blvd, La Crescenta, CA 91214</div><div class="t-status on">POWER ON</div><div class="t-sub">No outage</div><div class="t-open">Open dashboard →</div></div><div class="tile-right"><span class="pill on"><span class="mark"></span>On</span></div></a><a class="tile pf-tile rail-on" href="S12-weather.html?from=pf&amp;prop=green" data-id="green" data-state="on" data-zip="91105" data-addr="18 w green st, pasadena, ca 91105" data-rank="10" data-href="S12-weather.html"><div><div class="t-addr">18 W Green St, Pasadena, CA 91105</div><div class="t-status on">POWER ON</div><div class="t-sub">No outage</div><div class="t-open">Open dashboard →</div></div><div class="tile-right"><span class="pill on"><span class="mark"></span>On</span></div></a><a class="tile pf-tile rail-on" href="S12-weather.html?from=pf&amp;prop=brand" data-id="brand" data-state="on" data-zip="91204" data-addr="901 brand blvd, glendale, ca 91204" data-rank="11" data-href="S12-weather.html"><div><div class="t-addr">901 Brand Blvd, Glendale, CA 91204</div><div class="t-status on">POWER ON</div><div class="t-sub">No outage</div><div class="t-open">Open dashboard →</div></div><div class="tile-right"><span class="pill on"><span class="mark"></span>On</span></div></a></div>
+<p class="pf-empty" id="pfEmpty" hidden>No properties match.</p>
+<div class="pf-pg" id="pfPg"><button type="button" id="pfPrev" aria-label="Previous page">‹</button><span id="pfPgLab">Page 1 of 2</span><button type="button" id="pfNext" aria-label="Next page">›</button></div>
+<div class="pf-ctl">
+  <label class="sr-only" for="pfQ">Filter by address</label>
+  <input id="pfQ" type="search" placeholder="Filter by address" autocomplete="off" enterkeyhint="search"/>
+  <div class="pf-chips" role="group" aria-label="Status filters"><button type="button" data-filter="active" aria-pressed="false">Active Outage</button><button type="button" data-filter="restored" aria-pressed="false">Power Restored</button><button type="button" data-filter="on" aria-pressed="false">Power On</button><button type="button" data-filter="planned" aria-pressed="false">Planned Outage</button></div>
+  <div class="pf-row"><label for="pfSort">Sort</label><div class="pf-chips" role="group" aria-label="Sort" id="pfSort">
+    <button type="button" data-sort="attention" aria-pressed="true">Attention first</button><button type="button" data-sort="address" aria-pressed="false">Address order</button></div></div>
+  <details class="pf-tert"><summary>More: group by ZIP, pagination</summary>
+    <div class="pf-chips" style="margin-top:4px"><button type="button" id="pfGroup" aria-pressed="false">Group by ZIP</button><button type="button" id="pfPage" aria-pressed="true">Paginate (6 per page)</button></div></details>
 </div>
-
-<script>
-(function(){
-  var chip=document.querySelector('.frame-chip');
-  if(!chip) return;
-  var btn=chip.querySelector('.dismiss');
-  if(btn) btn.addEventListener('click',function(){chip.hidden=true;});
-})();
-</script>
+<div class="cta-row"><a class="btn primary block" href="F5-report.html?aud=multi&amp;prop=maple">⚑ Report a Problem</a></div>
+  </div>
+<nav class="hub-nav" aria-label="Outage Center" data-report="sec"><a href="F0-multi.html" aria-current="page" aria-label="Outage Center home" data-nav-home><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></span>Outage Center</a><a href="F6-map-sheet.html"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg></span>Map</a><a href="F5-report.html" aria-label="Report a Problem" class="hn-report"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg></span>Report</a><a href="F9-afn-help.html"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg></span>Help</a></nav>
+</div>
+<script src="hierarchy.js" defer></script>
 <script src="transitions.js" defer></script>
 </body>
 </html>
