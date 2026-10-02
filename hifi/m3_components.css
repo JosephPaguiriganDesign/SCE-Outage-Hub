@@ -7,7 +7,7 @@
    Painted as a background-image overlay in currentColor so the container
    color (ink, white, indigo, gold, amber) is untouched underneath.        */
 :where(.btn,.filter,.chip,a.recent-item,a.search,a.wx-banner,.sc-tog label,
-  .form-field .type-opts label,.ub-tab,a.tile,.gallery a.card,.facilitator summary,
+  .form-field .type-opts label,.ub-tab,a.cps-prop,.gallery a.card,.facilitator summary,
   .frame-chip .dismiss,.m3-nav,a.sum-chip){
   --_sl:color-mix(in srgb,currentColor var(--_slo,0%),transparent);
   background-image:linear-gradient(var(--_sl),var(--_sl))!important; /* survives legacy background shorthands */
@@ -19,16 +19,16 @@
 }
 @media (hover:hover){
   :where(.btn,.filter,.chip,a.recent-item,a.search,a.wx-banner,.sc-tog label,
-    .form-field .type-opts label,.ub-tab,a.tile,.gallery a.card,.facilitator summary,
+    .form-field .type-opts label,.ub-tab,a.cps-prop,.gallery a.card,.facilitator summary,
     .frame-chip .dismiss,.m3-nav,a.sum-chip):hover{--_slo:var(--md-sys-state-hover-state-layer-opacity)}
 }
-:where(.btn,.filter,.chip,a.recent-item,a.search,a.wx-banner,.ub-tab,a.tile,.gallery a.card,
+:where(.btn,.filter,.chip,a.recent-item,a.search,a.wx-banner,.ub-tab,a.cps-prop,.gallery a.card,
   .facilitator summary,.frame-chip .dismiss,.m3-nav,a.sum-chip):focus-visible,
 :where(.sc-tog label,.form-field .type-opts label):has(input:focus-visible){
   --_slo:var(--md-sys-state-focus-state-layer-opacity)
 }
 :where(.btn,.filter,.chip,a.recent-item,a.search,a.wx-banner,.sc-tog label,
-  .form-field .type-opts label,.ub-tab,a.tile,.gallery a.card,.facilitator summary,
+  .form-field .type-opts label,.ub-tab,a.cps-prop,.gallery a.card,.facilitator summary,
   .frame-chip .dismiss,.m3-nav,a.sum-chip):active{--_slo:var(--md-sys-state-pressed-state-layer-opacity)}
 @property --_slo{syntax:"<percentage>";inherits:false;initial-value:0%}
 
@@ -82,22 +82,25 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
   font-size:var(--md-sys-typescale-label-large-size);line-height:var(--md-sys-typescale-label-large-line-height);
   font-weight:var(--md-sys-typescale-label-large-weight);letter-spacing:.01em;gap:var(--conh-space-2);
   /* outlined (default): SCE "bordered" = ink outline on white */
-  background-color:var(--md-sys-color-surface-container-lowest);color:var(--md-sys-color-on-surface);
-  border:1px solid var(--md-sys-color-on-surface);box-shadow:var(--md-sys-elevation-level0)
+  background-color:var(--btn-secondary-bg);color:var(--btn-secondary-fg);
+  border:var(--btn-secondary-border-width) solid var(--btn-secondary-border);box-shadow:var(--md-sys-elevation-level0)
 }
-/* filled — Report / Submit / What to do / Call 911: ink, never gold */
-.btn.primary,a.btn.primary,button.btn.primary,
+/* filled (round 8: --btn-primary-* tokens, yellow + dark text) — Report / Submit / Continue; Call 911 (.danger) = --btn-danger-* */
+.btn.primary,a.btn.primary,button.btn.primary{
+  background-color:var(--btn-primary-bg);color:var(--btn-primary-fg);
+  border-color:var(--btn-primary-border)
+}
 .btn.danger,a.btn.danger,button.btn.danger{
-  background-color:var(--md-sys-color-primary);color:var(--md-sys-color-on-primary);
-  border-color:var(--md-sys-color-primary)
+  background-color:var(--btn-danger-bg);color:var(--btn-danger-fg);
+  border-color:var(--btn-danger-bg)
 }
 @media (hover:hover){
   .btn.primary:hover,.btn.danger:hover{box-shadow:var(--md-sys-elevation-level1)}
 }
-/* outlined — View map / Skip / Return home */
+/* outlined (round 8: --btn-secondary-*, blue text + blue outline) — View map / Skip / Return home */
 .btn.map,a.btn.map,button.btn.map{
-  background-color:var(--md-sys-color-surface-container-lowest);color:var(--md-sys-color-on-surface);
-  border:1px solid var(--md-sys-color-on-surface)
+  background-color:var(--btn-secondary-bg);color:var(--btn-secondary-fg);
+  border:var(--btn-secondary-border-width) solid var(--btn-secondary-border)
 }
 /* gold — Sign in / Save prefs ONLY (keeps SCE gradient under the state layer) */
 .btn.gold,a.btn.gold{

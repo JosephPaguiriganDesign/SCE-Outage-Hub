@@ -32,7 +32,9 @@ window.HUB_DATA = {
    "detail": "",
    "full": "1847 Maple Ave, Pasadena, CA 91104",
    "short": "1847 Maple Ave, Pasadena",
-   "meter_m": "••••6038"
+   "meter_m": "••••6038",
+   "status_key": "active",
+   "chip": "Repair"
   },
   "lincoln": {
    "id": "lincoln",
@@ -53,7 +55,9 @@ window.HUB_DATA = {
    "detail": "",
    "full": "2210 Lincoln Ave, Altadena, CA 91001",
    "short": "2210 Lincoln Ave, Altadena",
-   "meter_m": "••••2216"
+   "meter_m": "••••2216",
+   "status_key": "active",
+   "chip": "Repair"
   },
   "agoura": {
    "id": "agoura",
@@ -74,7 +78,9 @@ window.HUB_DATA = {
    "detail": "",
    "full": "28 Oak Hollow Ln, Agoura Hills, CA 91301",
    "short": "28 Oak Hollow Ln, Agoura Hills",
-   "meter_m": "••••4455"
+   "meter_m": "••••4455",
+   "status_key": "psps_active",
+   "chip": "PSPS"
   },
   "ojai": {
    "id": "ojai",
@@ -95,7 +101,9 @@ window.HUB_DATA = {
    "detail": "",
    "full": "615 Thacher Rd, Ojai, CA 93023",
    "short": "615 Thacher Rd, Ojai",
-   "meter_m": "••••0913"
+   "meter_m": "••••0913",
+   "status_key": "psps_active",
+   "chip": "PSPS"
   },
   "yucaipa": {
    "id": "yucaipa",
@@ -116,7 +124,9 @@ window.HUB_DATA = {
    "detail": "",
    "full": "3380 Dunlap Blvd, Yucaipa, CA 92399",
    "short": "3380 Dunlap Blvd, Yucaipa",
-   "meter_m": "••••0784"
+   "meter_m": "••••0784",
+   "status_key": "psps_active",
+   "chip": "PSPS"
   },
   "elm": {
    "id": "elm",
@@ -137,7 +147,9 @@ window.HUB_DATA = {
    "detail": "",
    "full": "412 Elm St, Glendale, CA 91205",
    "short": "412 Elm St, Glendale",
-   "meter_m": "••••7754"
+   "meter_m": "••••7754",
+   "status_key": "scheduled",
+   "chip": "PSPS"
   },
   "sycamore": {
    "id": "sycamore",
@@ -158,7 +170,9 @@ window.HUB_DATA = {
    "detail": "",
    "full": "385 Sycamore Dr, Pasadena, CA 91103",
    "short": "385 Sycamore Dr, Pasadena",
-   "meter_m": "••••1047"
+   "meter_m": "••••1047",
+   "status_key": "planned",
+   "chip": "Planned"
   },
   "canyon": {
    "id": "canyon",
@@ -179,7 +193,9 @@ window.HUB_DATA = {
    "detail": "",
    "full": "891 Canyon Rd, Santa Clarita, CA 91387",
    "short": "891 Canyon Rd, Santa Clarita",
-   "meter_m": "••••8841"
+   "meter_m": "••••8841",
+   "status_key": "potential",
+   "chip": "PSPS"
   },
   "wrightwood": {
    "id": "wrightwood",
@@ -200,7 +216,9 @@ window.HUB_DATA = {
    "detail": "",
    "full": "1126 Pine Ln, Wrightwood, CA 92397",
    "short": "1126 Pine Ln, Wrightwood",
-   "meter_m": "••••5520"
+   "meter_m": "••••5520",
+   "status_key": "likely",
+   "chip": "PSPS"
   },
   "magnolia": {
    "id": "magnolia",
@@ -221,7 +239,9 @@ window.HUB_DATA = {
    "detail": "",
    "full": "1132 Magnolia Ave, South Pasadena, CA 91030",
    "short": "1132 Magnolia Ave, South Pasadena",
-   "meter_m": "••••5362"
+   "meter_m": "••••5362",
+   "status_key": "restored",
+   "chip": ""
   },
   "mtnview": {
    "id": "mtnview",
@@ -242,7 +262,9 @@ window.HUB_DATA = {
    "detail": "",
    "full": "640 Mountain View Ave, Pasadena, CA 91103",
    "short": "640 Mountain View Ave, Pasadena",
-   "meter_m": "••••0289"
+   "meter_m": "••••0289",
+   "status_key": "restored",
+   "chip": ""
   },
   "lake": {
    "id": "lake",
@@ -263,7 +285,9 @@ window.HUB_DATA = {
    "detail": "",
    "full": "2217 Walnut St, Pasadena, CA 91107",
    "short": "2217 Walnut St, Pasadena",
-   "meter_m": "••••8812"
+   "meter_m": "••••8812",
+   "status_key": "normal",
+   "chip": ""
   }
  },
  "order": [
@@ -1009,5 +1033,56 @@ window.HUB_DATA = {
   "on": "#0C7E3C",
   "disc": "#5F6672",
   "planned": "#0459D2"
+ },
+ "chip_types": [
+  "Repair",
+  "Planned",
+  "PSPS"
+ ],
+ "scenario_chip": {
+  "S1-active.html": [
+   "Repair"
+  ],
+  "F2-active-detail.html": [
+   "Repair"
+  ],
+  "N1-active-planned.html": [
+   "Repair"
+  ],
+  "N2-active-planned-restored.html": [
+   "Repair"
+  ],
+  "S3-no-outage.html": [
+   ""
+  ],
+  "S12-weather.html": [
+   ""
+  ],
+  "S13-disconnected.html": [
+   ""
+  ],
+  "S6-psps-watch.html": [
+   "PSPS"
+  ],
+  "S7-psps-active.html": [
+   "PSPS"
+  ],
+  "S9-restored.html": [
+   ""
+  ],
+  "P1-psps-shutoff.html": [
+   "PSPS"
+  ],
+  "F0-signed.html": [
+   "PSPS"
+  ],
+  "F0-multi.html": [
+   "PSPS",
+   "PSPS",
+   "PSPS"
+  ],
+  "F10-psps-banner.html": [
+   "PSPS"
+  ]
  }
 };

@@ -300,8 +300,6 @@ body[data-page="s3"] .cps-actions .btn.primary{min-height:56px}
 .ut-sw-word{font-size:16px;line-height:20px;font-weight:800;text-transform:uppercase}
 .ut-sw-word.on{color:var(--sce-status-on)}
 .ut-sw-word.off{color:var(--sce-status-off)}
-.tile-right.ut-ts{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
-.tile-right .ut-mini{width:28px;height:28px}
 .hx-tl .now{color:inherit}
 
 /* ---- 13. gallery (components.html) ---------------------------------------------- */
@@ -338,7 +336,6 @@ body[data-page="s3"] .cps-actions .btn.primary{min-height:56px}
 .cps-acct summary{color:var(--sce-ut-link);font-weight:700}
 
 /* ---- 16. round 6: portfolio tile state text is ink (the shared icon carries the color), tile order of words = canonical labels ---- */
-a.tile.pf-tile .t-status,a.tile.pf-tile .t-status.active,a.tile.pf-tile .t-status.restored,a.tile.pf-tile .t-status.planned,a.tile.pf-tile .t-status.on{color:var(--sce-ut-ink);font-weight:700;letter-spacing:.01em}
 .cps-ico{overflow:visible}
 .cps-chip abbr{text-decoration:none;cursor:default}
 /* round 7: F10 7-day outlook pills carry month + day-of-month (second line) */
@@ -347,3 +344,58 @@ a.tile.pf-tile .t-status,a.tile.pf-tile .t-status.active,a.tile.pf-tile .t-statu
 /* round 7: 7 dated pills never fit one row at 390px (the v03 strip scrolled sideways and clipped the last day): wrap into a 4-column grid, all days visible */
 .fpi-days{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;overflow:visible}
 .fpi-pill{min-width:0;flex:none}
+
+/* ==========================================================================
+   Round 8: buttons — every colour below is a --btn-* token (defined in m3_tokens.css). State layers (hover 8 / focus 10 / pressed 10%)
+   come from m3_components.css in currentColor, so they follow the text colour (dark on yellow, blue on transparent).
+   Call 211 (.btn211) and gold (Sign in / Save prefs) are intentionally untouched.
+   ========================================================================== */
+.btn,a.btn,button.btn{
+  min-height:var(--btn-height);border-radius:var(--btn-radius);font-weight:var(--btn-weight);letter-spacing:var(--btn-letter-spacing);
+  background-color:var(--btn-secondary-bg);color:var(--btn-secondary-fg);border:var(--btn-secondary-border-width) solid var(--btn-secondary-border)
+}
+.btn.primary,a.btn.primary,button.btn.primary{background-color:var(--btn-primary-bg);color:var(--btn-primary-fg);border:1px solid var(--btn-primary-border)}
+.btn.map,a.btn.map,button.btn.map,.btn.secondary,a.btn.secondary,button.btn.secondary{background-color:var(--btn-secondary-bg);color:var(--btn-secondary-fg);border:var(--btn-secondary-border-width) solid var(--btn-secondary-border)}
+.btn.danger,a.btn.danger,button.btn.danger{background-color:var(--btn-danger-bg);color:var(--btn-danger-fg);border:1px solid var(--btn-danger-bg)}
+.btn.tertiary,a.btn.tertiary,button.btn.tertiary,.btn.ghost,a.btn.ghost,button.btn.ghost,.ut-link{background-color:var(--btn-tertiary-bg);color:var(--btn-tertiary-fg);border:1px solid transparent;border-style:solid}
+.btn.hx-quiet{border-color:var(--btn-secondary-border);color:var(--btn-secondary-fg)}
+.btn.gold,a.btn.gold{border-radius:var(--btn-radius);min-height:var(--btn-height)}
+/* disabled: native [disabled], aria-disabled, or the .is-disabled helper (components.html demo) */
+.btn:disabled,.btn[disabled],.btn[aria-disabled="true"],.btn.is-disabled{
+  background-color:var(--btn-disabled-bg)!important;color:var(--btn-disabled-fg)!important;border-color:var(--btn-disabled-border)!important;
+  cursor:not-allowed;pointer-events:none;box-shadow:none
+}
+.btn.secondary:disabled,.btn.map:disabled,.btn.map[aria-disabled="true"],.btn.map.is-disabled,.btn.secondary.is-disabled{background-color:transparent!important}
+/* secondary: darker blue while a state layer is on (keeps text >= 4.5:1 over the layer) */
+@media (hover:hover){.btn.map:hover,.btn.secondary:hover,.btn.hx-quiet:hover{color:var(--btn-secondary-fg-active)}}
+.btn.map:focus-visible,.btn.secondary:focus-visible,.btn.hx-quiet:focus-visible,.btn.map:active,.btn.secondary:active,.btn.hx-quiet:active,
+.btn.map.is-hover,.btn.map.is-focus,.btn.map.is-pressed,.btn.secondary.is-hover,.btn.secondary.is-focus,.btn.secondary.is-pressed{color:var(--btn-secondary-fg-active)}
+/* review helpers for components.html: force the M3 state layers / focus ring without hovering */
+.btn.is-hover{--_slo:var(--md-sys-state-hover-state-layer-opacity)}
+.btn.is-focus{--_slo:var(--md-sys-state-focus-state-layer-opacity);outline:var(--md-sys-state-focus-indicator-thickness) solid var(--md-sys-state-focus-indicator-color);outline-offset:var(--md-sys-state-focus-indicator-outer-offset)}
+.btn.is-pressed{--_slo:var(--md-sys-state-pressed-state-layer-opacity)}
+
+/* round 8 (addendum): event-type chip sits on the TITLE line, right-justified. Title wraps (flex:1, min-width:0); chip never wraps or shrinks.
+   Chip is a non-interactive label: Repair | Planned | PSPS. Hidden on Normal / Restored. AA: #2B323B on #E9ECF0 = 10.4:1. */
+.cps-top .cps-label{flex:1 1 auto;min-width:0}
+.cps-top .cps-chip{flex:none;margin-left:auto;align-self:flex-start;white-space:nowrap;margin-top:0}
+.cps-chip[hidden]{display:none}
+.hx-row .cps-chip{flex:none;white-space:nowrap}
+.cps-top{align-items:flex-start;gap:12px}
+.cps-top .cps-ico{margin-top:0}
+
+/* ==========================================================================
+   Round 8: PROPERTY CARD (F7 portfolio, components.html) = the shared status card, ONE link (the card itself, a.cps-prop).
+   Same colours / radii / type / slot order as the S* cards; no button or link inside; whole card is the 48dp+ target.
+   ========================================================================== */
+a.cps-prop{display:block;text-decoration:none;color:var(--sce-ut-ink);cursor:pointer;min-height:48px;-webkit-tap-highlight-color:transparent;
+  --_sl:color-mix(in srgb,var(--sce-ut-ink) var(--_slo,0%),transparent);background-image:linear-gradient(var(--_sl),var(--_sl));transition:--_slo var(--md-sys-motion-duration-short2) linear}
+a.cps-prop[hidden]{display:none}
+@media (hover:hover){a.cps-prop:hover{--_slo:var(--md-sys-state-hover-state-layer-opacity)}}
+a.cps-prop:active{--_slo:var(--md-sys-state-pressed-state-layer-opacity)}
+a.cps-prop:focus-visible{outline:3px solid var(--sce-ut-link);outline-offset:2px;--_slo:var(--md-sys-state-focus-state-layer-opacity)}
+.cps-head .cps-h{font-size:18px;line-height:24px;font-weight:700;margin:0;color:var(--sce-ut-ink)}
+#pfList{display:flex;flex-direction:column;gap:12px;margin:8px 16px}
+#pfList>.cps-prop{margin:0}
+#pfList>.pf-group{margin:4px 0 0;padding-left:0;padding-right:0}
+a.cps-prop .cps-addr{overflow-wrap:anywhere}

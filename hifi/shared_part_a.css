@@ -216,16 +216,16 @@ a.chip:active{background:#EEF2F6}
 .cta-row{display:flex;gap:8px;padding:8px var(--pad);flex-wrap:wrap}
 .btn,a.btn,button.btn{
   min-height:44px;padding:12px 16px;border-radius:var(--r-btn);font-size:14px;font-weight:600;
-  text-align:center;border:1.5px solid var(--ink);background:#fff;color:var(--ink);
+  text-align:center;border:var(--btn-secondary-border-width,1px) solid var(--btn-secondary-border);background:var(--btn-secondary-bg);color:var(--btn-secondary-fg);
   display:inline-flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;font-family:inherit
 }
-.btn.primary,a.btn.primary,button.btn.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
-.btn.map,a.btn.map{background:#fff;color:var(--ink);border:1.5px solid var(--ink)}
+.btn.primary,a.btn.primary,button.btn.primary{background:var(--btn-primary-bg);color:var(--btn-primary-fg);border-color:var(--btn-primary-border)}
+.btn.map,a.btn.map{background:var(--btn-secondary-bg);color:var(--btn-secondary-fg);border:var(--btn-secondary-border-width,1px) solid var(--btn-secondary-border)}
 .btn.gold,a.btn.gold{
   background:linear-gradient(90deg,var(--gold-a),var(--gold-b),var(--gold-c));
   color:var(--ink);border:none;text-transform:uppercase;letter-spacing:.02em;font-weight:600;font-size:13px
 }
-.btn.ghost,a.btn.ghost{border-style:dashed;color:var(--ink-2);border-color:var(--line);background:#fff}
+.btn.ghost,a.btn.ghost{border-style:dashed;color:var(--ink-2);border-color:var(--line);background:var(--btn-tertiary-bg)}
 .btn.block,a.btn.block{width:100%}
 .btn211,a.btn211,.btn.btn211{
   background:var(--afn)!important;color:#fff!important;border-color:var(--afn)!important;border-radius:4px!important

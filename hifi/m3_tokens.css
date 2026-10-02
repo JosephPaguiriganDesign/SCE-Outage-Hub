@@ -177,8 +177,45 @@ html,body,button,input,textarea,select{font-family:var(--md-ref-typeface-plain)}
   --sce-ut-radius-btn:var(--md-sys-shape-corner-extra-small);/* 4px: every button / CTA (SCE CTA radius) */
   --sce-ut-link:var(--sce-color-link);                      /* #1A76C5 */
   --sce-ut-ink:var(--md-sys-color-on-surface);              /* #101820 */
-  --sce-ut-accent:#FED141;                                  /* brand yellow: header title bar ONLY (never a CTA) */
+  --sce-ut-accent:#FED141;                                  /* brand yellow: header title bar + (round 8) primary CTA fill */
   --sce-ut-warn-icon:var(--sce-color-on-weather-icon);      /* heat / weather = amber, not red */
   --sce-ut-footer:#111111;
   --sce-ut-head-a:#002B58; --sce-ut-head-b:#0099CB; /* header gradient, left to right */
+}
+
+/* ==========================================================================
+   Round 8 (ut8): BUTTON TOKENS — ONE place drives every button on every page + components.html.
+   Sampled from the tested mocks (user-testing-screens/01,03,04,05, 1x JPEG, 375px wide; see open-items.md Round 8):
+     primary fill   (254,209,66) = #FED142  -> the SCE brand yellow #FED141 (--sce-color-gold-b) within JPEG error
+     primary text   (6,10,13)    = #060A0D  (darkest core of the bold caps)
+     radius 4px (corner inset 2/1/0 px on the first rows), weight bold, caps, letter-spacing ~0-0.01em
+     link blue      (26,117,196) = #1A75C4  = --sce-color-link #1A76C5   (the mocks contain NO outlined secondary button)
+   Call 211 (indigo #4F46E5) and Sign in / Save prefs (gold gradient) keep their own classes and are NOT driven by these tokens.
+   ========================================================================== */
+:root{
+  --btn-radius:var(--conh-shape-button);                /* 4px */
+  --btn-height:48px;                                    /* 48dp touch target (locked) */
+  --btn-weight:700;
+  --btn-letter-spacing:.01em;
+  /* primary: yellow fill, bold near-black text */
+  --btn-primary-bg:var(--sce-color-gold-b);             /* #FED141 */
+  --btn-primary-fg:#060A0D;
+  --btn-primary-border:var(--btn-primary-bg);
+  /* secondary: transparent fill, blue text, blue 1px outline */
+  --btn-secondary-bg:transparent;
+  --btn-secondary-fg:var(--sce-color-link);             /* #1A76C5 */
+  --btn-secondary-fg-active:#0F5A99;                    /* hover/focus/pressed text+state layer: #1A76C5 + an 8-10% blue layer on white falls to 4.1-4.3:1, so the active state darkens the blue (6.1:1 with the layer) */
+  --btn-secondary-border:var(--sce-color-link);
+  --btn-secondary-border-width:1px;
+  /* tertiary / text button: no fill, no outline, blue text */
+  --btn-tertiary-bg:transparent;
+  --btn-tertiary-fg:var(--sce-color-link);
+  /* danger (Call 911 only): ink fill, white text — emergency stays visually apart from the yellow CTA */
+  --btn-danger-bg:var(--md-sys-color-primary);          /* #101820 */
+  --btn-danger-fg:var(--md-sys-color-on-primary);
+  --btn-danger-pressed-bg:#000;                          /* pressed Call 911 */
+  /* disabled (M3: 12% container / 38% content, kept legible) */
+  --btn-disabled-bg:#E3E5E8;
+  --btn-disabled-fg:#5F6672;
+  --btn-disabled-border:#C7CBD1;
 }
