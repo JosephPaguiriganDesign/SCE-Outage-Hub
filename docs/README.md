@@ -45,12 +45,30 @@ The tested screens are design mocks, not a spec. They supply the combined Curren
 - Page order (round 3, Joseph 2026-10-02): header, name line, **search**, Current Power Status card(s), Heat Advisory row (only when active), buttons, rest. This supersedes the round 1/2 status-first order. Search position is ONE config value: `HX_CONFIG.searchPosition` in `hierarchy.js` (`above-status` default | `below-advisory` = round 2 order); preview with `?search=below` / `?search=above`. Advisory position is ONE config value: `HX_CONFIG.advisoryPosition` in `hierarchy.js` (`below-status` default, `above-search` = screen 05, `below-buttons` = screen 01). Preview with `?adv=...`, `?advisory=off`, `?view=01`, `?view=05`.
 - Tested screens: 01 `P1-psps-shutoff.html?view=01`, 02 `F6-map-sheet.html?layer=all`, 03 `S3-no-outage.html`, 04 `F0-multi.html`, 05 `P1-psps-shutoff.html?view=05`.
 
+## Data (round 4): `hub-data.js`
+
+**All data in this prototype is fictional.** Cities and ZIPs are real SCE-territory places (Los Angeles, Orange, Riverside, San Bernardino, Ventura, Tulare, Kern counties); house numbers, names, account / meter / circuit / outage / plan / report numbers and all times are invented. Story day: Thu Sep 10, 2026.
+
+`hub-data.js` is the single source. It sets `window.HUB_DATA`, loaded by every page before `hierarchy.js` / `map.js`:
+
+| Key | Contents |
+|---|---|
+| `customer` | account holder name, account number (shown masked only, behind the Account disclosure) |
+| `props` / `order` | the 12-property portfolio (id, street, city, ZIP, county, lat/lng, meter, circuit, F7 state, PSPS tier). F7, the F0-multi counts, the F6 map and the Report property list all derive from it |
+| `outage`, `prior` | Maple live outage (OUT-2026-094821: cause, crew status, customers, ERT, timeline) and its earlier restored outage |
+| `plan` | planned outages (Elm, Maple) |
+| `psps`, `event`, `psps_counts`, `psps_tiers` | Canyon PSPS stage story, the Santa Ana event (fire window, banner counts), shut-off / likely / potential counts |
+| `weather`, `maplayers`, `guest`, `area`, `recent`, `report`, `banner`, `counts` | weather and fire-risk copy, F6 footprints, guest-lookup addresses, area outage, recent lookups, report ref, global banner, portfolio counts |
+
+The static pages are generated from the same dictionary (placeholder tokens in the build), so the HTML works without JS; `hierarchy.js` and `map.js` read `HUB_DATA` at runtime. To change a value, edit it once in the data source and rebuild; `check-data.py` then verifies that every page shows the same address, ERT, circuit, counts and IDs.
+
 ## Files
 
 | File | Role |
 |---|---|
 | `index.html` | Gallery |
 | `shared.css` | Hi-fi tokens (direction + comps) |
+| `hub-data.js` | Single data source, `window.HUB_DATA` (round 4) |
 | `components.html` | Component gallery (round 1) |
 | `status-card.css`, `status-card.js` | Current Power Status component set |
 | `P1-psps-shutoff.html` | Tested screens 01 / 05 (active PSPS shut off) |
