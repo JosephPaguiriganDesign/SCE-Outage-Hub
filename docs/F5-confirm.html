@@ -6,8 +6,8 @@
 <title>F5 — Confirmation · SCE Outage Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
-<noscript><link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/></noscript>
 <link rel="stylesheet" href="shared.css"/>
 </head>
 <body data-prop="" data-page="f5c">
@@ -16,11 +16,12 @@
     <span class="id">F5 · Confirm</span>
     <span class="chip-actions"><span class="badge hifi">Hi-fi</span><span class="badge guest">Guest / signed-in</span><button type="button" class="dismiss" aria-label="Hide frame label">×</button></span>
   </div>
-  <div class="os-bar"><span>10:40</span><span class="icons">▮▮▮ ▔ Wi‑Fi</span></div>
   <div class="app-scroll">
-<div class="hub-header"><div class="row"><a href="F0-hub-home.html" class="hub-name m3-nav" style="margin:0;display:inline-flex;align-items:center;gap:6px;color:inherit" data-back><span class="m3-nav-icon" aria-hidden="true">←</span>Report received</a><div class="hx-topright"><span class="header-meta">Received</span></div></div></div>
+<header class="ut-head hub-header"><div class="ut-bar"><button type="button" class="ut-burger" aria-label="Menu" aria-expanded="false" aria-controls="utMenu"><svg viewBox="0 0 22 18" aria-hidden="true" focusable="false"><path d="M1 2h20M1 9h20M1 16h20" stroke="#fff" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg></button><img class="ut-logo" src="sce-logo-white.png" width="99" height="30" alt="Southern California Edison"/><a class="ut-ico ut-prof" href="F0-signed.html" aria-label="My Account"><svg viewBox="0 0 30 30" aria-hidden="true" focusable="false"><circle cx="15" cy="15" r="13" fill="none" stroke="#fff" stroke-width="2"/><circle cx="15" cy="11.5" r="4.2" fill="#fff"/><path d="M6.8 23.6c1.6-4.2 4.6-5.9 8.2-5.9s6.6 1.7 8.2 5.9" fill="#fff"/></svg></a></div><nav class="ut-menu" id="utMenu" aria-label="Menu" hidden><a href="F0-signed.html" data-nav-home>Outage Center</a><a href="F6-map-sheet.html">Outage map</a><a href="F5-report.html">Report a problem</a><a href="F9-afn-help.html">Help and resources</a><a href="F7-portfolio.html">Portfolio</a><a href="components.html">Components</a><a href="index.html">Scenario index</a></nav><div class="ut-title"><h1 class="hub-name">Report received</h1><a class="ut-back" href="F0-hub-home.html" data-back><svg viewBox="0 0 10 14" aria-hidden="true" focusable="false"><path d="M8 1 2 7l6 6"/></svg>Home</a><span class="ut-meta">Received</span></div></header>
+
+<main class="ut-main" data-adv="below-status">
 <div class="hx-safety sticky" role="alert" data-for="downed" aria-label="Downed power line safety"><strong>Stay away and keep others away.</strong>Stay at least 30 ft back and call 911 if anyone is hurt.</div>
-<div class="confirm-hero"><div class="check-circle" aria-hidden="true">✓</div>
+<div class="confirm-hero" style="margin:0 16px"><div class="check-circle" aria-hidden="true">✓</div>
   <h3 id="cfTitle">SCE has your report</h3><div class="ref">Ref <span id="cfRef">RPT-2026-77401</span></div>
   <div class="detail" id="cfDetail">Power out at 1847 Maple Ave, Pasadena</div>
   <div class="lag" id="cfLag">You’ll see status in the hub when systems sync (may take ~15–20 min).</div>
@@ -28,20 +29,22 @@
 <div class="hx-card" data-for="downed"><h3 class="k">What happens next</h3><p class="hx-hero-line">SCE will treat this as a safety report. A crew or representative may call you at the number you gave. Keep everyone away from the line until help arrives.</p><p class="hx-fine">Screening result, if any, will be shared later.</p></div>
 <div class="hx-card" data-for="hazard"><h3 class="k">What happens next</h3><p class="hx-hero-line">SCE will review your report. We may contact you for more detail.</p></div>
 <div class="hx-card" data-for="power"><h3 class="k">What happens next</h3><p class="hx-hero-line">Your report helps SCE find the cause. Status appears in the hub when systems sync.</p></div>
-<div class="self-checks" data-for="power" role="group" aria-label="Check your breaker (optional)">
+<div class="self-checks" data-for="power" role="group" aria-label="Check your breaker (optional)" style="margin:0 16px">
   <div class="hx-k">Check your breaker · optional</div><p class="hx-fine">While you wait, you can check your breaker panel. If it is safe and power returns, you can let us know.</p>
   <div class="sc-row"><span class="sc-q">Breaker tripped?</span><div class="sc-tog" role="radiogroup" aria-label="Breaker tripped"><label><input type="radio" name="breaker" value="yes"/> Yes</label><label><input type="radio" name="breaker" value="no"/> No</label></div></div>
   <p class="sc-hint" id="breakerHint" hidden>Reset breaker if safe. If power returns, you may not need the report.</p></div>
-<div class="updates-block" id="updatesBlock"><div class="ub-head"><label class="ub-enable"><input type="checkbox" id="updatesEnable"/><span>Updates for this address</span></label></div>
+<div class="updates-block" id="updatesBlock" style="margin:0 16px"><div class="ub-head"><label class="ub-enable"><input type="checkbox" id="updatesEnable"/><span>Updates for this address</span></label></div>
 <div class="ub-body" id="updatesBody" hidden><div class="ub-seg" role="tablist" aria-label="Update channel"><button type="button" class="ub-tab on" data-ch="phone" role="tab" aria-selected="true">Phone</button><button type="button" class="ub-tab" data-ch="email" role="tab" aria-selected="false">Email</button></div>
 <div class="form-field ub-field" id="ubPhone"><label for="updPhone">Mobile number</label><input id="updPhone" name="updPhone" type="tel" inputmode="tel" placeholder="(555) 555-0100" autocomplete="tel"/></div>
 <div class="form-field ub-field" id="ubEmail" hidden><label for="updEmail">Email</label><input id="updEmail" name="updEmail" type="email" placeholder="you@example.com" autocomplete="email"/></div>
 <p class="ub-honest">Scoped to this report/address · Illustrative prefs only · No SMS shortcode</p><a class="btn gold block" href="F0-signed.html">Save prefs in My Account · Sign in</a><button type="button" class="btn map block ub-skip" id="updatesSkip">Skip for now</button></div></div>
-<div class="cta-row"><a class="btn map block" href="F0-hub-home.html?pending=1" id="backHome">Return to hub home</a></div><p class="trust-footer">Official outage info · Not a third-party app</p>
+<div class="cps-actions" style="padding:0 16px"><a class="ut-btn ut-outline " href="F0-hub-home.html?pending=1" id="backHome">RETURN TO HUB HOME</a></div><p class="trust-footer">Official outage info · Not a third-party app</p>
+</main>
+<footer class="ut-foot"><div class="ut-foot-brand"><img src="sce-logo-white.png" width="99" height="30" alt="Southern California Edison"/><i aria-hidden="true"></i><span>Energy for What’s Ahead</span></div><div class="ut-foot-links"><a href="#" aria-label="Legal (placeholder link)">Legal</a><a href="#" aria-label="Legal (placeholder link)">Legal</a><a href="#" aria-label="Legal (placeholder link)">Legal</a></div><p>© 2024 Southern California Edison</p></footer>
   </div>
-<nav class="hub-nav" aria-label="Outage Center" data-report="sec"><a href="F0-hub-home.html" aria-label="Outage Center home" data-nav-home><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></span>Outage Center</a><a href="F6-map-sheet.html"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg></span>Map</a><a href="F5-report.html" aria-current="page" aria-label="Report a Problem" class="hn-report"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg></span>Report</a><a href="F9-afn-help.html"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg></span>Help</a></nav>
 </div>
 <script src="hierarchy.js" defer></script>
+<script src="status-card.js" defer></script>
 <script src="transitions.js" defer></script>
 </body>
 </html>

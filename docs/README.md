@@ -27,15 +27,22 @@ Relative links only — works from this folder without a build step.
 
 Pending badge: F5-confirm writes `sessionStorage.conh_pending` and links with `?pending=1`. F0 / F1 show the badge when either is present.
 
-## Button lock (do not regress)
+## Button lock (UPDATED, round 1: tested screens win; see open-items.md)
 
-| Control | Spec |
+| Control | Spec (round 1) |
 |---|---|
-| Report outage | Ink fill `#101820` + white, radius 4px |
-| View map | White + ink border, radius 4px |
-| Call 211 | Indigo `#4F46E5` + white, radius 4px |
-| Sign in to My Account | Gold gradient only |
-| Hero action strip | Quiet text: Report · Map · Get help (no gold / no fill) |
+| REPORT OUTAGE / VIEW OUTAGE STATUS | Yellow gradient (#FED141 to #F0B324), black bold caps, radius 10px |
+| VIEW MAP / CALL 211 | White, 1.5px blue border (#1C77C5), blue bold caps, radius 10px (link variant: blue underlined) |
+| Sign in to My Account | Gold gradient only (unchanged) |
+| Call 911 | Red filled (unchanged intent: emergency stays red, never yellow) |
+| Current Power Status state | Plain bold text ON (green) / OFF (red). Never a toggle, pill or switch |
+
+## Round 1: user-tested screens
+
+- `status-card.css` / `status-card.js`: component set. Gallery: `components.html`.
+- Page order: header, name, Current Power Status card(s) first, Heat Advisory row (only when active), search, buttons. Advisory position is ONE config value: `HX_CONFIG.advisoryPosition` in `hierarchy.js` (`below-status` default, `above-search` = screen 05, `below-buttons` = screen 01). Preview with `?adv=`; hide with `?advisory=off`.
+- Tested screens: 01 `P1-psps-shutoff.html?view=01`, 02 `F6-map-sheet.html?layer=all`, 03 `S3-no-outage.html`, 04 `F0-multi.html`, 05 `P1-psps-shutoff.html?view=05`.
+- Bottom nav replaced by the header menu (hamburger) and the black footer, as in the screens.
 
 ## Files
 
@@ -43,6 +50,9 @@ Pending badge: F5-confirm writes `sessionStorage.conh_pending` and links with `?
 |---|---|
 | `index.html` | Gallery |
 | `shared.css` | Hi-fi tokens (direction + comps) |
+| `components.html` | Component gallery (round 1) |
+| `status-card.css`, `status-card.js` | Current Power Status component set |
+| `P1-psps-shutoff.html` | Tested screens 01 / 05 (active PSPS shut off) |
 | `F0-hub-home.html` | Guest hub — recent list + RESTORING hero |
 | `F0-signed.html` | Signed-in single — Elm Planned |
 | `F0-multi.html` | Multi — summary chips + worst RESTORING hero + AFN |

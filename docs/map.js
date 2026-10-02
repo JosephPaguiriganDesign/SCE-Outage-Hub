@@ -1,388 +1,95 @@
-/* F6 interactive map — Leaflet + layer filters + sheet swap */
+/* F6 interactive map (tested screen 02): Leaflet + four PSPS overlays + legend toggles + control stack.
+   Layers: active (red) / likely (orange) / potential (brown-orange) / scheduled (blue). Toggle changes call fitBounds. */
 (function () {
   'use strict';
-
   var LAYERS = {
-    active: {
-      id: 'active',
-      center: [34.1478, -118.1445],
-      zoom: 15,
-      ring: 0.0045,
-      color: '#D97706',
-      fill: 'rgba(217,119,6,0.28)',
-      pinClass: 'restore',
-      html:
-        '<div class="hero rail-restore tint-restore">' +
-          '<div class="hero-inner compact">' +
-            '<div class="row-top">' +
-              '<span class="evchip">Repair</span>' +
-              '<span class="pill restore"><span class="mark"></span>Restoring</span>' +
-            '</div>' +
-            '<div class="addr">1847 Maple Ave, Pasadena</div>' +
-            '<div class="status-word" style="font-size:22px;line-height:26px">RESTORING</div>' +
-            '<div class="subline">Power is off at this address</div>' +
-            '<div class="etr sm">Back by 4:45 PM</div>' +
-            '<div class="trust">Updated 10:28 AM · May lag ~15–20 min</div>' +
-            '<div class="actions">' +
-              '<a class="btn" href="F2-active-detail.html">Details</a>' +
-              '<a class="btn" href="F5-report.html">Report</a>' +
-              '<a class="btn" href="F9-afn-help.html">Get help</a>' +
-            '</div>' +
-          '</div>' +
-        '</div>'
-    },
-    planned: {
-      id: 'planned',
-      /* ~412 Elm St, Glendale 91205 */
-      center: [34.1462, -118.2448],
-      zoom: 15,
-      ring: 0.005,
-      color: '#2563EB',
-      fill: 'rgba(37,99,235,0.28)',
-      pinClass: 'planned',
-      html:
-        '<div class="hero rail-planned tint-planned">' +
-          '<div class="hero-inner compact">' +
-            '<div class="row-top">' +
-              '<span class="evchip">Scheduled</span>' +
-              '<span class="pill planned"><span class="mark"></span>Upcoming</span>' +
-            '</div>' +
-            '<div class="addr">412 Elm St, Glendale</div>' +
-            '<div class="status-word sm">SCHEDULED</div>' +
-            '<div class="subline">Pole replacement and line maintenance</div>' +
-            '<div class="etr sm">Thu Sep 11 · 9:00 AM – 1:00 PM PT</div>' +
-            '<div class="trust">Updated 9:05 AM · May lag ~15–20 min</div>' +
-            '<div class="actions">' +
-              '<a class="btn" href="F0-signed.html">Details</a>' +
-              '<a class="btn" href="F7-portfolio.html">Portfolio</a>' +
-              '<a class="btn" href="F9-afn-help.html">Get help</a>' +
-            '</div>' +
-          '</div>' +
-        '</div>'
-    },
-    psps: {
-      id: 'psps',
-      /* ~891 Canyon Rd, Santa Clarita / Canyon Country 91387 */
-      center: [34.4238, -118.4722],
-      zoom: 14,
-      ring: 0.012,
-      color: '#EA580C',
-      fill: 'rgba(234,88,12,0.28)',
-      pinClass: 'warn',
-      html:
-        '<div class="hero rail-warn tint-warn">' +
-          '<div class="hero-inner compact">' +
-            '<div class="row-top">' +
-              '<span class="evchip">PSPS</span>' +
-              '<span class="pill warn"><span class="mark"></span>Warning</span>' +
-            '</div>' +
-            '<div class="addr">891 Canyon Rd, Santa Clarita</div>' +
-            '<div class="status-word" style="font-size:22px;line-height:26px">WARNING</div>' +
-            '<div class="subline">Extreme fire weather — high winds and low humidity</div>' +
-            '<div class="etr sm">May begin as early as Thu Sep 10 · 8:00 PM PT</div>' +
-            '<div class="trust">Updated 10:15 AM · May lag ~15–20 min</div>' +
-            '<div class="actions">' +
-              '<a class="btn" href="F10-psps-banner.html">Details</a>' +
-              '<a class="btn" href="F9-afn-help.html">Get help</a>' +
-            '</div>' +
-          '</div>' +
-        '</div>'
-    },
-    consideration: {
-      id: 'consideration',
-      /* near Canyon Rd / Santa Clarita — offset from PSPS */
-      center: [34.41, -118.45],
-      zoom: 14,
-      ring: 0.011,
-      color: '#D4A017',
-      fillOpacity: 0.22,
-      dashArray: '6 4',
-      pinClass: 'consideration',
-      html:
-        '<div class="hero rail-warn tint-warn">' +
-          '<div class="hero-inner compact">' +
-            '<div class="row-top">' +
-              '<span class="evchip">Under consideration</span>' +
-              '<span class="pill watch"><span class="mark"></span>Watch</span>' +
-            '</div>' +
-            '<div class="addr">Near Canyon Rd, Santa Clarita</div>' +
-            '<div class="status-word" style="font-size:18px;line-height:24px">UNDER CONSIDERATION</div>' +
-            '<div class="subline">PSPS under consideration · no shutoff ordered</div>' +
-            '<div class="etr sm">Monitoring fire weather · no de-energization ordered</div>' +
-            '<div class="trust">Updated 10:15 AM · Illustrative prototype</div>' +
-            '<div class="actions">' +
-              '<a class="btn" href="F10-psps-banner.html">Details</a>' +
-              '<a class="btn" href="F9-afn-help.html">Get help</a>' +
-            '</div>' +
-          '</div>' +
-        '</div>'
-    }
+    active:    { center: [33.9660, -118.2420], r: 1900, color: '#BA0000', fill: 0.22, label: 'Active Shut Off' },
+    likely:    { center: [33.9560, -118.3500], r: 3400, color: '#DE6C0C', fill: 0.22, label: 'Likely Shut Off' },
+    potential: { center: [33.9680, -118.1780], r: 1250, color: '#A8520A', fill: 0.30, label: 'Potential Shut Off' },
+    scheduled: { center: [33.9270, -118.2470], r: 2100, color: '#0459D2', fill: 0.22, label: 'Scheduled Shut Off' }
   };
-
-  var ORDER = ['active', 'planned', 'psps', 'consideration'];
-  var focus = 'active';
-  var on = { active: true, planned: false, psps: false, consideration: false };
-  var groups = {};
-  var map = null;
-  var leafletOk = false;
-
+  var ORDER = ['active', 'likely', 'potential', 'scheduled'];
+  var on = { active: true, likely: false, potential: false, scheduled: false };
+  var groups = {}, map = null, ok = false;
   var canvas = document.getElementById('mapCanvas');
-  var sheet = document.getElementById('mapSheet');
-  var sheetBody = document.getElementById('sheetBody');
-  var stub = document.getElementById('mapStub');
-  var filtersRoot = document.querySelector('.map-filters');
+  var legend = document.getElementById('mapLegend');
 
-  function filterButtons() {
-    return Array.prototype.slice.call(
-      document.querySelectorAll('.map-filters .filter[data-layer]')
-    );
+  function switches() { return Array.prototype.slice.call(document.querySelectorAll('.ut-sw[data-layer]')); }
+  function syncSwitches() { switches().forEach(function (b) { b.setAttribute('aria-checked', on[b.getAttribute('data-layer')] ? 'true' : 'false'); }); }
+  function iconHtml(id) {
+    var s = legend && legend.querySelector('li[data-layer="' + id + '"] svg');
+    return s ? s.outerHTML.replace('ut-lg', 'ut-ovsvg') : '';
   }
-
-  function blobRing(lat, lng, r) {
-    var pts = [];
-    var i, a, rr, la, lo;
-    for (i = 0; i < 12; i++) {
-      a = (i / 12) * Math.PI * 2;
-      rr = r * (0.72 + 0.28 * Math.sin(i * 2.3 + 0.4));
-      la = lat + Math.cos(a) * rr;
-      lo = lng + Math.sin(a) * rr * 1.15;
-      pts.push([la, lo]);
-    }
-    return pts;
-  }
-
-  function pinIcon(pinClass) {
-    return L.divIcon({
-      className: '',
-      html:
-        '<div class="conh-pin ' +
-        pinClass +
-        '" aria-hidden="true"><div class="halo"></div><div class="dot"></div></div>',
-      iconSize: [18, 18],
-      iconAnchor: [9, 9]
+  function fitVisible() {
+    if (!ok) return;
+    var b = null;
+    ORDER.forEach(function (id) {
+      if (!on[id] || !groups[id]) return;
+      var gb = groups[id].circle.getBounds();
+      b = b ? b.extend(gb) : L.latLngBounds(gb.getSouthWest(), gb.getNorthEast());
     });
+    if (b && b.isValid()) map.fitBounds(b, { padding: [28, 28], maxZoom: 14, animate: true });
+    else map.setView([33.96, -118.25], 11, { animate: true });
   }
-
-  function setSheet(id) {
-    if (!sheet || !sheetBody) return;
-    if (!id || !on[id]) {
-      sheet.classList.add('is-empty');
-      sheetBody.innerHTML = '';
-      if (stub) {
-        stub.classList.add('is-empty');
-        stub.removeAttribute('data-layer');
-      }
-      return;
-    }
-    sheet.classList.remove('is-empty');
-    sheetBody.innerHTML = LAYERS[id].html;
-    if (stub) {
-      stub.classList.remove('is-empty');
-      stub.setAttribute('data-layer', id);
-    }
-  }
-
-  function remainingFocus(prefer) {
-    if (prefer && on[prefer]) return prefer;
-    var i, id;
-    for (i = 0; i < ORDER.length; i++) {
-      id = ORDER[i];
-      if (on[id]) return id;
-    }
-    return null;
-  }
-
-  function syncFilters() {
-    filterButtons().forEach(function (btn) {
-      var id = btn.getAttribute('data-layer');
-      btn.classList.toggle('on', !!on[id]);
-      btn.setAttribute('aria-pressed', on[id] ? 'true' : 'false');
-    });
-  }
-
-  function visibleCount() {
-    var n = 0, id;
-    for (id in on) {
-      if (Object.prototype.hasOwnProperty.call(on, id) && on[id]) n++;
-    }
-    return n;
-  }
-
-  function fitVisible(opts) {
-    opts = opts || {};
-    if (!map || !leafletOk) return;
-    try {
-      var bounds = null;
-      var id, g, b, n;
-      for (id in groups) {
-        if (!Object.prototype.hasOwnProperty.call(groups, id)) continue;
-        if (!on[id]) continue;
-        g = groups[id];
-        if (!map.hasLayer(g)) continue;
-        b = g.getBounds && g.getBounds();
-        if (!b || !b.isValid()) continue;
-        if (!bounds) bounds = L.latLngBounds(b.getSouthWest(), b.getNorthEast());
-        else bounds.extend(b);
-      }
-      n = visibleCount();
-      var padTL = L.point(36, 88);
-      var padBR = L.point(36, 250);
-      if (bounds && bounds.isValid()) {
-        var maxZ = n <= 1 ? 16 : 12;
-        var flyOpts = {
-          paddingTopLeft: padTL,
-          paddingBottomRight: padBR,
-          maxZoom: maxZ,
-          duration: n <= 1 ? 0.55 : 0.75
-        };
-        if (typeof map.flyToBounds === 'function') {
-          map.flyToBounds(bounds, flyOpts);
-        } else {
-          map.fitBounds(bounds, {
-            paddingTopLeft: padTL,
-            paddingBottomRight: padBR,
-            maxZoom: maxZ,
-            animate: true
-          });
-        }
-      } else if (opts.forceOverview) {
-        if (typeof map.flyTo === 'function') {
-          map.flyTo(L.latLng(34.1478, -118.1445), 11, { duration: 0.5 });
-        } else {
-          map.setView([34.1478, -118.1445], 11, { animate: true });
-        }
-      }
-    } catch (err) {
-    }
-  }
-
   function syncLayers() {
-    var id, g;
-    focus = remainingFocus(focus);
-    setSheet(focus);
-    syncFilters();
-    if (leafletOk) {
-      for (id in groups) {
-        if (!Object.prototype.hasOwnProperty.call(groups, id)) continue;
-        g = groups[id];
-        if (on[id]) {
-          if (!map.hasLayer(g)) g.addTo(map);
-        } else if (map.hasLayer(g)) {
-          map.removeLayer(g);
-        }
-      }
-      fitVisible();
-    }
+    syncSwitches();
+    if (!ok) return;
+    ORDER.forEach(function (id) {
+      var g = groups[id].group;
+      if (on[id]) { if (!map.hasLayer(g)) g.addTo(map); } else if (map.hasLayer(g)) map.removeLayer(g);
+    });
+    fitVisible();
   }
-
-  function toggleLayer(id) {
-    if (!LAYERS[id]) return;
-    on[id] = !on[id];
-    if (on[id]) focus = id;
-    else if (focus === id) focus = remainingFocus(null);
-    syncLayers();
-  }
-
-  function onFiltersClick(e) {
-    var btn = e.target && e.target.closest ? e.target.closest('.filter[data-layer]') : null;
-    if (!btn || !filtersRoot || !filtersRoot.contains(btn)) return;
-    e.preventDefault();
-    toggleLayer(btn.getAttribute('data-layer'));
-  }
-
-  function applyLayerParam() {
+  function applyParam() {
     try {
-      var q = new URLSearchParams(location.search);
-      var raw = (q.get('layer') || '').toLowerCase();
+      var raw = (new URLSearchParams(location.search).get('layer') || '').toLowerCase();
       if (!raw) return;
-      var alias = {
-        active: 'active',
-        planned: 'planned',
-        scheduled: 'planned',
-        psps: 'psps',
-        consideration: 'consideration'
-      };
-      var id = alias[raw];
-      if (!id || !LAYERS[id]) return;
-      on[id] = true;
-      focus = id;
-    } catch (err) {
-    }
+      if (raw === 'all') { ORDER.forEach(function (k) { on[k] = true; }); return; }
+      var alias = { active: ['active'], likely: ['likely'], potential: ['potential'], scheduled: ['scheduled'], planned: ['scheduled'],
+                    psps: ['likely', 'potential'], consideration: ['potential'] }; /* ?layer=psps from F10 -> Likely + Potential */
+      (alias[raw] || []).forEach(function (k) { on[k] = true; });
+    } catch (e) {}
   }
-
-  function buildLeaflet() {
+  function build() {
     if (typeof L === 'undefined') return false;
-    var el = document.getElementById('map');
-    if (!el) return false;
-
+    var el = document.getElementById('map'); if (!el) return false;
     try {
-      map = L.map(el, {
-        zoomControl: false,
-        attributionControl: false
-      });
-      L.control.attribution({ position: 'topright', prefix: false }).addTo(map);
-      L.control.zoom({ position: 'topright' }).addTo(map);
-
-      var tiles = L.tileLayer(
-        'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-        {
-          maxZoom: 19,
-          attribution:
-            '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a> · Demo basemap (not SCE EMCS)'
-        }
-      );
-      tiles.addTo(map);
-
+      map = L.map(el, { zoomControl: false, attributionControl: false });
+      L.control.attribution({ position: 'topleft', prefix: false }).addTo(map);
+      /* Basemap: CARTO's free raster tiles now return an "API KEY REQUIRED" watermark tile, so the demo uses the standard OSM tiles
+         (light prototype use only; swap for the real SCE EMCS basemap in production). */
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors · Demo basemap (not SCE EMCS)'
+      }).addTo(map);
       ORDER.forEach(function (id) {
-        var cfg = LAYERS[id];
-        var g = L.layerGroup();
-        var polyOpts = {
-          color: cfg.color,
-          weight: 2,
-          fillColor: cfg.color,
-          fillOpacity: cfg.fillOpacity != null ? cfg.fillOpacity : 0.28,
-          opacity: 0.75
-        };
-        if (cfg.dashArray) polyOpts.dashArray = cfg.dashArray;
-        L.polygon(blobRing(cfg.center[0], cfg.center[1], cfg.ring), polyOpts).addTo(g);
-        L.marker(cfg.center, { icon: pinIcon(cfg.pinClass), keyboard: false }).addTo(g);
-        groups[id] = g;
+        var c = LAYERS[id], g = L.layerGroup();
+        var circle = L.circle(c.center, { radius: c.r, color: c.color, weight: 2, opacity: .85, fillColor: c.color, fillOpacity: c.fill });
+        circle.addTo(g);
+        L.marker(c.center, { keyboard: false, interactive: false,
+          icon: L.divIcon({ className: 'ut-ov', html: iconHtml(id), iconSize: [36, 36], iconAnchor: [18, 18] }) }).addTo(g);
+        groups[id] = { group: g, circle: circle };
       });
-
-      map.setView(LAYERS.active.center, LAYERS.active.zoom);
+      map.setView(LAYERS.active.center, 13);
       if (canvas) canvas.classList.add('has-leaflet');
-      leafletOk = true;
-
-      setTimeout(function () {
-        if (map) map.invalidateSize();
-        fitVisible();
-      }, 80);
-
+      ok = true;
+      setTimeout(function () { if (map) { map.invalidateSize(); fitVisible(); } }, 80);
       return true;
-    } catch (err) {
-      leafletOk = false;
-      if (canvas) canvas.classList.remove('has-leaflet');
-      return false;
-    }
+    } catch (e) { ok = false; return false; }
   }
-
   function boot() {
-    if (filtersRoot) {
-      filtersRoot.addEventListener('click', onFiltersClick);
-    }
-    applyLayerParam();
-    syncFilters();
-    setSheet(focus);
-
-    if (!buildLeaflet()) {
-      leafletOk = false;
-    }
-    syncLayers();
+    applyParam(); syncSwitches();
+    build(); syncLayers();
+    switches().forEach(function (b) { b.addEventListener('click', function () { var k = b.getAttribute('data-layer'); on[k] = !on[k]; syncLayers(); }); });
+    var f = document.getElementById('mcFilter');
+    if (f && legend) f.addEventListener('click', function () { legend.hidden = !legend.hidden; f.setAttribute('aria-expanded', String(!legend.hidden)); });
+    var zi = document.getElementById('mcIn'), zo = document.getElementById('mcOut'), ex = document.getElementById('mcExp');
+    if (zi) zi.addEventListener('click', function () { if (ok) map.zoomIn(); });
+    if (zo) zo.addEventListener('click', function () { if (ok) map.zoomOut(); });
+    if (ex && canvas) ex.addEventListener('click', function () {
+      var x = canvas.classList.toggle('is-expanded'); ex.setAttribute('aria-pressed', String(x));
+      if (ok) setTimeout(function () { map.invalidateSize(); fitVisible(); }, 60);
+    });
   }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', boot);
-  } else {
-    boot();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 })();
