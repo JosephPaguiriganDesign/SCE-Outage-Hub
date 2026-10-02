@@ -170,11 +170,15 @@ html,body,button,input,textarea,select{font-family:var(--md-ref-typeface-plain)}
   --sce-status-complete:#107E3F;      /* COMPLETED step */
   --sce-status-pending:#8A9099;       /* Not Started */
   --sce-status-na:#5B6575;            /* disconnected (assumption) */
-  /* look and feel from the tested screens */
-  --sce-ut-radius:10px;               /* cards, buttons, search, map controls */
-  --sce-ut-radius-sm:8px;
-  --sce-ut-link:#1C77C5;
-  --sce-ut-cta-a:#FED141; --sce-ut-cta-b:#F0B324;  /* REPORT OUTAGE / VIEW OUTAGE STATUS gradient */
+  /* look and feel from the tested screens (status colours, header/footer frame) */
+  /* Round 2: the mocks are design mocks only. Shape, link, ink and CTA values come from the prior M3/v0.03 system, not the mocks. */
+  --sce-ut-radius:var(--md-sys-shape-corner-large);         /* 16px: cards, status card, advisory row, map (= --r-card) */
+  --sce-ut-radius-sm:var(--md-sys-shape-corner-medium);     /* 12px: inner blocks, search, banners, map controls, legend */
+  --sce-ut-radius-btn:var(--md-sys-shape-corner-extra-small);/* 4px: every button / CTA (SCE CTA radius) */
+  --sce-ut-link:var(--sce-color-link);                      /* #1A76C5 */
+  --sce-ut-ink:var(--md-sys-color-on-surface);              /* #101820 */
+  --sce-ut-accent:#FED141;                                  /* brand yellow: header title bar ONLY (never a CTA) */
+  --sce-ut-warn-icon:var(--sce-color-on-weather-icon);      /* heat / weather = amber, not red */
   --sce-ut-footer:#111111;
   --sce-ut-head-a:#002B58; --sce-ut-head-b:#0099CB; /* header gradient, left to right */
 }

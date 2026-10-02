@@ -19,12 +19,10 @@
      .ut-map .ut-legend                     F6 map + legend toggles   §11
    ========================================================================== */
 
-/* ---- 0. frame: the screens have no fake OS bar and no bottom nav --------- */
+/* ---- 0. frame: white page like the mocks, no fake OS bar. The v0.03 bottom nav (.hub-nav) is back on every screen --- */
 .os-bar{display:none}
-.hub-nav{display:none}
 body{background:#fff}
 .app{background:#fff;box-shadow:0 0 0 1px #E6E9ED}
-.app-scroll{padding-bottom:0}
 .ut-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* ---- 1. header + identity ------------------------------------------------ */
@@ -42,18 +40,18 @@ body{background:#fff}
 .ut-logo{justify-self:center;display:block;height:27px;width:auto}
 .ut-bar :focus-visible{outline:2px solid #fff;outline-offset:-4px}
 .ut-title{display:flex;align-items:stretch;gap:7px;padding:0 16px 9px;min-height:43px}
-.ut-title::before{content:"";width:6px;flex:0 0 6px;background:var(--sce-ut-cta-a);border-radius:1px}
+.ut-title::before{content:"";width:6px;flex:0 0 6px;background:var(--sce-ut-accent);border-radius:1px}
 .ut-title h1{font-size:25px;line-height:34px;font-weight:700;text-transform:uppercase;letter-spacing:0;color:#fff;margin:0;flex:1;min-width:0}
 .ut-title .ut-back{align-self:center;color:#fff;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:4px;min-height:48px;padding:0 4px;text-decoration:none}
 .ut-title .ut-back svg{width:10px;height:14px;fill:none;stroke:#fff;stroke-width:2.2}
-.ut-menu{position:absolute;z-index:60;left:8px;right:8px;top:54px;background:#fff;color:var(--ink);border-radius:var(--sce-ut-radius);box-shadow:0 8px 24px rgba(0,0,0,.28);padding:4px 0}
+.ut-menu{position:absolute;z-index:60;left:8px;right:8px;top:54px;background:#fff;color:var(--ink);border-radius:var(--sce-ut-radius-sm);box-shadow:0 8px 24px rgba(0,0,0,.28);padding:4px 0}
 .ut-menu[hidden]{display:none}
 .ut-menu a{display:flex;align-items:center;min-height:48px;padding:0 16px;font-size:15px;font-weight:600;color:var(--ink)}
 .ut-menu a+a{border-top:1px dotted #B8BEC6}
 .ut-menu a[aria-current="page"]{color:var(--sce-ut-link)}
 .ut-id{padding:6px 16px 0}
-.ut-id b{display:block;font-size:18px;line-height:24px;font-weight:700;color:#000}
-.ut-id span{display:block;font-size:16px;line-height:24px;color:#1A1F27}
+.ut-id b{display:block;font-size:18px;line-height:24px;font-weight:700;color:var(--sce-ut-ink)}
+.ut-id span{display:block;font-size:16px;line-height:24px;color:var(--sce-ut-ink)}
 
 /* ---- 2. ordered page column (advisory/search/banner position variants) --- */
 .ut-main{display:flex;flex-direction:column;gap:16px;padding:16px 0 0}
@@ -82,21 +80,21 @@ body{background:#fff}
 html[data-advisory="off"] .ut-main>[data-slot="adv"]{display:none}
 
 /* ---- 3. search ----------------------------------------------------------- */
-.ut-search{margin:0 16px;display:flex;align-items:center;min-height:48px;background:#fff;border:1px solid #8D959F;border-radius:var(--sce-ut-radius);padding:0}
+.ut-search{margin:0 16px;display:flex;align-items:center;min-height:48px;background:#fff;border:1px solid #8D959F;border-radius:var(--sce-ut-radius-sm);padding:0}
 .ut-search:focus-within{border-color:var(--sce-ut-link);outline:2px solid var(--sce-ut-link);outline-offset:1px}
-.ut-search button{width:48px;height:48px;flex:0 0 48px;border:0;background:transparent;color:#4A525C;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;border-radius:var(--sce-ut-radius)}
+.ut-search button{width:48px;height:48px;flex:0 0 48px;border:0;background:transparent;color:#4A525C;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;border-radius:var(--sce-ut-radius-sm)}
 .ut-search button svg{width:22px;height:22px;fill:currentColor}
 .ut-search button.ut-x svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
-.ut-search input{flex:1;min-width:0;height:48px;border:0;background:transparent;font:inherit;font-size:16px;color:#1A1F27;outline:0;padding:0}
+.ut-search input{flex:1;min-width:0;height:48px;border:0;background:transparent;font:inherit;font-size:16px;color:var(--sce-ut-ink);outline:0;padding:0}
 .ut-search input::placeholder{color:#6B7380;opacity:1;font-size:15px}
 
 /* ---- 4. Current Power Status card ---------------------------------------- */
 .cps{--c-bd:var(--sce-status-on-border);--c-tint:var(--sce-status-on-tint);--c-ink:var(--sce-status-on);
-  margin:0 16px;border:1px solid var(--c-bd);border-radius:var(--sce-ut-radius);background:var(--c-tint);padding:10px;color:#000}
+  margin:0 16px;border:1px solid var(--c-bd);border-radius:var(--sce-ut-radius);background:var(--c-tint);padding:10px;color:var(--sce-ut-ink)}
 .cps[data-state="off"]{--c-bd:var(--sce-status-off);--c-tint:var(--sce-status-off-tint);--c-ink:var(--sce-status-off)}
 .cps[data-state="na"]{--c-bd:var(--sce-status-na);--c-tint:#F1F3F5;--c-ink:var(--sce-status-na)}
 .cps-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:2px 4px 10px}
-.cps-head h2{font-size:18px;line-height:24px;font-weight:700;margin:0;color:#000}
+.cps-head h2{font-size:18px;line-height:24px;font-weight:700;margin:0;color:var(--sce-ut-ink)}
 /* state word: PLAIN BOLD TEXT. Never a toggle, pill or switch (user-testing finding) */
 .cps-state{font-size:20px;line-height:24px;font-weight:800;text-transform:uppercase;letter-spacing:.02em;color:var(--c-ink);background:none;border:0;padding:0;border-radius:0;box-shadow:none}
 .cps-block{--b-bd:var(--sce-status-on-border);background:#fff;border:1px solid var(--b-bd);border-radius:var(--sce-ut-radius-sm);padding:14px}
@@ -108,15 +106,15 @@ html[data-advisory="off"] .ut-main>[data-slot="adv"]{display:none}
 .cps-top{display:flex;align-items:center;gap:12px}
 .cps-top.start{align-items:flex-start}
 .cps-ico{flex:0 0 24px;width:24px;height:24px;display:block}
-.cps-label{font-size:18px;line-height:24px;font-weight:700;text-transform:uppercase;color:#000;margin:0}
-.cps-addr{font-size:16px;line-height:24px;font-weight:700;color:#000;margin:0}
-.cps-line{font-size:16px;line-height:24px;color:#000;margin:0}
+.cps-label{font-size:18px;line-height:24px;font-weight:700;text-transform:uppercase;color:var(--sce-ut-ink);margin:0}
+.cps-addr{font-size:16px;line-height:24px;font-weight:700;color:var(--sce-ut-ink);margin:0}
+.cps-line{font-size:16px;line-height:24px;color:var(--sce-ut-ink);margin:0}
 .cps-line b,.cps-fire b{font-weight:700}
-.cps-sub{font-size:16px;line-height:24px;color:#000;margin:0}
+.cps-sub{font-size:16px;line-height:24px;color:var(--sce-ut-ink);margin:0}
 .cps-upd{font-size:14px;line-height:20px;color:#4A525C;margin:6px 0 0}
 .cps-block>*+*{margin-top:8px}
 .cps-block .cps-ids{margin-top:0}
-.cps-block .cps-ids p{margin:0;font-size:16px;line-height:24px;color:#000}
+.cps-block .cps-ids p{margin:0;font-size:16px;line-height:24px;color:var(--sce-ut-ink)}
 .cps-fire{font-size:16px;line-height:24px;margin:0}
 .cps-hr{border:0;border-top:1px dotted #8F959D;margin:12px 0 0;height:0}
 .cps-foot{display:flex;justify-content:flex-end;margin-top:0}
@@ -130,8 +128,8 @@ html[data-advisory="off"] .ut-main>[data-slot="adv"]{display:none}
 .ut-title .ut-meta{color:#fff;font-size:12px;align-self:center;opacity:.9}
 .cps-ert{margin-top:12px}
 .cps-ert .k{font-size:12px;line-height:16px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#4A525C}
-.cps-ert .v{font-size:22px;line-height:28px;font-weight:700;color:#000;margin:2px 0 0}
-.cps-note{font-size:13px;line-height:18px;color:#000;margin-top:8px}
+.cps-ert .v{font-size:22px;line-height:28px;font-weight:700;color:var(--sce-ut-ink);margin:2px 0 0}
+.cps-note{font-size:13px;line-height:18px;color:var(--sce-ut-ink);margin-top:8px}
 .cps-note.ert-note{font-weight:600;color:var(--sce-status-off)}
 .cps-stale{margin-top:12px;padding:10px 12px;border:1px dashed var(--sce-status-off);border-radius:var(--sce-ut-radius-sm);background:#fff;font-size:13px;line-height:18px}
 .cps-stale strong{display:block;font-size:14px}
@@ -144,7 +142,7 @@ html[data-advisory="off"] .ut-main>[data-slot="adv"]{display:none}
 .cps-sel{justify-content:space-between}
 .cps-sel svg{width:12px;height:8px;fill:none;stroke:#4A525C;stroke-width:2}
 .cps-find{padding-right:0}
-.cps-find input{flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:16px;color:#1A1F27;outline:0;height:48px}
+.cps-find input{flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:16px;color:var(--sce-ut-ink);outline:0;height:48px}
 .cps-find button{width:48px;height:48px;border:0;background:transparent;color:#4A525C;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
 .cps-find button svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
 .cps-list{list-style:none;margin:0;padding:0}
@@ -168,9 +166,9 @@ html[data-advisory="off"] .ut-main>[data-slot="adv"]{display:none}
 .step.is-current::before{background:var(--sce-status-progress)}
 .step-dot{position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;background:var(--s-c);color:#fff;font-size:12px;line-height:20px;font-weight:700;text-align:center}
 .step-dot svg{width:12px;height:12px;margin-top:4px;fill:none;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
-.step-t{display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-height:24px;font-size:16px;line-height:24px;font-weight:700;color:#000}
+.step-t{display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-height:24px;font-size:16px;line-height:24px;font-weight:700;color:var(--sce-ut-ink)}
 .step-pill{display:inline-flex;align-items:center;height:22px;padding:0 10px;border:1.5px solid var(--s-c);border-radius:11px;font-size:11px;line-height:1;font-weight:700;letter-spacing:.03em;color:var(--s-c);background:#fff}
-.step-d{margin:2px 0 0;font-size:16px;line-height:24px;color:#1A1F27}
+.step-d{margin:2px 0 0;font-size:16px;line-height:24px;color:var(--sce-ut-ink)}
 .step-d.na{margin-top:0;color:#6B7380}
 /* collapsed = current step only (screen 05); full = all five (screens 01 / 04) */
 .cps[data-exp="0"] .step:not(.is-current){display:none}
@@ -178,53 +176,49 @@ html[data-advisory="off"] .ut-main>[data-slot="adv"]{display:none}
 .cps[data-exp="0"] .step.is-current::before{bottom:-4px}
 .cps[data-exp="0"] .step.is-current .step-d{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-/* ---- 6. buttons ------------------------------------------------------------ */
-.ut-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;padding:0 16px;border-radius:var(--sce-ut-radius);font:inherit;font-size:16px;line-height:20px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;text-decoration:none;cursor:pointer;border:1.5px solid transparent}
-.ut-cta{background:linear-gradient(180deg,var(--sce-ut-cta-a),var(--sce-ut-cta-b));color:#000;border-color:var(--sce-ut-cta-b)}
-.ut-outline{background:#fff;color:var(--sce-ut-link);border-color:var(--sce-ut-link)}
+/* ---- 6. buttons -------------------------------------------------------------
+   Round 2: the buttons carry the v0.03 classes too (btn primary = ink filled Report / View outage status,
+   btn map = ink outlined View map, btn btn211 = indigo Call 211). Radius 4px, 48dp, state layers: m3_components.css.
+   Here: layout only (full width, caps copy from the mocks). .ut-link = optional link variant. */
+.ut-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;text-transform:uppercase;text-decoration:none;cursor:pointer}
+.ut-btn.btn{padding:0 16px;font-weight:700}
 .ut-link{width:auto;min-height:48px;background:transparent;border:0;color:var(--sce-ut-link);text-decoration:underline;text-underline-offset:3px;padding:0 8px}
-.ut-btn.sm{min-height:48px;font-size:14px;width:auto}
+.ut-btn.sm{width:auto}
+body[data-page="s3"] .cps-actions .btn.primary{min-height:56px}
 .cps-actions{display:flex;flex-direction:column;gap:8px}
 .cps-block .ut-btn{margin-top:12px}
-@media (hover:hover){.ut-cta:hover{filter:brightness(.97)}.ut-outline:hover{background:#F2F8FD}}
-/* legacy .btn kept working, re-skinned to the tested look (radius ~10, yellow Report, blue outline map/211) */
-a.btn,button.btn,.btn{border-radius:var(--sce-ut-radius)}
-.btn.primary,a.btn.primary,button.btn.primary{background-image:linear-gradient(180deg,var(--sce-ut-cta-a),var(--sce-ut-cta-b));background-color:var(--sce-ut-cta-b);color:#000;border:1.5px solid var(--sce-ut-cta-b);font-weight:700}
-.btn.map,a.btn.map,button.btn.map,.btn.btn211,a.btn.btn211{background-image:none!important;background-color:#fff;color:var(--sce-ut-link);border:1.5px solid var(--sce-ut-link);font-weight:700}
-/* Call 211: legacy rules force indigo + 4px with !important (shared_part_a / m3_components); screen 01 shows a white button with a blue outline */
-.btn211,a.btn211,.btn.btn211,a.btn.btn211{background:#fff!important;background-image:none!important;color:var(--sce-ut-link)!important;border:1.5px solid var(--sce-ut-link)!important;border-radius:var(--sce-ut-radius)!important;min-height:48px}
-.btn.danger,a.btn.danger{background-color:var(--sce-status-off);border-color:var(--sce-status-off);color:#fff}
-.actions .btn.primary,.actions a.btn.primary{background:transparent;border:0;border-right:1px solid var(--md-sys-color-outline-variant);color:var(--sce-ut-link)}
+.ut-help .btn211{width:100%;margin-bottom:var(--conh-space-2)}
 
 /* ---- 7. banners ------------------------------------------------------------- */
-.ut-banner{margin:0 16px;display:flex;align-items:center;gap:14px;border-radius:var(--sce-ut-radius);padding:18px 16px;color:#fff;background:var(--sce-status-on-banner)}
+.ut-banner{margin:0 16px;display:flex;align-items:center;gap:14px;border-radius:var(--sce-ut-radius-sm);padding:18px 16px;color:#fff;background:var(--sce-status-on-banner)}
 .ut-banner[data-tone="alert"]{background:var(--sce-status-off-banner)}
 .ut-banner svg{flex:0 0 44px;width:44px;height:44px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .ut-banner b{display:block;font-size:16px;line-height:22px;font-weight:700}
 .ut-banner p{margin:2px 0 0;font-size:14px;line-height:20px}
 
 /* ---- 8. Heat Advisory row (one collapsed line; only when advisory is active) */
-.adv{margin:0 16px;background:#fff;border:1px solid #B5BBC3;border-radius:var(--sce-ut-radius)}
+.adv{margin:0 16px;background:var(--sce-color-weather-container);border:1px solid var(--sce-color-weather-outline);border-radius:var(--sce-ut-radius)} /* weather = amber / neutral (locked), card radius */
 .adv>summary{list-style:none;display:flex;align-items:center;gap:12px;min-height:56px;padding:0 12px;cursor:pointer}
 .adv>summary::-webkit-details-marker{display:none}
 .adv>summary::after{display:none!important}
-.adv-ico{flex:0 0 28px;width:28px;height:28px}
-.adv-t{flex:1;min-width:0;font-size:14px;line-height:20px;color:#000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.adv-ico{flex:0 0 28px;width:28px;height:28px;color:var(--sce-ut-warn-icon)}
+.adv-t{flex:1;min-width:0;font-size:14px;line-height:20px;color:var(--sce-ut-ink);white-space:normal;overflow:visible;text-overflow:clip;padding:8px 0} /* wraps, never clipped (locked) */
 .adv-t b{font-weight:700}
 .adv-chev{flex:0 0 40px;width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;color:var(--sce-ut-link)}
 .adv-chev svg{width:14px;height:9px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .15s}
 .adv[open] .adv-chev svg{transform:rotate(180deg)}
 .adv-body{padding:0 12px 12px}
+.adv-note{margin:0;font-size:14px;line-height:20px}
 .adv-body>*+*{margin-top:10px}
 .adv-body .wx-grid{display:flex;gap:16px}
 
 /* ---- 9. help block ------------------------------------------------------------ */
 .ut-help{margin:0 16px;padding:0}
-.ut-help h2{font-size:18px;line-height:24px;font-weight:700;color:#000;margin:0 0 12px}
+.ut-help h2{font-size:18px;line-height:24px;font-weight:700;color:var(--sce-ut-ink);margin:0 0 12px}
 .ut-help ul{list-style:none;margin:8px 0 0;padding:0}
 .ut-help li+li{border-top:1px dotted #8F959D}
 .ut-help li a{display:flex;align-items:center;min-height:48px;font-size:15px;font-weight:700;color:var(--sce-ut-link)}
-.ut-help .lede{font-size:14px;line-height:20px;color:#1A1F27;margin:-6px 0 12px}
+.ut-help .lede{font-size:14px;line-height:20px;color:var(--sce-ut-ink);margin:-6px 0 12px}
 
 /* ---- 10. footer --------------------------------------------------------------- */
 .ut-foot{margin-top:32px;background:var(--sce-ut-footer);color:#fff;padding:24px 16px 28px;text-align:center}
@@ -243,14 +237,14 @@ a.btn,button.btn,.btn{border-radius:var(--sce-ut-radius)}
 .ut-map .leaflet-host{position:absolute;inset:0}
 .leaflet-container{font-family:inherit}
 .ut-mc{position:absolute;z-index:500;right:12px;top:12px;display:flex;flex-direction:column;gap:10px}
-.ut-mc button{width:48px;height:48px;border:0;background:#fff;border-radius:var(--sce-ut-radius);box-shadow:0 1px 4px rgba(0,0,0,.3);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:#1A1F27}
+.ut-mc button{width:48px;height:48px;border:0;background:#fff;border-radius:var(--sce-ut-radius-sm);box-shadow:0 1px 4px rgba(0,0,0,.3);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:var(--sce-ut-ink)}
 .ut-mc svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.ut-mc .grp{display:flex;flex-direction:column;border-radius:var(--sce-ut-radius);box-shadow:0 1px 4px rgba(0,0,0,.3);background:#fff}
+.ut-mc .grp{display:flex;flex-direction:column;border-radius:var(--sce-ut-radius-sm);box-shadow:0 1px 4px rgba(0,0,0,.3);background:#fff}
 .ut-mc .grp button{box-shadow:none;border-radius:0}
-.ut-mc .grp button:first-child{border-radius:var(--sce-ut-radius) var(--sce-ut-radius) 0 0;border-bottom:1px solid #E1E4E8}
-.ut-mc .grp button:last-child{border-radius:0 0 var(--sce-ut-radius) var(--sce-ut-radius)}
+.ut-mc .grp button:first-child{border-radius:var(--sce-ut-radius-sm) var(--sce-ut-radius-sm) 0 0;border-bottom:1px solid #E1E4E8}
+.ut-mc .grp button:last-child{border-radius:0 0 var(--sce-ut-radius-sm) var(--sce-ut-radius-sm)}
 .ut-mc button:focus-visible,.ut-sw:focus-visible{outline:3px solid var(--sce-ut-link);outline-offset:2px}
-.ut-legend{position:absolute;z-index:500;left:12px;right:72px;bottom:12px;background:#fff;border-radius:var(--sce-ut-radius);box-shadow:0 2px 10px rgba(0,0,0,.28);padding:4px 12px}
+.ut-legend{position:absolute;z-index:500;left:12px;right:72px;bottom:12px;background:#fff;border-radius:var(--sce-ut-radius-sm);box-shadow:0 2px 10px rgba(0,0,0,.28);padding:4px 12px}
 .ut-legend[hidden]{display:none}
 .ut-legend ul{list-style:none;margin:0;padding:0}
 .ut-legend li{display:flex;align-items:center;gap:10px;min-height:48px}
@@ -267,19 +261,17 @@ a.btn,button.btn,.btn{border-radius:var(--sce-ut-radius)}
 .ut-ov svg{display:block;width:36px;height:36px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
 .leaflet-control-attribution{font-size:10px}
 
-/* ---- 12. legacy blocks re-skinned: radius ~10, white cards, status color only -- */
-.hero,.hx-card,.hx-row,.afn,.mod,.tile,.pf-sum,.recent,.safety-card,.confirm-hero,.updates-block,.self-checks,.fpi-strip,.pending-badge,.hx-detect{border-radius:var(--sce-ut-radius)}
+/* ---- 12. legacy blocks: v0.03 radii kept; only page-margins aligned to the 16px column ----- */
 .hx-hero{margin:0 16px}
 .hx-row{margin-left:16px;margin-right:16px}
 .hx-card{margin-left:16px;margin-right:16px}
 .hx-hero .hx-status{text-transform:none}
-.afn{margin:0 16px;border-radius:var(--sce-ut-radius)}
+.afn{margin:0 16px}
 .pf-sum,.pf-ctl,.pf-pg,.why-warning,.stage-chips,.mod,.recent,.trust-footer,.pending-badge,.section-label{margin-left:16px;margin-right:16px}
 .section-label{padding-left:0;padding-right:0}
 .stage-chips{padding-left:0;padding-right:0}
 .hx-form,.gs-try,.gs-resolved{padding-left:16px;padding-right:16px}
 .ut-main>.hx-safety{margin:0 16px}
-.hx-snack{border-radius:var(--sce-ut-radius)}
 .cps-wrap{display:flex;flex-direction:column;gap:16px}
 .cps-wrap>.cps{margin-left:0;margin-right:0}
 [data-slot="status"].cps-wrap{margin:0 16px}
@@ -310,3 +302,16 @@ a.btn,button.btn,.btn{border-radius:var(--sce-ut-radius)}
 .ut-gal .gsw button[aria-pressed="true"]{background:#E8F0FD;border-color:var(--sce-ut-link);color:var(--sce-ut-link)}
 .ut-ov svg.ut-ovsvg{display:block;width:36px;height:36px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
 .ut-mini{width:28px;height:28px}
+
+/* ---- 14. M3 state layers (hover 8% / focus 10% / pressed 10%) for the new controls, same recipe as m3_components.css */
+:where(.cps-link,.adv>summary,.ut-menu a,.ut-help li a,.ut-search button,.ut-mc button,.ut-bar button,.ut-bar a.ut-ico,.as-acct summary){
+  --_sl:color-mix(in srgb,currentColor var(--_slo,0%),transparent);
+  background-image:linear-gradient(var(--_sl),var(--_sl));
+  transition:--_slo var(--md-sys-motion-duration-short2) linear;-webkit-tap-highlight-color:transparent}
+@media (hover:hover){:where(.cps-link,.adv>summary,.ut-menu a,.ut-help li a,.ut-search button,.ut-mc button,.ut-bar button,.ut-bar a.ut-ico,.as-acct summary):hover{--_slo:var(--md-sys-state-hover-state-layer-opacity)}}
+:where(.cps-link,.adv>summary,.ut-menu a,.ut-help li a,.ut-search button,.ut-mc button,.ut-bar button,.ut-bar a.ut-ico,.as-acct summary):focus-visible{--_slo:var(--md-sys-state-focus-state-layer-opacity)}
+:where(.cps-link,.adv>summary,.ut-menu a,.ut-help li a,.ut-search button,.ut-mc button,.ut-bar button,.ut-bar a.ut-ico,.as-acct summary):active{--_slo:var(--md-sys-state-pressed-state-layer-opacity)}
+
+/* ---- 15. Account disclosure inside the status card (v0.03 rule: meter / account behind a disclosure) ---- */
+.cps-acct{margin-top:0}
+.cps-acct summary{color:var(--sce-ut-link);font-weight:700}

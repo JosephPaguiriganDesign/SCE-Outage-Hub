@@ -27,22 +27,23 @@ Relative links only — works from this folder without a build step.
 
 Pending badge: F5-confirm writes `sessionStorage.conh_pending` and links with `?pending=1`. F0 / F1 show the badge when either is present.
 
-## Button lock (UPDATED, round 1: tested screens win; see open-items.md)
+## Button lock (do not regress)
 
-| Control | Spec (round 1) |
+| Control | Spec |
 |---|---|
-| REPORT OUTAGE / VIEW OUTAGE STATUS | Yellow gradient (#FED141 to #F0B324), black bold caps, radius 10px |
-| VIEW MAP / CALL 211 | White, 1.5px blue border (#1C77C5), blue bold caps, radius 10px (link variant: blue underlined) |
-| Sign in to My Account | Gold gradient only (unchanged) |
-| Call 911 | Red filled (unchanged intent: emergency stays red, never yellow) |
-| Current Power Status state | Plain bold text ON (green) / OFF (red). Never a toggle, pill or switch |
+| Report outage | Ink fill `#101820` + white, radius 4px |
+| View map | White + ink border, radius 4px |
+| Call 211 | Indigo `#4F46E5` + white, radius 4px |
+| Sign in to My Account | Gold gradient only |
+| Hero action strip | Quiet text: Report · Map · Get help (no gold / no fill) |
 
-## Round 1: user-tested screens
+## Round 1 / 2: user-tested screens (design mocks only)
+
+The tested screens are design mocks, not a spec. They supply the combined Current Power Status card (plain bold ON / OFF text), the copy, the status-first order, the collapsed / expandable stepper, status colors, the header and footer frame, the banners and the four-layer map legend. They do NOT override the locked rules in the Button lock above: buttons stay 4px, Report / View outage status are ink filled, View map is ink outlined, Call 211 is indigo, gold is only Sign in / brand / Save prefs, links #1A76C5, ink #101820, Open Sans, 48dp targets, M3 state layers, meter and account behind the Account disclosure, and the bottom nav (Outage Center / Map / Report / Help) is on every screen. Details: open-items.md ("Resolved: ...").
 
 - `status-card.css` / `status-card.js`: component set. Gallery: `components.html`.
-- Page order: header, name, Current Power Status card(s) first, Heat Advisory row (only when active), search, buttons. Advisory position is ONE config value: `HX_CONFIG.advisoryPosition` in `hierarchy.js` (`below-status` default, `above-search` = screen 05, `below-buttons` = screen 01). Preview with `?adv=`; hide with `?advisory=off`.
+- Page order: header, name, Current Power Status card(s) first, Heat Advisory row (only when active), search, buttons. Advisory position is ONE config value: `HX_CONFIG.advisoryPosition` in `hierarchy.js` (`below-status` default, `above-search` = screen 05, `below-buttons` = screen 01). Preview with `?adv=...`, `?advisory=off`, `?view=01`, `?view=05`.
 - Tested screens: 01 `P1-psps-shutoff.html?view=01`, 02 `F6-map-sheet.html?layer=all`, 03 `S3-no-outage.html`, 04 `F0-multi.html`, 05 `P1-psps-shutoff.html?view=05`.
-- Bottom nav replaced by the header menu (hamburger) and the black footer, as in the screens.
 
 ## Files
 
