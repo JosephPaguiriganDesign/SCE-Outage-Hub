@@ -28,7 +28,7 @@
   "guestNoAddress": "Enter a service address, outage #, or meter # to check status.",
   "outOfTerritory": "That address looks like it is outside SCE’s service area. Check with your local utility.",
   "newScenarioNote": "NEW 1 / NEW 2 working draft, not yet in Scenarios doc",
-  "needsAttention": "Needs attention = Active Outage + Planned Outage"
+  "needsAttention": "Needs attention = Active + Upcoming (Potential, Likely, Scheduled, Planned)"
 };
   window.HX_CONFIG = HX_CONFIG;
 
@@ -90,7 +90,7 @@
   function showErtChange(was, now) {
     var note = $('#ertNote'), ert = $('#hxErt'); if (!note || !ert) return;
     if (now) setF('ertText', now);
-    setF('ertWas', was); note.hidden = false;
+    setF('ertWas', was + ' PT'); note.hidden = false;
     ert.classList.remove('ert-flash'); void ert.offsetWidth; ert.classList.add('ert-flash');
   }
   function setStale(on) {
@@ -109,18 +109,22 @@
     if (v) root.setAttribute('data-psps', v); else root.removeAttribute('data-psps');
     var m = { 'psps-none': '', 'psps-temp': 'temp', 'psps-ended': 'ended' };
     $$('[data-act^="psps-"]').forEach(function (b) { b.setAttribute('aria-pressed', String(m[b.getAttribute('data-act')] === (v || ''))); });
-    var t = $('[data-f="s9title"]'), tm = $('[data-f="s9time"]'), du = $('[data-f="s9dur"]');
-    if (v === 'temp' && t) { t.textContent = 'Power temporarily restored'; }
-    else if (v === 'ended' && t) { t.textContent = 'Power restored · PSPS event ended'; }
-    else if (t) { t.textContent = 'Power restored'; }
+    /* S9 variants (round 6): the card keeps ONE anatomy; only the canonical label / chip / one-liner swap (labels come from HUB_DATA.status). */
+    var card = $('#cpsS9'); if (!card) return;
+    var S = HUB_DATA.status, lab = $('[data-f="s9label"]'), tm = $('[data-f="s9time"]'), du = $('[data-f="s9dur"]'), chip = $('[data-s9chip]');
+    function nm() { card.setAttribute('aria-label', 'Current Power Status: power on, ' + lab.textContent.toLowerCase()); }
+    var base = 'Today ' + HUB_DATA.outage.restored + ' PT', dur = 'Outage lasted ' + HUB_DATA.outage.duration_total;
+    if (v === 'temp') { lab.textContent = S.restoring.label; card.setAttribute('data-status', 'restoring'); chip.hidden = false; tm.textContent = 'Your power is back on. The PSPS event is not over yet.'; du.textContent = ''; nm(); }
+    else if (v === 'ended') { lab.textContent = S.restored.label; card.setAttribute('data-status', 'restored'); chip.hidden = true; tm.textContent = base; du.textContent = ' \u00b7 ' + dur + ' \u00b7 PSPS event ended'; nm(); }
+    else { lab.textContent = S.restored.label; card.setAttribute('data-status', 'restored'); chip.hidden = true; tm.textContent = base; du.textContent = ' \u00b7 ' + dur; nm(); }
   }
   d.addEventListener('click', function (e) {
     var t = e.target.closest ? e.target.closest('[data-act]') : null; if (!t) return;
     var a = t.getAttribute('data-act');
     if (a === 'ert-change') {
-      setF('ertText', 'Back by 2:30 PM'); var n = $('#ertNote'); if (n) n.hidden = true;
+      setF('ertText', 'Back by ' + HUB_DATA.outage.ert_was + ' PT'); var n = $('#ertNote'); if (n) n.hidden = true;
       snack('Estimate refreshing…');
-      setTimeout(function () { showErtChange(HUB_DATA.outage.ert_was, 'Back by ' + HUB_DATA.outage.ert); }, 900);
+      setTimeout(function () { showErtChange(HUB_DATA.outage.ert_was, 'Back by ' + HUB_DATA.outage.ert + ' PT'); }, 900);
     } else if (a === 'refresh-fail') setStale(true);
     else if (a === 'refresh-ok') setStale(false);
     else if (a === 'mb-on') setMB(true);

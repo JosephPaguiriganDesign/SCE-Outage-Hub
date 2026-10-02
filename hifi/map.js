@@ -1,18 +1,21 @@
 /* F6 interactive map (tested screen 02): Leaflet + four PSPS overlays + legend toggles + control stack.
-   Layers: active (red) / likely (orange) / potential (brown-orange) / scheduled (blue). Toggle changes call fitBounds. */
+   Layers (order Active, Potential, Likely, Scheduled): active (red) / potential (ring, orange) / likely (triangle, orange) / scheduled (blue). Toggle changes call fitBounds. */
 (function () {
   'use strict';
   var LAYERS = {
     active:    { center: [0, 0], r: 1, color: '#BA0000', fill: 0.22 },
+    potential: { center: [0, 0], r: 1, color: '#CC6006', fill: 0.30 },
     likely:    { center: [0, 0], r: 1, color: '#DE6C0C', fill: 0.22 },
-    potential: { center: [0, 0], r: 1, color: '#A8520A', fill: 0.30 },
     scheduled: { center: [0, 0], r: 1, color: '#0459D2', fill: 0.22 }
   };
+  /* overlay colors = the status icon colors, single-sourced from hub-data.js (HUB_DATA.status_colors) */
+  var HC = (window.HUB_DATA && window.HUB_DATA.status_colors) || {};
+  Object.keys(LAYERS).forEach(function (k) { if (HC[k]) LAYERS[k].color = HC[k]; });
   /* footprints (center / radius / label) come from hub-data.js (window.HUB_DATA.maplayers): the single data source */
   var HM = (window.HUB_DATA && window.HUB_DATA.maplayers) || {};
   Object.keys(LAYERS).forEach(function (k) { if (HM[k]) { LAYERS[k].center = HM[k].center; LAYERS[k].r = HM[k].r; LAYERS[k].label = HM[k].label; } });
-  var ORDER = ['active', 'likely', 'potential', 'scheduled'];
-  var on = { active: true, likely: false, potential: false, scheduled: false };
+  var ORDER = (window.HUB_DATA && window.HUB_DATA.status_order) || ['active', 'potential', 'likely', 'scheduled'];
+  var on = { active: true, potential: false, likely: false, scheduled: false };
   var groups = {}, map = null, ok = false;
   var canvas = document.getElementById('mapCanvas');
   var legend = document.getElementById('mapLegend');
@@ -49,7 +52,7 @@
       if (!raw) return;
       if (raw === 'all') { ORDER.forEach(function (k) { on[k] = true; }); return; }
       var alias = { active: ['active'], likely: ['likely'], potential: ['potential'], scheduled: ['scheduled'], planned: ['scheduled'],
-                    psps: ['likely', 'potential'], consideration: ['potential'] }; /* ?layer=psps from F10 -> Likely + Potential */
+                    psps: ['potential', 'likely'], consideration: ['potential'] }; /* ?layer=psps from F10 -> Potential + Likely */
       (alias[raw] || []).forEach(function (k) { on[k] = true; });
     } catch (e) {}
   }

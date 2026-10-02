@@ -115,12 +115,14 @@ html[data-advisory="on"] .adv[data-scn="none"]{display:none!important}
 .cps-head h2{font-size:18px;line-height:24px;font-weight:700;margin:0;color:var(--sce-ut-ink)}
 /* state word: PLAIN BOLD TEXT. Never a toggle, pill or switch (user-testing finding) */
 .cps-state{font-size:20px;line-height:24px;font-weight:800;text-transform:uppercase;letter-spacing:.02em;color:var(--c-ink);background:none;border:0;padding:0;border-radius:0;box-shadow:none}
-.cps-block{--b-bd:var(--sce-status-on-border);background:#fff;border:1px solid var(--b-bd);border-radius:var(--sce-ut-radius-sm);padding:14px}
-.cps-block[data-kind="active"]{--b-bd:var(--sce-status-off)}
-.cps-block[data-kind="likely"]{--b-bd:var(--sce-status-likely)}
-.cps-block[data-kind="potential"]{--b-bd:var(--sce-status-potential)}
-.cps-block[data-kind="scheduled"]{--b-bd:var(--sce-status-scheduled)}
-.cps-block[data-kind="na"]{--b-bd:var(--sce-status-na)}
+/* round 6: the OUTER container carries power state only (ON green / OFF red / grey); the inner block border is ONE neutral hairline for every kind.
+   The event kind is shown by icon + ALL-CAPS label + type chip, never by border color alone (fixes the Likely 2.93:1 border, Scout CS-18). */
+.cps-block{--b-bd:#8D959F;background:#fff;border:1px solid var(--b-bd);border-radius:var(--sce-ut-radius-sm);padding:14px}
+.cps-chiprow{margin:0 0 8px;display:flex}
+.cps-chip{display:inline-flex;align-items:center;min-height:24px;padding:0 10px;border-radius:4px;background:#E9ECF0;color:#2B323B;font-size:12px;line-height:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.cps-chiprow+.cps-top{margin-top:0}
+.cps-x>*+*{margin-top:8px}
+.cps-x .kv{margin:0}
 .cps-top{display:flex;align-items:center;gap:12px}
 .cps-top.start{align-items:flex-start}
 .cps-ico{flex:0 0 24px;width:24px;height:24px;display:block}
@@ -149,10 +151,11 @@ html[data-advisory="on"] .adv[data-scn="none"]{display:none!important}
 .cps-ert .v{font-size:22px;line-height:28px;font-weight:700;color:var(--sce-ut-ink);margin:2px 0 0}
 .cps-note{font-size:13px;line-height:18px;color:var(--sce-ut-ink);margin-top:8px}
 .cps-note.ert-note{font-weight:600;color:var(--sce-status-off)}
-.cps-stale{margin-top:12px;padding:10px 12px;border:1px dashed var(--sce-status-off);border-radius:var(--sce-ut-radius-sm);background:#fff;font-size:13px;line-height:18px}
+.cps-stale{margin:0 16px;padding:10px 12px;border:1px dashed var(--sce-status-off);border-radius:var(--sce-ut-radius-sm);background:#fff;font-size:13px;line-height:18px}
 .cps-stale strong{display:block;font-size:14px}
 .cps[data-stale="1"]{border-style:dashed}
 .cps-stale .ut-btn{margin-top:8px;min-height:48px;font-size:14px}
+.cps-wrap>.cps-stale{margin-left:0;margin-right:0}
 .cps-stale[hidden]{display:none}
 /* address list (screen 04: other service addresses under one account state) */
 .cps-filter{display:flex;flex-direction:column;gap:8px;margin-top:12px}
@@ -185,7 +188,7 @@ html[data-advisory="on"] .adv[data-scn="none"]{display:none!important}
 .step-dot{position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;background:var(--s-c);color:#fff;font-size:12px;line-height:20px;font-weight:700;text-align:center}
 .step-dot svg{width:12px;height:12px;margin-top:4px;fill:none;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
 .step-t{display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-height:24px;font-size:16px;line-height:24px;font-weight:700;color:var(--sce-ut-ink)}
-.step-pill{display:inline-flex;align-items:center;height:22px;padding:0 10px;border:1.5px solid var(--s-c);border-radius:11px;font-size:11px;line-height:1;font-weight:700;letter-spacing:.03em;color:var(--s-c);background:#fff}
+.step-pill{display:inline-flex;align-items:center;height:22px;padding:0 10px;border:1.5px solid var(--s-c);border-radius:11px;font-size:12px;line-height:1;font-weight:700;letter-spacing:.03em;color:var(--s-c);background:#fff}
 .step-d{margin:2px 0 0;font-size:16px;line-height:24px;color:var(--sce-ut-ink)}
 .step-d.na{margin-top:0;color:#6B7380}
 /* collapsed = current step only (screen 05); full = all five (screens 01 / 04) */
@@ -270,7 +273,7 @@ body[data-page="s3"] .cps-actions .btn.primary{min-height:56px}
 .ut-legend svg.ut-lg{flex:0 0 28px;width:28px;height:28px}
 .ut-legend .t{flex:1;min-width:0;font-size:14px;line-height:18px;color:#3A4250}
 .ut-sw{flex:0 0 52px;width:52px;height:48px;border:0;background:transparent;padding:0;cursor:pointer;position:relative}
-.ut-sw::before{content:"";position:absolute;left:4px;top:11px;width:44px;height:26px;border-radius:13px;background:#B7BCC4;transition:background .15s}
+.ut-sw::before{content:"";position:absolute;left:4px;top:11px;width:44px;height:26px;border-radius:13px;background:#767E8A;transition:background .15s}
 .ut-sw::after{content:"";position:absolute;left:7px;top:14px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.35);transition:transform .15s}
 .ut-sw[aria-checked="true"]::before{background:var(--sce-status-on)}
 .ut-sw[aria-checked="true"]::after{transform:translateX(18px)}
@@ -333,3 +336,8 @@ body[data-page="s3"] .cps-actions .btn.primary{min-height:56px}
 /* ---- 15. Account disclosure inside the status card (v0.03 rule: meter / account behind a disclosure) ---- */
 .cps-acct{margin-top:0}
 .cps-acct summary{color:var(--sce-ut-link);font-weight:700}
+
+/* ---- 16. round 6: portfolio tile state text is ink (the shared icon carries the color), tile order of words = canonical labels ---- */
+a.tile.pf-tile .t-status,a.tile.pf-tile .t-status.active,a.tile.pf-tile .t-status.restored,a.tile.pf-tile .t-status.planned,a.tile.pf-tile .t-status.on{color:var(--sce-ut-ink);font-weight:700;letter-spacing:.01em}
+.cps-ico{overflow:visible}
+.cps-chip abbr{text-decoration:none;cursor:default}
