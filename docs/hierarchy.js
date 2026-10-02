@@ -277,11 +277,11 @@
       var qq = st.q.toLowerCase();
       var vis = tiles.filter(function (t) {
         var on = Object.keys(st.f).filter(function (k) { return st.f[k]; });
-        return (!on.length || on.indexOf(t.dataset.state) > -1) && (!qq || t.dataset.addr.indexOf(qq) > -1);
+        return (!on.length || on.indexOf(t.dataset.sstate) > -1) && (!qq || t.dataset.addr.indexOf(qq) > -1);
       });
       vis.sort(function (a, b) {
         if (st.s === 'address') return a.dataset.addr.localeCompare(b.dataset.addr, undefined, { numeric: true });
-        return rank[a.dataset.state] - rank[b.dataset.state] || (+a.dataset.rank) - (+b.dataset.rank);
+        return rank[a.dataset.sstate] - rank[b.dataset.sstate] || (+a.dataset.rank) - (+b.dataset.rank);
       });
       if (st.g) vis.sort(function (a, b) { return a.dataset.zip.localeCompare(b.dataset.zip); });
       var pages = st.p ? Math.max(1, Math.ceil(vis.length / PER)) : 1; if (pageNo > pages) pageNo = pages;

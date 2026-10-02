@@ -211,24 +211,7 @@ a.sum-chip.link{border-color:var(--line);color:var(--link);font-weight:600}
 .map-sheet .hero-inner{padding:12px 12px 0 16px}
 .map-sheet .actions{margin-left:-16px}
 
-/* Portfolio tiles */
-.tile{
-  margin:8px var(--pad);background:var(--surface);border:1px solid var(--line);
-  border-radius:var(--r-card);padding:14px;display:flex;justify-content:space-between;
-  align-items:center;gap:12px;min-height:72px;box-shadow:var(--shadow);position:relative;overflow:hidden
-}
-.tile::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--line)}
-.tile.rail-restore::before{background:var(--st-restore)}
-.tile.rail-on::before{background:var(--st-on)}
-.tile.rail-planned::before{background:var(--st-planned)}
-.tile.rail-off::before{background:var(--st-off)}
-.tile .t-addr{font-size:14px;font-weight:600;color:var(--ink)}
-.tile .t-status{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:28px;margin:2px 0}
-.tile .t-status.restore{color:var(--st-restore)}
-.tile .t-status.on{color:var(--st-on)}
-.tile .t-status.planned{color:var(--st-planned)}
-.tile .t-sub{font-size:12px;color:var(--ink-3);margin-top:2px}
-.tile .tile-right{flex-shrink:0}
+/* (round 8: portfolio tiles removed, F7 uses the shared .cps card) */
 
 .stub-toast{
   display:none;position:fixed;left:50%;bottom:28px;transform:translateX(-50%);
