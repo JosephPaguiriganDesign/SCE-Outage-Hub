@@ -17,19 +17,27 @@
   var view = q.get('view');
   if (view === '01') pos = 'below-buttons'; else if (view === '05') pos = 'above-search';
   if (POS.indexOf(pos) < 0) pos = 'below-status';
+  /* ---- Search position: ONE config value, HX_CONFIG.searchPosition (hierarchy.js header).
+          'above-status' (default: header, search, status card, advisory, buttons) | 'below-advisory' (round-2 status-first order).
+          ?search=below (or below-advisory) / ?search=above overrides for review. ---- */
+  var sq = q.get('search'), spos = CFG.searchPosition || 'above-status';
+  if (sq === 'below' || sq === 'below-advisory') spos = 'below-advisory'; else if (sq === 'above' || sq === 'above-status') spos = 'above-status';
+  if (spos !== 'below-advisory') spos = 'above-status';
   var main = $('.ut-main');
   var banner = q.get('banner') || CFG.bannerPosition || 'below-status';
-  $$('.ut-main').forEach(function (m) { m.setAttribute('data-adv', pos); m.setAttribute('data-banner', banner); });
+  $$('.ut-main').forEach(function (m) { m.setAttribute('data-search', spos); m.setAttribute('data-adv', pos); m.setAttribute('data-banner', banner); });
   var act = q.get('advisory');
   if (act === 'off' || (act == null && CFG.advisoryActive === 'off')) root.setAttribute('data-advisory', 'off');
   else root.setAttribute('data-advisory', 'on');
   function syncPosButtons() {
     $$('[data-adv-set]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-adv-set') === (main && main.getAttribute('data-adv')))); });
     $$('[data-advisory-set]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-advisory-set') === root.getAttribute('data-advisory'))); });
+    $$('[data-search-set]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-search-set') === (main && main.getAttribute('data-search')))); });
   }
   d.addEventListener('click', function (e) {
-    var b = e.target.closest ? e.target.closest('[data-adv-set],[data-advisory-set]') : null; if (!b) return;
+    var b = e.target.closest ? e.target.closest('[data-adv-set],[data-advisory-set],[data-search-set]') : null; if (!b) return;
     if (b.hasAttribute('data-adv-set')) $$('.ut-main').forEach(function (m) { m.setAttribute('data-adv', b.getAttribute('data-adv-set')); });
+    if (b.hasAttribute('data-search-set')) $$('.ut-main').forEach(function (m) { m.setAttribute('data-search', b.getAttribute('data-search-set')); });
     if (b.hasAttribute('data-advisory-set')) root.setAttribute('data-advisory', b.getAttribute('data-advisory-set'));
     syncPosButtons();
   });

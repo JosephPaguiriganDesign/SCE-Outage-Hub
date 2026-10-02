@@ -74,8 +74,22 @@ body{background:#fff}
 .ut-main[data-adv="below-buttons"]>[data-slot="status"]{order:20}
 .ut-main[data-adv="below-buttons"]>[data-slot="actions"]{order:30}
 .ut-main[data-adv="below-buttons"]>[data-slot="adv"]{order:40}
+/* ---- SEARCH POSITION (round 3): ONE config value HX_CONFIG.searchPosition, set as [data-search] on .ut-main by status-card.js.
+   'above-status' (default) = header, search, status card, advisory row, buttons ...   'below-advisory' = round-2 status-first order (rules above).
+   Combined with advisoryPosition: below-status (default) | above-search (advisory, search, status) | below-buttons (search, status, buttons, advisory). ---- */
+.ut-main[data-search="above-status"]>[data-slot="search"]{order:5}
+.ut-main[data-search="above-status"][data-adv="above-search"]>[data-slot="adv"]{order:2}
+.ut-main[data-search="above-status"][data-adv="above-search"]>[data-slot="search"]{order:5}
+.ut-main[data-search="above-status"][data-adv="above-search"]>[data-slot="status"]{order:10}
+.ut-main[data-search="above-status"][data-adv="above-search"]>[data-slot="banner"]{order:25}
+.ut-main[data-search="above-status"][data-adv="below-buttons"]>[data-slot="search"]{order:5}
+.ut-main[data-search="above-status"][data-adv="below-buttons"]>[data-slot="status"]{order:10}
+.ut-main[data-search="above-status"][data-adv="below-buttons"]>[data-slot="banner"]{order:25}
+.ut-main[data-search="above-status"][data-adv="below-buttons"]>[data-slot="actions"]{order:30}
+.ut-main[data-search="above-status"][data-adv="below-buttons"]>[data-slot="adv"]{order:40}
 /* banner above the status card (option) */
 .ut-main[data-banner="above-status"]>[data-slot="banner"]{order:5}
+.ut-main[data-search="above-status"][data-banner="above-status"]>[data-slot="banner"]{order:4}
 /* advisory only when active; hide cleanly otherwise */
 html[data-advisory="off"] .ut-main>[data-slot="adv"]{display:none}
 

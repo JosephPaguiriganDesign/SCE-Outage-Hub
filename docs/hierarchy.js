@@ -6,6 +6,7 @@
   /* ==== PLACEHOLDERS: the ONE place to change unresolved values. Mirrors open-items.md. ====
      HTML has the same strings baked in for no-JS; this block overwrites every [data-ph="key"] on load. */
   var HX_CONFIG = {
+  "searchPosition": "above-status",
   "advisoryPosition": "below-status",
   "advisoryActive": "on",
   "bannerPosition": "below-status",
