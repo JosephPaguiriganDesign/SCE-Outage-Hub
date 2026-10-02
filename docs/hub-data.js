@@ -9,7 +9,7 @@ window.HUB_DATA = {
  "customer": {
   "name": "Elena Marquez",
   "account": "3105823230",
-  "account_m": "••••3230",
+  "account_m": "••••••3230",
   "account_last4": "3230"
  },
  "props": {
@@ -25,7 +25,7 @@ window.HUB_DATA = {
    "meter": "51836038",
    "circuit": "LAKE-1247",
    "link": "S1-active.html",
-   "ert": "Back by 4:45 PM",
+   "ert": "Back by 4:45 PM PT",
    "when": "",
    "psps": null,
    "label": "1847 Maple Ave",
@@ -46,7 +46,7 @@ window.HUB_DATA = {
    "meter": "40712216",
    "circuit": "ALTA-0931",
    "link": "S1-active.html",
-   "ert": "Back by 6:30 PM",
+   "ert": "Back by 6:30 PM PT",
    "when": "",
    "psps": null,
    "label": "2210 Lincoln Ave",
@@ -131,8 +131,8 @@ window.HUB_DATA = {
    "circuit": "GLEN-0614",
    "link": "F0-signed.html",
    "ert": "",
-   "when": "Fri Sep 11 · 9:00 AM – 1:00 PM",
-   "psps": null,
+   "when": "Fri 9:00 AM – 1:00 PM PT",
+   "psps": "scheduled",
    "label": "412 Elm St",
    "detail": "",
    "full": "412 Elm St, Glendale, CA 91205",
@@ -152,7 +152,7 @@ window.HUB_DATA = {
    "circuit": "LAKE-1102",
    "link": "F0-signed.html",
    "ert": "",
-   "when": "Sun Sep 13 · 8:00 AM – 12:00 PM",
+   "when": "Sun 8:00 AM – 12:00 PM PT",
    "psps": null,
    "label": "385 Sycamore Dr",
    "detail": "",
@@ -173,7 +173,7 @@ window.HUB_DATA = {
    "circuit": "SOLEDAD-2208",
    "link": "S6-psps-watch.html",
    "ert": "",
-   "when": "PSPS Watch · may begin Thu Sep 10 · 8:00 PM",
+   "when": "May begin Thu 8:00 PM PT",
    "psps": "potential",
    "label": "891 Canyon Rd",
    "detail": "",
@@ -194,7 +194,7 @@ window.HUB_DATA = {
    "circuit": "WRIGHT-0407",
    "link": "F10-psps-banner.html",
    "ert": "",
-   "when": "PSPS Warning · may begin Thu Sep 10 · 11:00 PM",
+   "when": "May begin Thu 11:00 PM PT",
    "psps": "likely",
    "label": "1126 Pine Ln",
    "detail": "",
@@ -215,7 +215,7 @@ window.HUB_DATA = {
    "circuit": "SOPAS-0716",
    "link": "S9-restored.html",
    "ert": "",
-   "when": "Restored today 8:52 AM",
+   "when": "Restored today 8:52 AM PT",
    "psps": null,
    "label": "1132 Magnolia Ave",
    "detail": "",
@@ -236,7 +236,7 @@ window.HUB_DATA = {
    "circuit": "LAKE-0988",
    "link": "S9-restored.html",
    "ert": "",
-   "when": "Restored today 9:14 AM",
+   "when": "Restored today 9:14 AM PT",
    "psps": null,
    "label": "640 Mountain View Ave",
    "detail": "",
@@ -328,7 +328,7 @@ window.HUB_DATA = {
   "short": "1338 Cedar Ave, Whittier",
   "meter_m": "••••3917",
   "service_account": "3105824821",
-  "service_account_m": "••••4821"
+  "service_account_m": "••••••4821"
  },
  "outage": {
   "id": "OUT-2026-094821",
@@ -351,7 +351,7 @@ window.HUB_DATA = {
  "prior": {
   "id": "OUT-2026-093377",
   "cause": "Tree branch on line",
-  "day": "Wed Sep 9",
+  "day": "Wed",
   "reported": "4:24 PM",
   "onsite": "5:30 PM",
   "restored": "6:42 PM",
@@ -359,27 +359,30 @@ window.HUB_DATA = {
   "dow": "Wed"
  },
  "plan": {
-  "elm": {
-   "id": "PLN-2026-031104",
-   "window": "Fri Sep 11 · 9:00 AM – 1:00 PM PT",
-   "ics_start": "20260911T090000",
-   "ics_end": "20260911T130000",
-   "duration": "4 hours",
-   "work": "Pole replacement and line maintenance",
-   "updated": "9:05 AM"
-  },
   "maple": {
    "id": "PLN-2026-031187",
-   "window": "Sat Sep 12 · 9:00 AM – 1:00 PM PT",
+   "window": "Sat 9:00 AM – 1:00 PM PT",
    "ics_start": "20260912T090000",
    "ics_end": "20260912T130000",
    "duration": "4 hours",
    "work": "Pole replacement and line maintenance"
   }
  },
+ "sched": {
+  "elm": {
+   "id": "PSPS-2026-007316",
+   "window": "Fri 9:00 AM – 1:00 PM PT",
+   "ics_start": "20260911T090000",
+   "ics_end": "20260911T130000",
+   "duration": "4 hours",
+   "reason": "Red Flag Warning · strong NE winds forecast in the Glendale foothills",
+   "updated": "9:05 AM",
+   "circuit": "GLEN-0614"
+  }
+ },
  "psps": {
-  "window": "Thu Sep 10 · 8:00 PM PT",
-  "window_short": "Thu Sep 10 · 8:00 PM",
+  "window": "Thu 8:00 PM PT",
+  "window_short": "Thu 8:00 PM",
   "ics_start": "20260910T200000",
   "ics_end": "20260911T200000",
   "updated": "10:15 AM",
@@ -389,14 +392,18 @@ window.HUB_DATA = {
   "circuit": "SOLEDAD-2208",
   "duration": "About 24–48 hours"
  },
+ "likely": {
+  "window": "Thu 11:00 PM PT",
+  "prop": "wrightwood"
+ },
  "event": {
   "name": "Santa Ana Winds",
   "day": 2,
   "of": 3,
   "customers": "11,486",
   "areas": 9,
-  "fire_from": "6:00 PM Wed",
-  "fire_to": "10:00 PM Fri",
+  "fire_from": "Wed 6:00 PM",
+  "fire_to": "Fri 10:00 PM PT",
   "bucket_limit": "35 mph",
   "updated": "10:28 AM"
  },
@@ -505,13 +512,13 @@ window.HUB_DATA = {
     "note": ""
    },
    "F0-signed.html": {
-    "active": false,
-    "kind": "none",
+    "active": true,
+    "kind": "fire",
     "key": "glendale",
-    "reason": "Elm St (Glendale) has a planned outage only; Glendale fire risk is Low, so no heat/fire event applies.",
-    "title": "Local Weather",
-    "sub": "Fire Risk: Low",
-    "note": ""
+    "reason": "Round 6: Elm St (Glendale) is now a PSPS shutoff scheduled in advance, so the Glendale Red Flag / fire-weather alert is its cause and the row shows (flipped from OFF in round 5).",
+    "title": "Fire Weather Alert",
+    "sub": "Fire Risk: High",
+    "note": "Red Flag Warning for the Glendale foothills until 2 PM Fri · gusts to 47 mph may cause outages"
    },
    "F0-hub-home.html": {
     "active": true,
@@ -570,13 +577,13 @@ window.HUB_DATA = {
     "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
    },
    "elm": {
-    "active": false,
-    "kind": "none",
+    "active": true,
+    "kind": "fire",
     "key": "glendale",
-    "reason": "Planned-only address (Glendale, fire risk Low): no heat/fire event.",
-    "title": "Local Weather",
-    "sub": "Fire Risk: Low",
-    "note": ""
+    "reason": "Round 6: Elm St is a scheduled PSPS shutoff in Glendale; the Red Flag / fire-weather alert is the reason (flipped from OFF in round 5).",
+    "title": "Fire Weather Alert",
+    "sub": "Fire Risk: High",
+    "note": "Red Flag Warning for the Glendale foothills until 2 PM Fri · gusts to 47 mph may cause outages"
    },
    "canyon": {
     "active": true,
@@ -637,7 +644,7 @@ window.HUB_DATA = {
  "area": {
   "label": "Porterville area (approximate)",
   "meter_search": "4829173",
-  "ert": "Back by 7:15 PM",
+  "ert": "Back by 7:15 PM PT",
   "updated": "10:28 AM",
   "zip": "93257"
  },
@@ -675,13 +682,14 @@ window.HUB_DATA = {
    "title": "Fire Weather Alert"
   },
   "glendale": {
-   "temp": "78°F",
-   "hum": "45%",
-   "wind": "W 6 mph",
-   "gust": "12 mph",
-   "note": "No weather impact expected on service.",
-   "risk": "Low",
-   "title": "Local Weather"
+   "temp": "89°F",
+   "hum": "11%",
+   "wind": "NE 29 mph",
+   "gust": "47 mph",
+   "banner": "Red Flag Warning for the Glendale foothills until 2 PM Fri · gusts to 47 mph may cause outages",
+   "note": "Strong, dry wind is why a shutoff is scheduled.",
+   "risk": "High",
+   "title": "Fire Weather Alert"
   },
   "whittier": {
    "temp": "84°F",
@@ -761,14 +769,6 @@ window.HUB_DATA = {
    "r": 4200,
    "label": "Active Shut Off"
   },
-  "likely": {
-   "center": [
-    34.3606,
-    -117.635
-   ],
-   "r": 5200,
-   "label": "Likely Shut Off"
-  },
   "potential": {
    "center": [
     34.4208,
@@ -776,6 +776,14 @@ window.HUB_DATA = {
    ],
    "r": 3600,
    "label": "Potential Shut Off"
+  },
+  "likely": {
+   "center": [
+    34.3606,
+    -117.635
+   ],
+   "r": 5200,
+   "label": "Likely Shut Off"
   },
   "scheduled": {
    "center": [
@@ -825,7 +833,7 @@ window.HUB_DATA = {
   },
   {
    "addr": "318 Tehachapi Blvd, Tehachapi",
-   "when": "Mon Sep 7",
+   "when": "Monday",
    "state": "on",
    "q": "Tehachapi Blvd"
   }
@@ -860,5 +868,92 @@ window.HUB_DATA = {
   "title": "Santa Ana Winds – Day 2 of 3",
   "text": "11,486 homes and businesses are without power across 9 areas."
  },
- "fire": "Increased fire risk conditions are expected from <b>6:00 PM Wed</b> until <b>10:00 PM Fri</b> (estimated)"
+ "fire": "Increased fire risk conditions are expected from <b>Wed 6:00 PM</b> until <b>Fri 10:00 PM PT</b> (estimated)",
+ "status": {
+  "normal": {
+   "header": "ON",
+   "label": "SERVICE NORMAL",
+   "legend": "Service Normal",
+   "chip": "",
+   "icon": "on"
+  },
+  "restored": {
+   "header": "ON",
+   "label": "POWER RESTORED",
+   "legend": "Power Restored",
+   "chip": "",
+   "icon": "on"
+  },
+  "restoring": {
+   "header": "ON",
+   "label": "POWER BACK, EVENT NOT OVER",
+   "legend": "Power Back, Event Not Over",
+   "chip": "PSPS",
+   "icon": "on"
+  },
+  "active": {
+   "header": "OFF",
+   "label": "ACTIVE OUTAGE",
+   "legend": "Active Outage",
+   "chip": "Repair",
+   "icon": "active"
+  },
+  "psps_active": {
+   "header": "OFF",
+   "label": "ACTIVE SHUT OFF",
+   "legend": "Active Shut Off",
+   "chip": "PSPS",
+   "icon": "active"
+  },
+  "potential": {
+   "header": "ON",
+   "label": "POTENTIAL SHUT OFF",
+   "legend": "Potential Shut Off",
+   "chip": "PSPS",
+   "icon": "potential"
+  },
+  "likely": {
+   "header": "ON",
+   "label": "LIKELY SHUT OFF",
+   "legend": "Likely Shut Off",
+   "chip": "PSPS",
+   "icon": "likely"
+  },
+  "scheduled": {
+   "header": "ON",
+   "label": "SCHEDULED SHUT OFF",
+   "legend": "Scheduled Shut Off",
+   "chip": "PSPS",
+   "icon": "scheduled"
+  },
+  "disconnected": {
+   "header": "OFF",
+   "label": "SERVICE DISCONNECTED",
+   "legend": "Service Disconnected",
+   "chip": "",
+   "icon": "disc"
+  },
+  "planned": {
+   "header": "ON",
+   "label": "PLANNED OUTAGE",
+   "legend": "Planned Outage",
+   "chip": "Planned",
+   "icon": "planned"
+  }
+ },
+ "status_order": [
+  "active",
+  "potential",
+  "likely",
+  "scheduled"
+ ],
+ "status_colors": {
+  "active": "#BA0000",
+  "potential": "#CC6006",
+  "likely": "#DE6C0C",
+  "scheduled": "#0459D2",
+  "on": "#0C7E3C",
+  "disc": "#5F6672",
+  "planned": "#0459D2"
+ }
 };

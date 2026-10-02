@@ -168,7 +168,7 @@ html,body,button,input,textarea,select{font-family:var(--md-ref-typeface-plain)}
   --sce-status-scheduled-tint:#E8F0FD;/* assumption */
   --sce-status-progress:#0459D2;      /* IN PROGRESS / current step */
   --sce-status-complete:#107E3F;      /* COMPLETED step */
-  --sce-status-pending:#8A9099;       /* Not Started */
+  --sce-status-pending:#6B7380;       /* Not Started (round 6: was #8A9099, white numeral 3.22:1 -> 4.78:1) */
   --sce-status-na:#5B6575;            /* disconnected (assumption) */
   /* look and feel from the tested screens (status colours, header/footer frame) */
   /* Round 2: the mocks are design mocks only. Shape, link, ink and CTA values come from the prior M3/v0.03 system, not the mocks. */

@@ -1,4 +1,4 @@
-/*! CONH hi-fi — Round 1 status component behaviours (menu, Show/Hide Details, advisory position).
+/*! CONH hi-fi — Round 1 status component behaviours (menu, View/Hide Details, advisory position).
    Static, deferred, no dependencies. Core answer is already in the HTML (no-JS shows the default state). */
 (function () {
   'use strict';
@@ -85,7 +85,7 @@
     card.setAttribute('data-exp', open ? '1' : '0');
     $$('[data-cps-toggle]', card).forEach(function (b) {
       b.setAttribute('aria-expanded', String(open));
-      var l = $('.lbl', b); if (l) l.textContent = open ? (b.getAttribute('data-open') || 'Hide Details') : (b.getAttribute('data-closed') || 'Show Details');
+      var l = $('.lbl', b); if (l) l.textContent = open ? (b.getAttribute('data-open') || 'Hide Details') : (b.getAttribute('data-closed') || 'View Details');
     });
   }
   if (view === '01' || view === '05') $$('.cps').forEach(function (c) { if ($('[data-cps-toggle]', c)) setExp(c, view === '01'); });
