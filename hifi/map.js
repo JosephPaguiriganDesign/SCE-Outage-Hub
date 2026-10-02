@@ -3,11 +3,14 @@
 (function () {
   'use strict';
   var LAYERS = {
-    active:    { center: [33.9660, -118.2420], r: 1900, color: '#BA0000', fill: 0.22, label: 'Active Shut Off' },
-    likely:    { center: [33.9560, -118.3500], r: 3400, color: '#DE6C0C', fill: 0.22, label: 'Likely Shut Off' },
-    potential: { center: [33.9680, -118.1780], r: 1250, color: '#A8520A', fill: 0.30, label: 'Potential Shut Off' },
-    scheduled: { center: [33.9270, -118.2470], r: 2100, color: '#0459D2', fill: 0.22, label: 'Scheduled Shut Off' }
+    active:    { center: [0, 0], r: 1, color: '#BA0000', fill: 0.22 },
+    likely:    { center: [0, 0], r: 1, color: '#DE6C0C', fill: 0.22 },
+    potential: { center: [0, 0], r: 1, color: '#A8520A', fill: 0.30 },
+    scheduled: { center: [0, 0], r: 1, color: '#0459D2', fill: 0.22 }
   };
+  /* footprints (center / radius / label) come from hub-data.js (window.HUB_DATA.maplayers): the single data source */
+  var HM = (window.HUB_DATA && window.HUB_DATA.maplayers) || {};
+  Object.keys(LAYERS).forEach(function (k) { if (HM[k]) { LAYERS[k].center = HM[k].center; LAYERS[k].r = HM[k].r; LAYERS[k].label = HM[k].label; } });
   var ORDER = ['active', 'likely', 'potential', 'scheduled'];
   var on = { active: true, likely: false, potential: false, scheduled: false };
   var groups = {}, map = null, ok = false;
@@ -29,7 +32,7 @@
       b = b ? b.extend(gb) : L.latLngBounds(gb.getSouthWest(), gb.getNorthEast());
     });
     if (b && b.isValid()) map.fitBounds(b, { padding: [28, 28], maxZoom: 14, animate: true });
-    else map.setView([33.96, -118.25], 11, { animate: true });
+    else map.setView(LAYERS.active.center, 11, { animate: true });
   }
   function syncLayers() {
     syncSwitches();

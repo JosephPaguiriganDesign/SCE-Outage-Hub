@@ -32,7 +32,7 @@
 };
   window.HX_CONFIG = HX_CONFIG;
 
-  var HX_PROPS = [{"id": "maple", "addr": "1847 Maple Ave, Pasadena, CA 91104"}, {"id": "lincoln", "addr": "2210 Lincoln Ave, Altadena, CA 91001"}, {"id": "elm", "addr": "412 Elm St, Glendale, CA 91205"}, {"id": "canyon", "addr": "891 Canyon Rd, Santa Clarita, CA 91387"}, {"id": "orange", "addr": "77 Orange Grove Blvd, Pasadena, CA 91103"}, {"id": "fairoaks", "addr": "1520 Fair Oaks Ave, South Pasadena, CA 91030"}, {"id": "mtnview", "addr": "640 Mountain View Ave, Pasadena, CA 91103"}, {"id": "lake", "addr": "55 N Lake Ave #210, Pasadena, CA 91101"}, {"id": "colorado", "addr": "1200 E Colorado Blvd, Pasadena, CA 91106"}, {"id": "foothill", "addr": "3300 Foothill Blvd, La Crescenta, CA 91214"}, {"id": "green", "addr": "18 W Green St, Pasadena, CA 91105"}, {"id": "brand", "addr": "901 Brand Blvd, Glendale, CA 91204"}];
+  var HX_PROPS = (window.HUB_DATA ? Object.keys(HUB_DATA.props).map(function (k) { var p = HUB_DATA.props[k]; return { id: p.id, addr: p.full }; }).concat([{ id: HUB_DATA.disc.id, addr: HUB_DATA.disc.full }]) : []);
   var d = document, root = d.documentElement;
   var q = new URLSearchParams(location.search);
   function $(s, r) { return (r || d).querySelector(s); }
@@ -120,7 +120,7 @@
     if (a === 'ert-change') {
       setF('ertText', 'Back by 2:30 PM'); var n = $('#ertNote'); if (n) n.hidden = true;
       snack('Estimate refreshing…');
-      setTimeout(function () { showErtChange('2:30 PM', 'Back by 4:45 PM'); }, 900);
+      setTimeout(function () { showErtChange(HUB_DATA.outage.ert_was, 'Back by ' + HUB_DATA.outage.ert); }, 900);
     } else if (a === 'refresh-fail') setStale(true);
     else if (a === 'refresh-ok') setStale(false);
     else if (a === 'mb-on') setMB(true);
@@ -144,7 +144,7 @@
   d.addEventListener('change', function (e) {
     var t = e.target; if (t.matches && t.matches('input[data-act="remind"]')) snack(t.checked ? 'Reminder on (prototype)' : 'Reminder off');
   });
-  if (q.get('ert') === 'changed') showErtChange('2:30 PM');
+  if (q.get('ert') === 'changed') showErtChange(HUB_DATA.outage.ert_was);
   if (q.get('state') === 'refresh-failed') setStale(true);
   if (q.get('mb') === '1') setMB(true);
   if (q.get('lookback') === 'expired') root.setAttribute('data-lookback', 'expired');
@@ -152,12 +152,10 @@
   else if (root.getAttribute('data-page') === 's9') setPsps('');
 
   /* ==== S11: weather / detail content lazy-loaded after the core answer, off the critical path ==== */
-  var WX = {
-    pasadena: { c: [['98°F', 'Temp'], ['14%', 'Humidity'], ['W 12 mph', 'Wind']], note: 'Heat raises demand and can cause outages.' },
-    santaclarita: { c: [['91°F', 'Temp'], ['9%', 'Humidity'], ['NE 34 mph', 'Wind']], note: 'Strong, dry wind is why a shutoff may be needed or stay active.' },
-    glendale: { c: [['78°F', 'Temp'], ['45%', 'Humidity'], ['W 6 mph', 'Wind']], note: 'No weather impact expected on service.' },
-    forecast: { c: [['Thu', 'High fire risk'], ['Fri', 'High fire risk'], ['Sat', 'Elevated']], note: null }
-  };
+  /* all values come from hub-data.js (window.HUB_DATA.weather), the single data source */
+  var HW = HUB_DATA.weather;
+  function wxOf(k) { var w = HW[k]; return { c: [[w.temp, 'Temp'], [w.hum, 'Humidity'], [w.wind, 'Wind']], note: w.note }; }
+  var WX = { pasadena: wxOf('pasadena'), santaclarita: wxOf('santaclarita'), agoura: wxOf('agoura'), glendale: wxOf('glendale'), forecast: { c: HW.forecast, note: null } };
   function loadWeather() {
     $$('[data-lazy-weather]').forEach(function (h) {
       if (h.getAttribute('data-loaded')) return; var k = h.getAttribute('data-lazy-weather'), w = WX[k] || WX.pasadena;
@@ -192,7 +190,7 @@
       var af = $('#audField'); if (af) af.value = ra;
       var sel = $('#propSel');
       if (sel) {
-        var list = ra === 'multi' ? HX_PROPS : HX_PROPS.filter(function (p) { return ['maple', 'lake', 'elm', 'canyon'].indexOf(p.id) > -1; });
+        var list = ra === 'multi' ? HX_PROPS : HX_PROPS.filter(function (p) { return HUB_DATA.report_props.signed.indexOf(p.id) > -1; });
         list.forEach(function (p) { var o = d.createElement('option'); o.value = p.id; o.textContent = p.addr; sel.appendChild(o); });
         var want = q.get('prop') || 'maple'; if (!list.some(function (p) { return p.id === want; })) want = list[0].id; sel.value = want;
       }
@@ -209,7 +207,7 @@
       if (form) form.addEventListener('submit', function () { try { var p = sel && sel.options[sel.selectedIndex]; store('conh_rpt_addr', p ? p.textContent : ($('#loc') ? $('#loc').value : '')); } catch (x) {} });
     } else {
       setIntent(q.get('intent') || 'power', false);
-      var addr = store('conh_rpt_addr') || q.get('loc') || '1847 Maple Ave, Pasadena, CA 91104';
+      var addr = store('conh_rpt_addr') || q.get('loc') || HUB_DATA.props.maple.full;
       var it = q.get('intent') || 'power';
       var det = $('#cfDetail'), tt = $('#cfTitle');
       if (det) det.textContent = ({ power: 'Power out at ', downed: 'Downed power line at ', hazard: 'Hazard reported at ' })[it] + addr;
@@ -236,17 +234,25 @@
   if (d.body.getAttribute('data-page') === 'f1') {
     var inp = $('.hx-search input'), term = (q.get('q') || '').trim();
     if (inp && term) inp.value = term;
-    var key = 'maple', low = term.toLowerCase();
+    var key = 'maple', low = term.toLowerCase(), gmatch = null;
+    /* guest lookups outside the signed-in portfolio (Orange, Riverside, Tulare, Kern, Ventura counties) come from HUB_DATA.guest */
+    function guestMatch(t) {
+      var g = HUB_DATA.guest, k, city, street;
+      for (k in g) { city = g[k].full.split(',')[1].trim().toLowerCase(); street = g[k].short.split(' ')[1].toLowerCase();
+        if (t.indexOf(city) > -1 || t.indexOf(street) > -1 || t.indexOf(g[k].full.slice(-5)) > -1) return g[k]; }
+      return null;
+    }
     if (term) {
       if (/maple/.test(low)) key = 'maple';
       else if (/elm/.test(low)) key = 'elm';
       else if (/canyon|santa clarita/.test(low)) key = 'canyon';
-      else if (/colorado/.test(low)) key = 'on';
-      else if (/^out[-\s]?\d|093377|outage/.test(low)) key = 'restored';
+      else if ((gmatch = guestMatch(low))) key = 'on';
+      else if (/^out[-\s]?\d|outage/.test(low) || low.indexOf(HUB_DATA.prior.id.slice(-6)) > -1) key = 'restored';
       else if (/^\d{5,}$/.test(low.replace(/\s/g, ''))) key = 'area';
       else if (/brooklyn|new york|ny\b|chicago|texas|seattle|portland|las vegas|phoenix/.test(low)) key = 'oot';
       else key = 'none';
     }
+    if (gmatch) { var oc = $('[data-result="on"]'); if (oc) { oc.setAttribute('data-label', gmatch.full); $$('.cps-addr', oc).forEach(function (a) { a.textContent = gmatch.full; }); } }
     $$('[data-result]').forEach(function (x) { x.hidden = x.getAttribute('data-result') !== key; });
     var cur = $('[data-result="' + key + '"]'), lab = $('#gsLabel');
     if (cur && lab) lab.textContent = cur.getAttribute('data-label');
