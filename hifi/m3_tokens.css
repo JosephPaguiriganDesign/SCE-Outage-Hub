@@ -146,3 +146,35 @@
 }
 /* Font lock: Open Sans only — strips Roboto from the legacy fallback stack */
 html,body,button,input,textarea,select{font-family:var(--md-ref-typeface-plain)}
+
+/* ==========================================================================
+   Round 1 user-tested screens: STATUS TOKENS (appended to the token layer)
+   Values sampled from the tested hi-fi screens (01-05). Functional color only.
+   ========================================================================== */
+:root{
+  /* status: power / PSPS */
+  --sce-status-on:#0C7E3C;            /* ON text, ON icon, all-clear banner base */
+  --sce-status-on-border:#107E3F;
+  --sce-status-on-tint:#E7F2EC;
+  --sce-status-on-banner:#0F7337;     /* all-clear banner fill (screen 03) */
+  --sce-status-off:#BA0000;           /* OFF text, active shut off icon, red border */
+  --sce-status-off-tint:#F8E6E6;
+  --sce-status-off-banner:#A80000;    /* global red banner fill (screen 04) */
+  --sce-status-likely:#DE6C0C;        /* likely power shut off (triangle) */
+  --sce-status-potential:#CC6006;     /* potential power shut (circle) */
+  --sce-status-warn:#DE6C0C;
+  --sce-status-warn-tint:#FFF3E6;     /* assumption: not visible in sources */
+  --sce-status-scheduled:#0459D2;     /* scheduled shut off (calendar) */
+  --sce-status-scheduled-tint:#E8F0FD;/* assumption */
+  --sce-status-progress:#0459D2;      /* IN PROGRESS / current step */
+  --sce-status-complete:#107E3F;      /* COMPLETED step */
+  --sce-status-pending:#8A9099;       /* Not Started */
+  --sce-status-na:#5B6575;            /* disconnected (assumption) */
+  /* look and feel from the tested screens */
+  --sce-ut-radius:10px;               /* cards, buttons, search, map controls */
+  --sce-ut-radius-sm:8px;
+  --sce-ut-link:#1C77C5;
+  --sce-ut-cta-a:#FED141; --sce-ut-cta-b:#F0B324;  /* REPORT OUTAGE / VIEW OUTAGE STATUS gradient */
+  --sce-ut-footer:#111111;
+  --sce-ut-head-a:#002B58; --sce-ut-head-b:#0099CB; /* header gradient, left to right */
+}

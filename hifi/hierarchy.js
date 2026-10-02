@@ -6,6 +6,9 @@
   /* ==== PLACEHOLDERS: the ONE place to change unresolved values. Mirrors open-items.md. ====
      HTML has the same strings baked in for no-JS; this block overwrites every [data-ph="key"] on load. */
   var HX_CONFIG = {
+  "advisoryPosition": "below-status",
+  "advisoryActive": "on",
+  "bannerPosition": "below-status",
   "lookbackDays": "7",
   "refreshCadence": "May lag ~15–20 min",
   "forecastSource": "Forecast source not confirmed",
@@ -70,15 +73,14 @@
     if (store('conh_pending') === '1') { var pb = $('#pendingBadge'); if (pb) pb.classList.add('show'); }
   } catch (e) {}
 
-  /* ---- came from portfolio: header becomes "← Portfolio" ---- */
+  /* ---- came from portfolio: header gets a "‹ Portfolio" back link ---- */
   var prop = q.get('prop');
   if (q.get('from') === 'pf') {
-    var nm = $('.hub-header .row > .hub-name');
-    if (nm) {
-      var a = d.createElement('a'); a.href = 'F7-portfolio.html'; a.className = 'hub-name m3-nav';
-      a.style.cssText = 'margin:0;display:inline-flex;align-items:center;gap:6px;color:inherit';
-      a.innerHTML = '<span class="m3-nav-icon" aria-hidden="true">←</span>Portfolio';
-      nm.replaceWith(a); var hh = $('.hub-header'); if (hh) hh.classList.add('has-back');
+    var tt = $('.ut-title');
+    if (tt && !$('.ut-back', tt)) {
+      var a = d.createElement('a'); a.href = 'F7-portfolio.html'; a.className = 'ut-back'; a.setAttribute('data-back', '');
+      a.innerHTML = '<svg viewBox="0 0 10 14" aria-hidden="true" focusable="false"><path d="M8 1 2 7l6 6"/></svg>Portfolio';
+      tt.appendChild(a);
     }
   }
 
