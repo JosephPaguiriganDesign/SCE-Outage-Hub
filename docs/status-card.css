@@ -90,8 +90,12 @@ body{background:#fff}
 /* banner above the status card (option) */
 .ut-main[data-banner="above-status"]>[data-slot="banner"]{order:5}
 .ut-main[data-search="above-status"][data-banner="above-status"]>[data-slot="banner"]{order:4}
-/* advisory only when active; hide cleanly otherwise */
-html[data-advisory="off"] .ut-main>[data-slot="adv"]{display:none}
+/* advisory row ON/OFF (round 5): html[data-advisory] = auto (default: each row's data-scn flag, from hub_data.py) | on (force shown) | off (force hidden).
+   Hidden = display:none, so the row leaves the flex column and the 16px gaps close up (no empty slot); the rest of the order is untouched.
+   data-scn="none" = no location/weather to show (F1 out-of-area / no match) -> never shown, not even with ?adv=on. */
+.adv[data-scn="off"],.adv[data-scn="none"],html[data-advisory="off"] .adv[data-scn],html[data-advisory="off"] .ut-main>[data-slot="adv"]{display:none!important}
+html[data-advisory="on"] .adv[data-scn="off"]{display:block!important}
+html[data-advisory="on"] .adv[data-scn="none"]{display:none!important}
 
 /* ---- 3. search ----------------------------------------------------------- */
 .ut-search{margin:0 16px;display:flex;align-items:center;min-height:48px;background:#fff;border:1px solid #8D959F;border-radius:var(--sce-ut-radius-sm);padding:0}

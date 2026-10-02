@@ -406,6 +406,234 @@ window.HUB_DATA = {
  "report": {
   "ref": "RPT-2026-77401"
  },
+ "advisory": {
+  "config_default": "auto",
+  "values": [
+   "auto",
+   "on",
+   "off"
+  ],
+  "pages": {
+   "S1-active.html": {
+    "active": true,
+    "kind": "heat",
+    "key": "pasadena",
+    "reason": "Active outage on Maple Ave (Pasadena) during the Pasadena heat advisory; row is context only, the cause line stays \"Equipment failure\".",
+    "title": "Heat Advisory",
+    "sub": "Fire Risk: Elevated",
+    "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
+   },
+   "N1-active-planned.html": {
+    "active": true,
+    "kind": "heat",
+    "key": "pasadena",
+    "reason": "Maple is still an active outage during the heat advisory; the later planned outage does not change that.",
+    "title": "Heat Advisory",
+    "sub": "Fire Risk: Elevated",
+    "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
+   },
+   "N2-active-planned-restored.html": {
+    "active": true,
+    "kind": "heat",
+    "key": "pasadena",
+    "reason": "Same as N1: the current outage is active during the heat advisory (earlier restored event is history).",
+    "title": "Heat Advisory",
+    "sub": "Fire Risk: Elevated",
+    "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
+   },
+   "F2-active-detail.html": {
+    "active": true,
+    "kind": "heat",
+    "key": "pasadena",
+    "reason": "Guest detail of the active Maple outage during the Pasadena heat advisory.",
+    "title": "Heat Advisory",
+    "sub": "Fire Risk: Elevated",
+    "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
+   },
+   "S3-no-outage.html": {
+    "active": false,
+    "kind": "heat",
+    "key": "pasadena",
+    "reason": "All clear: dashboard shows no outage, so a heat row would imply a cause for a power-out we cannot see (and contradict \"Nothing Unusual Today\").",
+    "title": "Heat Advisory",
+    "sub": "Fire Risk: Elevated",
+    "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
+   },
+   "S6-psps-watch.html": {
+    "active": true,
+    "kind": "fire",
+    "key": "santaclarita",
+    "reason": "PSPS watch for Canyon Rd (Santa Clarita): the Red Flag / fire-weather alert is the reason for the watch.",
+    "title": "Fire Weather Alert",
+    "sub": "Fire Risk: High",
+    "note": "Red Flag Warning for the Santa Clarita Valley until 6 PM Fri · gusts to 52 mph may cause outages"
+   },
+   "S7-psps-active.html": {
+    "active": true,
+    "kind": "fire",
+    "key": "santaclarita",
+    "reason": "PSPS event still active (Canyon Rd, power temporarily back): Red Flag conditions continue.",
+    "title": "Fire Weather Alert",
+    "sub": "Fire Risk: High",
+    "note": "Red Flag Warning for the Santa Clarita Valley until 6 PM Fri · gusts to 52 mph may cause outages"
+   },
+   "S9-restored.html": {
+    "active": false,
+    "kind": "heat",
+    "key": "pasadena",
+    "reason": "Restored: good-news state, outage cause is known (equipment) so a heat row would imply a wrong cause; weather is still reachable from S12.",
+    "title": "Heat Advisory",
+    "sub": "Fire Risk: Elevated",
+    "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
+   },
+   "S12-weather.html": {
+    "active": true,
+    "kind": "heat",
+    "key": "pasadena",
+    "reason": "Weather-conditions screen: the collapsed row is the same alert the hero card expands on.",
+    "title": "Heat Advisory",
+    "sub": "Fire Risk: Elevated",
+    "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
+   },
+   "S13-disconnected.html": {
+    "active": false,
+    "kind": "none",
+    "key": "whittier",
+    "reason": "Disconnected service is not an outage; weather is irrelevant and would imply a cause.",
+    "title": "Local Weather",
+    "sub": "Fire Risk: Low",
+    "note": ""
+   },
+   "F0-signed.html": {
+    "active": false,
+    "kind": "none",
+    "key": "glendale",
+    "reason": "Elm St (Glendale) has a planned outage only; Glendale fire risk is Low, so no heat/fire event applies.",
+    "title": "Local Weather",
+    "sub": "Fire Risk: Low",
+    "note": ""
+   },
+   "F0-hub-home.html": {
+    "active": true,
+    "kind": "heat",
+    "key": "pasadena",
+    "reason": "Guest home: public regional alert (Pasadena heat advisory is in effect today); no address or outage is claimed, so no cause is implied.",
+    "title": "Heat Advisory",
+    "sub": "Fire Risk: Elevated",
+    "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
+   },
+   "F0-multi.html": {
+    "active": true,
+    "kind": "fire",
+    "key": "santaclarita",
+    "reason": "Multi-property portfolio with PSPS-affected addresses: Red Flag / Santa Ana wind event is in effect.",
+    "title": "Fire Weather Alert",
+    "sub": "Fire Risk: High",
+    "note": "Red Flag Warning for the Santa Clarita Valley until 6 PM Fri · gusts to 52 mph may cause outages"
+   },
+   "F10-psps-banner.html": {
+    "active": true,
+    "kind": "fire",
+    "key": "santaclarita",
+    "reason": "PSPS banner / warning for Canyon Rd: Red Flag conditions.",
+    "title": "Fire Weather Alert",
+    "sub": "Fire Risk: High",
+    "note": "Red Flag Warning for the Santa Clarita Valley until 6 PM Fri · gusts to 52 mph may cause outages"
+   },
+   "P1-psps-shutoff.html": {
+    "active": true,
+    "kind": "fire",
+    "key": "agoura",
+    "reason": "Active PSPS shut off at Agoura Hills: the fire-weather alert is the known cause.",
+    "title": "Fire Weather Alert",
+    "sub": "Fire Risk: High",
+    "note": ""
+   },
+   "F1-lookup-result.html": {
+    "active": true,
+    "kind": "heat",
+    "key": "pasadena",
+    "reason": "Guest lookup: default result is Maple (active outage, Pasadena heat advisory). The flag follows the shown result, see ADVISORY_F1.",
+    "title": "Heat Advisory",
+    "sub": "Fire Risk: Elevated",
+    "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
+   }
+  },
+  "f1": {
+   "maple": {
+    "active": true,
+    "kind": "heat",
+    "key": "pasadena",
+    "reason": "Active outage on Maple Ave during the Pasadena heat advisory.",
+    "title": "Heat Advisory",
+    "sub": "Fire Risk: Elevated",
+    "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
+   },
+   "elm": {
+    "active": false,
+    "kind": "none",
+    "key": "glendale",
+    "reason": "Planned-only address (Glendale, fire risk Low): no heat/fire event.",
+    "title": "Local Weather",
+    "sub": "Fire Risk: Low",
+    "note": ""
+   },
+   "canyon": {
+    "active": true,
+    "kind": "fire",
+    "key": "santaclarita",
+    "reason": "PSPS-potential address (Santa Clarita): Red Flag conditions.",
+    "title": "Fire Weather Alert",
+    "sub": "Fire Risk: High",
+    "note": "Red Flag Warning for the Santa Clarita Valley until 6 PM Fri · gusts to 52 mph may cause outages"
+   },
+   "on": {
+    "active": false,
+    "kind": "none",
+    "key": "g_{guest}",
+    "reason": "Guest lookup of a home with power on and no weather event at that location.",
+    "title": "",
+    "sub": "",
+    "note": ""
+   },
+   "restored": {
+    "active": false,
+    "kind": "heat",
+    "key": "pasadena",
+    "reason": "Restored outage lookup: event over, cause known; no row.",
+    "title": "Heat Advisory",
+    "sub": "Fire Risk: Elevated",
+    "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
+   },
+   "area": {
+    "active": false,
+    "kind": "none",
+    "key": "g_tulare",
+    "reason": "Area-level (meter) match: cause unknown and no location-specific event, so no row.",
+    "title": "Local Weather",
+    "sub": "Fire Risk: Moderate",
+    "note": ""
+   },
+   "oot": {
+    "active": false,
+    "kind": "none",
+    "key": null,
+    "reason": "Outside SCE service area: no location to give weather for.",
+    "title": "",
+    "sub": "",
+    "note": ""
+   },
+   "none": {
+    "active": false,
+    "kind": "none",
+    "key": null,
+    "reason": "No match: no location to give weather for.",
+    "title": "",
+    "sub": "",
+    "note": ""
+   }
+  }
+ },
  "area": {
   "label": "Porterville area (approximate)",
   "meter_search": "4829173",
@@ -451,7 +679,63 @@ window.HUB_DATA = {
    "hum": "45%",
    "wind": "W 6 mph",
    "gust": "12 mph",
-   "note": "No weather impact expected on service."
+   "note": "No weather impact expected on service.",
+   "risk": "Low",
+   "title": "Local Weather"
+  },
+  "whittier": {
+   "temp": "84°F",
+   "hum": "38%",
+   "wind": "SW 7 mph",
+   "gust": "13 mph",
+   "note": "No weather impact expected on service.",
+   "risk": "Low",
+   "title": "Local Weather"
+  },
+  "g_orange": {
+   "temp": "82°F",
+   "hum": "41%",
+   "wind": "W 7 mph",
+   "gust": "14 mph",
+   "note": "No weather impact expected on service.",
+   "risk": "Low",
+   "title": "Local Weather"
+  },
+  "g_kern": {
+   "temp": "88°F",
+   "hum": "22%",
+   "wind": "W 14 mph",
+   "gust": "24 mph",
+   "note": "No weather impact expected on service.",
+   "risk": "Moderate",
+   "title": "Local Weather"
+  },
+  "g_riverside": {
+   "temp": "91°F",
+   "hum": "24%",
+   "wind": "W 10 mph",
+   "gust": "19 mph",
+   "note": "No weather impact expected on service.",
+   "risk": "Moderate",
+   "title": "Local Weather"
+  },
+  "g_ventura": {
+   "temp": "74°F",
+   "hum": "58%",
+   "wind": "SW 8 mph",
+   "gust": "15 mph",
+   "note": "No weather impact expected on service.",
+   "risk": "Low",
+   "title": "Local Weather"
+  },
+  "g_tulare": {
+   "temp": "93°F",
+   "hum": "19%",
+   "wind": "NW 9 mph",
+   "gust": "16 mph",
+   "note": "No weather impact expected on service.",
+   "risk": "Moderate",
+   "title": "Local Weather"
   },
   "forecast": [
    [
