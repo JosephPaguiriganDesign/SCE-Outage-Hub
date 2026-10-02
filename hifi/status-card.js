@@ -12,7 +12,8 @@
           'below-status' (default) | 'above-search' (screen 05) | 'below-buttons' (screen 01).
           ?adv=<value> overrides for review. Advisory shows only when active: HX_CONFIG.advisoryActive / ?advisory=off. ---- */
   var POS = ['below-status', 'above-search', 'below-buttons'];
-  var pos = q.get('adv') || CFG.advisoryPosition || 'below-status';
+  var pa = q.get('adv');                                   /* ?adv= is a POSITION value, or the on/off override (below) */
+  var pos = POS.indexOf(pa) > -1 ? pa : (CFG.advisoryPosition || 'below-status');
   /* ?view=01 / ?view=05 reproduce tested screens 01 (expanded, advisory below buttons) and 05 (collapsed, advisory above search) */
   var view = q.get('view');
   if (view === '01') pos = 'below-buttons'; else if (view === '05') pos = 'above-search';
@@ -26,9 +27,27 @@
   var main = $('.ut-main');
   var banner = q.get('banner') || CFG.bannerPosition || 'below-status';
   $$('.ut-main').forEach(function (m) { m.setAttribute('data-search', spos); m.setAttribute('data-adv', pos); m.setAttribute('data-banner', banner); });
-  var act = q.get('advisory');
-  if (act === 'off' || (act == null && CFG.advisoryActive === 'off')) root.setAttribute('data-advisory', 'off');
-  else root.setAttribute('data-advisory', 'on');
+  /* ---- Advisory row ON/OFF (round 5). One mode value on <html data-advisory>:
+          'auto' = each page's own scenario flag (HUB_DATA.advisory, baked as data-scn on the row) | 'on' = force shown | 'off' = force hidden.
+          Precedence: ?advisory=auto|on|off  >  ?adv=on|off  >  prototype control (click)  >  HX_CONFIG.advisoryActive ('auto' default). ---- */
+  var MODES = ['auto', 'on', 'off'];
+  function mode_(v) { return MODES.indexOf(v) > -1 ? v : null; }
+  var amode = mode_(q.get('advisory')) || mode_(q.get('adv')) || mode_(CFG.advisoryActive) || 'auto';
+  root.setAttribute('data-advisory', amode);
+  /* F1: the row follows the shown lookup result (Maple heat, Canyon Red Flag; others none) */
+  var rk = root.getAttribute('data-result-key');
+  if (rk && window.HUB_DATA && HUB_DATA.advisory && HUB_DATA.advisory.f1) {
+    var sp = HUB_DATA.advisory.f1[rk], row = $('.adv[data-scn]');
+    if (sp && row) {
+      var wk = sp.key && sp.key.indexOf('{guest}') > -1 ? 'g_' + root.getAttribute('data-guest-key') : sp.key, w = wk && HUB_DATA.weather[wk];
+      row.setAttribute('data-scn', !w ? 'none' : (sp.active ? 'on' : 'off')); row.setAttribute('data-kind', sp.kind);
+      if (w) {
+        var t = $('.adv-t', row); if (t) t.innerHTML = '<b>' + w.title + '</b> \u00b7 Fire Risk: ' + w.risk;
+        var nt = $('.adv-note', row); if (nt) nt.textContent = (sp.kind !== 'none' && w.banner) ? w.banner : '';
+        var lz = $('[data-lazy-weather]', row); if (lz) { lz.setAttribute('data-lazy-weather', wk); lz.removeAttribute('data-loaded'); lz.innerHTML = '<div class="lazy-skel" role="status">Loading conditions\u2026</div>'; if (row.open) row.dispatchEvent(new Event('toggle')); }
+      }
+    }
+  }
   function syncPosButtons() {
     $$('[data-adv-set]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-adv-set') === (main && main.getAttribute('data-adv')))); });
     $$('[data-advisory-set]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-advisory-set') === root.getAttribute('data-advisory'))); });

@@ -8,7 +8,7 @@
   var HX_CONFIG = {
   "searchPosition": "above-status",
   "advisoryPosition": "below-status",
-  "advisoryActive": "on",
+  "advisoryActive": "auto",
   "bannerPosition": "below-status",
   "lookbackDays": "7",
   "refreshCadence": "May lag ~15–20 min",
@@ -155,7 +155,8 @@
   /* all values come from hub-data.js (window.HUB_DATA.weather), the single data source */
   var HW = HUB_DATA.weather;
   function wxOf(k) { var w = HW[k]; return { c: [[w.temp, 'Temp'], [w.hum, 'Humidity'], [w.wind, 'Wind']], note: w.note }; }
-  var WX = { pasadena: wxOf('pasadena'), santaclarita: wxOf('santaclarita'), agoura: wxOf('agoura'), glendale: wxOf('glendale'), forecast: { c: HW.forecast, note: null } };
+  var WX = { forecast: { c: HW.forecast, note: null } };
+  Object.keys(HW).forEach(function (k) { if (HW[k] && HW[k].temp) WX[k] = wxOf(k); });   /* pasadena, santaclarita, agoura, glendale, whittier, g_* guest places */
   function loadWeather() {
     $$('[data-lazy-weather]').forEach(function (h) {
       if (h.getAttribute('data-loaded')) return; var k = h.getAttribute('data-lazy-weather'), w = WX[k] || WX.pasadena;
@@ -234,12 +235,12 @@
   if (d.body.getAttribute('data-page') === 'f1') {
     var inp = $('.hx-search input'), term = (q.get('q') || '').trim();
     if (inp && term) inp.value = term;
-    var key = 'maple', low = term.toLowerCase(), gmatch = null;
+    var key = 'maple', low = term.toLowerCase(), gmatch = null, gkey = '';
     /* guest lookups outside the signed-in portfolio (Orange, Riverside, Tulare, Kern, Ventura counties) come from HUB_DATA.guest */
     function guestMatch(t) {
       var g = HUB_DATA.guest, k, city, street;
       for (k in g) { city = g[k].full.split(',')[1].trim().toLowerCase(); street = g[k].short.split(' ')[1].toLowerCase();
-        if (t.indexOf(city) > -1 || t.indexOf(street) > -1 || t.indexOf(g[k].full.slice(-5)) > -1) return g[k]; }
+        if (t.indexOf(city) > -1 || t.indexOf(street) > -1 || t.indexOf(g[k].full.slice(-5)) > -1) { gkey = k; return g[k]; } }
       return null;
     }
     if (term) {
@@ -254,6 +255,7 @@
     }
     if (gmatch) { var oc = $('[data-result="on"]'); if (oc) { oc.setAttribute('data-label', gmatch.full); $$('.cps-addr', oc).forEach(function (a) { a.textContent = gmatch.full; }); } }
     $$('[data-result]').forEach(function (x) { x.hidden = x.getAttribute('data-result') !== key; });
+    root.setAttribute('data-result-key', key); root.setAttribute('data-guest-key', gkey);   /* status-card.js: the advisory row follows the shown result */
     var cur = $('[data-result="' + key + '"]'), lab = $('#gsLabel');
     if (cur && lab) lab.textContent = cur.getAttribute('data-label');
     var gr = $('#gsResolved'); if (gr && cur && cur.hasAttribute('data-area')) gr.firstChild.textContent = 'Approximate match: ';

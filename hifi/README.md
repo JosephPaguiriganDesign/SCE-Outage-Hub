@@ -45,7 +45,7 @@ The tested screens are design mocks, not a spec. They supply the combined Curren
 - Page order (round 3, Joseph 2026-10-02): header, name line, **search**, Current Power Status card(s), Heat Advisory row (only when active), buttons, rest. This supersedes the round 1/2 status-first order. Search position is ONE config value: `HX_CONFIG.searchPosition` in `hierarchy.js` (`above-status` default | `below-advisory` = round 2 order); preview with `?search=below` / `?search=above`. Advisory position is ONE config value: `HX_CONFIG.advisoryPosition` in `hierarchy.js` (`below-status` default, `above-search` = screen 05, `below-buttons` = screen 01). Preview with `?adv=...`, `?advisory=off`, `?view=01`, `?view=05`.
 - Tested screens: 01 `P1-psps-shutoff.html?view=01`, 02 `F6-map-sheet.html?layer=all`, 03 `S3-no-outage.html`, 04 `F0-multi.html`, 05 `P1-psps-shutoff.html?view=05`.
 
-## Data (round 4): `hub-data.js`
+## Data (rounds 4-5): `hub-data.js`
 
 **All data in this prototype is fictional.** Cities and ZIPs are real SCE-territory places (Los Angeles, Orange, Riverside, San Bernardino, Ventura, Tulare, Kern counties); house numbers, names, account / meter / circuit / outage / plan / report numbers and all times are invented. Story day: Thu Sep 10, 2026.
 
@@ -58,7 +58,10 @@ The tested screens are design mocks, not a spec. They supply the combined Curren
 | `outage`, `prior` | Maple live outage (OUT-2026-094821: cause, crew status, customers, ERT, timeline) and its earlier restored outage |
 | `plan` | planned outages (Elm, Maple) |
 | `psps`, `event`, `psps_counts`, `psps_tiers` | Canyon PSPS stage story, the Santa Ana event (fire window, banner counts), shut-off / likely / potential counts |
+| `advisory` | per-scenario Heat Advisory row flag (round 5): `pages[<file>]` and `f1[<result>]` = `{active, kind: heat, fire or none, key, title, sub, note, reason}` |
 | `weather`, `maplayers`, `guest`, `area`, `recent`, `report`, `banner`, `counts` | weather and fire-risk copy, F6 footprints, guest-lookup addresses, area outage, recent lookups, report ref, global banner, portfolio counts |
+
+**Heat Advisory row per scenario (round 5).** The collapsed advisory row is no longer global. `HUB_DATA.advisory.pages[<page file>].active` (single-sourced from `src-ut5/hub_data.py`, `ADVISORY_PAGES` / `ADVISORY_F1`) decides whether it shows by default: ON for S12, the active-outage pages in the heat event (S1, N1, N2, F2), PSPS-adjacent pages (S6, S7, P1, F10, F0-multi) and the guest home; OFF for S3 (all clear), S9 (restored), S13, F0-signed (planned only). F1 follows the shown lookup result. `HX_CONFIG.advisoryActive` is `'auto'` (use the scenario flag); `'on'` / `'off'` force it. Overrides, strongest first: `?advisory=auto|on|off`, `?adv=on|off`, then the prototype control (Advisory: auto / On / Off), then the config. `?adv=below-status|above-search|below-buttons` still sets the position. A hidden row is `display:none` so the layout closes up (order stays header, name, search, status card, [advisory], buttons). Per-page reasons are in `open-items.md` (round 5).
 
 The static pages are generated from the same dictionary (placeholder tokens in the build), so the HTML works without JS; `hierarchy.js` and `map.js` read `HUB_DATA` at runtime. To change a value, edit it once in the data source and rebuild; `check-data.py` then verifies that every page shows the same address, ERT, circuit, counts and IDs.
 
