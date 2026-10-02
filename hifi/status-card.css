@@ -341,3 +341,9 @@ body[data-page="s3"] .cps-actions .btn.primary{min-height:56px}
 a.tile.pf-tile .t-status,a.tile.pf-tile .t-status.active,a.tile.pf-tile .t-status.restored,a.tile.pf-tile .t-status.planned,a.tile.pf-tile .t-status.on{color:var(--sce-ut-ink);font-weight:700;letter-spacing:.01em}
 .cps-ico{overflow:visible}
 .cps-chip abbr{text-decoration:none;cursor:default}
+/* round 7: F10 7-day outlook pills carry month + day-of-month (second line) */
+.fpi-pill .dt{display:block;font-size:10px;font-weight:600;color:var(--ink-3);letter-spacing:.02em;line-height:1.1;white-space:nowrap}
+.fpi-pill.dim .dt{color:var(--ink-3)}
+/* round 7: 7 dated pills never fit one row at 390px (the v03 strip scrolled sideways and clipped the last day): wrap into a 4-column grid, all days visible */
+.fpi-days{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;overflow:visible}
+.fpi-pill{min-width:0;flex:none}

@@ -131,7 +131,7 @@ window.HUB_DATA = {
    "circuit": "GLEN-0614",
    "link": "F0-signed.html",
    "ert": "",
-   "when": "Fri 9:00 AM – 1:00 PM PT",
+   "when": "Fri Sep 11 · 9:00 AM – 1:00 PM PT",
    "psps": "scheduled",
    "label": "412 Elm St",
    "detail": "",
@@ -152,7 +152,7 @@ window.HUB_DATA = {
    "circuit": "LAKE-1102",
    "link": "F0-signed.html",
    "ert": "",
-   "when": "Sun 8:00 AM – 12:00 PM PT",
+   "when": "Sun Sep 13 · 8:00 AM – 12:00 PM PT",
    "psps": null,
    "label": "385 Sycamore Dr",
    "detail": "",
@@ -173,7 +173,7 @@ window.HUB_DATA = {
    "circuit": "SOLEDAD-2208",
    "link": "S6-psps-watch.html",
    "ert": "",
-   "when": "May begin Thu 8:00 PM PT",
+   "when": "May begin Thu Sep 10 · 8:00 PM PT",
    "psps": "potential",
    "label": "891 Canyon Rd",
    "detail": "",
@@ -194,7 +194,7 @@ window.HUB_DATA = {
    "circuit": "WRIGHT-0407",
    "link": "F10-psps-banner.html",
    "ert": "",
-   "when": "May begin Thu 11:00 PM PT",
+   "when": "May begin Thu Sep 10 · 11:00 PM PT",
    "psps": "likely",
    "label": "1126 Pine Ln",
    "detail": "",
@@ -351,17 +351,20 @@ window.HUB_DATA = {
  "prior": {
   "id": "OUT-2026-093377",
   "cause": "Tree branch on line",
-  "day": "Wed",
+  "day": "Wed Sep 9",
   "reported": "4:24 PM",
   "onsite": "5:30 PM",
   "restored": "6:42 PM",
   "duration": "2 hr 18 min",
+  "reported_at": "Wed Sep 9 · 4:24 PM PT",
+  "onsite_at": "Wed Sep 9 · 5:30 PM PT",
+  "restored_at": "Wed Sep 9 · 6:42 PM PT",
   "dow": "Wed"
  },
  "plan": {
   "maple": {
    "id": "PLN-2026-031187",
-   "window": "Sat 9:00 AM – 1:00 PM PT",
+   "window": "Sat Sep 12 · 9:00 AM – 1:00 PM PT",
    "ics_start": "20260912T090000",
    "ics_end": "20260912T130000",
    "duration": "4 hours",
@@ -371,7 +374,7 @@ window.HUB_DATA = {
  "sched": {
   "elm": {
    "id": "PSPS-2026-007316",
-   "window": "Fri 9:00 AM – 1:00 PM PT",
+   "window": "Fri Sep 11 · 9:00 AM – 1:00 PM PT",
    "ics_start": "20260911T090000",
    "ics_end": "20260911T130000",
    "duration": "4 hours",
@@ -381,8 +384,7 @@ window.HUB_DATA = {
   }
  },
  "psps": {
-  "window": "Thu 8:00 PM PT",
-  "window_short": "Thu 8:00 PM",
+  "window": "Thu Sep 10 · 8:00 PM PT",
   "ics_start": "20260910T200000",
   "ics_end": "20260911T200000",
   "updated": "10:15 AM",
@@ -393,7 +395,7 @@ window.HUB_DATA = {
   "duration": "About 24–48 hours"
  },
  "likely": {
-  "window": "Thu 11:00 PM PT",
+  "window": "Thu Sep 10 · 11:00 PM PT",
   "prop": "wrightwood"
  },
  "event": {
@@ -402,8 +404,9 @@ window.HUB_DATA = {
   "of": 3,
   "customers": "11,486",
   "areas": 9,
-  "fire_from": "Wed 6:00 PM",
-  "fire_to": "Fri 10:00 PM PT",
+  "fire_from": "Wed Sep 9 · 6:00 PM PT",
+  "fire_to": "Fri Sep 11 · 10:00 PM PT",
+  "fire_window": "Wed Sep 9 · 6:00 PM PT → Fri Sep 11 · 10:00 PM PT",
   "bucket_limit": "35 mph",
   "updated": "10:28 AM"
  },
@@ -428,7 +431,7 @@ window.HUB_DATA = {
     "reason": "Active outage on Maple Ave (Pasadena) during the Pasadena heat advisory; row is context only, the cause line stays \"Equipment failure\".",
     "title": "Heat Advisory",
     "sub": "Fire Risk: Elevated",
-    "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
+    "note": "Heat advisory in Pasadena until Fri Sep 11 · 8:00 PM PT — higher demand may cause outages"
    },
    "N1-active-planned.html": {
     "active": true,
@@ -437,7 +440,7 @@ window.HUB_DATA = {
     "reason": "Maple is still an active outage during the heat advisory; the later planned outage does not change that.",
     "title": "Heat Advisory",
     "sub": "Fire Risk: Elevated",
-    "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
+    "note": "Heat advisory in Pasadena until Fri Sep 11 · 8:00 PM PT — higher demand may cause outages"
    },
    "N2-active-planned-restored.html": {
     "active": true,
@@ -446,7 +449,7 @@ window.HUB_DATA = {
     "reason": "Same as N1: the current outage is active during the heat advisory (earlier restored event is history).",
     "title": "Heat Advisory",
     "sub": "Fire Risk: Elevated",
-    "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
+    "note": "Heat advisory in Pasadena until Fri Sep 11 · 8:00 PM PT — higher demand may cause outages"
    },
    "F2-active-detail.html": {
     "active": true,
@@ -455,7 +458,7 @@ window.HUB_DATA = {
     "reason": "Guest detail of the active Maple outage during the Pasadena heat advisory.",
     "title": "Heat Advisory",
     "sub": "Fire Risk: Elevated",
-    "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
+    "note": "Heat advisory in Pasadena until Fri Sep 11 · 8:00 PM PT — higher demand may cause outages"
    },
    "S3-no-outage.html": {
     "active": false,
@@ -464,7 +467,7 @@ window.HUB_DATA = {
     "reason": "All clear: dashboard shows no outage, so a heat row would imply a cause for a power-out we cannot see (and contradict \"Nothing Unusual Today\").",
     "title": "Heat Advisory",
     "sub": "Fire Risk: Elevated",
-    "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
+    "note": "Heat advisory in Pasadena until Fri Sep 11 · 8:00 PM PT — higher demand may cause outages"
    },
    "S6-psps-watch.html": {
     "active": true,
@@ -473,7 +476,7 @@ window.HUB_DATA = {
     "reason": "PSPS watch for Canyon Rd (Santa Clarita): the Red Flag / fire-weather alert is the reason for the watch.",
     "title": "Fire Weather Alert",
     "sub": "Fire Risk: High",
-    "note": "Red Flag Warning for the Santa Clarita Valley until 6 PM Fri · gusts to 52 mph may cause outages"
+    "note": "Red Flag Warning for the Santa Clarita Valley until Fri Sep 11 · 6:00 PM PT — gusts to 52 mph may cause outages"
    },
    "S7-psps-active.html": {
     "active": true,
@@ -482,7 +485,7 @@ window.HUB_DATA = {
     "reason": "PSPS event still active (Canyon Rd, power temporarily back): Red Flag conditions continue.",
     "title": "Fire Weather Alert",
     "sub": "Fire Risk: High",
-    "note": "Red Flag Warning for the Santa Clarita Valley until 6 PM Fri · gusts to 52 mph may cause outages"
+    "note": "Red Flag Warning for the Santa Clarita Valley until Fri Sep 11 · 6:00 PM PT — gusts to 52 mph may cause outages"
    },
    "S9-restored.html": {
     "active": false,
@@ -491,7 +494,7 @@ window.HUB_DATA = {
     "reason": "Restored: good-news state, outage cause is known (equipment) so a heat row would imply a wrong cause; weather is still reachable from S12.",
     "title": "Heat Advisory",
     "sub": "Fire Risk: Elevated",
-    "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
+    "note": "Heat advisory in Pasadena until Fri Sep 11 · 8:00 PM PT — higher demand may cause outages"
    },
    "S12-weather.html": {
     "active": true,
@@ -500,7 +503,7 @@ window.HUB_DATA = {
     "reason": "Weather-conditions screen: the collapsed row is the same alert the hero card expands on.",
     "title": "Heat Advisory",
     "sub": "Fire Risk: Elevated",
-    "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
+    "note": "Heat advisory in Pasadena until Fri Sep 11 · 8:00 PM PT — higher demand may cause outages"
    },
    "S13-disconnected.html": {
     "active": false,
@@ -518,7 +521,7 @@ window.HUB_DATA = {
     "reason": "Round 6: Elm St (Glendale) is now a PSPS shutoff scheduled in advance, so the Glendale Red Flag / fire-weather alert is its cause and the row shows (flipped from OFF in round 5).",
     "title": "Fire Weather Alert",
     "sub": "Fire Risk: High",
-    "note": "Red Flag Warning for the Glendale foothills until 2 PM Fri · gusts to 47 mph may cause outages"
+    "note": "Red Flag Warning for the Glendale foothills until Fri Sep 11 · 2:00 PM PT — gusts to 47 mph may cause outages"
    },
    "F0-hub-home.html": {
     "active": true,
@@ -527,7 +530,7 @@ window.HUB_DATA = {
     "reason": "Guest home: public regional alert (Pasadena heat advisory is in effect today); no address or outage is claimed, so no cause is implied.",
     "title": "Heat Advisory",
     "sub": "Fire Risk: Elevated",
-    "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
+    "note": "Heat advisory in Pasadena until Fri Sep 11 · 8:00 PM PT — higher demand may cause outages"
    },
    "F0-multi.html": {
     "active": true,
@@ -536,7 +539,7 @@ window.HUB_DATA = {
     "reason": "Multi-property portfolio with PSPS-affected addresses: Red Flag / Santa Ana wind event is in effect.",
     "title": "Fire Weather Alert",
     "sub": "Fire Risk: High",
-    "note": "Red Flag Warning for the Santa Clarita Valley until 6 PM Fri · gusts to 52 mph may cause outages"
+    "note": "Red Flag Warning for the Santa Clarita Valley until Fri Sep 11 · 6:00 PM PT — gusts to 52 mph may cause outages"
    },
    "F10-psps-banner.html": {
     "active": true,
@@ -545,7 +548,7 @@ window.HUB_DATA = {
     "reason": "PSPS banner / warning for Canyon Rd: Red Flag conditions.",
     "title": "Fire Weather Alert",
     "sub": "Fire Risk: High",
-    "note": "Red Flag Warning for the Santa Clarita Valley until 6 PM Fri · gusts to 52 mph may cause outages"
+    "note": "Red Flag Warning for the Santa Clarita Valley until Fri Sep 11 · 6:00 PM PT — gusts to 52 mph may cause outages"
    },
    "P1-psps-shutoff.html": {
     "active": true,
@@ -563,7 +566,7 @@ window.HUB_DATA = {
     "reason": "Guest lookup: default result is Maple (active outage, Pasadena heat advisory). The flag follows the shown result, see ADVISORY_F1.",
     "title": "Heat Advisory",
     "sub": "Fire Risk: Elevated",
-    "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
+    "note": "Heat advisory in Pasadena until Fri Sep 11 · 8:00 PM PT — higher demand may cause outages"
    }
   },
   "f1": {
@@ -574,7 +577,7 @@ window.HUB_DATA = {
     "reason": "Active outage on Maple Ave during the Pasadena heat advisory.",
     "title": "Heat Advisory",
     "sub": "Fire Risk: Elevated",
-    "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
+    "note": "Heat advisory in Pasadena until Fri Sep 11 · 8:00 PM PT — higher demand may cause outages"
    },
    "elm": {
     "active": true,
@@ -583,7 +586,7 @@ window.HUB_DATA = {
     "reason": "Round 6: Elm St is a scheduled PSPS shutoff in Glendale; the Red Flag / fire-weather alert is the reason (flipped from OFF in round 5).",
     "title": "Fire Weather Alert",
     "sub": "Fire Risk: High",
-    "note": "Red Flag Warning for the Glendale foothills until 2 PM Fri · gusts to 47 mph may cause outages"
+    "note": "Red Flag Warning for the Glendale foothills until Fri Sep 11 · 2:00 PM PT — gusts to 47 mph may cause outages"
    },
    "canyon": {
     "active": true,
@@ -592,7 +595,7 @@ window.HUB_DATA = {
     "reason": "PSPS-potential address (Santa Clarita): Red Flag conditions.",
     "title": "Fire Weather Alert",
     "sub": "Fire Risk: High",
-    "note": "Red Flag Warning for the Santa Clarita Valley until 6 PM Fri · gusts to 52 mph may cause outages"
+    "note": "Red Flag Warning for the Santa Clarita Valley until Fri Sep 11 · 6:00 PM PT — gusts to 52 mph may cause outages"
    },
    "on": {
     "active": false,
@@ -610,7 +613,7 @@ window.HUB_DATA = {
     "reason": "Restored outage lookup: event over, cause known; no row.",
     "title": "Heat Advisory",
     "sub": "Fire Risk: Elevated",
-    "note": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages"
+    "note": "Heat advisory in Pasadena until Fri Sep 11 · 8:00 PM PT — higher demand may cause outages"
    },
    "area": {
     "active": false,
@@ -654,7 +657,7 @@ window.HUB_DATA = {
    "hum": "14%",
    "wind": "W 12 mph",
    "gust": "28 mph",
-   "banner": "Heat advisory in Pasadena until 8 PM Fri · higher demand may cause outages",
+   "banner": "Heat advisory in Pasadena until Fri Sep 11 · 8:00 PM PT — higher demand may cause outages",
    "note": "Heat raises demand and can cause outages.",
    "risk": "Elevated",
    "title": "Heat Advisory"
@@ -669,10 +672,10 @@ window.HUB_DATA = {
    "title": "Fire Weather Alert"
   },
   "multi": {
-   "banner": "Red Flag Warning in your PSPS areas until 10 PM Fri · strong NE winds may cause more outages"
+   "banner": "Red Flag Warning in your PSPS areas until Fri Sep 11 · 10:00 PM PT — strong NE winds may cause more outages"
   },
   "santaclarita": {
-   "banner": "Red Flag Warning for the Santa Clarita Valley until 6 PM Fri · gusts to 52 mph may cause outages",
+   "banner": "Red Flag Warning for the Santa Clarita Valley until Fri Sep 11 · 6:00 PM PT — gusts to 52 mph may cause outages",
    "temp": "91°F",
    "hum": "9%",
    "wind": "NE 34 mph",
@@ -686,7 +689,7 @@ window.HUB_DATA = {
    "hum": "11%",
    "wind": "NE 29 mph",
    "gust": "47 mph",
-   "banner": "Red Flag Warning for the Glendale foothills until 2 PM Fri · gusts to 47 mph may cause outages",
+   "banner": "Red Flag Warning for the Glendale foothills until Fri Sep 11 · 2:00 PM PT — gusts to 47 mph may cause outages",
    "note": "Strong, dry wind is why a shutoff is scheduled.",
    "risk": "High",
    "title": "Fire Weather Alert"
@@ -747,15 +750,15 @@ window.HUB_DATA = {
   },
   "forecast": [
    [
-    "Thu",
+    "Thu Sep 10",
     "High fire risk"
    ],
    [
-    "Fri",
+    "Fri Sep 11",
     "High fire risk"
    ],
    [
-    "Sat",
+    "Sat Sep 12",
     "Elevated"
    ]
   ]
@@ -827,16 +830,67 @@ window.HUB_DATA = {
   },
   {
    "addr": "1734 Almond Ave, Orange",
-   "when": "Yesterday",
+   "when": "Wed Sep 9",
    "state": "on",
    "q": "Almond Ave Orange"
   },
   {
    "addr": "318 Tehachapi Blvd, Tehachapi",
-   "when": "Monday",
+   "when": "Mon Sep 7",
    "state": "on",
    "q": "Tehachapi Blvd"
   }
+ ],
+ "outlook": [
+  [
+   "Wed Sep 9",
+   "Wed",
+   "Sep 9",
+   "Low",
+   "low dim"
+  ],
+  [
+   "Thu Sep 10",
+   "Thu",
+   "Sep 10",
+   "Elevated",
+   "elevated"
+  ],
+  [
+   "Fri Sep 11",
+   "Fri",
+   "Sep 11",
+   "High",
+   "high"
+  ],
+  [
+   "Sat Sep 12",
+   "Sat",
+   "Sep 12",
+   "High",
+   "high"
+  ],
+  [
+   "Sun Sep 13",
+   "Sun",
+   "Sep 13",
+   "Elevated",
+   "elevated"
+  ],
+  [
+   "Mon Sep 14",
+   "Mon",
+   "Sep 14",
+   "Low",
+   "low dim"
+  ],
+  [
+   "Tue Sep 15",
+   "Tue",
+   "Sep 15",
+   "Low",
+   "low dim"
+  ]
  ],
  "counts": {
   "active": 5,
@@ -868,7 +922,7 @@ window.HUB_DATA = {
   "title": "Santa Ana Winds – Day 2 of 3",
   "text": "11,486 homes and businesses are without power across 9 areas."
  },
- "fire": "Increased fire risk conditions are expected from <b>Wed 6:00 PM</b> until <b>Fri 10:00 PM PT</b> (estimated)",
+ "fire": "Increased fire risk conditions are expected from <b>Wed Sep 9 · 6:00 PM PT</b> until <b>Fri Sep 11 · 10:00 PM PT</b> (estimated)",
  "status": {
   "normal": {
    "header": "ON",
