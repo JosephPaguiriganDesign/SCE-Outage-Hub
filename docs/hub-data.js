@@ -34,7 +34,8 @@ window.HUB_DATA = {
    "short": "1847 Maple Ave, Pasadena",
    "meter_m": "••••6038",
    "status_key": "active",
-   "chip": "Repair"
+   "chip": "Repair",
+   "line": "Back by 4:45 PM PT"
   },
   "lincoln": {
    "id": "lincoln",
@@ -57,7 +58,8 @@ window.HUB_DATA = {
    "short": "2210 Lincoln Ave, Altadena",
    "meter_m": "••••2216",
    "status_key": "active",
-   "chip": "Repair"
+   "chip": "Repair",
+   "line": "Back by 6:30 PM PT"
   },
   "agoura": {
    "id": "agoura",
@@ -80,7 +82,8 @@ window.HUB_DATA = {
    "short": "28 Oak Hollow Ln, Agoura Hills",
    "meter_m": "••••4455",
    "status_key": "psps_active",
-   "chip": "PSPS"
+   "chip": "PSPS",
+   "line": "PSPS shut off · Back after the event ends"
   },
   "ojai": {
    "id": "ojai",
@@ -103,7 +106,8 @@ window.HUB_DATA = {
    "short": "615 Thacher Rd, Ojai",
    "meter_m": "••••0913",
    "status_key": "psps_active",
-   "chip": "PSPS"
+   "chip": "PSPS",
+   "line": "PSPS shut off · Back after the event ends"
   },
   "yucaipa": {
    "id": "yucaipa",
@@ -126,7 +130,8 @@ window.HUB_DATA = {
    "short": "3380 Dunlap Blvd, Yucaipa",
    "meter_m": "••••0784",
    "status_key": "psps_active",
-   "chip": "PSPS"
+   "chip": "PSPS",
+   "line": "PSPS shut off · Back after the event ends"
   },
   "elm": {
    "id": "elm",
@@ -149,7 +154,8 @@ window.HUB_DATA = {
    "short": "412 Elm St, Glendale",
    "meter_m": "••••7754",
    "status_key": "scheduled",
-   "chip": "PSPS"
+   "chip": "PSPS",
+   "line": "Fri Sep 11 · 9:00 AM – 1:00 PM PT"
   },
   "sycamore": {
    "id": "sycamore",
@@ -172,7 +178,8 @@ window.HUB_DATA = {
    "short": "385 Sycamore Dr, Pasadena",
    "meter_m": "••••1047",
    "status_key": "planned",
-   "chip": "Planned"
+   "chip": "Planned",
+   "line": "Sun Sep 13 · 8:00 AM – 12:00 PM PT"
   },
   "canyon": {
    "id": "canyon",
@@ -195,7 +202,8 @@ window.HUB_DATA = {
    "short": "891 Canyon Rd, Santa Clarita",
    "meter_m": "••••8841",
    "status_key": "potential",
-   "chip": "PSPS"
+   "chip": "PSPS",
+   "line": "May begin Thu Sep 10 · 8:00 PM PT"
   },
   "wrightwood": {
    "id": "wrightwood",
@@ -218,7 +226,8 @@ window.HUB_DATA = {
    "short": "1126 Pine Ln, Wrightwood",
    "meter_m": "••••5520",
    "status_key": "likely",
-   "chip": "PSPS"
+   "chip": "PSPS",
+   "line": "May begin Thu Sep 10 · 11:00 PM PT"
   },
   "magnolia": {
    "id": "magnolia",
@@ -241,7 +250,8 @@ window.HUB_DATA = {
    "short": "1132 Magnolia Ave, South Pasadena",
    "meter_m": "••••5362",
    "status_key": "restored",
-   "chip": ""
+   "chip": "",
+   "line": "Restored today 8:52 AM PT"
   },
   "mtnview": {
    "id": "mtnview",
@@ -264,7 +274,8 @@ window.HUB_DATA = {
    "short": "640 Mountain View Ave, Pasadena",
    "meter_m": "••••0289",
    "status_key": "restored",
-   "chip": ""
+   "chip": "",
+   "line": "Restored today 9:14 AM PT"
   },
   "lake": {
    "id": "lake",
@@ -287,7 +298,8 @@ window.HUB_DATA = {
    "short": "2217 Walnut St, Pasadena",
    "meter_m": "••••8812",
    "status_key": "normal",
-   "chip": ""
+   "chip": "",
+   "line": "No outage known"
   }
  },
  "order": [
@@ -850,19 +862,31 @@ window.HUB_DATA = {
    "addr": "1847 Maple Ave, Pasadena",
    "when": "Looked up today",
    "state": "off",
-   "q": "1847 Maple Ave"
+   "q": "1847 Maple Ave",
+   "ref": "maple",
+   "status_key": "active",
+   "chip": "Repair",
+   "line": "Back by 4:45 PM PT"
   },
   {
    "addr": "1734 Almond Ave, Orange",
    "when": "Wed Sep 9",
    "state": "on",
-   "q": "Almond Ave Orange"
+   "q": "Almond Ave Orange",
+   "ref": "orange",
+   "status_key": "normal",
+   "chip": "",
+   "line": "No outage known"
   },
   {
    "addr": "318 Tehachapi Blvd, Tehachapi",
    "when": "Mon Sep 7",
    "state": "on",
-   "q": "Tehachapi Blvd"
+   "q": "Tehachapi Blvd",
+   "ref": "kern",
+   "status_key": "normal",
+   "chip": "",
+   "line": "No outage known"
   }
  ],
  "outlook": [

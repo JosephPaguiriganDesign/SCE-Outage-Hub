@@ -199,7 +199,7 @@ html[data-advisory="on"] .adv[data-scn="none"]{display:none!important}
 
 /* ---- 6. buttons -------------------------------------------------------------
    Round 2: the buttons carry the v0.03 classes too (btn primary = ink filled Report / View outage status,
-   btn map = ink outlined View map, btn btn211 = indigo Call 211). Radius 4px, 48dp, state layers: m3_components.css.
+   btn map = blue outlined View map, btn btn211 = Call 211 = the same secondary button since round 9). Radius 4px, 48dp, state layers: m3_components.css.
    Here: layout only (full width, caps copy from the mocks). .ut-link = optional link variant. */
 .ut-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;text-transform:uppercase;text-decoration:none;cursor:pointer}
 .ut-btn.btn{padding:0 16px;font-weight:700}
@@ -348,14 +348,14 @@ body[data-page="s3"] .cps-actions .btn.primary{min-height:56px}
 /* ==========================================================================
    Round 8: buttons — every colour below is a --btn-* token (defined in m3_tokens.css). State layers (hover 8 / focus 10 / pressed 10%)
    come from m3_components.css in currentColor, so they follow the text colour (dark on yellow, blue on transparent).
-   Call 211 (.btn211) and gold (Sign in / Save prefs) are intentionally untouched.
+   Call 211 (.btn211, round 9) is the secondary button: the class is only a hook, it carries no colours. Gold (Sign in / Save prefs) is intentionally untouched.
    ========================================================================== */
 .btn,a.btn,button.btn{
   min-height:var(--btn-height);border-radius:var(--btn-radius);font-weight:var(--btn-weight);letter-spacing:var(--btn-letter-spacing);
   background-color:var(--btn-secondary-bg);color:var(--btn-secondary-fg);border:var(--btn-secondary-border-width) solid var(--btn-secondary-border)
 }
 .btn.primary,a.btn.primary,button.btn.primary{background-color:var(--btn-primary-bg);color:var(--btn-primary-fg);border:1px solid var(--btn-primary-border)}
-.btn.map,a.btn.map,button.btn.map,.btn.secondary,a.btn.secondary,button.btn.secondary{background-color:var(--btn-secondary-bg);color:var(--btn-secondary-fg);border:var(--btn-secondary-border-width) solid var(--btn-secondary-border)}
+.btn.map,a.btn.map,button.btn.map,.btn.secondary,a.btn.secondary,button.btn.secondary,.btn.btn211,a.btn.btn211{background-color:var(--btn-secondary-bg);color:var(--btn-secondary-fg);border:var(--btn-secondary-border-width) solid var(--btn-secondary-border)}
 .btn.danger,a.btn.danger,button.btn.danger{background-color:var(--btn-danger-bg);color:var(--btn-danger-fg);border:1px solid var(--btn-danger-bg)}
 .btn.tertiary,a.btn.tertiary,button.btn.tertiary,.btn.ghost,a.btn.ghost,button.btn.ghost,.ut-link{background-color:var(--btn-tertiary-bg);color:var(--btn-tertiary-fg);border:1px solid transparent;border-style:solid}
 .btn.hx-quiet{border-color:var(--btn-secondary-border);color:var(--btn-secondary-fg)}
@@ -367,9 +367,9 @@ body[data-page="s3"] .cps-actions .btn.primary{min-height:56px}
 }
 .btn.secondary:disabled,.btn.map:disabled,.btn.map[aria-disabled="true"],.btn.map.is-disabled,.btn.secondary.is-disabled{background-color:transparent!important}
 /* secondary: darker blue while a state layer is on (keeps text >= 4.5:1 over the layer) */
-@media (hover:hover){.btn.map:hover,.btn.secondary:hover,.btn.hx-quiet:hover{color:var(--btn-secondary-fg-active)}}
-.btn.map:focus-visible,.btn.secondary:focus-visible,.btn.hx-quiet:focus-visible,.btn.map:active,.btn.secondary:active,.btn.hx-quiet:active,
-.btn.map.is-hover,.btn.map.is-focus,.btn.map.is-pressed,.btn.secondary.is-hover,.btn.secondary.is-focus,.btn.secondary.is-pressed{color:var(--btn-secondary-fg-active)}
+@media (hover:hover){.btn.map:hover,.btn.secondary:hover,.btn.hx-quiet:hover,.btn.btn211:hover{color:var(--btn-secondary-fg-active)}}
+.btn.map:focus-visible,.btn.secondary:focus-visible,.btn.hx-quiet:focus-visible,.btn.btn211:focus-visible,.btn.map:active,.btn.secondary:active,.btn.hx-quiet:active,.btn.btn211:active,
+.btn.map.is-hover,.btn.map.is-focus,.btn.map.is-pressed,.btn.btn211.is-hover,.btn.btn211.is-focus,.btn.btn211.is-pressed,.btn.secondary.is-hover,.btn.secondary.is-focus,.btn.secondary.is-pressed{color:var(--btn-secondary-fg-active)}
 /* review helpers for components.html: force the M3 state layers / focus ring without hovering */
 .btn.is-hover{--_slo:var(--md-sys-state-hover-state-layer-opacity)}
 .btn.is-focus{--_slo:var(--md-sys-state-focus-state-layer-opacity);outline:var(--md-sys-state-focus-indicator-thickness) solid var(--md-sys-state-focus-indicator-color);outline-offset:var(--md-sys-state-focus-indicator-outer-offset)}
@@ -399,3 +399,8 @@ a.cps-prop:focus-visible{outline:3px solid var(--sce-ut-link);outline-offset:2px
 #pfList>.cps-prop{margin:0}
 #pfList>.pf-group{margin:4px 0 0;padding-left:0;padding-right:0}
 a.cps-prop .cps-addr{overflow-wrap:anywhere}
+
+/* round 9: recent lookups (F0 guest home) = the same property card; lookup date sits in the last-text-row slot (spec S7), as .cps-meta */
+.cps-cards{display:flex;flex-direction:column;gap:12px}
+.cps-cards>.cps-prop{margin:0}
+.cps-meta{font-size:14px;line-height:20px;color:#4A525C;margin:0}
