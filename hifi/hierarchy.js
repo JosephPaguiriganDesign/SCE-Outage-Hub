@@ -11,28 +11,29 @@
   "advisoryActive": "auto",
   "bannerPosition": "below-status",
   "lookbackDays": "7",
-  "refreshCadence": "May lag ~15–20 min",
+  "refreshCadence": "Status can take up to 20 minutes to update.",
   "forecastSource": "Forecast source not confirmed",
-  "s7Temp": "Your power is back on. The PSPS event is not over yet.",
+  "s7Temp": "Your power is back on, but it could go off again. The shutoff isn’t over yet.",
   "s7Before": [
-    "Weather in your area must improve to safe levels.",
-    "SCE must inspect and clear the lines in the affected area.",
-    "SCE will confirm when the event has ended."
+    "The weather must calm down.",
+    "Crews must check the power lines.",
+    "We’ll tell you when it’s over."
   ],
   "s7Safety": [
-    "Power can go off again while lines are re-energized.",
-    "Treat every downed wire as energized. Stay away and keep others away.",
+    "Power may go off and on while crews bring the lines back.",
+    "See a downed wire? Stay at least 100 feet away and call 911.",
     "Keep backup power and medical equipment ready."
   ],
-  "pspsDuration": "About 24–48 hours",
+  "pspsDuration": "about 24–48 hours (estimate)",
   "guestNoAddress": "Enter a service address, outage #, or meter # to check status.",
-  "outOfTerritory": "That address looks like it is outside SCE’s service area. Check with your local utility.",
+  "outOfTerritory": "This address may be outside SCE’s service area. Check with your local power company.",
   "newScenarioNote": "NEW 1 / NEW 2 working draft, not yet in Scenarios doc",
   "needsAttention": "Needs attention = Active + Upcoming (Potential, Likely, Scheduled, Planned)"
 };
   window.HX_CONFIG = HX_CONFIG;
 
   var HX_PROPS = (window.HUB_DATA ? Object.keys(HUB_DATA.props).map(function (k) { var p = HUB_DATA.props[k]; return { id: p.id, addr: p.full }; }).concat([{ id: HUB_DATA.disc.id, addr: HUB_DATA.disc.full }]) : []);
+  var CP = (window.HUB_DATA && HUB_DATA.copy) || {};   /* ut10: customer-facing copy, single source (hub-data.js) */
   var d = document, root = d.documentElement;
   var q = new URLSearchParams(location.search);
   function $(s, r) { return (r || d).querySelector(s); }
@@ -99,7 +100,7 @@
     $$('[data-act="refresh-fail"],[data-act="refresh-ok"]').forEach(function (b) {
       if (b.closest('.seg')) b.setAttribute('aria-pressed', String((b.getAttribute('data-act') === 'refresh-fail') === on));
     });
-    if (!on) snack('Refreshed. Last updated ' + ($('[data-f="updated"]') ? $('[data-f="updated"]').textContent : 'just now'));
+    if (!on) snack($('[data-f="updated"]') ? $('[data-f="updated"]').textContent : CP.snack_updated);
   }
   function setMB(on) {
     if (on) root.setAttribute('data-mb', '1'); else root.removeAttribute('data-mb');
@@ -112,18 +113,18 @@
     /* S9 variants (round 6): the card keeps ONE anatomy; only the canonical label / chip / one-liner swap (labels come from HUB_DATA.status). */
     var card = $('#cpsS9'); if (!card) return;
     var S = HUB_DATA.status, lab = $('[data-f="s9label"]'), tm = $('[data-f="s9time"]'), du = $('[data-f="s9dur"]'), chip = $('[data-s9chip]');
-    function nm() { card.setAttribute('aria-label', 'Current Power Status: power on, ' + lab.textContent.toLowerCase()); }
-    var base = 'Today ' + HUB_DATA.outage.restored + ' PT', dur = 'Outage lasted ' + HUB_DATA.outage.duration_total;
-    if (v === 'temp') { lab.textContent = S.restoring.label; card.setAttribute('data-status', 'restoring'); chip.hidden = false; tm.textContent = 'Your power is back on. The PSPS event is not over yet.'; du.textContent = ''; nm(); }
-    else if (v === 'ended') { lab.textContent = S.restored.label; card.setAttribute('data-status', 'restored'); chip.hidden = true; tm.textContent = base; du.textContent = ' \u00b7 ' + dur + ' \u00b7 PSPS event ended'; nm(); }
-    else { lab.textContent = S.restored.label; card.setAttribute('data-status', 'restored'); chip.hidden = true; tm.textContent = base; du.textContent = ' \u00b7 ' + dur; nm(); }
+    function nm() { card.setAttribute('aria-label', 'Current power status: on. ' + lab.textContent.charAt(0) + lab.textContent.slice(1).toLowerCase() + '.' + (chip && !chip.hidden ? ' ' + CP.chip_psps_say + '.' : '')); }
+    var base = CP.restored_line.replace('{t}', HUB_DATA.outage.restored), dur = CP.restored_dur.replace('{d}', HUB_DATA.outage.duration_total);
+    if (v === 'temp') { lab.textContent = S.restoring.label; card.setAttribute('data-status', 'restoring'); chip.hidden = false; tm.textContent = CP.restoring_line; du.textContent = ''; nm(); }
+    else if (v === 'ended') { lab.textContent = S.restored.label; card.setAttribute('data-status', 'restored'); chip.hidden = true; tm.textContent = base; du.textContent = dur + CP.restored_end; nm(); }
+    else { lab.textContent = S.restored.label; card.setAttribute('data-status', 'restored'); chip.hidden = true; tm.textContent = base; du.textContent = dur; nm(); }
   }
   d.addEventListener('click', function (e) {
     var t = e.target.closest ? e.target.closest('[data-act]') : null; if (!t) return;
     var a = t.getAttribute('data-act');
     if (a === 'ert-change') {
       setF('ertText', 'Back by ' + HUB_DATA.outage.ert_was + ' PT'); var n = $('#ertNote'); if (n) n.hidden = true;
-      snack('Estimate refreshing…');
+      snack(CP.snack_estimate);
       setTimeout(function () { showErtChange(HUB_DATA.outage.ert_was, 'Back by ' + HUB_DATA.outage.ert + ' PT'); }, 900);
     } else if (a === 'refresh-fail') setStale(true);
     else if (a === 'refresh-ok') setStale(false);
@@ -133,6 +134,8 @@
       var ex = root.getAttribute('data-lookback') === 'expired';
       if (ex) root.removeAttribute('data-lookback'); else root.setAttribute('data-lookback', 'expired');
       t.textContent = ex ? 'Simulate restored > lookback window' : 'Restore earlier outage row';
+    } else if (a === 'clear-recent') {
+      $$('.recent', d).forEach(function (r) { r.hidden = true; }); var rn = $('.rec-none'); if (rn) rn.hidden = false; t.hidden = true; store('conh_recent_cleared', '1');
     } else if (a && a.indexOf('psps-') === 0) setPsps({ 'psps-none': '', 'psps-temp': 'temp', 'psps-ended': 'ended' }[a]);
     else if (a === 'ics') {
       var s = t.getAttribute('data-start'), en = t.getAttribute('data-end'), ti = t.getAttribute('data-title');
@@ -142,15 +145,16 @@
         var blob = new Blob([ics], { type: 'text/calendar' }), u = URL.createObjectURL(blob), l = d.createElement('a');
         l.href = u; l.download = 'sce-outage.ics'; d.body.appendChild(l); l.click(); l.remove(); setTimeout(function () { URL.revokeObjectURL(u); }, 500);
       } catch (x) {}
-      snack('Calendar file created (prototype)');
+      snack(CP.snack_cal);
     }
   });
   d.addEventListener('change', function (e) {
-    var t = e.target; if (t.matches && t.matches('input[data-act="remind"]')) snack(t.checked ? 'Reminder on (prototype)' : 'Reminder off');
+    var t = e.target; if (t.matches && t.matches('input[data-act="remind"]')) snack(t.checked ? CP.snack_remind_on : CP.snack_remind_off);
   });
   if (q.get('ert') === 'changed') showErtChange(HUB_DATA.outage.ert_was);
   if (q.get('state') === 'refresh-failed') setStale(true);
   if (q.get('mb') === '1') setMB(true);
+  if (store('conh_recent_cleared') === '1') { $$('.recent').forEach(function (r) { r.hidden = true; }); var rn0 = $('.rec-none'); if (rn0) rn0.hidden = false; $$('.rec-clear').forEach(function (b) { b.hidden = true; }); }
   if (q.get('lookback') === 'expired') root.setAttribute('data-lookback', 'expired');
   if (q.get('psps')) setPsps(q.get('psps') === 'temp' ? 'temp' : q.get('psps') === 'ended' ? 'ended' : '');
   else if (root.getAttribute('data-page') === 's9') setPsps('');
@@ -158,15 +162,15 @@
   /* ==== S11: weather / detail content lazy-loaded after the core answer, off the critical path ==== */
   /* all values come from hub-data.js (window.HUB_DATA.weather), the single data source */
   var HW = HUB_DATA.weather;
-  function wxOf(k) { var w = HW[k]; return { c: [[w.temp, 'Temp'], [w.hum, 'Humidity'], [w.wind, 'Wind']], note: w.note }; }
+  function wxOf(k) { var w = HW[k]; return { c: [[w.temp, 'Temperature'], [w.hum, 'Humidity'], [w.wind, 'Wind', w.wind_say]], note: w.note }; }
   var WX = { forecast: { c: HW.forecast, note: null } };
   Object.keys(HW).forEach(function (k) { if (HW[k] && HW[k].temp) WX[k] = wxOf(k); });   /* pasadena, santaclarita, agoura, glendale, whittier, g_* guest places */
   function loadWeather() {
     $$('[data-lazy-weather]').forEach(function (h) {
       if (h.getAttribute('data-loaded')) return; var k = h.getAttribute('data-lazy-weather'), w = WX[k] || WX.pasadena;
-      var g = '<div class="wx-grid">' + w.c.map(function (x) { return '<div><b>' + x[0] + '</b>' + x[1] + '</div>'; }).join('') + '</div>';
+      var g = '<div class="wx-grid">' + w.c.map(function (x) { return '<div><b>' + (x[2] ? '<span aria-hidden="true">' + x[0] + '</span><span class="ut-sr">' + x[2] + '</span>' : x[0]) + '</b>' + x[1] + '</div>'; }).join('') + '</div>';
       var extra = (k === 'forecast')
-        ? '<p class="hx-fine" style="margin-top:8px">Multi-day forecast: <span data-ph="forecastSource"><span class="ph-t">' + HX_CONFIG.forecastSource + '</span> <span class="ph-tag">Placeholder</span></span>. Government warnings appear only from an approved source.</p>'
+        ? '<p class="hx-fine" style="margin-top:8px">Multi-day forecast: <span data-ph="forecastSource"><span class="ph-t">' + HX_CONFIG.forecastSource + '</span> <span class="ph-tag">Placeholder</span></span></p>'
         : '<p class="hx-fine" style="margin-top:8px">' + w.note + '</p><p class="hx-fine">Multi-day forecast: <span data-ph="forecastSource"><span class="ph-t">' + HX_CONFIG.forecastSource + '</span> <span class="ph-tag">Placeholder</span></span></p>';
       h.innerHTML = g + extra; h.setAttribute('data-loaded', '1');
     });
@@ -186,8 +190,6 @@
       var meta = $('#rptMeta'); if (meta) meta.textContent = { power: 'Power outage', downed: 'Downed power line', hazard: 'Other hazard' }[v];
       var nav = $('.hub-nav'); if (nav) nav.setAttribute('data-report', 'safety');
       var det = $('#hxDetect'); if (det) det.hidden = !moved;
-      var sb = $('#submitBtn'); if (sb) sb.textContent = v === 'downed' ? 'Send downed line report' : 'Submit report';
-      var opt = $('.only-opt'); if (opt) opt.textContent = v === 'downed' ? '' : '(optional)';
       if (v === 'downed') { var h = $('#dlSafety'); if (h) h.setAttribute('aria-live', 'assertive'); }
       store('conh_intent', v);
     }
@@ -209,15 +211,23 @@
       $$('input[name="breaker"]').forEach(function (r) { r.addEventListener('change', function () { if (hint) hint.hidden = !(r.value === 'yes' && r.checked); }); });
       var from = q.get('from'); if (from === 's3') { var nv = $('.hub-nav'); if (nv) nv.setAttribute('data-report', 'safety'); }
       var form = $('#rptForm');
-      if (form) form.addEventListener('submit', function () { try { var p = sel && sel.options[sel.selectedIndex]; store('conh_rpt_addr', p ? p.textContent : ($('#loc') ? $('#loc').value : '')); } catch (x) {} });
+      if (form) form.addEventListener('submit', function (ev) {
+        /* F5-18: inline errors that name the problem and the fix (WCAG 3.3.1 / 3.3.3) */
+        var bad = [], loc = $('#loc'), ph = $('#phone'), eL = $('#errLoc'), eP = $('#errPhone'), eW = $('#errWhat');
+        var isG = root.getAttribute('data-aud') === 'guest' || !$('#propSel') || $('#propSel').offsetParent === null;
+        if (eL && loc && loc.offsetParent !== null) { var badL = !loc.value.trim(); eL.hidden = !badL; loc.setAttribute('aria-invalid', String(badL)); if (badL) bad.push(loc); }
+        if (eP && ph) { var dg = ph.value.replace(/\D/g, ''), badP = ph.value.trim() !== '' && dg.length !== 10; eP.hidden = !badP; ph.setAttribute('aria-invalid', String(badP)); if (badP) bad.push(ph); }
+        if (eW) { var anyI = !!$('input[name="intent"]:checked'); eW.hidden = anyI; if (!anyI) bad.push($('input[name="intent"]')); }
+        if (bad.length) { ev.preventDefault(); bad[0].focus(); return; }
+ try { var p = sel && sel.options[sel.selectedIndex]; store('conh_rpt_addr', p ? p.textContent : ($('#loc') ? $('#loc').value : '')); } catch (x) {} });
     } else {
       setIntent(q.get('intent') || 'power', false);
       var addr = store('conh_rpt_addr') || q.get('loc') || HUB_DATA.props.maple.full;
       var it = q.get('intent') || 'power';
       var det = $('#cfDetail'), tt = $('#cfTitle');
-      if (det) det.textContent = ({ power: 'Power out at ', downed: 'Downed power line at ', hazard: 'Hazard reported at ' })[it] + addr;
-      if (tt && it === 'downed') tt.textContent = 'SCE has your downed line report';
-      var lag = $('#cfLag'); if (lag && it !== 'power') lag.textContent = 'Keep everyone away from the line. SCE may call the number you gave.';
+      if (det) det.textContent = ({ power: CP.f5c_power, downed: CP.f5c_dl, hazard: CP.f5c_hz })[it] + addr;
+      if (tt && it === 'downed') tt.textContent = CP.f5c_title_dl;
+      var lag = $('#cfLag'); if (lag && it === 'downed') lag.textContent = CP.dl_conf_next;
       var sb = $('#backStatus'); if (sb && ra !== 'guest') sb.setAttribute('href', ra === 'multi' ? 'F7-portfolio.html' : 'S1-active.html');
       /* F5-confirm updates block (was inline) */
       var en = $('#updatesEnable'), body = $('#updatesBody'), skip = $('#updatesSkip');
@@ -234,6 +244,9 @@
       store('conh_pending', '1');
     }
   }
+
+  /* F6-04: the guest map must not show an account holder */
+  if (d.body.getAttribute('data-page') === 'f6' && (store('conh_aud') || 'guest') === 'guest') { $$('.ut-id').forEach(function (x) { x.hidden = true; }); }
 
   /* ==== S8: guest Outage Search (mock resolver) ==== */
   if (d.body.getAttribute('data-page') === 'f1') {
@@ -262,7 +275,12 @@
     root.setAttribute('data-result-key', key); root.setAttribute('data-guest-key', gkey);   /* status-card.js: the advisory row follows the shown result */
     var cur = $('[data-result="' + key + '"]'), lab = $('#gsLabel');
     if (cur && lab) lab.textContent = cur.getAttribute('data-label');
-    var gr = $('#gsResolved'); if (gr && cur && cur.hasAttribute('data-area')) gr.firstChild.textContent = 'Approximate match: ';
+    var gr = $('#gsResolved'), gp = $('#gsPre');
+    if (gr && gp && cur) {
+      if (cur.hasAttribute('data-area')) gp.textContent = CP.f1_area;
+      else if (key === 'restored') gp.textContent = CP.f1_results;
+      gr.hidden = (key === 'oot' || key === 'none');   /* F1-01: no 'Results for No match' */
+    }
     $$('.gs-try button').forEach(function (bt) { bt.addEventListener('click', function () { location.href = 'F1-lookup-result.html?q=' + encodeURIComponent(bt.getAttribute('data-q')); }); });
   }
 
