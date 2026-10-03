@@ -227,9 +227,7 @@ a.chip:active{background:#EEF2F6}
 }
 .btn.ghost,a.btn.ghost{border-style:dashed;color:var(--ink-2);border-color:var(--line);background:var(--btn-tertiary-bg)}
 .btn.block,a.btn.block{width:100%}
-.btn211,a.btn211,.btn.btn211{
-  background:var(--afn)!important;color:#fff!important;border-color:var(--afn)!important;border-radius:4px!important
-}
+/* round 9: Call 211 uses the shared secondary button tokens (indigo .btn211 colours removed) */
 
 .afn{
   margin:8px var(--pad);background:var(--afn-wash);border-radius:var(--r-card);
@@ -237,7 +235,7 @@ a.chip:active{background:#EEF2F6}
   box-shadow:var(--shadow)
 }
 .afn h3{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:10px}
-.afn .btn211{width:100%;margin-bottom:10px;min-height:44px}
+.afn .btn211{width:100%;margin-bottom:10px}
 .afn .links a{
   display:inline-flex;align-items:center;font-size:13px;font-weight:600;color:var(--link);
   padding:8px 0;min-height:40px;text-decoration:underline;text-underline-offset:2px;margin-right:12px

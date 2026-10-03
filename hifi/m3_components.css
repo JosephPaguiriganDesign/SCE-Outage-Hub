@@ -6,7 +6,7 @@
 /* ---- State layers (hover 8% / focus 10% / pressed 10%) ------------------
    Painted as a background-image overlay in currentColor so the container
    color (ink, white, indigo, gold, amber) is untouched underneath.        */
-:where(.btn,.filter,.chip,a.recent-item,a.search,a.wx-banner,.sc-tog label,
+:where(.btn,.filter,.chip,a.search,a.wx-banner,.sc-tog label,
   .form-field .type-opts label,.ub-tab,a.cps-prop,.gallery a.card,.facilitator summary,
   .frame-chip .dismiss,.m3-nav,a.sum-chip){
   --_sl:color-mix(in srgb,currentColor var(--_slo,0%),transparent);
@@ -18,16 +18,16 @@
   -webkit-tap-highlight-color:transparent;
 }
 @media (hover:hover){
-  :where(.btn,.filter,.chip,a.recent-item,a.search,a.wx-banner,.sc-tog label,
+  :where(.btn,.filter,.chip,a.search,a.wx-banner,.sc-tog label,
     .form-field .type-opts label,.ub-tab,a.cps-prop,.gallery a.card,.facilitator summary,
     .frame-chip .dismiss,.m3-nav,a.sum-chip):hover{--_slo:var(--md-sys-state-hover-state-layer-opacity)}
 }
-:where(.btn,.filter,.chip,a.recent-item,a.search,a.wx-banner,.ub-tab,a.cps-prop,.gallery a.card,
+:where(.btn,.filter,.chip,a.search,a.wx-banner,.ub-tab,a.cps-prop,.gallery a.card,
   .facilitator summary,.frame-chip .dismiss,.m3-nav,a.sum-chip):focus-visible,
 :where(.sc-tog label,.form-field .type-opts label):has(input:focus-visible){
   --_slo:var(--md-sys-state-focus-state-layer-opacity)
 }
-:where(.btn,.filter,.chip,a.recent-item,a.search,a.wx-banner,.sc-tog label,
+:where(.btn,.filter,.chip,a.search,a.wx-banner,.sc-tog label,
   .form-field .type-opts label,.ub-tab,a.cps-prop,.gallery a.card,.facilitator summary,
   .frame-chip .dismiss,.m3-nav,a.sum-chip):active{--_slo:var(--md-sys-state-pressed-state-layer-opacity)}
 @property --_slo{syntax:"<percentage>";inherits:false;initial-value:0%}
@@ -108,11 +108,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
     linear-gradient(90deg,var(--sce-color-gold-a),var(--sce-color-gold-b),var(--sce-color-gold-c))!important;
   color:var(--md-sys-color-on-surface);border:0
 }
-/* Call 211 — indigo filled; state layer re-applied over the legacy !important */
-.btn211,a.btn211,.btn.btn211,a.btn.btn211{
-  background-image:linear-gradient(var(--_sl),var(--_sl))!important;
-  border-radius:var(--conh-shape-button)!important;min-height:var(--conh-touch-target)
-}
+/* Call 211 (round 9): no own colours; .btn211 is a hook only, the button is the shared secondary (--btn-secondary-*) */
 /* text buttons — hero quick-action strip (Report / Map / Get help) */
 .actions .btn,.actions a.btn{
   min-height:var(--conh-touch-target);padding:0 var(--conh-space-3);
@@ -197,23 +193,6 @@ a.search:focus-visible{border-color:var(--md-sys-color-primary);box-shadow:inset
 .search.filled .ph{color:var(--md-sys-color-on-surface);font-weight:500}
 
 /* ---- List items (M3: leading · headline/supporting · trailing) ---------- */
-.recent{border-radius:var(--md-sys-shape-corner-large);box-shadow:var(--md-sys-elevation-level1);border-color:var(--md-sys-color-outline-variant)}
-.recent-item{
-  min-height:72px;padding:var(--conh-space-2) var(--conh-space-4);gap:var(--conh-space-4);
-  border-bottom:1px solid var(--md-sys-color-outline-variant);background-color:transparent
-}
-.recent-item:has(.ri-meta:empty),.recent-item:not(:has(.ri-meta)){min-height:56px}
-.recent-item .ri-addr{
-  font-size:var(--md-sys-typescale-body-large-size);line-height:var(--md-sys-typescale-body-large-line-height);
-  font-weight:500;color:var(--md-sys-color-on-surface)
-}
-.recent-item .ri-meta{
-  font-size:var(--md-sys-typescale-body-medium-size);line-height:var(--md-sys-typescale-body-medium-line-height);
-  color:var(--md-sys-color-on-surface-variant);margin-top:0
-}
-.recent-item > .pill{flex-shrink:0}
-a.recent-item:active{background-color:transparent}
-.tile{min-height:72px;padding:var(--conh-space-3) var(--conh-space-4);gap:var(--conh-space-4)}
 .gallery .card{min-height:72px}
 
 /* ---- Chips ---------------------------------------------------------------

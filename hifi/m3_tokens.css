@@ -53,7 +53,7 @@
   /* ---- SCE extension roles (not in M3 baseline) ------------------------ */
   --sce-color-link:#1A76C5;
   --sce-color-gold-a:#FEC711; --sce-color-gold-b:#FED141; --sce-color-gold-c:#FAD665; /* Sign in / brand / Save prefs ONLY */
-  --sce-color-211:#4F46E5;                          /* Call 211 = indigo     */
+  --sce-color-211:#4F46E5;                          /* AFN accent only (callout rail / wash). The Call 211 BUTTON uses --btn-secondary-* since round 9 */
   --sce-color-on-211:#FFFFFF;
   --sce-color-weather:#EA580C;                      /* amber/neutral banner  */
   --sce-color-weather-container:rgba(234,88,12,.08);
@@ -190,7 +190,7 @@ html,body,button,input,textarea,select{font-family:var(--md-ref-typeface-plain)}
      primary text   (6,10,13)    = #060A0D  (darkest core of the bold caps)
      radius 4px (corner inset 2/1/0 px on the first rows), weight bold, caps, letter-spacing ~0-0.01em
      link blue      (26,117,196) = #1A75C4  = --sce-color-link #1A76C5   (the mocks contain NO outlined secondary button)
-   Call 211 (indigo #4F46E5) and Sign in / Save prefs (gold gradient) keep their own classes and are NOT driven by these tokens.
+   Call 211 (since round 9) uses the secondary tokens; only Sign in / Save prefs (gold gradient) keep their own class and are NOT driven by these tokens.
    ========================================================================== */
 :root{
   --btn-radius:var(--conh-shape-button);                /* 4px */
