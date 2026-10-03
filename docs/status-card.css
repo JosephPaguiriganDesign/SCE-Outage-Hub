@@ -404,3 +404,17 @@ a.cps-prop .cps-addr{overflow-wrap:anywhere}
 .cps-cards{display:flex;flex-direction:column;gap:12px}
 .cps-cards>.cps-prop{margin:0}
 .cps-meta{font-size:14px;line-height:20px;color:#4A525C;margin:0}
+
+/* ---- ut10 (Quill copy pass) ---- */
+.cps-lag{margin:4px 0 0;text-align:center}                                  /* D6: the one page-level 'Status can take up to 20 minutes to update.' under the action strip */
+.cps-hint{text-align:center;color:var(--ink-2)}                             /* NEW-09 */
+.cps-next{font-size:14px;line-height:20px;color:#4A525C}                      /* NEW-03 */
+.cps-pb{font-size:16px;line-height:24px}                                     /* SC-18 */
+.ut-help .help-211{font-size:14px;line-height:20px;color:var(--sce-ut-ink);margin:0 0 4px}
+.ut-help .help-call{font-size:14px;line-height:20px;margin:8px 0 0;color:var(--sce-ut-ink)}
+.ut-help .help-call a{display:inline-flex;align-items:center;min-height:48px;min-width:48px;padding:0 4px;color:var(--sce-ut-link);font-weight:700;text-decoration:underline}
+.f-err{margin:6px 0 0;font-size:14px;line-height:20px;color:#BA0000;font-weight:600}   /* F5-18 validation messages (text, not color alone) */
+.f-err[hidden]{display:none}
+.rec-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.rec-head .rec-clear{background:none;border:0;padding:0 0 0 12px;min-height:48px;min-width:48px;font:inherit;font-size:14px;font-weight:700;color:var(--sce-ut-link);cursor:pointer;text-transform:none;letter-spacing:0}
+.lang-line{margin:8px 0 0}

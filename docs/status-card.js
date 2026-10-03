@@ -7,6 +7,7 @@
   function $(s, r) { return (r || d).querySelector(s); }
   function $$(s, r) { return Array.prototype.slice.call((r || d).querySelectorAll(s)); }
   var CFG = window.HX_CONFIG || {};
+  var CFG_COPY = (window.HUB_DATA && HUB_DATA.copy) || {};   /* ut10: customer-facing copy from hub-data.js */
 
   /* ---- Heat Advisory position: ONE config value, HX_CONFIG.advisoryPosition (hierarchy.js header).
           'below-status' (default) | 'above-search' (screen 05) | 'below-buttons' (screen 01).
@@ -42,7 +43,7 @@
       var wk = sp.key && sp.key.indexOf('{guest}') > -1 ? 'g_' + root.getAttribute('data-guest-key') : sp.key, w = wk && HUB_DATA.weather[wk];
       row.setAttribute('data-scn', !w ? 'none' : (sp.active ? 'on' : 'off')); row.setAttribute('data-kind', sp.kind);
       if (w) {
-        var t = $('.adv-t', row); if (t) t.innerHTML = '<b>' + w.title + '</b> \u00b7 Fire Risk: ' + w.risk;
+        var t = $('.adv-t', row); if (t) t.innerHTML = '<b>' + w.title + '</b> \u00b7 Fire risk: ' + w.risk;
         var nt = $('.adv-note', row); if (nt) nt.textContent = (sp.kind !== 'none' && w.banner) ? w.banner : '';
         var lz = $('[data-lazy-weather]', row); if (lz) { lz.setAttribute('data-lazy-weather', wk); lz.removeAttribute('data-loaded'); lz.innerHTML = '<div class="lazy-skel" role="status">Loading conditions\u2026</div>'; if (row.open) row.dispatchEvent(new Event('toggle')); }
       }
@@ -85,7 +86,7 @@
     card.setAttribute('data-exp', open ? '1' : '0');
     $$('[data-cps-toggle]', card).forEach(function (b) {
       b.setAttribute('aria-expanded', String(open));
-      var l = $('.lbl', b); if (l) l.textContent = open ? (b.getAttribute('data-open') || 'Hide Details') : (b.getAttribute('data-closed') || 'View Details');
+      var l = $('.lbl', b); if (l) l.textContent = open ? (b.getAttribute('data-open') || CFG_COPY.toggle_open) : (b.getAttribute('data-closed') || CFG_COPY.toggle_closed);
     });
   }
   if (view === '01' || view === '05') $$('.cps').forEach(function (c) { if ($('[data-cps-toggle]', c)) setExp(c, view === '01'); });
@@ -113,6 +114,6 @@
     list.setAttribute('data-less', less ? '1' : '0');
     $$('li', list).forEach(function (li, i) { li.hidden = less && i >= 3; });
     t.setAttribute('aria-expanded', String(!less));
-    var l = $('.lbl', t); if (l) l.textContent = less ? 'Show More' : 'Show Less';
+    var l = $('.lbl', t); if (l) l.textContent = less ? t.getAttribute('data-all') : t.getAttribute('data-fewer');
   });
 })();
