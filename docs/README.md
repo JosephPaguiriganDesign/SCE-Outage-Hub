@@ -144,3 +144,73 @@ Applied from `copy-pass-quill.md`. All customer-facing strings that moved are in
 - Status vocabulary (D1/D4): PSPS active label is **ACTIVE OUTAGE** (+ `PSPS` chip); temporary restoration is **POWER BACK FOR NOW**; legends are sentence case.
 - New states (D14): PSPS canceled (`P3`), restoration starting (`P2`), next update line, no estimate yet (`S1b`), CRC link + 24-hour contact line on PSPS pages.
 - Open decisions D1-D18 use Quill's recommended option. Strings that need SCE legal or that Quill could not verify are placeholders: see `open-items.md` Round 10.
+
+
+## Breadcrumb (ut11 Part 2)
+
+Matches the SCE 1.7 Breadcrumb (Figma node 346:1119; the node could not be opened with the access available, so the spec from Joseph was used: see `open-items.md` Round 11 addendum). **Shown at every width, like sce.com (Joseph's final decision).**
+
+- It **replaces** the header "Home" back link (`.ut-back`) on F1, F2, F5, F5-confirm, F6, F7, F9, F10 at every width: one navigation affordance, no leftover `.ut-back` there. (`?from=pf` arrivals get a "Your addresses" level in the trail instead of a second "Portfolio" back link.) F0 landings and the signed-in state variants have no breadcrumb and are unchanged.
+- Markup: `<nav class="bc" aria-label="Breadcrumb"><ol><li>...</li></ol></nav>`. Links `#00445A` (10.6:1 on white; 1.7's `#1A76C5` fails AAA and is not used), bold + underline, 48px row and 48px targets (>= 44px minimum), decorative `>` separators (`aria-hidden`), current page = plain text with `aria-current="page"` (the only non-link).
+- Fit: the 1.7 breadcrumb overflows a 358px phone, so the row is one fixed-height line that truncates: MIDDLE levels shrink first with an ellipsis, first and last stay visible (the last truncates only after the middle ones); the full label stays in the DOM and in a `title` tooltip. No wrap, no horizontal overflow, no layout shift. Pure CSS (`breadcrumb.css`).
+- Placement (final): header, **breadcrumb**, name line, search, status card(s), rest. Baked into the HTML. Source: `HUB_DATA.breadcrumbs` (`src-ut11/hub_data.py`): `home`, `center`, per-page `trail` and `center_href`, `landings` (no breadcrumb).
+- Back behaviour: the bottom nav (Outage Center / Map / Report / Help) is unchanged. "Outage Center" crumbs carry `data-nav-home`, so they follow the same audience memory as the bottom nav. Browser Back works as before.
+
+| Page | Trail |
+|---|---|
+| `F1-lookup-result.html` | Home > Outage Center > Outage Search |
+| `F2-active-detail.html` | Home > Outage Center > Outage Search > Outage details |
+| `F5-report.html` | Home > Outage Center > Report a Problem |
+| `F5-confirm.html` | Home > Outage Center > Report sent |
+| `F6-map-sheet.html` | Home > Outage Center > Outage map |
+| `F7-portfolio.html` | Home > Outage Center > Your addresses |
+| `F9-afn-help.html` | Home > Outage Center > Help & support |
+| `F10-psps-banner.html` | Home > Outage Center > Shutoff alert |
+
+## Motion (ut11)
+
+Component motion extends the existing page transitions. **One token set** in `m3_tokens.css` (`--motion-*`, the old `--md-sys-motion-*` set was replaced by it); `m3_motion.css` holds all rules, `motion.js` the measured height animations and the review helpers. Nothing else in the prototype declares a duration or easing (`motion-ut11.py` greps for strays).
+
+| Token | Value (scale 1) | Use |
+|---|---|---|
+| `--motion-scale` | `1` |  |
+| `--motion-duration-short` | `150ms` | state layers, press, chevron, chip / banner / menu enter, toggle knob |
+| `--motion-duration-medium` | `250ms` | expand / collapse height, card tint + word cross-fade, stepper connector fill |
+| `--motion-duration-long` | `300ms` | sheet slide-up + scrim, page transitions, NOW pulse |
+| `--motion-ease-standard` | `cubic-bezier(0.2,0,0,1)` |  |
+| `--motion-ease-emphasized` | `cubic-bezier(0.3,0,0,1)` |  |
+| `--motion-ease-decelerate` | `cubic-bezier(0.05,0.7,0.1,1)` | things entering |
+| `--motion-ease-accelerate` | `cubic-bezier(0.3,0,0.8,0.15)` | things leaving |
+| `--motion-ease-linear` | `linear` | state-layer opacity, shimmer sweep |
+| `--motion-stagger-step` | `40ms` | delay per item in a group (chips, list rows) |
+| `--motion-stagger-max` | `3` | items beyond the 3rd get the 3rd delay (unitless) |
+| `--motion-pulse-scale` | `1.08` | NOW tag peak scale |
+| `--motion-pulse-count` | `1` | NOW tag pulses once |
+| `--motion-press-scale` | `0.98` | subtle press on buttons |
+| `--motion-enter-offset` | `8px` | banner / menu / snackbar rise distance |
+| `--motion-flip-offset` | `6px` | ON/OFF word flip distance |
+| `--motion-sheet-offset` | `32px` | bottom sheet rise distance |
+| `--motion-scrim-opacity` | `0.32` | M3 scrim role |
+| `--motion-shimmer-count` | `2` | skeleton sweeps (finite) |
+| `--motion-duration-skeleton` | `1200ms` | EXCEPTION: one skeleton shimmer sweep |
+| `--motion-duration-highlight` | `2400ms` | EXCEPTION: ERT-changed highlight fade (ut5, unchanged) |
+| `--motion-latency-refresh` | `600ms` | EXCEPTION: simulated refresh latency (prototype only) |
+| `--motion-latency-skeleton` | `900ms` | EXCEPTION: simulated card load hold (?loading=1, prototype only) |
+
+Rules: durations 150-300 ms (the documented exceptions are `--motion-duration-skeleton`, `--motion-duration-highlight` and the two simulated `--motion-latency-*` values); animate `transform`, `opacity`, `clip-path` and background; heights are measured and eased only for the intended expand / collapse; no layout shift from decoration.
+
+| What moves | Duration / easing |
+|---|---|
+| Page transitions (slide, sheet hand-off) | long, standard |
+| Status card tint / border / word | medium, standard; the ON / OFF word rises in (medium, decelerate) over the old word leaving (medium, accelerate) |
+| Stepper connector fill, NOW tag pulse (once) | medium standard; pulse long standard, `--motion-pulse-count` = 1 |
+| View / Hide details, Account, accordions, show more / less | medium, standard (height) + fade |
+| Map legend sheet slide-up; modal sheet + scrim (components) | long, decelerate (enter) / accelerate (exit) |
+| Chip, banner, menu, snackbar, notices enter | short or medium, decelerate; chips stagger by `--motion-stagger-step` |
+| Map layer switch, filter chips, segmented controls | short, standard |
+| Buttons: M3 state layer + press scale `--motion-press-scale` | short, standard (linear for the layer opacity) |
+| "Updated ..." trust line after a simulated refresh; card skeleton | long sheen; skeleton `--motion-duration-skeleton`, finite (`--motion-shimmer-count`) |
+
+**Never animated (static):** `.hx-safety`, `.hx-detect`, `.safety-card`, `.hx-mb`, `.ut-help`, `.btn211`, `.btn.danger`, `a[href^="tel:"]`, `.ut-banner[data-tone="alert"]`, `[data-ph-list="s7Safety"]`, `[data-mo-static]`.
+
+**Reduced motion:** `prefers-reduced-motion: reduce` and `?motion=off` set `--motion-scale: 0` and remove every transition and animation (state changes swap instantly). `?motion=slow` doubles every duration for review. `?loading=1` shows the card skeleton once on load. The Prototype controls panel has a Motion switch (standard / slow / off). `components.html` has a Motion section with replay buttons (prototype chrome).

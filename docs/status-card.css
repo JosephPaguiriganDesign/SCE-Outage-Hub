@@ -140,11 +140,11 @@ html[data-advisory="on"] .adv[data-scn="none"]{display:none!important}
 .cps-foot{display:flex;justify-content:flex-end;margin-top:0}
 .cps-foot.center{justify-content:center}
 .cps-link{display:inline-flex;align-items:center;gap:6px;min-height:48px;padding:0 4px;border:0;background:transparent;font:inherit;font-size:16px;font-weight:700;color:var(--sce-ut-link);cursor:pointer;text-decoration:none}
-.cps-link svg{width:12px;height:8px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:transform .15s}
+.cps-link svg{width:12px;height:8px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:transform var(--motion-duration-short) var(--motion-ease-standard)}
 .cps-link[aria-expanded="true"] svg{transform:rotate(180deg)}
 .cps-link:focus-visible,.ut-btn:focus-visible,.adv>summary:focus-visible{outline:3px solid var(--sce-ut-link);outline-offset:2px}
 .cps-more[hidden],.cps [hidden]{display:none!important}
-.cps[data-exp="0"] .cps-x{display:none}
+.cps[data-exp="0"]:not([data-moving]) .cps-x{display:none}
 .ut-title .ut-meta{color:#fff;font-size:12px;align-self:center;opacity:.9}
 .cps-ert{margin-top:12px}
 .cps-ert .k{font-size:12px;line-height:16px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#4A525C}
@@ -179,12 +179,12 @@ html[data-advisory="on"] .adv[data-scn="none"]{display:none!important}
 .steps{list-style:none;margin:6px 0 0;padding:0}
 .step{position:relative;padding:0 0 8px 34px;--s-c:var(--sce-status-pending)}
 .step:last-child{padding-bottom:4px}
-.step::before{content:"";position:absolute;left:8px;top:22px;bottom:-2px;width:4px;background:var(--sce-status-pending);border-radius:2px}
+.step::before{content:"";position:absolute;left:8px;top:22px;bottom:-2px;width:4px;background:linear-gradient(var(--s-c),var(--s-c)) 0 0/100% 0 no-repeat,var(--sce-status-pending);border-radius:2px}
 .step:last-child::before{display:none}
 .step.is-done{--s-c:var(--sce-status-complete)}
-.step.is-done::before{background:var(--sce-status-complete)}
+.step.is-done::before{background-size:100% 100%}
 .step.is-current{--s-c:var(--sce-status-progress)}
-.step.is-current::before{background:var(--sce-status-progress)}
+.step.is-current::before{background-size:100% 100%}
 .step-dot{position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;background:var(--s-c);color:#fff;font-size:12px;line-height:20px;font-weight:700;text-align:center}
 .step-dot svg{width:12px;height:12px;margin-top:4px;fill:none;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
 .step-t{display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-height:24px;font-size:16px;line-height:24px;font-weight:700;color:var(--sce-ut-ink)}
@@ -192,10 +192,10 @@ html[data-advisory="on"] .adv[data-scn="none"]{display:none!important}
 .step-d{margin:2px 0 0;font-size:16px;line-height:24px;color:var(--sce-ut-ink)}
 .step-d.na{margin-top:0;color:#6B7380}
 /* collapsed = current step only (screen 05); full = all five (screens 01 / 04) */
-.cps[data-exp="0"] .step:not(.is-current){display:none}
-.cps[data-exp="0"] .step.is-current{padding-bottom:6px}
-.cps[data-exp="0"] .step.is-current::before{bottom:-4px}
-.cps[data-exp="0"] .step.is-current .step-d{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cps[data-exp="0"]:not([data-moving]) .step:not(.is-current){display:none}
+.cps[data-exp="0"]:not([data-moving]) .step.is-current{padding-bottom:6px}
+.cps[data-exp="0"]:not([data-moving]) .step.is-current::before{bottom:-4px}
+.cps[data-exp="0"]:not([data-moving]) .step.is-current .step-d{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 /* ---- 6. buttons -------------------------------------------------------------
    Round 2: the buttons carry the v0.03 classes too (btn primary = ink filled Report / View outage status,
@@ -226,8 +226,8 @@ body[data-page="s3"] .cps-actions .btn.primary{min-height:56px}
 .adv-t{flex:1;min-width:0;font-size:14px;line-height:20px;color:var(--sce-ut-ink);white-space:normal;overflow:visible;text-overflow:clip;padding:8px 0} /* wraps, never clipped (locked) */
 .adv-t b{font-weight:700}
 .adv-chev{flex:0 0 40px;width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;color:var(--sce-ut-link)}
-.adv-chev svg{width:14px;height:9px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .15s}
-.adv[open] .adv-chev svg{transform:rotate(180deg)}
+.adv-chev svg{width:14px;height:9px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transition:transform var(--motion-duration-short) var(--motion-ease-standard)}
+.adv[open]:not([data-closing]) .adv-chev svg{transform:rotate(180deg)}
 .adv-body{padding:0 12px 12px}
 .adv-note{margin:0;font-size:14px;line-height:20px}
 .adv-body>*+*{margin-top:10px}
@@ -273,8 +273,8 @@ body[data-page="s3"] .cps-actions .btn.primary{min-height:56px}
 .ut-legend svg.ut-lg{flex:0 0 28px;width:28px;height:28px}
 .ut-legend .t{flex:1;min-width:0;font-size:14px;line-height:18px;color:#3A4250}
 .ut-sw{flex:0 0 52px;width:52px;height:48px;border:0;background:transparent;padding:0;cursor:pointer;position:relative}
-.ut-sw::before{content:"";position:absolute;left:4px;top:11px;width:44px;height:26px;border-radius:13px;background:#767E8A;transition:background .15s}
-.ut-sw::after{content:"";position:absolute;left:7px;top:14px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.35);transition:transform .15s}
+.ut-sw::before{content:"";position:absolute;left:4px;top:11px;width:44px;height:26px;border-radius:13px;background:#767E8A;transition:background-color var(--motion-duration-short) var(--motion-ease-standard)}
+.ut-sw::after{content:"";position:absolute;left:7px;top:14px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.35);transition:transform var(--motion-duration-short) var(--motion-ease-standard)}
 .ut-sw[aria-checked="true"]::before{background:var(--sce-status-on)}
 .ut-sw[aria-checked="true"]::after{transform:translateX(18px)}
 .ut-map-note{margin:12px 16px 0;font-size:12px;line-height:17px;color:#4A525C}
@@ -326,7 +326,7 @@ body[data-page="s3"] .cps-actions .btn.primary{min-height:56px}
 :where(.cps-link,.adv>summary,.ut-menu a,.ut-help li a,.ut-search button,.ut-mc button,.ut-bar button,.ut-bar a.ut-ico,.as-acct summary){
   --_sl:color-mix(in srgb,currentColor var(--_slo,0%),transparent);
   background-image:linear-gradient(var(--_sl),var(--_sl));
-  transition:--_slo var(--md-sys-motion-duration-short2) linear;-webkit-tap-highlight-color:transparent}
+  transition:--_slo var(--motion-duration-short) var(--motion-ease-linear);-webkit-tap-highlight-color:transparent}
 @media (hover:hover){:where(.cps-link,.adv>summary,.ut-menu a,.ut-help li a,.ut-search button,.ut-mc button,.ut-bar button,.ut-bar a.ut-ico,.as-acct summary):hover{--_slo:var(--md-sys-state-hover-state-layer-opacity)}}
 :where(.cps-link,.adv>summary,.ut-menu a,.ut-help li a,.ut-search button,.ut-mc button,.ut-bar button,.ut-bar a.ut-ico,.as-acct summary):focus-visible{--_slo:var(--md-sys-state-focus-state-layer-opacity)}
 :where(.cps-link,.adv>summary,.ut-menu a,.ut-help li a,.ut-search button,.ut-mc button,.ut-bar button,.ut-bar a.ut-ico,.as-acct summary):active{--_slo:var(--md-sys-state-pressed-state-layer-opacity)}
@@ -389,7 +389,7 @@ body[data-page="s3"] .cps-actions .btn.primary{min-height:56px}
    Same colours / radii / type / slot order as the S* cards; no button or link inside; whole card is the 48dp+ target.
    ========================================================================== */
 a.cps-prop{display:block;text-decoration:none;color:var(--sce-ut-ink);cursor:pointer;min-height:48px;-webkit-tap-highlight-color:transparent;
-  --_sl:color-mix(in srgb,var(--sce-ut-ink) var(--_slo,0%),transparent);background-image:linear-gradient(var(--_sl),var(--_sl));transition:--_slo var(--md-sys-motion-duration-short2) linear}
+  --_sl:color-mix(in srgb,var(--sce-ut-ink) var(--_slo,0%),transparent);background-image:linear-gradient(var(--_sl),var(--_sl));transition:--_slo var(--motion-duration-short) var(--motion-ease-linear)}
 a.cps-prop[hidden]{display:none}
 @media (hover:hover){a.cps-prop:hover{--_slo:var(--md-sys-state-hover-state-layer-opacity)}}
 a.cps-prop:active{--_slo:var(--md-sys-state-pressed-state-layer-opacity)}

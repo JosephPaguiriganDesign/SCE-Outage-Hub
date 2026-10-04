@@ -91,23 +91,32 @@
   /* sheets cast upward */
   --conh-elevation-sheet:0 -1px 3px 0 rgba(16,24,32,.10),0 -4px 12px 2px rgba(16,24,32,.07);
 
-  /* ---- Motion (M3) ----------------------------------------------------- */
-  --md-sys-motion-easing-standard:cubic-bezier(0.2,0,0,1);
-  --md-sys-motion-easing-standard-decelerate:cubic-bezier(0,0,0,1);
-  --md-sys-motion-easing-standard-accelerate:cubic-bezier(0.3,0,1,1);
-  --md-sys-motion-easing-emphasized:cubic-bezier(0.2,0,0,1);
-  --md-sys-motion-easing-emphasized-decelerate:cubic-bezier(0.05,0.7,0.1,1);
-  --md-sys-motion-easing-emphasized-accelerate:cubic-bezier(0.3,0,0.8,0.15);
-  --md-sys-motion-duration-short1:50ms;
-  --md-sys-motion-duration-short2:100ms;
-  --md-sys-motion-duration-short3:150ms;
-  --md-sys-motion-duration-short4:200ms;
-  --md-sys-motion-duration-medium1:250ms;
-  --md-sys-motion-duration-medium2:300ms;
-  --md-sys-motion-duration-medium3:350ms;
-  --md-sys-motion-duration-medium4:400ms;
-  --md-sys-motion-duration-long1:450ms;
-  --md-sys-motion-duration-long2:500ms;
+  /* ---- Motion (ut11): ONE shared token set. Every transition / animation in the prototype uses ONLY these.
+     Durations scale with --motion-scale: 1 = normal, 2 = ?motion=slow (review), 0 = ?motion=off and prefers-reduced-motion: reduce.
+     Documented exceptions to the 150-300 ms rule: --motion-duration-skeleton, --motion-duration-highlight and the simulated-latency tokens. */
+  --motion-scale:1;
+  --motion-duration-short:calc(150ms * var(--motion-scale));      /* state layers, press, chevron, chip / banner / menu enter, toggle knob */
+  --motion-duration-medium:calc(250ms * var(--motion-scale));     /* expand / collapse height, card tint + word cross-fade, stepper connector fill */
+  --motion-duration-long:calc(300ms * var(--motion-scale));       /* sheet slide-up + scrim, page transitions, NOW pulse */
+  --motion-ease-standard:cubic-bezier(0.2,0,0,1);
+  --motion-ease-emphasized:cubic-bezier(0.3,0,0,1);
+  --motion-ease-decelerate:cubic-bezier(0.05,0.7,0.1,1);          /* things entering */
+  --motion-ease-accelerate:cubic-bezier(0.3,0,0.8,0.15);          /* things leaving */
+  --motion-ease-linear:linear;                                    /* state-layer opacity, shimmer sweep */
+  --motion-stagger-step:calc(40ms * var(--motion-scale));         /* delay per item in a group (chips, list rows) */
+  --motion-stagger-max:3;                                         /* items beyond the 3rd get the 3rd delay (unitless) */
+  --motion-pulse-scale:1.08;                                      /* NOW tag peak scale */
+  --motion-pulse-count:1;                                         /* NOW tag pulses once */
+  --motion-press-scale:0.98;                                      /* subtle press on buttons */
+  --motion-enter-offset:8px;                                      /* banner / menu / snackbar rise distance */
+  --motion-flip-offset:6px;                                       /* ON/OFF word flip distance */
+  --motion-sheet-offset:32px;                                     /* bottom sheet rise distance */
+  --motion-scrim-opacity:0.32;                                    /* M3 scrim role */
+  --motion-shimmer-count:2;                                       /* skeleton sweeps (finite) */
+  --motion-duration-skeleton:calc(1200ms * var(--motion-scale));  /* EXCEPTION: one skeleton shimmer sweep */
+  --motion-duration-highlight:calc(2400ms * var(--motion-scale)); /* EXCEPTION: ERT-changed highlight fade (ut5, unchanged) */
+  --motion-latency-refresh:calc(600ms * var(--motion-scale));     /* EXCEPTION: simulated refresh latency (prototype only) */
+  --motion-latency-skeleton:calc(900ms * var(--motion-scale));    /* EXCEPTION: simulated card load hold (?loading=1, prototype only) */
 
   /* ---- Typescale — Open Sans everywhere (SCE); M3 sizes/line-heights --- */
   --md-ref-typeface-brand:"Open Sans",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;

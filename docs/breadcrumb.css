@@ -1,0 +1,24 @@
+/* ut11 Part 2 — Breadcrumb (SCE 1.7 Breadcrumb, Hub TextLink style: bold + underline), ALL WIDTHS (Joseph, like sce.com).
+   <nav class="bc" aria-label="Breadcrumb"><ol><li><a>Home</a></li><li><span class="bc-sep" aria-hidden="true"/><a>Outage Center</a></li><li>…<span aria-current="page"></li></ol></nav>
+   It replaces the header back link (.ut-back) on F1, F2, F5, F5-confirm, F6, F7, F9, F10: one navigation affordance, not two.
+   The 1.7 breadcrumb overflows a 358px phone, so the row is one fixed-height line that truncates cleanly: MIDDLE levels shrink first with an ellipsis
+   (first and last stay visible; the last truncates only after the middle ones); the full label stays in the DOM and in a title tooltip.
+   Fixed 48px row (links are 48px tall: above the 44px minimum and the prototype 48dp rule), baked into the HTML (no late injection, no layout shift, no horizontal overflow).
+   Only motion: a short fade-in with the shared tokens; static under reduced motion / ?motion=off (m3_motion.css). */
+.bc{--bc-link:#00445A;box-sizing:border-box;display:flex;align-items:center;height:48px;min-height:48px;padding:0 10px;background:#fff;border-bottom:1px solid #E1E4E8;
+  font-size:14px;line-height:20px;animation:mo-fade var(--motion-duration-short) var(--motion-ease-standard) backwards}
+.bc ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:nowrap;align-items:center;flex:1 1 auto;min-width:0;overflow:hidden}
+.bc li{display:flex;align-items:center;flex:none;min-width:0;margin:0;padding:0}
+.bc li:not(:first-child):not(:last-child){flex:0 1 auto;flex-shrink:1000;min-width:60px}
+.bc li:last-child:not(:first-child){flex:0 1 auto;min-width:4em}
+.bc a{display:block;box-sizing:border-box;flex:0 1 auto;min-width:48px;max-width:100%;height:48px;line-height:48px;padding:0 6px;border-radius:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center;
+  color:var(--bc-link);font-weight:700;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;
+  transition:background-color var(--motion-duration-short) var(--motion-ease-standard)}
+.bc a:hover,.bc a.is-hover{background:rgba(0,68,90,.08);text-decoration-thickness:2px}
+.bc a:active,.bc a.is-pressed{background:rgba(0,68,90,.12);text-decoration-thickness:2px}
+.bc a:focus-visible,.bc a.is-focus{outline:3px solid var(--sce-ut-link,#1A76C5);outline-offset:-3px}
+.bc [aria-current]{display:block;min-width:0;padding:0 6px;color:var(--sce-ut-ink,#101820);font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bc-sep{display:inline-flex;align-items:center;justify-content:center;flex:none;width:12px;color:#4A525C}
+.bc-sep svg{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+/* components.html: examples always visible, whatever the window width */
+.bc-demo{margin:4px 16px 12px;border:1px dashed #8D959F;max-width:calc(100% - 32px)}

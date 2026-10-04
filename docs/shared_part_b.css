@@ -220,8 +220,8 @@ a.sum-chip.link{border-color:var(--line);color:var(--link);font-weight:600}
 
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation-duration: 240ms;
-  animation-timing-function: cubic-bezier(.25,.1,.25,1);
+  animation-duration: var(--motion-duration-long);
+  animation-timing-function: var(--motion-ease-standard);
 }
 
 html:active-view-transition-type(forward) {
@@ -272,16 +272,16 @@ html:active-view-transition.enter-fade .app {
 
 @media (prefers-reduced-motion: no-preference) {
   html.enter-forward .app {
-    animation: fb-in-right 240ms cubic-bezier(.25,.1,.25,1) both;
+    animation: fb-in-right var(--motion-duration-long) var(--motion-ease-standard) both;
   }
   html.enter-back .app {
-    animation: fb-in-left 240ms cubic-bezier(.25,.1,.25,1) both;
+    animation: fb-in-left var(--motion-duration-long) var(--motion-ease-standard) both;
   }
   html.enter-sheet .app {
-    animation: fb-sheet-up 260ms cubic-bezier(.25,.1,.25,1) both;
+    animation: fb-sheet-up var(--motion-duration-long) var(--motion-ease-standard) both;
   }
   html.enter-sheet body {
-    animation: fb-scrim 260ms cubic-bezier(.25,.1,.25,1) both;
+    animation: fb-scrim var(--motion-duration-long) var(--motion-ease-standard) both;
   }
 }
 
@@ -306,34 +306,7 @@ html:active-view-transition.enter-fade .app {
   to { opacity: 1; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation-duration: 70ms !important;
-    animation-timing-function: ease !important;
-  }
-  html:active-view-transition-type(forward),
-  html:active-view-transition-type(back),
-  html:active-view-transition-type(sheet) {
-    &::view-transition-old(root) { animation-name: vt-fade-quick; }
-    &::view-transition-new(root) { animation-name: vt-fade-quick-in; }
-  }
-  @keyframes vt-fade-quick {
-    to { opacity: .7; }
-  }
-  @keyframes vt-fade-quick-in {
-    from { opacity: .85; }
-  }
-  html.enter-forward .app,
-  html.enter-back .app,
-  html.enter-sheet .app,
-  html.enter-fade .app {
-    animation: fb-fade 80ms ease both !important;
-  }
-  html.enter-sheet body {
-    animation: none !important;
-  }
-}
+/* ut11: reduced motion = page changes swap instantly (no cross-fade, no slide); see m3_motion.css */
 
 /* CONH map stack — attribution + FPI outlook + consideration pin */
 .map-filters{flex-wrap:wrap}

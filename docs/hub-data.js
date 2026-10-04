@@ -1023,6 +1023,104 @@ window.HUB_DATA = {
   "text": "11,486 homes and businesses are without power across 9 areas."
  },
  "fire": "High fire risk expected <b>Wed Sep 9 · 6:00 PM</b> until <b>Fri Sep 11 · 10:00 PM PT</b> (estimate).",
+ "breadcrumbs": {
+  "aria": "Breadcrumb",
+  "home": {
+   "label": "Home",
+   "href": "F0-hub-home.html"
+  },
+  "center": {
+   "label": "Outage Center"
+  },
+  "landings": [
+   "F0-hub-home.html",
+   "F0-signed.html",
+   "F0-multi.html",
+   "S1-active.html",
+   "S1-no-estimate.html",
+   "S3-no-outage.html",
+   "S6-psps-watch.html",
+   "S7-psps-active.html",
+   "S9-restored.html",
+   "S12-weather.html",
+   "S13-disconnected.html",
+   "N1-active-planned.html",
+   "N2-active-planned-restored.html",
+   "P1-psps-shutoff.html",
+   "P2-psps-restoring.html",
+   "P3-psps-canceled.html"
+  ],
+  "pages": {
+   "F1-lookup-result.html": {
+    "center_href": "F0-hub-home.html",
+    "trail": [
+     {
+      "label": "Outage Search"
+     }
+    ]
+   },
+   "F2-active-detail.html": {
+    "center_href": "F0-hub-home.html",
+    "trail": [
+     {
+      "label": "Outage Search",
+      "href": "F1-lookup-result.html"
+     },
+     {
+      "label": "Outage details"
+     }
+    ]
+   },
+   "F5-report.html": {
+    "center_href": "F0-hub-home.html",
+    "trail": [
+     {
+      "label": "Report a Problem"
+     }
+    ]
+   },
+   "F5-confirm.html": {
+    "center_href": "F0-hub-home.html",
+    "trail": [
+     {
+      "label": "Report sent"
+     }
+    ]
+   },
+   "F6-map-sheet.html": {
+    "center_href": "F0-signed.html",
+    "trail": [
+     {
+      "label": "Outage map"
+     }
+    ]
+   },
+   "F7-portfolio.html": {
+    "center_href": "F0-multi.html",
+    "trail": [
+     {
+      "label": "Your addresses"
+     }
+    ]
+   },
+   "F9-afn-help.html": {
+    "center_href": "F0-hub-home.html",
+    "trail": [
+     {
+      "label": "Help & support"
+     }
+    ]
+   },
+   "F10-psps-banner.html": {
+    "center_href": "F0-hub-home.html",
+    "trail": [
+     {
+      "label": "Shutoff alert"
+     }
+    ]
+   }
+  }
+ },
  "copy": {
   "dl_title": "Stay at least 100 feet away. Keep others away.",
   "dl_body": "Call 911 immediately. Treat every downed line as live.",
