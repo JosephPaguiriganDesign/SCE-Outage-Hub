@@ -11,10 +11,10 @@
   .frame-chip .dismiss,.m3-nav,a.sum-chip){
   --_sl:color-mix(in srgb,currentColor var(--_slo,0%),transparent);
   background-image:linear-gradient(var(--_sl),var(--_sl))!important; /* survives legacy background shorthands */
-  transition:--_slo var(--md-sys-motion-duration-short2) linear,
-    background-color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard),
-    border-color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard),
-    box-shadow var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard);
+  transition:--_slo var(--motion-duration-short) var(--motion-ease-linear),
+    background-color var(--motion-duration-short) var(--motion-ease-standard),
+    border-color var(--motion-duration-short) var(--motion-ease-standard),
+    box-shadow var(--motion-duration-short) var(--motion-ease-standard);
   -webkit-tap-highlight-color:transparent;
 }
 @media (hover:hover){
@@ -129,7 +129,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
   background:linear-gradient(to bottom,var(--md-sys-color-background) 50%,var(--md-sys-color-surface-container-lowest) 50%);
   font-size:var(--md-sys-typescale-body-small-size);line-height:var(--md-sys-typescale-body-small-line-height);
   font-weight:500;letter-spacing:0;text-transform:none;color:var(--md-sys-color-on-surface-variant);
-  transition:color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard)
+  transition:color var(--motion-duration-short) var(--motion-ease-standard)
 }
 .form-field > input,.form-field > textarea,.form-field > select,.form-field .input{
   min-height:56px;padding:var(--conh-space-4);
@@ -137,8 +137,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
   background:var(--md-sys-color-surface-container-lowest);color:var(--md-sys-color-on-surface);
   font-size:var(--md-sys-typescale-body-large-size);line-height:var(--md-sys-typescale-body-large-line-height);
   box-shadow:none;outline:none;
-  transition:border-color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard),
-    box-shadow var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard)
+  transition:border-color var(--motion-duration-short) var(--motion-ease-standard),
+    box-shadow var(--motion-duration-short) var(--motion-ease-standard)
 }
 @media (hover:hover){
   .form-field > input:hover,.form-field > textarea:hover,.form-field > select:hover{border-color:var(--md-sys-color-on-surface)}

@@ -75,11 +75,18 @@
     if (store('conh_pending') === '1') { var pb = $('#pendingBadge'); if (pb) pb.classList.add('show'); }
   } catch (e) {}
 
-  /* ---- came from portfolio: header gets a "‹ Portfolio" back link ---- */
+  /* ---- came from portfolio (?from=pf): the breadcrumb gets a "Your addresses" level (link to F7) in place of the in-between levels.
+          ut11: the breadcrumb is the single navigation affordance, so no second back link is added. Pages without a breadcrumb keep the "< Portfolio" link. ---- */
   var prop = q.get('prop');
   if (q.get('from') === 'pf') {
-    var tt = $('.ut-title');
-    if (tt && !$('.ut-back', tt)) {
+    var tt = $('.ut-title'), bcOl = $('nav[data-bc] ol');
+    if (bcOl && bcOl.lastElementChild && !$('[data-from-pf]', bcOl)) {
+      var pl = ((HUB_DATA.breadcrumbs.pages['F7-portfolio.html'] || {}).trail || [{ label: 'Your addresses' }])[0].label;
+      var li = d.createElement('li'); li.setAttribute('data-from-pf', '');
+      li.innerHTML = bcOl.lastElementChild.querySelector('.bc-sep').outerHTML + '<a href="F7-portfolio.html" title="' + pl + '">' + pl + '</a>';
+      while (bcOl.children.length > 3) bcOl.removeChild(bcOl.children[2]);      /* Home > Outage Center > (levels between) > current  becomes  Home > Outage Center > Your addresses > current */
+      bcOl.insertBefore(li, bcOl.lastElementChild);
+    } else if (!bcOl && tt && !$('.ut-back', tt)) {
       var a = d.createElement('a'); a.href = 'F7-portfolio.html'; a.className = 'ut-back'; a.setAttribute('data-back', '');
       a.innerHTML = '<svg viewBox="0 0 10 14" aria-hidden="true" focusable="false"><path d="M8 1 2 7l6 6"/></svg>Portfolio';
       tt.appendChild(a);

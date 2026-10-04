@@ -1,68 +1,167 @@
 /* ==========================================================================
    CONH hi-fi — M3 motion layer (page + sheet transitions)
-   Re-times the existing View Transition + fallback keyframes with M3 easing
-   and durations. Keyframe names/flows unchanged (transitions.js untouched).
+   Re-times the existing View Transition + fallback keyframes with the shared --motion-* tokens (m3_tokens.css).
+   ut11: component motion layer appended below; reduced-motion / ?motion=off block at the end.
    ========================================================================== */
 
 /* Cross-document View Transitions */
 ::view-transition-old(root),
 ::view-transition-new(root){
-  animation-duration:var(--md-sys-motion-duration-medium2);            /* 300ms */
-  animation-timing-function:var(--md-sys-motion-easing-emphasized);
+  animation-duration:var(--motion-duration-long);
+  animation-timing-function:var(--motion-ease-emphasized);
 }
 /* outgoing page accelerates away, incoming decelerates in (M3 emphasized pair) */
 html:active-view-transition-type(forward)::view-transition-old(root),
 html:active-view-transition-type(back)::view-transition-old(root){
-  animation-duration:var(--md-sys-motion-duration-short4);             /* 200ms */
-  animation-timing-function:var(--md-sys-motion-easing-emphasized-accelerate);
+  animation-duration:var(--motion-duration-medium);
+  animation-timing-function:var(--motion-ease-accelerate);
 }
 html:active-view-transition-type(forward)::view-transition-new(root),
 html:active-view-transition-type(back)::view-transition-new(root){
-  animation-duration:var(--md-sys-motion-duration-medium2);            /* 300ms */
-  animation-timing-function:var(--md-sys-motion-easing-emphasized-decelerate);
+  animation-duration:var(--motion-duration-long);
+  animation-timing-function:var(--motion-ease-decelerate);
 }
 /* sheet entrance (F6 / F9): longer emphasized-decelerate rise */
 html:active-view-transition-type(sheet)::view-transition-old(root){
-  animation-duration:var(--md-sys-motion-duration-medium2);
-  animation-timing-function:var(--md-sys-motion-easing-standard);
+  animation-duration:var(--motion-duration-long);
+  animation-timing-function:var(--motion-ease-standard);
 }
 html:active-view-transition-type(sheet)::view-transition-new(root){
-  animation-duration:var(--md-sys-motion-duration-long2);              /* 500ms */
-  animation-timing-function:var(--md-sys-motion-easing-emphasized-decelerate);
+  animation-duration:var(--motion-duration-long);
+  animation-timing-function:var(--motion-ease-decelerate);
 }
-/* M3 scrim (32% scrim role) during the sheet hand-off */
+/* M3 scrim (scrim role = --motion-scrim-opacity) during the sheet hand-off */
 @keyframes vt-dim-out{
-  to{opacity:.68;filter:brightness(.68)}
+  to{opacity:calc(1 - var(--motion-scrim-opacity));filter:brightness(calc(1 - var(--motion-scrim-opacity)))}
 }
 
 /* Fallback (no cross-doc VT) — same easing/durations */
 @media (prefers-reduced-motion: no-preference){
-  html.enter-forward .app{animation:fb-in-right var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized-decelerate) both}
-  html.enter-back .app{animation:fb-in-left var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized-decelerate) both}
-  html.enter-sheet .app{animation:fb-sheet-up var(--md-sys-motion-duration-long2) var(--md-sys-motion-easing-emphasized-decelerate) both}
-  html.enter-sheet body{animation:fb-scrim var(--md-sys-motion-duration-long2) var(--md-sys-motion-easing-standard) both}
+  html.enter-forward .app{animation:fb-in-right var(--motion-duration-long) var(--motion-ease-decelerate) both}
+  html.enter-back .app{animation:fb-in-left var(--motion-duration-long) var(--motion-ease-decelerate) both}
+  html.enter-sheet .app{animation:fb-sheet-up var(--motion-duration-long) var(--motion-ease-decelerate) both}
+  html.enter-sheet body{animation:fb-scrim var(--motion-duration-long) var(--motion-ease-standard) both}
 
   /* F6 bottom sheet content swap + chip selection */
-  .map-sheet .sheet-body > *{animation:m3-sheet-content var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized-decelerate) both}
-  .map-filters .filter{transition:background-color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard),
-    border-color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard),
-    padding var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard),--_slo var(--md-sys-motion-duration-short2) linear}
+  .map-sheet .sheet-body > *{animation:m3-sheet-content var(--motion-duration-long) var(--motion-ease-decelerate) both}
+  .map-filters .filter{transition:background-color var(--motion-duration-short) var(--motion-ease-standard),
+    border-color var(--motion-duration-short) var(--motion-ease-standard),
+    padding var(--motion-duration-short) var(--motion-ease-standard),--_slo var(--motion-duration-short) var(--motion-ease-linear)}
   /* snackbar enter */
-  .stub-toast.show{animation:m3-snackbar-in var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized-decelerate) both}
+  .stub-toast.show{animation:m3-snackbar-in var(--motion-duration-long) var(--motion-ease-decelerate) both}
 }
 @keyframes fb-scrim{
-  from{background-color:color-mix(in srgb,var(--md-sys-color-scrim) 32%,var(--md-sys-color-background))}
+  from{background-color:color-mix(in srgb,var(--md-sys-color-scrim) calc(var(--motion-scrim-opacity) * 100%),var(--md-sys-color-background))}
   to{background-color:var(--md-sys-color-background)}
 }
-@keyframes m3-sheet-content{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-@keyframes m3-snackbar-in{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translate(-50%,0)}}
+@keyframes m3-sheet-content{from{opacity:0;transform:translateY(var(--motion-enter-offset))}to{opacity:1;transform:none}}
+@keyframes m3-snackbar-in{from{opacity:0;transform:translate(-50%,var(--motion-enter-offset))}to{opacity:1;transform:translate(-50%,0)}}
 
-/* Reduced motion: keep the existing quick fades; kill new motion + state fades */
+
+/* ==========================================================================
+   ut11 — COMPONENT MOTION LAYER. Tokens only (m3_tokens.css --motion-*). Animate transform / opacity / clip-path
+   (never layout) except the intended expand/collapse height, driven by motion.js with WAAPI.
+   Base styles are the END state; every animation is `backwards`/no fill so reduced motion / ?motion=off simply drop the animation.
+   Exclusion list (static, no transition / animation / transform) is at the very end of this file and in motion.js (Motion.EXCLUDE).
+   ========================================================================== */
+
+/* -- keyframes ------------------------------------------------------------ */
+@keyframes mo-wipe-x{from{opacity:0;clip-path:inset(0 100% 0 0)}to{opacity:1;clip-path:inset(0 0 0 0)}}
+@keyframes mo-wipe-y{from{opacity:0;clip-path:inset(0 0 100% 0)}to{opacity:1;clip-path:inset(0 0 0 0)}}
+@keyframes mo-fade{from{opacity:0}to{opacity:1}}
+@keyframes mo-rise{from{opacity:0;transform:translateY(var(--motion-enter-offset))}to{opacity:1;transform:none}}
+@keyframes mo-drop{from{opacity:0;transform:translateY(calc(-1 * var(--motion-enter-offset)))}to{opacity:1;transform:none}}
+@keyframes mo-sheet-up{from{opacity:0;transform:translateY(var(--motion-sheet-offset))}to{opacity:1;transform:none}}
+@keyframes mo-snack-in{from{opacity:0;transform:translate(-50%,var(--motion-enter-offset))}to{opacity:1;transform:translate(-50%,0)}}
+@keyframes mo-pulse{0%{transform:scale(1)}50%{transform:scale(var(--motion-pulse-scale))}100%{transform:scale(1)}}
+@keyframes mo-row{from{background-color:color-mix(in srgb,var(--sce-ut-link) 14%,transparent)}to{background-color:transparent}}
+@keyframes mo-sheen{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+@keyframes mo-scrim-in{from{opacity:0}to{opacity:var(--motion-scrim-opacity)}}
+@keyframes mo-flip-out{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(calc(-1 * var(--motion-flip-offset)))}}
+@keyframes mo-flip-in{from{opacity:0;transform:translateY(var(--motion-flip-offset))}to{opacity:1;transform:translateY(0)}}
+
+/* -- 1. status card: tint / border / word cross-fade (state change = data-state / data-status changes; JS flips the ON/OFF text) */
+.cps{transition:background-color var(--motion-duration-medium) var(--motion-ease-standard),border-color var(--motion-duration-medium) var(--motion-ease-standard)}
+.cps-state{transition:color var(--motion-duration-medium) var(--motion-ease-standard)}
+.cps-state{position:relative}
+.cps-state[data-prev]::before{content:attr(data-prev);position:absolute;left:0;top:0;white-space:nowrap;pointer-events:none;animation:mo-flip-out var(--motion-duration-medium) var(--motion-ease-accelerate) both}
+.cps-state.mo-flip-in{display:inline-block;animation:mo-flip-in var(--motion-duration-medium) var(--motion-ease-decelerate) both}
+.cps .mo-swap{animation:mo-fade var(--motion-duration-medium) var(--motion-ease-standard) backwards}
+
+/* -- 2. chips, banners, menu, notices: enter ---------------------------------- */
+.cps-chip{animation:mo-wipe-x var(--motion-duration-short) var(--motion-ease-decelerate) 0s backwards}
+.cps-chip:nth-child(2){animation-delay:var(--motion-stagger-step)}
+.cps-chip:nth-child(n+3){animation-delay:calc(var(--motion-stagger-step) * (var(--motion-stagger-max) - 1))}
+.ut-banner:not([data-tone="alert"]){animation:mo-wipe-y var(--motion-duration-medium) var(--motion-ease-decelerate) backwards}
+.ut-menu:not([hidden]){animation:mo-drop var(--motion-duration-short) var(--motion-ease-decelerate) backwards}
+.cps-stale:not([hidden]),#ertNote:not([hidden]){animation:mo-rise var(--motion-duration-medium) var(--motion-ease-decelerate) backwards}
+.hx-snack{animation:mo-snack-in var(--motion-duration-medium) var(--motion-ease-decelerate) backwards}
+.mo-enter{animation:mo-rise var(--motion-duration-short) var(--motion-ease-decelerate) calc(var(--motion-stagger-step) * var(--mo-i,0)) backwards}
+
+/* -- 3. stepper: connector fill (background-size grows top to bottom when a step becomes done / current) + NOW tag pulses ONCE ---- */
+.step::before{transition:background-size var(--motion-duration-medium) var(--motion-ease-standard)}
+.step.is-current::before{transition-delay:var(--motion-stagger-step)}
+.step.is-current .step-pill{animation:mo-pulse var(--motion-duration-long) var(--motion-ease-standard) var(--motion-stagger-step) var(--motion-pulse-count) backwards}
+.step.is-done .step-dot svg{animation:mo-fade var(--motion-duration-short) var(--motion-ease-standard) backwards}
+
+/* -- 4. expand / collapse: chevrons (state), details body fade; height is animated by motion.js ----- */
+details[open]:not([data-closing])>:not(summary){animation:mo-fade var(--motion-duration-medium) var(--motion-ease-standard) backwards}
+[data-mo-grow]{overflow:hidden}
+
+/* -- 5. bottom sheet slide-up + scrim ------------------------------------------ */
+.ut-legend:not([hidden]){animation:mo-sheet-up var(--motion-duration-long) var(--motion-ease-decelerate) backwards}
+.mo-scrim{position:absolute;inset:0;background:#000;opacity:var(--motion-scrim-opacity);animation:mo-scrim-in var(--motion-duration-long) var(--motion-ease-standard) backwards}
+.mo-sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:16px 16px 0 0;padding:12px 16px 16px;box-shadow:var(--conh-elevation-sheet);animation:mo-sheet-up var(--motion-duration-long) var(--motion-ease-decelerate) backwards}
+.mo-sheet[hidden],.mo-scrim[hidden]{display:none}
+
+/* -- 6. map layer switch / filter chip feedback ---------------------------------------- */
+.ut-legend li.mo-flash{animation:mo-row var(--motion-duration-long) var(--motion-ease-standard) 1}
+.pf-chips button,.proto-panel .seg button,.map-filters .filter{transition:background-color var(--motion-duration-short) var(--motion-ease-standard),border-color var(--motion-duration-short) var(--motion-ease-standard),color var(--motion-duration-short) var(--motion-ease-standard),transform var(--motion-duration-short) var(--motion-ease-standard)}
+.pf-chips button:active,.map-filters .filter:active{transform:scale(var(--motion-press-scale))}
+
+/* -- 7. button press: M3 state layer (hover / press / focus overlay) + subtle press scale ------------- */
+:where(.btn,.ut-btn,.cps-link,.ut-sw,.ut-mc button){transition-property:--_slo,background-color,border-color,box-shadow,transform;transition-duration:var(--motion-duration-short);transition-timing-function:var(--motion-ease-standard)}
+:where(.btn,.ut-btn,.cps-link,.ut-mc button):active{transform:scale(var(--motion-press-scale))}
+
+/* -- 8. refresh feedback on the trust line, card skeleton ------------------------------------------ */
+.cps-upd.is-refreshed,.cps-upd.is-loading{position:relative;overflow:hidden}
+.cps-upd.is-refreshed::after,.cps-upd.is-loading::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.85),transparent);animation:mo-sheen var(--motion-duration-long) var(--motion-ease-linear) 1 both;pointer-events:none}
+.cps-upd.is-loading{color:transparent;background:linear-gradient(90deg,var(--surface-2),#F7F8FA,var(--surface-2));border-radius:4px;max-width:60%}
+.cps-upd.is-loading::after{animation:mo-sheen var(--motion-duration-skeleton) var(--motion-ease-linear) var(--motion-shimmer-count) both}
+.cps.is-skeleton{pointer-events:none}
+.cps.is-skeleton .cps-block{position:relative;overflow:clip}   /* no min-height and no BFC: the skeleton keeps the exact height of the card (no layout shift) */
+.cps.is-skeleton .cps-block>*{visibility:hidden}
+.cps.is-skeleton .cps-block::before{content:"";position:absolute;left:14px;right:14px;top:14px;bottom:14px;border-radius:4px;
+  background:linear-gradient(#E3E6EA,#E3E6EA) 0 0/55% 24px no-repeat,linear-gradient(#E3E6EA,#E3E6EA) 0 36px/90% 20px no-repeat,linear-gradient(#E3E6EA,#E3E6EA) 0 66px/70% 20px no-repeat}
+.cps.is-skeleton .cps-block::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.75),transparent);animation:mo-sheen var(--motion-duration-skeleton) var(--motion-ease-linear) var(--motion-shimmer-count) both}
+.cps.mo-reveal .cps-block{animation:mo-fade var(--motion-duration-medium) var(--motion-ease-standard) backwards}
+
+/* -- 9. components.html Motion section (prototype chrome) ---------------------------------------- */
+.mo-demo{position:relative;overflow:hidden;min-height:150px;border:1px dashed #8D959F;border-radius:4px;padding:12px;margin:8px 0 12px;background:#fff}
+.mo-demo .cps{margin:0}
+
+/* ==========================================================================
+   EXCLUSION LIST — safety / 911 / 211 content is STATIC (no transition, animation or transform), in every motion mode.
+   The Call 211 / Call 911 buttons keep the M3 hover / pressed colour layer, but it swaps instantly (no ease, no press scale).
+   ========================================================================== */
+:is(.hx-safety,.hx-detect,.safety-card,.hx-mb,.ut-help,.btn211,.btn.danger,a[href^="tel:"],.ut-banner[data-tone="alert"],[data-ph-list="s7Safety"],[data-mo-static]),
+:is(.hx-safety,.hx-detect,.safety-card,.hx-mb,.ut-help,.btn211,.btn.danger,a[href^="tel:"],.ut-banner[data-tone="alert"],[data-ph-list="s7Safety"],[data-mo-static]) *,
+:is(.hx-safety,.hx-detect,.safety-card,.hx-mb,.ut-help,.btn211,.btn.danger,a[href^="tel:"],.ut-banner[data-tone="alert"],[data-ph-list="s7Safety"],[data-mo-static]) *::before,
+:is(.hx-safety,.hx-detect,.safety-card,.hx-mb,.ut-help,.btn211,.btn.danger,a[href^="tel:"],.ut-banner[data-tone="alert"],[data-ph-list="s7Safety"],[data-mo-static]) *::after{
+  animation:none!important;transition:none!important}
+:is(.btn211,.btn.danger,a[href^="tel:"]):active{transform:none!important}
+
+/* ==========================================================================
+   REDUCED MOTION and ?motion=off: no movement, no animation, no transition. Changes swap instantly.
+   (--motion-scale:0 also zeroes every duration read by motion.js.)
+   ========================================================================== */
 @media (prefers-reduced-motion: reduce){
-  ::view-transition-old(root),
-  ::view-transition-new(root){
-    animation-duration:70ms!important;animation-timing-function:linear!important;
-  }
-  .map-sheet .sheet-body > *,.stub-toast.show{animation:none!important}
-  *,*::before,*::after{transition-duration:0ms!important}
+  :root{--motion-scale:0}
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
 }
+html[data-motion="off"]{--motion-scale:0}
+html[data-motion="off"] *,html[data-motion="off"] *::before,html[data-motion="off"] *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+html[data-motion="off"]::view-transition-group(*),html[data-motion="off"]::view-transition-old(*),html[data-motion="off"]::view-transition-new(*){animation:none!important}
+/* ?motion=slow: review at 2x duration */
+html[data-motion="slow"]{--motion-scale:2}
