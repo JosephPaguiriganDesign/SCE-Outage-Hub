@@ -69,10 +69,22 @@
   var home = { guest: 'F0-hub-home.html', signed: 'F0-signed.html', multi: 'F0-multi.html' }[store('conh_aud') || 'guest'];
   $$('a[data-nav-home]').forEach(function (a) { a.setAttribute('href', home); });
 
-  /* ---- pending badge (F0 guest / F1) — unchanged behaviour ---- */
+  /* ---- ut13: report pending (Hub/ReportStatus State=Pending, F0 guest / F1). Replaces the retired PendingBadge.
+          Live region: role=status, aria-live=polite, aria-atomic=true (in the HTML). ?pending=failed shows the failure copy and escalates to role=alert. ---- */
   try {
-    if (q.get('pending') === '1') store('conh_pending', '1');
-    if (store('conh_pending') === '1') { var pb = $('#pendingBadge'); if (pb) pb.classList.add('show'); }
+    var pq = q.get('pending');
+    if (pq === '1' || pq === 'failed') store('conh_pending', pq === 'failed' ? 'failed' : '1');
+    var pst = store('conh_pending'), pb = $('#reportPending');
+    if (pb && (pst === '1' || pst === 'failed')) {
+      if (pst === 'failed') {
+        var CPc = (window.HUB_DATA && HUB_DATA.copy) || {};
+        pb.setAttribute('role', 'alert'); pb.setAttribute('aria-live', 'assertive'); pb.setAttribute('data-failed', '');
+        var pt = $('.hx-rp-title', pb), pl = $('.hx-rp-line', pb);
+        if (pt && CPc.pending_fail_title) pt.textContent = CPc.pending_fail_title;
+        if (pl && CPc.pending_fail_body) pl.textContent = CPc.pending_fail_body;
+      }
+      pb.hidden = false;
+    }
   } catch (e) {}
 
   /* ---- came from portfolio (?from=pf): the breadcrumb gets a "Your addresses" level (link to F7) in place of the in-between levels.
@@ -191,13 +203,14 @@
     var ra = q.get('aud') || store('conh_aud') || 'guest';
     root.setAttribute('data-aud', ra === 'guest' ? 'guest' : ra);
     var intent = q.get('intent') || 'power';
-    function setIntent(v, moved) {
+    function setIntent(v, moved, user) {
       root.setAttribute('data-intent', v); var f = $('#intentField'); if (f) f.value = v;
       var r = $('input[name="intent"][value="' + v + '"]'); if (r) r.checked = true;
       var meta = $('#rptMeta'); if (meta) meta.textContent = { power: 'Power outage', downed: 'Downed power line', hazard: 'Other hazard' }[v];
       var nav = $('.hub-nav'); if (nav) nav.setAttribute('data-report', 'safety');
       var det = $('#hxDetect'); if (det) det.hidden = !moved;
-      if (v === 'downed') { var h = $('#dlSafety'); if (h) h.setAttribute('aria-live', 'assertive'); }
+      /* ut13: the Emergency callout gets role=alert ONLY when a user action reveals the downed-line copy (not on page load) */
+      var em = $('#dlEmergency'); if (em) { if (v === 'downed' && user) em.setAttribute('role', 'alert'); else em.removeAttribute('role'); }
       store('conh_intent', v);
     }
     if (page === 'f5') {
@@ -209,10 +222,10 @@
         var want = q.get('prop') || 'maple'; if (!list.some(function (p) { return p.id === want; })) want = list[0].id; sel.value = want;
       }
       setIntent(intent, false);
-      $$('input[name="intent"]').forEach(function (r) { r.addEventListener('change', function () { setIntent(r.value, false); }); });
-      $$('[data-pick]').forEach(function (b) { b.addEventListener('click', function (e) { if (b.tagName === 'A') e.preventDefault(); setIntent(b.getAttribute('data-pick'), false); window.scrollTo(0, 0); }); });
+      $$('input[name="intent"]').forEach(function (r) { r.addEventListener('change', function () { setIntent(r.value, false, true); }); });
+      $$('[data-pick]').forEach(function (b) { b.addEventListener('click', function (e) { if (b.tagName === 'A') e.preventDefault(); setIntent(b.getAttribute('data-pick'), false, true); window.scrollTo(0, 0); }); });
       $$('input[name="wire"]').forEach(function (r) {
-        r.addEventListener('change', function () { if (r.value === 'yes' && r.checked) { setIntent('downed', true); window.scrollTo(0, 0); } });
+        r.addEventListener('change', function () { if (r.value === 'yes' && r.checked) { setIntent('downed', true, true); window.scrollTo(0, 0); } });
       });
       var hint = $('#breakerHint');
       $$('input[name="breaker"]').forEach(function (r) { r.addEventListener('change', function () { if (hint) hint.hidden = !(r.value === 'yes' && r.checked); }); });
@@ -229,11 +242,13 @@
  try { var p = sel && sel.options[sel.selectedIndex]; store('conh_rpt_addr', p ? p.textContent : ($('#loc') ? $('#loc').value : '')); } catch (x) {} });
     } else {
       setIntent(q.get('intent') || 'power', false);
-      var addr = store('conh_rpt_addr') || q.get('loc') || HUB_DATA.props.maple.full;
+      var addr = store('conh_rpt_addr') || q.get('loc') || HUB_DATA.props.maple.short;   /* ut13: receipt default = short address (as baked) */
       var it = q.get('intent') || 'power';
-      var det = $('#cfDetail'), tt = $('#cfTitle');
-      if (det) det.textContent = ({ power: CP.f5c_power, downed: CP.f5c_dl, hazard: CP.f5c_hz })[it] + addr;
+      var ca = $('#cfAddr'), tt = $('#cfTitle');
+      if (ca) ca.textContent = addr;   /* ut13: receipt row "Address" (Hub/ReportStatus Received) */
       if (tt && it === 'downed') tt.textContent = CP.f5c_title_dl;
+      /* ut13: on arrival, focus moves to the Received title (tabindex=-1). Not a live region. */
+      if (tt) { try { tt.focus({ preventScroll: true }); } catch (x) { tt.focus(); } }
       var lag = $('#cfLag'); if (lag && it === 'downed') lag.textContent = CP.dl_conf_next;
       var sb = $('#backStatus'); if (sb && ra !== 'guest') sb.setAttribute('href', ra === 'multi' ? 'F7-portfolio.html' : 'S1-active.html');
       /* F5-confirm updates block (was inline) */

@@ -9,7 +9,7 @@
   function $$(s, r) { return Array.prototype.slice.call((r || d).querySelectorAll(s)); }
 
   /* ---- exclusion list (static content). Keep in sync with the CSS :is(...) list at the end of m3_motion.css ---- */
-  var EXCLUDE = '.hx-safety,.hx-detect,.safety-card,.hx-mb,.ut-help,.btn211,.btn.danger,a[href^="tel:"],.ut-banner[data-tone="alert"],[data-ph-list="s7Safety"],[data-mo-static]';
+  var EXCLUDE = '.hx-safety,.hx-detect,.safety-card,.hx-callout,.ut-help,.btn211,.btn.danger,a[href^="tel:"],.ut-banner[data-tone="alert"],[data-ph-list="s7Safety"],[data-mo-static]';
   function isStatic(el) { return !!(el && el.closest && el.closest(EXCLUDE)); }
 
   /* ---- ?motion=off|slow|on (also set by the head snippet before first paint) ---- */

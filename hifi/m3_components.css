@@ -343,7 +343,6 @@ a.wx-banner:active{background-color:var(--sce-color-weather-container)}
 }
 .hero,.mod,.timeline,.confirm-hero,.safety-card,.updates-block,.tile{box-shadow:var(--md-sys-elevation-level1)}
 .fpi-strip.nested,.map-sheet .hero{box-shadow:var(--md-sys-elevation-level0)}
-.pending-badge{border-radius:var(--md-sys-shape-corner-medium);padding:var(--conh-space-3) var(--conh-space-4)}
 .section-label{padding:var(--conh-space-4) var(--conh-space-4) var(--conh-space-2)}
 .cta-row{gap:var(--conh-space-2);padding:var(--conh-space-2) var(--conh-space-4)}
 

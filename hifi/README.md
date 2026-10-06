@@ -25,7 +25,7 @@ Relative links only — works from this folder without a build step.
 | **Multi** | F0-multi → chips / **View portfolio** → F7 → Maple → F2 |
 | **PSPS** | F10 → What to do / Get help → F9; **PSPS map** stubs “Opens PSPS map” (not F6) |
 
-Pending badge: F5-confirm writes `sessionStorage.conh_pending` and links with `?pending=1`. F0 / F1 show the badge when either is present.
+Report pending (ut13, Hub/ReportStatus Pending; replaces the retired pending badge): F5-confirm writes `sessionStorage.conh_pending` and links with `?pending=1`. F0 / F1 show it above the status card when either is present; `?pending=failed` previews the failure state (role=alert).
 
 ## Button lock (do not regress)
 
@@ -35,7 +35,7 @@ Pending badge: F5-confirm writes `sessionStorage.conh_pending` and links with `?
 | View map / any secondary CTA (round 8) | Transparent + blue `#1A76C5` text + 1px blue border, radius 4px (`--btn-secondary-*`) |
 | Call 211 (round 9) | Same as the secondary button: transparent + blue `#1A76C5` text + 1px blue border, radius 4px, 48dp, `tel:211`; no own colours (`.btn211` is a hook only) |
 | Sign in to My Account / Save prefs | Gold gradient only |
-| Call 911 | Ink fill + white (`--btn-danger-*`) |
+| Call 911 (ut13) | Same as the primary button: gold `#FED141` + bold `#060A0D` (`--btn-primary-*`), `tel:911`. Supersedes the earlier ink/danger rule. |
 | Hero action strip | Quiet text: Report · Map · Get help (no gold / no fill) |
 
 ## Round 1 / 2: user-tested screens (design mocks only)
@@ -131,10 +131,9 @@ New/changed on top of the screens above. All plain static files; `hierarchy.css`
 | S1b (ut10, NEW-05) | `archive/S1-no-estimate.html` | **Archived** — remapped nav → S1 |
 | Next update (ut10, NEW-03) | `S6`, `F10`, `F0-signed`, `P1` | One line "Next update by Thu Sep 10 · 6:00 PM PT" on the Potential / Likely / Scheduled / PSPS-active single cards (needs a real data field). P2 archived. |
 
-
 ### Archived screens (ut12)
 
-Eight cut pages were moved (not deleted) to `docs/archive/` and `hifi/archive/`. GitHub Pages can still serve them at `…/archive/<file>`. Navigation from KEEP screens was remapped: S7→S9, P2→P1, P3→S9, S1-no-estimate→S1, N1/N2→S1, S12→S3, S13→S3. See `upload-manifest-ut12.md` in the design folder.
+Eight cut pages were moved (not deleted) to `docs/archive/` and `hifi/archive/`. GitHub Pages can still serve them at `…/archive/<file>`. The generator does not emit them at the docs root and the gallery does not link them. Navigation from KEEP screens was remapped: S7→S9, P2→P1, P3→S9, S1-no-estimate→S1, N1/N2→S1, S12→S3, S13→S3. See `upload-manifest-ut12.md` in the design folder.
 
 Placeholders (unresolved spec items) live in the `HX_CONFIG` block at the top of `hierarchy.js` and show a small dashed "Placeholder" tag. See `open-items.md` in the design folder.
 
@@ -145,7 +144,7 @@ Extra files: `hierarchy.css`, `hierarchy.js`, keep-set `S*.html` / `P1`. Cut pag
 
 Applied from `copy-pass-quill.md`. All customer-facing strings that moved are in `HUB_DATA.copy` (`hub-data.js`, source `src-ut10/copy_data.py`); pages are baked from it with `@@copy.<key>@@` tokens or `C[...]` lookups in the generator, and `hierarchy.js` / `status-card.js` read `HUB_DATA.copy` at runtime.
 
-- Safety first: every downed-line string says **100 feet** and **call 911** (F5 emergency + safety box + escalation, F5-confirm, F0 guest promo, S7 safety tips).
+- Safety first: every downed-line string says **100 feet** and **call 911** (F5 emergency + safety box + escalation, F5-confirm, F0 guest promo). ut13 (Quill): the hint, detection, promo and confirm body now say "at least 100 feet"; the confirm line is "If you haven't called 911, call now."
 - Status vocabulary (D1/D4): PSPS active label is **ACTIVE OUTAGE** (+ `PSPS` chip); temporary restoration is **POWER BACK FOR NOW**; legends are sentence case.
 - New states (D14): PSPS canceled (`P3`), restoration starting (`P2`), next update line, no estimate yet (`S1b`), CRC link + 24-hour contact line on PSPS pages.
 - Open decisions D1-D18 use Quill's recommended option. Strings that need SCE legal or that Quill could not verify are placeholders: see `open-items.md` Round 10.
@@ -170,7 +169,7 @@ Matches the SCE 1.7 Breadcrumb (Figma node 346:1119; the node could not be opene
 | `F6-map-sheet.html` | Home > Outage Center > Outage map |
 | `F7-portfolio.html` | Home > Outage Center > Your addresses |
 | `F9-afn-help.html` | Home > Outage Center > Help & support |
-| `F10-psps-banner.html` | Home > Outage Center > Shutoff alert |
+| `F10-psps-banner.html` | Home > Outage Center > Shutoff |
 
 ## Motion (ut11)
 
@@ -216,6 +215,21 @@ Rules: durations 150-300 ms (the documented exceptions are `--motion-duration-sk
 | Buttons: M3 state layer + press scale `--motion-press-scale` | short, standard (linear for the layer opacity) |
 | "Updated ..." trust line after a simulated refresh; card skeleton | long sheen; skeleton `--motion-duration-skeleton`, finite (`--motion-shimmer-count`) |
 
-**Never animated (static):** `.hx-safety`, `.hx-detect`, `.safety-card`, `.hx-mb`, `.ut-help`, `.btn211`, `.btn.danger`, `a[href^="tel:"]`, `.ut-banner[data-tone="alert"]`, `[data-ph-list="s7Safety"]`, `[data-mo-static]`.
+**Never animated (static):** `.hx-safety`, `.hx-detect`, `.safety-card`, `.hx-callout` (ut13), `.ut-help`, `.btn211`, `.btn.danger`, `a[href^="tel:"]`, `.ut-banner[data-tone="alert"]`, `[data-ph-list="s7Safety"]`, `[data-mo-static]`.
 
 **Reduced motion:** `prefers-reduced-motion: reduce` and `?motion=off` set `--motion-scale: 0` and remove every transition and animation (state changes swap instantly). `?motion=slow` doubles every duration for review. `?loading=1` shows the card skeleton once on load. The Prototype controls panel has a Motion switch (standard / slow / off). `components.html` has a Motion section with replay buttons (prototype chrome).
+
+
+## Message types (ut13)
+
+Joseph approved Kit's spec (Figma Hub/Callout 255:2944, Hub/ReportStatus 256:2930). One stylesheet, `message-types.css` (imported last from `shared.css`); one markup source, `msgtypes.py` in the generator. Every variant is in `components.html` (Message types).
+
+| Type | Markup | Where | ARIA | Motion |
+|---|---|---|---|---|
+| Info | `.hx-callout[data-kind=info]`: white help-card shell, 40px Pacific-50 disc + outline Inform `i`, H4 title, dotted rows, optional Pacific-700 link + chevron | Under Need help on F0-signed, S1, S6 (Medical Baseline gate kept: `?mb=1`), F9 (two tips) | none | none |
+| Safety tip | `.hx-callout[data-kind=safetytip]`: same shell + `#E7E7E7` band, Pewter shield, eyebrow "Safety tip"; **no red**; optional action = 1.7 Primary | Hub home "See a downed power line?" with CALL 911 | none | none |
+| Emergency | `.hx-callout[data-kind=emergency]`: 2px `#BB0000` border, solid red band, white triangle, white H2 20/28, body, 1.7 Primary CALL 911 (`tel:911`) | ONLY F5-report and F5-confirm (downed) | `role=alert` only when revealed by a user action (F5-report: picking the downed intent; F5-confirm downed: after submit) | none |
+| Report received | `.hx-report[data-state=received]`: no box, green check, H2, lag line, receipt (Report / Address / Sent), 1.7 Secondary VIEW MY STATUS | F5-confirm (both variants) | focus moves to the H2 (`tabindex=-1`); not a live region | opacity fade, short |
+| Report pending | `.hx-report[data-state=pending]`: 2px dashed `#758284`, clock, "Your report is processing", `RPT-… · It can take up to 20 minutes to show here.` | Above the status card on F1 and hub home, when a report is pending | `role=status`, `aria-live=polite`, `aria-atomic=true`; `role=alert` on failure (`?pending=failed`) | opacity fade, short |
+
+Callout buttons are full width on phones and hug their content (left-aligned) from 768px. Retired: TipBox (`.hx-mb`) and PendingBadge (`.pending-badge`) markup and CSS. The old SafetyCallout (`.hx-safety`, `.safety-card`) is superseded at these placements; the F5 downed-line detection (`.hx-detect`) is unchanged apart from copy. Strings: `HUB_DATA.copy` (`dl_title`, `dl_body`, `dl_conf_body`, `dl_promo_*`, `pending_*`, `rr_*`, `st_eyebrow`).
