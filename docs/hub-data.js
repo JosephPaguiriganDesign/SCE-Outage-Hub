@@ -288,7 +288,7 @@ window.HUB_DATA = {
    "lng": -118.0861,
    "meter": "90548812",
    "circuit": "LAKE-1011",
-   "link": "S12-weather.html",
+   "link": "S3-no-outage.html",
    "ert": "",
    "when": "",
    "psps": null,
@@ -354,7 +354,7 @@ window.HUB_DATA = {
   "lng": -118.0328,
   "meter": "24093917",
   "circuit": "WHIT-0663",
-  "link": "S13-disconnected.html",
+  "link": "S3-no-outage.html",
   "ert": "",
   "when": "",
   "psps": null,
@@ -1037,18 +1037,10 @@ window.HUB_DATA = {
    "F0-signed.html",
    "F0-multi.html",
    "S1-active.html",
-   "S1-no-estimate.html",
    "S3-no-outage.html",
    "S6-psps-watch.html",
-   "S7-psps-active.html",
    "S9-restored.html",
-   "S12-weather.html",
-   "S13-disconnected.html",
-   "N1-active-planned.html",
-   "N2-active-planned-restored.html",
-   "P1-psps-shutoff.html",
-   "P2-psps-restoring.html",
-   "P3-psps-canceled.html"
+   "P1-psps-shutoff.html"
   ],
   "pages": {
    "F1-lookup-result.html": {

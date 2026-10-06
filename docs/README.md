@@ -118,22 +118,27 @@ New/changed on top of the screens above. All plain static files; `hierarchy.css`
 | S3 | `S3-no-outage.html` | Neutral "No outage known", Report = primary CTA |
 | S4 / S5 | `F5-report.html?aud=guest&intent=downed` / `&intent=hazard` | Three intents; hazard escalates to downed line |
 | S6 | `S6-psps-watch.html` | Power On + PSPS Watch |
-| S7 | `S7-psps-active.html` | Power ON + POWER BACK FOR NOW + PSPS chip (temporary restoration; placeholder wording) |
+| S7 | `archive/S7-psps-active.html` | **Archived** — PSPS temporary restoration (use S9 / components) |
 | S8 | `F1-lookup-result.html?q=...` | Address / outage # / meter #, out-of-area |
 | S9 | `S9-restored.html` (`?psps=temp`, `?psps=ended`) | Restored hero |
 | S10 | `F0-multi.html` -> `F7-portfolio.html` | Summary, tiles, filters, sort, ZIP, pages, scroll restore |
-| S12 | `S12-weather.html` | Conditions hero |
-| S13 | `S13-disconnected.html` | No bill-pay prompt |
-| NEW 1 / NEW 2 | `N1-active-planned.html`, `N2-active-planned-restored.html` (`?lookback=expired`) | Draft scenarios |
+| S12 | `archive/S12-weather.html` | **Archived** — weather hero (use S3) |
+| S13 | `archive/S13-disconnected.html` | **Archived** — disconnected service (use S3) |
+| NEW 1 / NEW 2 | `archive/N1-active-planned.html`, `archive/N2-active-planned-restored.html` | **Archived** — draft stack scenarios (use S1 / F0-multi) |
 | P1 | `P1-psps-shutoff.html` (`?view=01` / `?view=05`) | Power OFF + ACTIVE OUTAGE + PSPS chip (tested screens 01 / 05); power-back line, next update |
-| P2 (ut10, NEW-02) | `P2-psps-restoring.html` | PSPS restoration starting: still OFF, "Crews are checking the lines so they can turn power back on. This can take up to 8 hours." (8 h pending SCE verification) + next update |
-| P3 (ut10, NEW-01) | `P3-psps-canceled.html` | PSPS canceled: SERVICE NORMAL, power ON, PSPS chip kept (assumption A-1), "The shutoff for this address is canceled. Your power will stay on." |
-| S1b (ut10, NEW-05) | `S1-no-estimate.html` | Active repair outage, no estimate yet: "Estimate (may change): Not known yet. We’ll post one after a crew checks the damage." |
-| Next update (ut10, NEW-03) | `S6`, `F10`, `F0-signed`, `P1`, `P2` | One line "Next update by Thu Sep 10 · 6:00 PM PT" on the Potential / Likely / Scheduled / PSPS-active single cards (needs a real data field) |
+| P2 (ut10, NEW-02) | `archive/P2-psps-restoring.html` | **Archived** — remapped nav → P1 |
+| P3 (ut10, NEW-01) | `archive/P3-psps-canceled.html` | **Archived** — remapped nav → S9 |
+| S1b (ut10, NEW-05) | `archive/S1-no-estimate.html` | **Archived** — remapped nav → S1 |
+| Next update (ut10, NEW-03) | `S6`, `F10`, `F0-signed`, `P1` | One line "Next update by Thu Sep 10 · 6:00 PM PT" on the Potential / Likely / Scheduled / PSPS-active single cards (needs a real data field). P2 archived. |
+
+
+### Archived screens (ut12)
+
+Eight cut pages were moved (not deleted) to `docs/archive/` and `hifi/archive/`. GitHub Pages can still serve them at `…/archive/<file>`. Navigation from KEEP screens was remapped: S7→S9, P2→P1, P3→S9, S1-no-estimate→S1, N1/N2→S1, S12→S3, S13→S3. See `upload-manifest-ut12.md` in the design folder.
 
 Placeholders (unresolved spec items) live in the `HX_CONFIG` block at the top of `hierarchy.js` and show a small dashed "Placeholder" tag. See `open-items.md` in the design folder.
 
-Extra files: `hierarchy.css`, `hierarchy.js`, `S*.html`, `N*.html`.
+Extra files: `hierarchy.css`, `hierarchy.js`, keep-set `S*.html` / `P1`. Cut pages live under `archive/` (ut12).
 
 
 ## Round 10 (ut10): Quill's approved copy pass
