@@ -144,12 +144,12 @@ details[open]:not([data-closing])>:not(summary){animation:mo-fade var(--motion-d
    EXCLUSION LIST — safety / 911 / 211 content is STATIC (no transition, animation or transform), in every motion mode.
    The Call 211 / Call 911 buttons keep the M3 hover / pressed colour layer, but it swaps instantly (no ease, no press scale).
    ========================================================================== */
-:is(.hx-safety,.hx-detect,.safety-card,.hx-mb,.ut-help,.btn211,.btn.danger,a[href^="tel:"],.ut-banner[data-tone="alert"],[data-ph-list="s7Safety"],[data-mo-static]),
-:is(.hx-safety,.hx-detect,.safety-card,.hx-mb,.ut-help,.btn211,.btn.danger,a[href^="tel:"],.ut-banner[data-tone="alert"],[data-ph-list="s7Safety"],[data-mo-static]) *,
-:is(.hx-safety,.hx-detect,.safety-card,.hx-mb,.ut-help,.btn211,.btn.danger,a[href^="tel:"],.ut-banner[data-tone="alert"],[data-ph-list="s7Safety"],[data-mo-static]) *::before,
-:is(.hx-safety,.hx-detect,.safety-card,.hx-mb,.ut-help,.btn211,.btn.danger,a[href^="tel:"],.ut-banner[data-tone="alert"],[data-ph-list="s7Safety"],[data-mo-static]) *::after{
+:is(.hx-safety,.hx-detect,.safety-card,.hx-callout,.ut-help,.btn211,.btn.danger,a[href^="tel:"],.ut-banner[data-tone="alert"],[data-ph-list="s7Safety"],[data-mo-static]),
+:is(.hx-safety,.hx-detect,.safety-card,.hx-callout,.ut-help,.btn211,.btn.danger,a[href^="tel:"],.ut-banner[data-tone="alert"],[data-ph-list="s7Safety"],[data-mo-static]) *,
+:is(.hx-safety,.hx-detect,.safety-card,.hx-callout,.ut-help,.btn211,.btn.danger,a[href^="tel:"],.ut-banner[data-tone="alert"],[data-ph-list="s7Safety"],[data-mo-static]) *::before,
+:is(.hx-safety,.hx-detect,.safety-card,.hx-callout,.ut-help,.btn211,.btn.danger,a[href^="tel:"],.ut-banner[data-tone="alert"],[data-ph-list="s7Safety"],[data-mo-static]) *::after{
   animation:none!important;transition:none!important}
-:is(.btn211,.btn.danger,a[href^="tel:"]):active{transform:none!important}
+:is(.btn211,.btn.danger,a[href^="tel:"],[data-mo-static]):active{transform:none!important}
 
 /* ==========================================================================
    REDUCED MOTION and ?motion=off: no movement, no animation, no transition. Changes swap instantly.

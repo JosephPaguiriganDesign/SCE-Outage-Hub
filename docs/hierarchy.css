@@ -202,10 +202,7 @@ dl.kv dd{color:var(--ink);font-weight:500;overflow-wrap:anywhere}
 .hx-toggle{position:relative}
 
 /* Medical Baseline conditional: safety emphasis */
-.hx-mb{margin:var(--conh-space-2) var(--conh-space-4);padding:var(--conh-space-4);background:var(--afn-wash);border:1px solid #C7D2FE;border-left:4px solid var(--afn);border-radius:var(--md-sys-shape-corner-large)}
-.hx-mb[hidden]{display:none}
-.hx-mb h3{font-size:15px;line-height:20px;font-weight:700;margin-bottom:var(--conh-space-2)}
-.hx-mb .hx-list{color:var(--ink)}
+/* ut13: the Medical Baseline TipBox (.hx-mb) is retired: it is now Hub/Callout Kind=Info (message-types.css) */
 
 /* Safety callouts (S4 / S5 / S7) — ink + red rail, never gold */
 .hx-safety{

@@ -261,18 +261,7 @@ a.chip:active{background:#EEF2F6}
   text-align:center;padding:8px 16px 4px
 }
 
-/* Pending report badge */
-.pending-badge{
-  display:none;margin:8px var(--pad);padding:10px 14px;border-radius:12px;
-  background:#FFF8E6;border:1px solid #F5D78E;font-size:13px;color:#92400E;
-  align-items:flex-start;gap:10px;box-shadow:var(--shadow)
-}
-.pending-badge.show{display:flex}
-.pending-badge .pb-mark{
-  flex-shrink:0;width:8px;height:8px;border-radius:50%;background:#D97706;margin-top:5px
-}
-.pending-badge strong{display:block;font-size:13px;font-weight:700;color:#78350F}
-.pending-badge span{font-size:12px;line-height:16px}
+/* ut13: pending report badge retired (Hub/ReportStatus Pending, message-types.css) */
 
 .map-area{
   height:min(55vh,420px);background:

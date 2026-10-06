@@ -455,7 +455,8 @@ window.HUB_DATA = {
   "updated": "6:45 AM"
  },
  "report": {
-  "ref": "RPT-2026-77401"
+  "ref": "RPT-2026-77401",
+  "sent": "10:41 AM"
  },
  "advisory": {
   "config_default": "auto",
@@ -1107,36 +1108,44 @@ window.HUB_DATA = {
     "center_href": "F0-hub-home.html",
     "trail": [
      {
-      "label": "Shutoff alert"
+      "label": "Shutoff"
      }
     ]
    }
   }
  },
  "copy": {
-  "dl_title": "Stay at least 100 feet away. Keep others away.",
-  "dl_body": "Call 911 immediately. Treat every downed line as live.",
-  "dl_hint": "Stay 100 ft away · Call 911 ·",
+  "dl_title": "Stay at least 100 feet away. Call 911 now.",
+  "dl_body": "Keep others away. Treat every downed line as live.",
+  "dl_hint": "Stay at least 100 feet away. Call 911.",
   "dl_hint_link": "Safety tips",
   "emerg_title": "Emergency?",
   "emerg_line": "Downed line, fire, gas smell or someone hurt",
   "emerg_btn": "CALL 911",
   "emerg_aria": "Emergency",
   "dl_detect_title": "This sounds like a downed power line.",
-  "dl_detect_body": "Stay 100 feet away and call 911. We switched you to the downed line report.",
+  "dl_detect_body": "Stay at least 100 feet away and call 911. We switched you to the downed line report.",
   "dl_promo_title": "See a downed power line?",
-  "dl_promo_body": "Stay 100 feet away and call 911. Then report it here.",
+  "dl_promo_body": "Stay at least 100 feet away and call 911. Then report it here.",
   "dl_wire": "See a downed wire? Stay at least 100 feet away and call 911.",
-  "dl_conf_title": "Stay away and keep others away.",
-  "dl_conf_body": "Stay at least 100 feet away. If you haven’t yet, call 911.",
+  "dl_conf_title": "Stay at least 100 feet away.",
+  "dl_conf_body": "Call 911 if you haven’t yet. Keep others away until help arrives.",
+  "dl_tips_link": "Downed line safety tips",
   "dl_conf_next": "Keep everyone away from the line. We may call you at the number you gave.",
   "upd_today": "Updated today at {t} PT",
   "upd_day": "Updated {d} at {t} PT",
   "lag": "Status can take up to 20 minutes to update.",
   "lag_map": "The map can take up to 20 minutes to update.",
   "lag_report": "Your report can take up to 20 minutes to show in the Outage Center.",
-  "pending_title": "Report sent",
-  "pending_body": "Report # RPT-2026-77401 · It can take up to 20 minutes to show here.",
+  "pending_title": "Your report is processing",
+  "pending_body": "RPT-2026-77401 · It can take up to 20 minutes to show here.",
+  "pending_fail_title": "We couldn’t confirm your report",
+  "pending_fail_body": "RPT-2026-77401 · Check again later, or call SCE at 1-800-611-1911.",
+  "rr_k_report": "Report",
+  "rr_k_addr": "Address",
+  "rr_k_sent": "Sent",
+  "rr_sent": "Today at 10:41 AM PT",
+  "st_eyebrow": "Safety tip",
   "search_ph": "Address, outage # or meter #",
   "search_aria": "Search by address, outage number or meter number",
   "acct_line": "Account ••••••3230",
@@ -1392,6 +1401,10 @@ window.HUB_DATA = {
   "f6_sw": "Show {l} areas",
   "f9_lead": "Stay safe. Save your backup power. Call 211 for local help.",
   "f9_mbl_t": "Medical Baseline program",
+  "f9_mbl_rows": [
+   "Do you use medical devices that need power? You may qualify for Medical Baseline.",
+   "SCE tries extra ways to reach enrolled customers before a shutoff."
+  ],
   "f9_mbl": "Do you use medical devices that need power? You may qualify for Medical Baseline. SCE tries extra ways to reach enrolled customers before a shutoff.",
   "f9_phone_report": "Report an outage or safety issue:",
   "f9_phone_cs": "Customer service:",

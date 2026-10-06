@@ -1,0 +1,120 @@
+/* ==========================================================================
+   ut13 — MESSAGE TYPES (single source). Figma: Hub/Callout 255:2944, Hub/ReportStatus 256:2930 (file W5Nzqi1ALFmdBbuqMvyXYY).
+   Each type has its own STRUCTURE, not a new tint.
+   .hx-callout[data-kind=info]       white help-card shell, 1px #D5D5D5, card radius, 40px Pacific-50 disc + outline Inform "i", H4 title,
+                                     dotted-divider rows, optional underlined Pacific-700 link row + chevron. No button. No role.
+   .hx-callout[data-kind=safetytip]  same shell + #E7E7E7 band, filled Pewter shield, eyebrow "Safety tip" (#3B3D40), ink title. NO red.
+                                     Optional action slot = unmodified 1.7 Primary. No role.
+   .hx-callout[data-kind=emergency]  2px #BB0000 border, solid #BB0000 band, white triangle-! + white H2 20/28, body on white,
+                                     1.7 Primary CALL 911 (tel:911). role=alert ONLY when revealed by a user action.
+   .hx-report[data-state=received]   no box: 48px #107E3E check, H2, lag line, Cool-Gray-50 receipt (Report / Address / Sent), 1.7 Secondary.
+                                     Focus moves to the H2 (tabindex=-1). Not a live region.
+   .hx-report[data-state=pending]    white, 2px dashed #758284, radius 8, outline Pewter clock, H4 title + one line. No button.
+                                     role=status aria-live=polite aria-atomic=true; role=alert if the report fails.
+   Motion: callouts NEVER animate (also in the m3_motion.css / motion.js exclusion list). Report status: opacity-only fade,
+   --motion-duration-short (150ms), dropped under reduced motion and ?motion=off, doubled by ?motion=slow.
+   Buttons inside callouts: full width on phones; from 768px they hug their content, left-aligned (layout override only).
+   Contrast: text >= 7:1 except the Pacific-700 link (5.02:1, link ruleset LOCKED 2026-10-06) and the large white emergency title (6.75:1, AAA large 4.5).
+   ========================================================================== */
+/* Pacific-700 link colour (link ruleset LOCKED 2026-10-06; 5.02:1 on white = AA). Shared by callout links and the standalone link below. */
+:root{--sce-link-pacific-700:#00789F}
+.hx-callout{
+  --co-ink:#101820;--co-line:#D5D5D5;--co-err:#BB0000;--co-band:#E7E7E7;--co-pewter:#53565A;--co-pewter-700:#3B3D40;
+  --co-inform:#0057D2;--co-disc:#E6F6FC;--co-dots:#758284;--co-link:var(--sce-link-pacific-700);
+  box-sizing:border-box;display:block;margin:0 16px;background:#fff;color:var(--co-ink);
+  border:1px solid var(--co-line);border-radius:var(--r-card,16px);overflow:hidden;
+  font-size:16px;line-height:24px;font-weight:400;text-align:left
+}
+.hx-callout[hidden]{display:none}
+/* CLS (ut13): the Google Fonts sheet is attached async (preload -> onload). Its @font-face masks a locally installed Open Sans, so for
+   ~0.3 s text fell back to system-ui (Noto Sans, wider) before the webfont swapped in. In the hub-home safety tip the body sits on the
+   360px wrap edge ("...call 911." / "Then report it here."), so "911." hopped lines and the inline link + trailing "." moved ~36px
+   (CLS 0.001). Message types keep a local Open Sans alias ahead of system-ui, so the swap is metric-identical. No layout or motion change. */
+@font-face{font-family:"Open Sans Local";src:local("Open Sans"),local("OpenSans-Regular"),local("Open Sans Regular");font-weight:300 800}
+.hx-callout,.hx-report{font-family:"Open Sans","Open Sans Local",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif}
+.hx-callout *{box-sizing:border-box}
+.hx-callout p{margin:0}
+.hx-co-title{margin:0;font-size:16px;line-height:24px;font-weight:700;letter-spacing:0;text-transform:none;color:var(--co-ink)}
+/* ---- rows: dotted divider (2px round dots, #758284 = 3.98:1) between rows, 8px either side ---- */
+.hx-co-rows{list-style:none;margin:0;padding:0}
+.hx-co-rows>li{margin:0;padding:0}
+.hx-co-rows>li+li,.hx-callout[data-kind="info"] .hx-co-rows>li,.hx-co-link-row{margin-top:8px;padding-top:8px;border-top:2px dotted var(--co-dots)}
+/* ---- info ---- */
+.hx-callout[data-kind="info"]{padding:16px}
+.hx-co-head{display:flex;align-items:center;gap:8px}
+.hx-co-disc{flex:none;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:20px;background:var(--co-disc)}
+.hx-co-disc svg{display:block;width:24px;height:24px;fill:var(--co-inform)}
+.hx-co-head .hx-co-title{flex:1 1 auto;min-width:0}
+.hx-co-link-row{padding-top:0}
+.hx-co-link{display:flex;align-items:center;gap:4px;min-height:48px;padding:12px 0;color:var(--co-link);font-weight:400;
+  text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.hx-co-link span{flex:1 1 auto}
+.hx-co-link svg{flex:none;width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hx-co-link:hover{text-decoration-thickness:2px}
+.hx-co-link:focus-visible,.hx-co-inline:focus-visible{outline:3px solid var(--sce-ut-link,#1A76C5);outline-offset:2px;border-radius:2px}
+.hx-co-inline{color:var(--co-link);text-decoration:underline;text-underline-offset:3px}
+/* ---- band (safety tip + emergency) ---- */
+.hx-co-band{display:flex;align-items:center;gap:8px}
+.hx-co-body{display:flex;flex-direction:column;gap:8px;padding:16px}
+.hx-callout[data-kind="safetytip"] .hx-co-band{padding:8px 16px;background:var(--co-band)}
+.hx-co-shield{display:block;flex:none;width:24px;height:24px;fill:var(--co-pewter)}
+.hx-co-tstack{flex:1 1 auto;min-width:0}
+.hx-co-eyebrow{font-size:14px;line-height:22px;font-weight:700;color:var(--co-pewter-700)}
+.hx-co-action{padding-top:8px}
+/* ---- emergency ---- */
+.hx-callout[data-kind="emergency"]{border:2px solid var(--co-err)}
+.hx-callout[data-kind="emergency"] .hx-co-band{padding:16px;background:var(--co-err)}
+.hx-co-tri{display:block;flex:none;width:28px;height:28px}
+.hx-callout[data-kind="emergency"] .hx-co-title{flex:1 1 auto;min-width:0;font-size:20px;line-height:28px;color:#fff}
+.hx-callout[data-kind="emergency"] .hx-co-body{gap:16px}
+.hx-callout[data-kind="emergency"] .hx-co-action{padding-top:0}
+.hx-co-hint{display:flex;flex-wrap:wrap;align-items:center;column-gap:8px}
+.hx-co-hint a{display:inline-flex;align-items:center;min-height:48px;min-width:48px;color:var(--co-link);text-decoration:underline;text-underline-offset:3px}
+/* ---- buttons in callouts: full width on phones, hug (1.7 standard width) left-aligned from 768px ---- */
+.hx-co-action .btn{display:flex;align-items:center;justify-content:center;width:100%;box-sizing:border-box;text-decoration:none}
+@media (min-width:768px){.hx-co-action .btn{display:inline-flex;width:auto}}
+/* ---- standalone link OUTSIDE a callout (F5-report "Downed line safety tips"): Pacific-700 bold, colour-only (no underline), chevron, 48px target ---- */
+.hx-mt-sublink{margin:0 16px}
+.hx-mt-link{display:inline-flex;align-items:center;gap:4px;min-height:48px;padding:0;color:var(--sce-link-pacific-700);font-size:16px;line-height:24px;font-weight:700;text-decoration:none}
+.hx-mt-link:hover,.hx-mt-link:visited{color:var(--sce-link-pacific-700);text-decoration:none}
+.hx-mt-link svg{flex:none;width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hx-mt-link:focus-visible{outline:3px solid var(--sce-ut-link,#1A76C5);outline-offset:2px;border-radius:2px}
+/* ---- callouts never animate (twin of the exclusion list in m3_motion.css / motion.js) ---- */
+.hx-callout,.hx-callout *,.hx-callout *::before,.hx-callout *::after{animation:none!important;transition:none!important}
+.hx-callout a[href^="tel:"]:active{transform:none!important}
+
+/* ==========================================================================
+   Report status
+   ========================================================================== */
+.hx-report{
+  --rs-ink:#101820;--rs-key:#3B3D40;--rs-ok:#107E3E;--rs-receipt:#F7F7F7;--rs-dash:#758284;--rs-pewter:#53565A;--rs-err:#BB0000;
+  box-sizing:border-box;margin:0 16px;color:var(--rs-ink);font-size:16px;line-height:24px;text-align:left;
+  animation:mo-fade var(--motion-duration-short) var(--motion-ease-standard) backwards
+}
+.hx-report[hidden]{display:none}
+.hx-report p{margin:0}
+/* received */
+.hx-report[data-state="received"]{display:flex;flex-direction:column;align-items:stretch;gap:8px}
+.hx-rr-check{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:var(--rs-ok)}
+.hx-rr-check svg{display:block;width:28px;height:28px;fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.hx-rr-title{margin:8px 0 0;font-size:20px;line-height:28px;font-weight:700;letter-spacing:0;text-transform:none;color:var(--rs-ink)}
+/* the title only receives programmatic focus (tabindex=-1, not in the tab order), so it shows no ring */
+.hx-rr-title:focus,.hx-rr-title:focus-visible{outline:none}
+.hx-rr-receipt{margin:8px 0 0;padding:4px 16px;background:var(--rs-receipt);border-radius:8px}
+.hx-rr-receipt>div{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:8px 0}
+.hx-rr-receipt>div+div{border-top:2px dotted var(--rs-dash)}
+.hx-rr-receipt dt{flex:none;color:var(--rs-key);font-weight:400}
+.hx-rr-receipt dd{margin:0;min-width:0;font-weight:700;color:var(--rs-ink);text-align:right;overflow-wrap:anywhere}
+.hx-rr-action{margin-top:8px}
+.hx-rr-action .btn{display:flex;align-items:center;justify-content:center;width:100%;box-sizing:border-box}
+/* pending */
+.hx-report[data-state="pending"]{display:flex;align-items:flex-start;gap:8px;padding:16px;background:#fff;border:2px dashed var(--rs-dash);border-radius:8px}
+.hx-report[data-state="pending"][hidden]{display:none}
+.hx-rp-ico{display:block;flex:none;width:24px;height:24px;fill:none;stroke:var(--rs-pewter);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hx-rp-title{font-weight:700}
+.hx-report[data-state="pending"][data-failed]{border-style:solid;border-color:var(--rs-err)}
+/* Medical Baseline gate (prototype control / ?mb=1) still applies to the Info callout that replaced the TipBox */
+.hx-callout[data-mb-on]{display:none}
+html[data-mb="1"] .hx-callout[data-mb-on]{display:block}
+/* components.html demo frame (prototype chrome) */
+.mt-demo{margin:4px 0 16px;padding:12px 0;border:1px dashed #8D959F;border-radius:4px;background:#fff}
