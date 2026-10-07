@@ -244,3 +244,11 @@ Joseph's F0-multi row redesign (Figma 328:13004), released by Kit in Hub/StatusG
 - Divider = 1.7 Divider Variant=Dashed: 1px Sage-700 `#758284`, 2px dash / 2px gap, drawn with a repeating linear-gradient (exact 2/2 in every browser, unlike `border-style: dashed`). **Joseph locked Dashed (2026-10-07).**
 - **One token** (`tokens-ut2.css`, appended to `m3_tokens.css`): `--hx-sg-divider` (the background) + `--hx-sg-divider-h` (thickness). The Hub dotted style (2px round dots, same colour) is kept as a commented alternative next to it: swap those two lines to restyle every StatusGroup list.
 - Links (Hide details, View details, Show fewer / Show all, View details on Likely and Potential): full width, flush right (`display:flex; justify-content:flex-end; text-align:right`), chevron last, 12px vertical padding, 48px minimum tap height; `#00789F`, bold 16, no underline (locked).
+
+## Card radius (ut21)
+
+Joseph approved every Hub card going from radius 16 to **8** (Figma: Hub radius/card → 1.7 Radius-Sm 8, released by Kit).
+
+- **One token:** `--hub-radius-card` (`tokens-ut2.css`, appended to `m3_tokens.css`) is the only card radius. `--r-card` (m3_tokens.css + shared_part_a.css) and `--sce-ut-radius` are aliases of it, and every card rule reads one of the three: StatusCard `.cps` and its inner `.cps-block`, StatusGroup `.hx-status-group` and its inner `.cps-block` (was 4), advisory `.adv` (+ Hub WeatherAdvisory `.adv.hx-adv`), Pending report `.hx-report[data-state=pending]`, map `.ut-map`, HelpBlock `.ut-help.hx-help`, Callout `.hx-callout`, `.hx-row`, `.hx-card`, `.hx-safety`, `.pf-sum`, `.hx-note`, `.cps-stale`, guest card `.addr-strip`, `.self-checks`, the M3 card group (`.hero`, `.mod`, `.afn`, `.timeline`, `.confirm-hero`, `.fpi-strip`, `.safety-card`, `.updates-block`, `.tile`, `.gallery .card`), `.map-sheet .hero`, `.banner`, `.psps-banner`.
+- **Pending:** Joseph may still pick 1.7's card value of 4. That is a one-line change: `--hub-radius-card:4px` in `tokens-ut2.css`.
+- Not cards, unchanged: StatusGroupRow `.hx-status-group-row` stays `--hub-radius-xs` (4); the `.hx-toggle .sw` switch pill (16) and the bottom-sheet top corners (`.mo-sheet`, the map sheet, `--md-sys-shape-corner-large-top`, 16 16 0 0); buttons (4), search fields, map controls, the legend and banners (`--sce-ut-radius-sm`, 12) keep their own radii.
