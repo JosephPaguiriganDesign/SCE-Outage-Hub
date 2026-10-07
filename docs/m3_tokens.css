@@ -175,8 +175,8 @@ html,body,button,input,textarea,select{font-family:var(--md-ref-typeface-plain)}
   --status-potential-border:#CC6006;  /* ut14: Hub status/potential-border (Figma 134:3 = alias of 134:2) */
   --sce-status-warn:#CC6006;           /* ut14: was #DE6C0C; icon/border only — not used as text */
   --sce-status-warn-tint:#FFF3E6;     /* assumption: not visible in sources */
-  --sce-status-scheduled:#0459D2;     /* scheduled shut off (calendar) */
-  --sce-status-scheduled-tint:#E8F0FD;/* assumption */
+  --sce-status-scheduled:#0057D2;     /* ut18 Kit Scheduled */
+  --sce-status-scheduled-tint:var(--tint-scheduled); /* ut18 */
   --sce-status-progress:#0459D2;      /* IN PROGRESS / current step */
   --sce-status-complete:#107E3F;      /* COMPLETED step */
   --sce-status-pending:#6B7380;       /* Not Started (round 6: was #8A9099, white numeral 3.22:1 -> 4.78:1) */
@@ -238,7 +238,16 @@ html,body,button,input,textarea,select{font-family:var(--md-ref-typeface-plain)}
 /* ut16: Kit's Hub values from the Figma F0-multi frame (236:8063). Used only by the Hub components rebuilt on F0-multi
    (.hx-status-group, .hx-banner, .hx-adv, .hx-help, main[data-layout="figma"]); no existing token changes value. */
 :root{
-  --hub-color-error:#BB0000;           /* md-sys-color-error in Kit's file: StatusGroup Off border, Banner Off border, Flash--off glyph */
+  --hub-color-error:#BB0000;           /* md-sys-color-error in Kit's file: StatusGroup Off border, Banner Off border */
+
+  /* ---- ut18 Kit Hub/Icon/Status fill tokens (README icons-svg) ---- */
+  --status-off:#BB0000;                 /* ActiveOutage / Alert / Restoring shapes; Hazard "!" */
+  --status-on:#107E3E;                  /* PowerBack / Normal shapes (1.7 Success) */
+  --status-scheduled:#0057D2;           /* Scheduled body (1.7 Inform) — was #0459D2 */
+  --tint-scheduled:#E6EEFB;             /* Scheduled band */
+  --status-neutral:#5B6566;             /* Disconnected (Sage-800) */
+  --on-primary:#ffffff;                 /* white symbols on filled shapes; Hazard diamond fill */
+
   --hub-color-tint-off:#F8E6E6;
   --hub-text-status-off:#830000;       /* power word OFF */
   --hub-color-status-on:#107E3E;       /* StatusGroup ON border */

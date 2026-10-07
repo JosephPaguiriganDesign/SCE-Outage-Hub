@@ -1429,9 +1429,10 @@ window.HUB_DATA = {
    "potential"
   ],
   "icon": {
-   "off": "flash_off",
+   "off": "active",
    "likely": "likely",
-   "potential": "potential"
+   "potential": "potential",
+   "alert": "alert"
   },
   "defaults": {
    "show_count": true,
@@ -1472,28 +1473,28 @@ window.HUB_DATA = {
    "label": "SERVICE NORMAL",
    "legend": "Service normal",
    "chip": "",
-   "icon": "on"
+   "icon": "normal"
   },
   "canceled": {
    "header": "ON",
    "label": "SERVICE NORMAL",
    "legend": "Service normal",
    "chip": "PSPS",
-   "icon": "on"
+   "icon": "normal"
   },
   "restored": {
    "header": "ON",
    "label": "POWER RESTORED",
    "legend": "Power restored",
    "chip": "",
-   "icon": "on"
+   "icon": "normal"
   },
   "restoring": {
    "header": "ON",
    "label": "POWER BACK FOR NOW",
    "legend": "Power back for now",
    "chip": "PSPS",
-   "icon": "on"
+   "icon": "restoring"
   },
   "active": {
    "header": "OFF",
@@ -1535,7 +1536,7 @@ window.HUB_DATA = {
    "label": "SERVICE DISCONNECTED",
    "legend": "Service disconnected",
    "chip": "",
-   "icon": "disc"
+   "icon": "disconnected"
   },
   "planned": {
    "header": "ON",
@@ -1552,13 +1553,13 @@ window.HUB_DATA = {
   "scheduled"
  ],
  "status_colors": {
-  "active": "#BA0000",
+  "active": "#BB0000",
   "potential": "#CC6006",
   "likely": "#CC6006",
-  "scheduled": "#0459D2",
-  "on": "#0C7E3C",
-  "disc": "#5F6672",
-  "planned": "#0459D2"
+  "scheduled": "#0057D2",
+  "on": "#107E3E",
+  "disc": "#5B6566",
+  "planned": "#0057D2"
  },
  "chip_types": [
   "Repair",

@@ -163,7 +163,7 @@
       if (t && t.closest('.hx-status-group')) sgSync();
     });
     /* ut16 Find an address: the trailing clear button (Figma Close glyph) shows once there is text; it clears and returns focus to the field */
-    $$('.hx-status-group .cps-find').forEach(function (f) {
+    $$('.hx-status-group .hx-sg-search, .hx-status-group .cps-find').forEach(function (f) {
       var inp = $('input', f), clr = $('.hx-sg-clear', f); if (!inp || !clr) return;
       var upd = function () { clr.hidden = !inp.value; };
       inp.addEventListener('input', upd); upd();
