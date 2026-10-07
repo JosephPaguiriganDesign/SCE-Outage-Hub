@@ -229,4 +229,9 @@ html,body,button,input,textarea,select{font-family:var(--md-ref-typeface-plain)}
   --btn-disabled-bg:#E3E5E8;
   --btn-disabled-fg:#5F6672;
   --btn-disabled-border:#C7CBD1;
+  /* ut15: Hub/StatusGroup field + row tokens (were hard-coded in status-card.css and inline in F0-multi markup; same values) */
+  --sce-ut-field-ink:#4A525C;          /* Filter By / Find an address text + icons */
+  --sce-ut-field-border:#8D959F;       /* Filter By / Find an address outline */
+  --sce-ut-row-rule:#8F959D;           /* dotted rule between address rows */
+  --sce-ut-ink-secondary:#3D3F42;      /* ut15: secondary body text (F9 Call SCE hours line, Kit's Figma 14px) */
 }

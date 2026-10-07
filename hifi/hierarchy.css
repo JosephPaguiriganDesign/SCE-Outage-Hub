@@ -122,6 +122,7 @@ body{padding-bottom:0}
 .hx-cta{display:flex;flex-direction:column;gap:var(--conh-space-2);padding:0 0 var(--conh-space-4)}
 .hx-cta .btn{width:100%;min-height:56px;font-size:16px}
 .hx-fine{font-size:12px;line-height:16px;color:var(--ink-2)}
+.hx-fine.hx-fine-14{font-size:14px;line-height:20px;color:var(--sce-ut-ink-secondary)}   /* ut15: 14px secondary line (F9 hours) */
 
 /* ERT change in place (not a silent replace) */
 .ert-note{
