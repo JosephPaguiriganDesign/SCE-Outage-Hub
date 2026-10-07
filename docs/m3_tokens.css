@@ -235,3 +235,23 @@ html,body,button,input,textarea,select{font-family:var(--md-ref-typeface-plain)}
   --sce-ut-row-rule:#8F959D;           /* dotted rule between address rows */
   --sce-ut-ink-secondary:#3D3F42;      /* ut15: secondary body text (F9 Call SCE hours line, Kit's Figma 14px) */
 }
+/* ut16: Kit's Hub values from the Figma F0-multi frame (236:8063). Used only by the Hub components rebuilt on F0-multi
+   (.hx-status-group, .hx-banner, .hx-adv, .hx-help, main[data-layout="figma"]); no existing token changes value. */
+:root{
+  --hub-color-error:#BB0000;           /* md-sys-color-error in Kit's file: StatusGroup Off border, Banner Off border, Flash--off glyph */
+  --hub-color-tint-off:#F8E6E6;
+  --hub-text-status-off:#830000;       /* power word OFF */
+  --hub-color-status-on:#107E3E;       /* StatusGroup ON border */
+  --hub-color-tint-on:#E6F0ED;
+  --hub-text-status-on:#094823;        /* power word ON */
+  --hub-color-tint-neutral:#E7E8E9;    /* PSPS chip */
+  --hub-color-status-neutral:#5B6566;
+  --hub-color-outline-control:#758284; /* rows, Filter by, Find, Help card, dotted dividers (3.98:1) */
+  --hub-color-placeholder:#5F646A;     /* Find an address placeholder (5.9:1) */
+  --hub-color-link:var(--sce-link-pacific-700,#00789F);   /* Hub/TextLink (same token message-types already uses) */
+  --hub-text-weather:#712607;          /* WeatherAdvisory text */
+  --hub-weather-icon:#C2410C;          /* WeatherAdvisory Wind-gusts glyph */
+  --hub-help-grad-top:rgba(165,183,186,.2);    /* semantic/accent/sage */
+  --hub-help-grad-bottom:rgba(245,245,245,.2); /* neutral/edison-heather */
+  --hub-radius-xs:4px; --hub-radius-sm:8px; --hub-radius-card:16px;
+}

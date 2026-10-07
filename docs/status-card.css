@@ -460,10 +460,89 @@ a.cps-prop .cps-addr{overflow-wrap:anywhere}
 }
 
 /* ---- ut15: Hub/StatusGroup + Hub/StatusGroupRow (Kit's Figma 281:279 / 280:233; F0-multi; components.html "StatusGroup") ----------------------------
-   section.cps.hx-status-group[data-status=off|likely|potential] > li.hx-status-group-row[data-state=expanded|collapsed]. NO new paint: header, inner block,
-   borders (status-*-border via .cps-block[data-kind]), icon + label + chip, rows (.cps-list/.cps-row), View/Hide details + Show fewer (.cps-link),
-   Filter By / Find (.cps-sel/.cps-find) are the shared status-card rules above, so DS / token updates propagate.
+   section.cps.hx-status-group[data-status=off|likely|potential][data-layout=list|summary] > ul.hx-sg-list > li.hx-status-group-row[data-state=expanded|collapsed].
+   ut16: the group now carries Kit's Figma paint (scoped block below, --hub-* tokens); shared hooks (.cps-head/.cps-state/.cps-block/.cps-top/.cps-chip/.cps-link) stay.
    Icon slot: hub_data.STATUS_GROUP_ICON (HUB_DATA.status_group.icon) -> lib.ico(). */
 .hx-sg-h:focus{outline:0}                       /* group heading takes focus only programmatically (Show fewer); not a control */
 .hx-sg-h:focus-visible{outline:2px solid var(--sce-ut-link);outline-offset:2px;border-radius:2px}
-.hx-status-group-row .cps-row-body .ut-btn{margin:4px 0 8px}   /* StatusGroupRow expanded cta (gallery; 1.7 Primary from the shared button classes) */
+/* ---- ut16: rebuilt to Kit's Figma F0-multi (236:8063). Hub paint is SCOPED: .hx-status-group / .hx-status-group-row (F0-multi + components.html only),
+   .hx-banner, .hx-adv, .hx-help (variants only F0-multi renders) and main[data-layout="figma"]. Tokens: --hub-* in tokens-ut2.css. ---- */
+body[data-page="f0multi"] .ut-id{padding-top:16px}
+body[data-page="f0multi"] .ut-id b{font-size:16px}
+.ut-main[data-layout="figma"]{padding-left:16px;padding-right:16px}
+.ut-main[data-layout="figma"]>*{order:0!important;margin-left:0!important;margin-right:0!important}   /* Figma order = DOM order */
+.ut-main[data-layout="figma"]>.cps-actions{padding:0}
+.ut-main[data-layout="figma"] .cps-lag{margin:0;line-height:18px;color:var(--sce-ut-ink-secondary)}
+.hx-f0m-more{margin:0}
+/* Hub/StatusGroup: outer 2px status border, radius 8, padding 8, gap 12; header 16/24 + power word 20/28 */
+.hx-status-group{--c-bd:var(--hub-color-status-on);--c-tint:var(--hub-color-tint-on);--c-ink:var(--hub-text-status-on);
+  display:flex;flex-direction:column;gap:12px;border-width:2px;border-radius:var(--hub-radius-sm);padding:8px}
+.hx-status-group[data-state="off"]{--c-bd:var(--hub-color-error);--c-tint:var(--hub-color-tint-off);--c-ink:var(--hub-text-status-off)}
+.hx-status-group .cps-head{padding:0 4px;align-items:center}
+.hx-status-group .cps-head h2{font-size:16px;line-height:24px}
+.hx-status-group .cps-state{line-height:28px;letter-spacing:0}
+/* inner block: white, 1px (Off error / Likely + Potential #CC6006), radius 4, padding 16, gap 16 */
+.hx-status-group .cps-block{--b-bd:var(--hub-color-error);border-width:1px;border-radius:var(--hub-radius-xs);padding:16px;display:flex;flex-direction:column;gap:16px}
+.hx-status-group[data-status="likely"] .cps-block{--b-bd:var(--status-likely-border);border-width:1px}
+.hx-status-group[data-status="potential"] .cps-block{--b-bd:var(--status-potential-border);border-width:1px}
+.hx-status-group .cps-block>*+*{margin-top:0}
+.hx-status-group .cps-top{align-items:center;gap:12px}
+.hx-status-group .cps-label{font-size:16px;line-height:24px}
+.hx-status-group .cps-top .cps-chip{align-self:center;min-height:0;padding:4px 8px;border:1px solid var(--hub-color-status-neutral);border-radius:var(--hub-radius-sm);
+  background:var(--hub-color-tint-neutral);color:var(--sce-ut-ink);font-size:12px;line-height:18px;letter-spacing:0}
+.hx-status-group .cps-ico[data-ico="flash_off"],.hx-banner-ico{color:var(--hub-color-error)}
+.hx-sg-count{margin:0}
+/* Filter by status (px 12, radius 4) + Find an address (px 16, radius 8, search + clear glyphs 24). Height stays at the hub's 48px target rule
+   (Figma draws both fields 44px tall: listed as a Figma deviation from the 48dp rule the sweep enforces on every page) */
+.hx-status-group .cps-filter{margin-top:0;gap:8px}
+.hx-status-group .cps-sel{position:relative;min-height:0;padding:0 12px;border-color:var(--hub-color-outline-control);border-radius:var(--hub-radius-xs);font-size:16px;color:var(--sce-ut-ink)}
+.hx-status-group .cps-sel select{min-height:48px;font-size:16px;line-height:24px;color:var(--sce-ut-ink)}
+.hx-status-group .cps-sel svg{flex:none;width:20px;height:20px;fill:var(--sce-ut-ink);stroke:none;pointer-events:none}
+.hx-status-group .cps-find{min-height:48px;padding:0 16px;border-color:var(--hub-color-outline-control);border-radius:var(--hub-radius-sm);gap:8px}
+.hx-status-group .cps-find>svg{flex:none;width:24px;height:24px;fill:var(--sce-ut-ink)}
+.hx-status-group .cps-find input{height:48px;font-size:16px;line-height:24px}
+.hx-status-group .cps-find input::placeholder{color:var(--hub-color-placeholder);opacity:1}
+.hx-status-group .cps-find .hx-sg-clear{flex:none;width:48px;height:48px;margin-right:-12px;color:var(--sce-ut-ink)}
+.hx-status-group .cps-find .hx-sg-clear[hidden]{display:none}
+.hx-status-group .cps-find .hx-sg-clear svg{width:24px;height:24px;fill:currentColor;stroke:none}
+/* address list: gap 8; Hub/StatusGroupRow: white, 1px outline-control, radius 4, padding 12; gap 8 expanded / 4 collapsed */
+.hx-sg-list{display:flex;flex-direction:column;gap:8px}
+.hx-sg-list[hidden],.hx-status-group-row[hidden],.hx-sgr-body[hidden]{display:none}
+.hx-sg-list>.hx-status-group-row,.hx-sg-list>.hx-status-group-row:first-child{margin:0;padding:12px;border:1px solid var(--hub-color-outline-control);border-radius:var(--hub-radius-xs);background:#fff}
+.hx-status-group-row{display:flex;flex-direction:column;gap:4px}
+.hx-status-group-row[data-state="expanded"]{gap:8px}
+.hx-sgr-id{display:flex;flex-direction:column}
+.hx-status-group-row[data-state="expanded"] .hx-sgr-id{gap:8px}
+.hx-sgr-id p,.hx-sgr-body p{margin:0;font-size:16px;line-height:24px;color:var(--sce-ut-ink)}
+.hx-status-group-row .cps-addr{white-space:normal;overflow-wrap:anywhere}
+.hx-sgr-body{display:flex;flex-direction:column;gap:8px}
+.hx-sgr-body .hx-sgr-acct{margin-top:-4px}        /* Meter > Account = Figma Meta gap 4 */
+.hx-status-group-row .hx-sgr-cta{margin:0}
+/* Hub/TextLink as disclosure (View details / Hide details / Show fewer): bold 16/24, link pacific, py 12, gap 4, Carbon chevron 24, left-aligned */
+.cps-link.hx-sg-link{align-self:flex-start;gap:4px;min-height:48px;padding:0;font-size:16px;line-height:24px;color:var(--hub-color-link)}
+.cps-link.hx-sg-link svg{width:24px;height:24px;fill:currentColor;stroke:none}
+.hx-sg-list+.hx-sg-link{margin-top:-8px}          /* Show fewer sits in the list's 8px rhythm */
+/* Hub/Banner Kind=Off */
+.hx-banner{display:flex;align-items:flex-start;gap:12px;padding:16px;border:1px solid var(--hub-color-error);border-radius:var(--hub-radius-sm);background:var(--hub-color-tint-off);color:var(--sce-ut-ink)}
+.hx-banner-body{display:flex;flex-direction:column;gap:4px;min-width:0}
+.hx-banner-title{font-size:16px;line-height:24px;font-weight:700}
+.hx-banner-text{margin:0;font-size:14px;line-height:21px;color:var(--sce-ut-ink-secondary)}
+/* Hub/WeatherAdvisory Kind=RedFlag */
+.adv.hx-adv{border:2px solid var(--sce-color-weather);border-radius:var(--hub-radius-sm)}
+.hx-adv>summary{min-height:56px;padding:4px 4px 4px 12px;gap:12px}
+.hx-adv .adv-ico{color:var(--hub-weather-icon)}
+.hx-adv .adv-t{padding:0;font-size:14px;line-height:21px;color:var(--hub-text-weather)}
+.hx-adv .adv-t b,.hx-adv .adv-sub{display:block}
+.hx-adv .adv-t b{font-size:16px;line-height:24px}
+.hx-adv .adv-chev{flex:0 0 44px;width:44px;height:44px;color:var(--hub-color-link)}
+.hx-adv .adv-chev svg{width:24px;height:24px;fill:currentColor;stroke:none}
+/* Hub/HelpBlock: sage gradient card, 1px outline-control, radius 16, padding 16, gap 12; title + solid rule; TextLink rows with 2px dotted dividers */
+.ut-help.hx-help{display:flex;flex-direction:column;gap:12px;padding:16px;border:1px solid var(--hub-color-outline-control);border-radius:var(--hub-radius-card);
+  background:linear-gradient(to bottom,var(--hub-help-grad-top),var(--hub-help-grad-bottom)),#fff}
+.hx-help h2{margin:0;font-size:16px;line-height:24px;font-weight:400;color:var(--sce-ut-ink)}   /* Figma #00789F = 4.4:1 on the gradient: AA fail, listed */
+.hx-help .hx-help-rule{margin:0;border:0;height:1px;background:var(--hub-color-outline-control)}
+.hx-help .btn211{margin:0}
+.hx-help .help-211,.hx-help .help-call{margin:0}
+.hx-help ul{margin:0}
+.hx-help li,.hx-help li+li{border-top:2px dotted var(--hub-color-outline-control)}
+.hx-help li a{min-height:48px;font-size:16px;line-height:24px;font-weight:400;color:var(--hub-color-link);text-decoration:underline}

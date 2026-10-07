@@ -113,7 +113,8 @@
     var list = d.getElementById(t.getAttribute('data-ut-less')); if (!list) return;
     var less = list.getAttribute('data-less') !== '1';
     list.setAttribute('data-less', less ? '1' : '0');
-    $$('li', list).forEach(function (li, i) { li.hidden = less && i >= 3; });
+    var keep = +(list.getAttribute('data-keep') || 3);   /* ut16: Hub/StatusGroup keeps row 1 (data-keep="1"); other lists keep 3 */
+    $$(':scope > li', list).forEach(function (li, i) { li.hidden = less && i >= keep; });
     t.setAttribute('aria-expanded', String(!less));
     var l = $('.lbl', t); if (l) l.textContent = less ? t.getAttribute('data-all') : t.getAttribute('data-fewer');
     /* ut15 Hub/StatusGroup: collapsing (Show fewer) moves focus to the group heading (h2.hx-sg-h, tabindex=-1); expanding keeps it on the toggle */
@@ -121,40 +122,52 @@
     if (less && gh) gh.focus({ preventScroll: true });
   });
 
-  /* ---- ut15 Hub/StatusGroup URL state (replaceState, no history entries):
-          ?sg-open=<ids>  expanded groups (section id) and expanded address rows (row-body id)
+  /* ---- ut15 Hub/StatusGroup URL state (replaceState, no history entries); ut16: defaults now differ per element (row 1 starts expanded), so
+          ?sg-open=<ids>  the toggles (address-row bodies + Likely/Potential row lists) that are open. Present = authoritative: every StatusGroup toggle
+                          not listed is closed on load. Absent = the server-rendered Figma defaults. Written only when it differs from the defaults.
           ?sg-less=<ids>  address lists collapsed with Show fewer
           Restored on load without moving focus. Only elements inside .hx-status-group take part. ---- */
   var SGS = $$('.hx-status-group');
   if (SGS.length) {
     var csv = function (k) { return (q.get(k) || '').split(',').filter(Boolean); };
-    csv('sg-open').forEach(function (id) {
-      var el = d.getElementById(id); if (!el || !el.closest('.hx-status-group')) return;
-      if (el.classList.contains('hx-status-group')) { setExp(el, true); return; }
-      var b = $('[data-ut-toggle="' + id + '"]'); if (!b) return;
-      el.hidden = false; b.setAttribute('aria-expanded', 'true'); var rw = b.closest('.hx-status-group-row'); if (rw) rw.setAttribute('data-state', 'expanded'); var bl = $('.lbl', b); if (bl) bl.textContent = b.getAttribute('data-open');
-    });
+    var sgToggles = function () { var a = []; SGS.forEach(function (g) { a = a.concat($$('[data-ut-toggle]', g)); }); return a; };
+    var setT = function (b, open) {
+      var el = d.getElementById(b.getAttribute('data-ut-toggle')); if (!el) return;
+      el.hidden = !open; b.setAttribute('aria-expanded', String(open));
+      var rw = b.closest('.hx-status-group-row'); if (rw && rw.contains(el)) rw.setAttribute('data-state', open ? 'expanded' : 'collapsed');
+      var bl = $('.lbl', b); if (bl) bl.textContent = b.getAttribute(open ? 'data-open' : 'data-closed');
+    };
+    var sgOpenNow = function () { return sgToggles().filter(function (b) { return b.getAttribute('aria-expanded') === 'true'; }).map(function (b) { return b.getAttribute('data-ut-toggle'); }); };
+    var SG_DEFAULT = sgOpenNow().join(',');
+    if (q.has('sg-open')) {
+      var want = csv('sg-open');
+      sgToggles().forEach(function (b) { setT(b, want.indexOf(b.getAttribute('data-ut-toggle')) >= 0); });
+    }
     csv('sg-less').forEach(function (id) {
       var list = d.getElementById(id), b = $('[data-ut-less="' + id + '"]'); if (!list || !b || !list.closest('.hx-status-group')) return;
-      list.setAttribute('data-less', '1'); $$('li', list).forEach(function (li, i) { li.hidden = i >= 3; });
+      var keep = +(list.getAttribute('data-keep') || 3);
+      list.setAttribute('data-less', '1'); $$(':scope > li', list).forEach(function (li, i) { li.hidden = i >= keep; });
       b.setAttribute('aria-expanded', 'false'); var bl = $('.lbl', b); if (bl) bl.textContent = b.getAttribute('data-all');
     });
     var sgSync = function () {
       if (!window.history || !history.replaceState || !window.URL) return;
-      var open = [], less = [];
-      SGS.forEach(function (g) {
-        if (g.getAttribute('data-exp') === '1') open.push(g.id);
-        $$('[data-ut-toggle]', g).forEach(function (b) { if (b.getAttribute('aria-expanded') === 'true') open.push(b.getAttribute('data-ut-toggle')); });
-        $$('.cps-list[data-less="1"]', g).forEach(function (l) { less.push(l.id); });
-      });
+      var open = sgOpenNow().join(','), less = [];
+      SGS.forEach(function (g) { $$('.cps-list[data-less="1"]', g).forEach(function (l) { less.push(l.id); }); });
       var u = new URL(location.href);
-      if (open.length) u.searchParams.set('sg-open', open.join(',')); else u.searchParams.delete('sg-open');
+      if (open !== SG_DEFAULT) u.searchParams.set('sg-open', open); else u.searchParams.delete('sg-open');
       if (less.length) u.searchParams.set('sg-less', less.join(',')); else u.searchParams.delete('sg-less');
       if (u.href !== location.href) history.replaceState(history.state, '', u.href);
     };
     d.addEventListener('click', function (e) {
-      var t = e.target.closest ? e.target.closest('[data-cps-toggle],[data-ut-toggle],[data-ut-less]') : null;
+      var t = e.target.closest ? e.target.closest('[data-ut-toggle],[data-ut-less]') : null;
       if (t && t.closest('.hx-status-group')) sgSync();
+    });
+    /* ut16 Find an address: the trailing clear button (Figma Close glyph) shows once there is text; it clears and returns focus to the field */
+    $$('.hx-status-group .cps-find').forEach(function (f) {
+      var inp = $('input', f), clr = $('.hx-sg-clear', f); if (!inp || !clr) return;
+      var upd = function () { clr.hidden = !inp.value; };
+      inp.addEventListener('input', upd); upd();
+      clr.addEventListener('click', function () { inp.value = ''; upd(); inp.focus(); });
     });
   }
 })();
