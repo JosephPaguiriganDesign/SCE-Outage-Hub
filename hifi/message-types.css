@@ -5,7 +5,7 @@
                                      dotted-divider rows, optional underlined Pacific-700 link row + chevron. No button. No role.
    .hx-callout[data-kind=safetytip]  same shell + #E7E7E7 band, filled Pewter shield, eyebrow "Safety tip" (#3B3D40), ink title. NO red.
                                      Optional action slot = unmodified 1.7 Primary. No role.
-   .hx-callout[data-kind=emergency]  2px #BB0000 border, solid #BB0000 band, white triangle-! + white H2 20/28, body on white,
+   .hx-callout[data-kind=emergency]  2px #BB0000 border, solid #BB0000 band, Kit Hazard (Emergency badge) + white H2 20/28, body on white,
                                      1.7 Primary CALL 911 (tel:911). role=alert ONLY when revealed by a user action.
    .hx-report[data-state=received]   no box: 48px #107E3E check, H2, lag line, Cool-Gray-50 receipt (Report / Address / Sent), 1.7 Secondary.
                                      Focus moves to the H2 (tabindex=-1). Not a live region.
@@ -64,7 +64,7 @@
 /* ---- emergency ---- */
 .hx-callout[data-kind="emergency"]{border:2px solid var(--co-err)}
 .hx-callout[data-kind="emergency"] .hx-co-band{padding:16px;background:var(--co-err)}
-.hx-co-tri{display:block;flex:none;width:28px;height:28px}
+.hx-co-tri,.hx-co-hazard{display:block;flex:none;width:28px;height:28px} /* ut18: Hazard SVG is 24; CSS displays at 28 (scale up only) */
 .hx-callout[data-kind="emergency"] .hx-co-title{flex:1 1 auto;min-width:0;font-size:20px;line-height:28px;color:#fff}
 .hx-callout[data-kind="emergency"] .hx-co-body{gap:16px}
 .hx-callout[data-kind="emergency"] .hx-co-action{padding-top:0}

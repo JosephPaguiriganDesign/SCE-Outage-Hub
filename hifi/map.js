@@ -3,10 +3,10 @@
 (function () {
   'use strict';
   var LAYERS = {
-    active:    { center: [0, 0], r: 1, color: '#BA0000', fill: 0.22 },
+    active:    { center: [0, 0], r: 1, color: '#BB0000', fill: 0.22 },
     potential: { center: [0, 0], r: 1, color: '#CC6006', fill: 0.30 },
     likely:    { center: [0, 0], r: 1, color: '#CC6006', fill: 0.22 },
-    scheduled: { center: [0, 0], r: 1, color: '#0459D2', fill: 0.22 }
+    scheduled: { center: [0, 0], r: 1, color: '#0057D2', fill: 0.22 }
   };
   /* overlay colors = the status icon colors, single-sourced from hub-data.js (HUB_DATA.status_colors) */
   var HC = (window.HUB_DATA && window.HUB_DATA.status_colors) || {};

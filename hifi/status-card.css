@@ -322,7 +322,8 @@ body[data-page="s3"] .cps-actions .btn.primary{min-height:56px}
 .ut-gal .gtok div{display:flex;align-items:center;gap:8px;font-size:12px}
 .ut-gal .gtok i{width:24px;height:24px;border-radius:6px;border:1px solid rgba(0,0,0,.15);flex:0 0 24px}
 .ut-gal .gico{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 16px;text-align:center;font-size:11px}
-.ut-gal .gico svg{width:40px;height:40px;display:block;margin:0 auto 4px}
+.ut-gal .gico:not(.gico-kit) svg{width:40px;height:40px;display:block;margin:0 auto 4px}
+.ut-gal .gico-kit svg{display:block;margin:0} /* size via data-ico-size — never force 40 */
 .ut-gal details.gref{margin:0 16px;font-size:12px}
 .ut-gal details.gref summary{min-height:48px;display:flex;align-items:center;font-weight:700;color:var(--sce-ut-link);cursor:pointer}
 .ut-gal pre{background:#F1F3F5;padding:10px;border-radius:8px;overflow:auto;font-size:11px;line-height:16px;white-space:pre-wrap;word-break:break-word}
@@ -490,7 +491,7 @@ body[data-page="f0multi"] .ut-id b{font-size:16px}
 .hx-status-group .cps-label{font-size:16px;line-height:24px}
 .hx-status-group .cps-top .cps-chip{align-self:center;min-height:0;padding:4px 8px;border:1px solid var(--hub-color-status-neutral);border-radius:var(--hub-radius-sm);
   background:var(--hub-color-tint-neutral);color:var(--sce-ut-ink);font-size:12px;line-height:18px;letter-spacing:0}
-.hx-status-group .cps-ico[data-ico="flash_off"],.hx-banner-ico{color:var(--hub-color-error)}
+.hx-banner-ico{color:var(--hub-color-error)} /* ut18: Off icon is Kit ActiveOutage (token fills), not currentColor flash */
 .hx-sg-count{margin:0}
 /* Filter by status (px 12, radius 4) + Find an address (px 16, radius 8, search + clear glyphs 24). Height stays at the hub's 48px target rule
    (Figma draws both fields 44px tall: listed as a Figma deviation from the 48dp rule the sweep enforces on every page) */
@@ -546,3 +547,53 @@ body[data-page="f0multi"] .ut-id b{font-size:16px}
 .hx-help ul{margin:0}
 .hx-help li,.hx-help li+li{border-top:2px dotted var(--hub-color-outline-control)}
 .hx-help li a{min-height:48px;font-size:16px;line-height:24px;font-weight:400;color:var(--hub-color-link);text-decoration:underline}
+
+/* ut18: MapMarker white disk behind the status icon (Kit MapMarker keeps the white ring) */
+.ut-ov{display:flex;align-items:center;justify-content:center}
+.ut-ov svg.ut-ovsvg{width:24px;height:24px;filter:none}
+.ut-ov::before{content:"";position:absolute;width:36px;height:36px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.35);z-index:0}
+.ut-ov svg{position:relative;z-index:1;width:24px;height:24px;filter:none}
+.ut-legend svg.ut-lg{flex:0 0 24px;width:24px;height:24px} /* ut18: use 24 SVG at 24 (was 28 scale-down risk) */
+
+/* ---- ut18 Hub/StatusGroupSearch (Figma 314:177) — Hub-only; fills card, no 343 min-width ---- */
+.hx-status-group .cps-filter{display:flex;flex-direction:column;gap:8px;width:100%;min-width:0}
+.hx-status-group .hx-sg-search{
+  display:flex;align-items:center;gap:8px;width:100%;max-width:100%;min-width:0;box-sizing:border-box;
+  height:44px;padding:8px 16px;background:#fff;
+  border:1px solid var(--hub-color-outline-control, #758284);border-radius:8px;
+}
+.hx-status-group .hx-sg-search > svg{flex:none;width:24px;height:24px;fill:var(--sce-ut-ink, #101820)}
+.hx-status-group .hx-sg-search input[type="search"]{
+  flex:1 1 auto;min-width:0;width:100%;border:0;outline:0;background:transparent;
+  font:400 16px/24px "Open Sans",system-ui,sans-serif;color:var(--sce-ut-ink, #101820);
+}
+.hx-status-group .hx-sg-search input::placeholder{color:#5F646A} /* Edison-Black-300 */
+.hx-status-group .hx-sg-search .hx-sg-clear{
+  flex:none;display:inline-flex;align-items:center;justify-content:center;
+  width:24px;height:24px;padding:0;border:0;background:transparent;color:var(--sce-ut-ink, #101820);cursor:pointer;
+}
+.hx-status-group .hx-sg-search .hx-sg-clear[hidden]{display:none!important}
+.hx-status-group .hx-sg-search .hx-sg-clear svg{width:24px;height:24px;fill:currentColor;stroke:none}
+/* StatusGroup rows: never clip at 375 — long address / meter / CTA / chip stay inside padding box */
+.hx-status-group .cps-block{min-width:0;overflow:visible}
+.hx-status-group .cps-top{flex-wrap:wrap;gap:8px;min-width:0}
+.hx-status-group .cps-label{min-width:0;overflow-wrap:anywhere}
+.hx-status-group .cps-chip{flex:none}
+.hx-status-group .hx-status-group-row{min-width:0;overflow:visible}
+.hx-status-group .cps-addr,.hx-status-group .hx-sgr-meter,.hx-status-group .hx-sgr-acct,.hx-status-group .hx-sgr-win{
+  min-width:0;overflow-wrap:anywhere;word-break:break-word}
+.hx-status-group .hx-sgr-cta{max-width:100%;box-sizing:border-box}
+
+/* ut18 icon set gallery */
+.gico-kit{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin:0 16px;max-width:100%;box-sizing:border-box}
+.gico-kit .gico-row{min-width:0;overflow:hidden;word-break:break-word}
+.gico-row{padding:12px;border:1px solid #E7E8E9;border-radius:8px;background:#fff}
+.gico-sizes{display:flex;align-items:flex-end;gap:12px;margin-bottom:8px;min-height:28px}
+.gico-sz{display:inline-flex;align-items:center;justify-content:center;background:#fff}
+.gico-sz .cps-ico{display:block}
+
+
+/* ut18: Kit icons are size-accurate files — CSS must match data-ico-size (never scale 24→20/16). Hazard Callout Emergency is the only scale-up (24→28 via .hx-co-hazard). */
+svg.cps-ico[data-ico-size="16"],.hx-evchip svg[data-ico-size="16"]{flex:0 0 16px;width:16px;height:16px}
+svg.cps-ico[data-ico-size="20"]{flex:0 0 20px;width:20px;height:20px}
+svg.cps-ico[data-ico-size="24"],.hx-banner-psps svg[data-ico-size="24"]{flex:0 0 24px;width:24px;height:24px}
