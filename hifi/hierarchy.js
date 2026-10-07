@@ -70,7 +70,7 @@
   $$('a[data-nav-home]').forEach(function (a) { a.setAttribute('href', home); });
 
   /* ---- ut13: report pending (Hub/ReportStatus State=Pending, F0 guest / F1). Replaces the retired PendingBadge.
-          Live region: role=status, aria-live=polite, aria-atomic=true (in the HTML). ?pending=failed shows the failure copy and escalates to role=alert. ---- */
+          Live region: role=status, aria-live=polite, aria-atomic=true (in the HTML). ?pending=failed keeps the same polite live region, sets data-failed, and swaps in the failure copy. Visually identical to Pending (ut17 / Kit). ---- */
   try {
     var pq = q.get('pending');
     if (pq === '1' || pq === 'failed') store('conh_pending', pq === 'failed' ? 'failed' : '1');
@@ -78,7 +78,7 @@
     if (pb && (pst === '1' || pst === 'failed')) {
       if (pst === 'failed') {
         var CPc = (window.HUB_DATA && HUB_DATA.copy) || {};
-        pb.setAttribute('role', 'alert'); pb.setAttribute('aria-live', 'assertive'); pb.setAttribute('data-failed', '');
+        pb.setAttribute('data-failed', '');  /* ut17: keep role=status aria-live=polite aria-atomic=true (same as Pending) */
         var pt = $('.hx-rp-title', pb), pl = $('.hx-rp-line', pb);
         if (pt && CPc.pending_fail_title) pt.textContent = CPc.pending_fail_title;
         if (pl && CPc.pending_fail_body) pl.textContent = CPc.pending_fail_body;

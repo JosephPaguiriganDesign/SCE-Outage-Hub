@@ -25,7 +25,7 @@ Relative links only — works from this folder without a build step.
 | **Multi** | F0-multi → chips / **View portfolio** → F7 → Maple → F2 |
 | **PSPS** | F10 → What to do / Get help → F9; **PSPS map** stubs “Opens PSPS map” (not F6) |
 
-Report pending (ut13, Hub/ReportStatus Pending; replaces the retired pending badge): F5-confirm writes `sessionStorage.conh_pending` and links with `?pending=1`. F0 / F1 show it above the status card when either is present; `?pending=failed` previews the failure state (role=alert).
+Report pending (ut13, Hub/ReportStatus Pending; replaces the retired pending badge): F5-confirm writes `sessionStorage.conh_pending` and links with `?pending=1`. F0 / F1 show it above the status card when either is present; `?pending=failed` keeps role=status / polite / atomic and sets data-failed (ut17; visually identical to Pending).
 
 ## Button lock (do not regress)
 
@@ -230,6 +230,6 @@ Joseph approved Kit's spec (Figma Hub/Callout 255:2944, Hub/ReportStatus 256:293
 | Safety tip | `.hx-callout[data-kind=safetytip]`: same shell + `#E7E7E7` band, Pewter shield, eyebrow "Safety tip"; **no red**; optional action = 1.7 Primary | Hub home "See a downed power line?" with CALL 911 | none | none |
 | Emergency | `.hx-callout[data-kind=emergency]`: 2px `#BB0000` border, solid red band, white triangle, white H2 20/28, body, 1.7 Primary CALL 911 (`tel:911`) | ONLY F5-report and F5-confirm (downed) | `role=alert` only when revealed by a user action (F5-report: picking the downed intent; F5-confirm downed: after submit) | none |
 | Report received | `.hx-report[data-state=received]`: no box, green check, H2, lag line, receipt (Report / Address / Sent), 1.7 Secondary VIEW MY STATUS | F5-confirm (both variants) | focus moves to the H2 (`tabindex=-1`); not a live region | opacity fade, short |
-| Report pending | `.hx-report[data-state=pending]`: 2px dashed `#758284`, clock, "Your report is processing", `RPT-… · It can take up to 20 minutes to show here.` | Above the status card on F1 and hub home, when a report is pending | `role=status`, `aria-live=polite`, `aria-atomic=true`; `role=alert` on failure (`?pending=failed`) | opacity fade, short |
+| Report pending | `.hx-report[data-state=pending]`: 2px dashed `#758284`, clock, "Your report is processing", `RPT-… · It can take up to 20 minutes to show here.` Failure keeps the same look (`data-failed` hook only). | Above the status card on F1 and hub home, when a report is pending | `role=status`, `aria-live=polite`, `aria-atomic=true` on pending and on failure (`?pending=failed`) | opacity fade, short |
 
 Callout buttons are full width on phones and hug their content (left-aligned) from 768px. Retired: TipBox (`.hx-mb`) and PendingBadge (`.pending-badge`) markup and CSS. The old SafetyCallout (`.hx-safety`, `.safety-card`) is superseded at these placements; the F5 downed-line detection (`.hx-detect`) is unchanged apart from copy. Strings: `HUB_DATA.copy` (`dl_title`, `dl_body`, `dl_conf_body`, `dl_promo_*`, `pending_*`, `rr_*`, `st_eyebrow`).

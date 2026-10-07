@@ -10,7 +10,7 @@
    .hx-report[data-state=received]   no box: 48px #107E3E check, H2, lag line, Cool-Gray-50 receipt (Report / Address / Sent), 1.7 Secondary.
                                      Focus moves to the H2 (tabindex=-1). Not a live region.
    .hx-report[data-state=pending]    white, 2px dashed #758284, radius 8, outline Pewter clock, H4 title + one line. No button.
-                                     role=status aria-live=polite aria-atomic=true; role=alert if the report fails.
+                                     role=status aria-live=polite aria-atomic=true (kept on failure; data-failed hook only, ut17).
    Motion: callouts NEVER animate (also in the m3_motion.css / motion.js exclusion list). Report status: opacity-only fade,
    --motion-duration-short (150ms), dropped under reduced motion and ?motion=off, doubled by ?motion=slow.
    Buttons inside callouts: full width on phones; from 768px they hug their content, left-aligned (layout override only).
@@ -112,7 +112,8 @@
 .hx-report[data-state="pending"][hidden]{display:none}
 .hx-rp-ico{display:block;flex:none;width:24px;height:24px;fill:none;stroke:var(--rs-pewter);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .hx-rp-title{font-weight:700}
-.hx-report[data-state="pending"][data-failed]{border-style:solid;border-color:var(--rs-err)}
+/* ut17 / Kit: pending-failure stays visually identical to Pending (dashed Pewter, clock). data-failed is a hook only. */
+.hx-report[data-state="pending"][data-failed]{/* no visual override */}
 /* Medical Baseline gate (prototype control / ?mb=1) still applies to the Info callout that replaced the TipBox */
 .hx-callout[data-mb-on]{display:none}
 html[data-mb="1"] .hx-callout[data-mb-on]{display:block}
