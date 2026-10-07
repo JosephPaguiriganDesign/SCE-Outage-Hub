@@ -233,3 +233,14 @@ Joseph approved Kit's spec (Figma Hub/Callout 255:2944, Hub/ReportStatus 256:293
 | Report pending | `.hx-report[data-state=pending]`: 2px dashed `#758284`, clock, "Your report is processing", `RPT-… · It can take up to 20 minutes to show here.` Failure keeps the same look (`data-failed` hook only). | Above the status card on F1 and hub home, when a report is pending | `role=status`, `aria-live=polite`, `aria-atomic=true` on pending and on failure (`?pending=failed`) | opacity fade, short |
 
 Callout buttons are full width on phones and hug their content (left-aligned) from 768px. Retired: TipBox (`.hx-mb`) and PendingBadge (`.pending-badge`) markup and CSS. The old SafetyCallout (`.hx-safety`, `.safety-card`) is superseded at these placements; the F5 downed-line detection (`.hx-detect`) is unchanged apart from copy. Strings: `HUB_DATA.copy` (`dl_title`, `dl_body`, `dl_conf_body`, `dl_promo_*`, `pending_*`, `rr_*`, `st_eyebrow`).
+
+
+## StatusGroup rows + dividers (ut19)
+
+Joseph's F0-multi row redesign (Figma 328:13004), released by Kit in Hub/StatusGroupRow 280:233 / Hub/StatusGroup 281:279 / Address list 281:113.
+
+- `li.hx-status-group-row`: no border, padding 0; white, radius 4; gap 8 expanded / 4 collapsed.
+- Address list (`ul.hx-sg-list`): vertical stack, gap 8, with a divider above row 1, between rows and after the last row. Dividers are pseudo-elements (`ul::before`, `li::after`), so a hidden row (Show fewer, any filter/search hiding) removes its own divider: no doubled or orphan dividers; a list with no visible row draws none.
+- Divider = 1.7 Divider Variant=Dashed: 1px Sage-700 `#758284`, 2px dash / 2px gap, drawn with a repeating linear-gradient (exact 2/2 in every browser, unlike `border-style: dashed`). **Joseph locked Dashed (2026-10-07).**
+- **One token** (`tokens-ut2.css`, appended to `m3_tokens.css`): `--hx-sg-divider` (the background) + `--hx-sg-divider-h` (thickness). The Hub dotted style (2px round dots, same colour) is kept as a commented alternative next to it: swap those two lines to restyle every StatusGroup list.
+- Links (Hide details, View details, Show fewer / Show all, View details on Likely and Potential): full width, flush right (`display:flex; justify-content:flex-end; text-align:right`), chevron last, 12px vertical padding, 48px minimum tap height; `#00789F`, bold 16, no underline (locked).
