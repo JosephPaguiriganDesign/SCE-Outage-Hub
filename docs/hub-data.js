@@ -1186,6 +1186,8 @@ window.HUB_DATA = {
   "toggle_closed": "View details",
   "show_fewer": "Show fewer",
   "show_all": "Show all {n}",
+  "sg_for": " for {a}",
+  "sg_cta": "VIEW OUTAGE STATUS",
   "k_event": "Event",
   "k_why": "Why",
   "k_circuit": "Circuit",
@@ -1408,10 +1410,40 @@ window.HUB_DATA = {
   "f9_mbl": "Do you use medical devices that need power? You may qualify for Medical Baseline. SCE tries extra ways to reach enrolled customers before a shutoff.",
   "f9_phone_report": "Report an outage or safety issue:",
   "f9_phone_cs": "Customer service:",
-  "f9_phone_cs_val": "[number to be verified]",
+  "sce_phone_cs": "1-800-655-4555",
+  "f9_phone_cs_hours": "Mon–Fri, 8 a.m.–6 p.m.",
   "f10_why": "Why a shutoff is likely",
   "f10_outlook": "Fire risk, next 7 days",
   "titles": {}
+ },
+ "status_group": {
+  "order": [
+   "off",
+   "potential",
+   "likely"
+  ],
+  "icon": {
+   "off": "active",
+   "likely": "likely",
+   "potential": "potential"
+  },
+  "variants": {
+   "off": {
+    "card_status": "psps_active",
+    "tier": "off",
+    "kind": "active"
+   },
+   "likely": {
+    "card_status": "likely",
+    "tier": "likely",
+    "kind": "likely"
+   },
+   "potential": {
+    "card_status": "potential",
+    "tier": "potential",
+    "kind": "potential"
+   }
+  }
  },
  "status": {
   "normal": {

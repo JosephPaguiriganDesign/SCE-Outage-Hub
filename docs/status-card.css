@@ -166,15 +166,18 @@ html[data-advisory="on"] .adv[data-scn="none"]{display:none!important}
 .cps-stale[hidden]{display:none}
 /* address list (screen 04: other service addresses under one account state) */
 .cps-filter{display:flex;flex-direction:column;gap:8px;margin-top:12px}
-.cps-sel,.cps-find{display:flex;align-items:center;min-height:48px;border:1px solid #8D959F;border-radius:var(--sce-ut-radius-sm);background:#fff;padding:0 12px;font-size:14px;color:#4A525C;gap:8px}
+.cps-sel,.cps-find{display:flex;align-items:center;min-height:48px;border:1px solid var(--sce-ut-field-border);border-radius:var(--sce-ut-radius-sm);background:#fff;padding:0 12px;font-size:14px;color:var(--sce-ut-field-ink);gap:8px}
 .cps-sel{justify-content:space-between}
-.cps-sel svg{width:12px;height:8px;fill:none;stroke:#4A525C;stroke-width:2}
+.cps-sel svg{width:12px;height:8px;fill:none;stroke:var(--sce-ut-field-ink);stroke-width:2}
+/* ut15: was inline style on the F0-multi select / find icon (moved here, tokens only) */
+.cps-sel select{border:0;background:transparent;font:inherit;font-size:14px;color:var(--sce-ut-field-ink);flex:1;min-height:48px;appearance:none;-webkit-appearance:none}
+.cps-find>svg{width:20px;height:20px;fill:var(--sce-ut-field-ink)}
 .cps-find{padding-right:0}
 .cps-find input{flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:16px;color:var(--sce-ut-ink);outline:0;height:48px}
-.cps-find button{width:48px;height:48px;border:0;background:transparent;color:#4A525C;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.cps-find button{width:48px;height:48px;border:0;background:transparent;color:var(--sce-ut-field-ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
 .cps-find button svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
 .cps-list{list-style:none;margin:0;padding:0}
-.cps-list>li{border-top:1px dotted #8F959D;padding:12px 0 0}
+.cps-list>li{border-top:1px dotted var(--sce-ut-row-rule);padding:12px 0 0}
 .cps-list>li:first-child{margin-top:12px}
 .cps-row{display:flex;align-items:flex-end;justify-content:space-between;gap:8px}
 .cps-row .cps-addr{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -455,3 +458,12 @@ a.cps-prop .cps-addr{overflow-wrap:anywhere}
   border:1px solid #CBD0D6;border-radius:4px;background:#fff;
   font-size:14px;font-weight:700;color:var(--sce-ut-link);text-decoration:underline;text-underline-offset:2px
 }
+
+/* ---- ut15: Hub/StatusGroup + Hub/StatusGroupRow (Kit's Figma 281:279 / 280:233; F0-multi; components.html "StatusGroup") ----------------------------
+   section.cps.hx-status-group[data-status=off|likely|potential] > li.hx-status-group-row[data-state=expanded|collapsed]. NO new paint: header, inner block,
+   borders (status-*-border via .cps-block[data-kind]), icon + label + chip, rows (.cps-list/.cps-row), View/Hide details + Show fewer (.cps-link),
+   Filter By / Find (.cps-sel/.cps-find) are the shared status-card rules above, so DS / token updates propagate.
+   Icon slot: hub_data.STATUS_GROUP_ICON (HUB_DATA.status_group.icon) -> lib.ico(). */
+.hx-sg-h:focus{outline:0}                       /* group heading takes focus only programmatically (Show fewer); not a control */
+.hx-sg-h:focus-visible{outline:2px solid var(--sce-ut-link);outline-offset:2px;border-radius:2px}
+.hx-status-group-row .cps-row-body .ut-btn{margin:4px 0 8px}   /* StatusGroupRow expanded cta (gallery; 1.7 Primary from the shared button classes) */
