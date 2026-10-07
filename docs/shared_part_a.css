@@ -19,7 +19,7 @@
   --st-psps-r: #0D9488;
   --afn-wash: #EEF2FF;
   --afn: #4F46E5;
-  --r-card: 16px;
+  --r-card: var(--hub-radius-card); /* ut21: was 16px; m3_tokens.css overrides with the same token */
   --r-btn: 4px;
   --pad: 16px;
   --gold-a: #FEC711;

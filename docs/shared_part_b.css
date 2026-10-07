@@ -63,7 +63,7 @@
 .gallery .sub{color:var(--trust);font-size:14px;margin-bottom:16px}
 .gallery .card{
   display:flex;flex-direction:column;gap:4px;padding:16px;background:var(--surface);
-  border:1px solid var(--line);border-radius:16px;margin-bottom:10px;min-height:72px;
+  border:1px solid var(--line);border-radius:var(--hub-radius-card);margin-bottom:10px;min-height:72px;
   box-shadow:var(--shadow)
 }
 .gallery .fid{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--ink-3)}

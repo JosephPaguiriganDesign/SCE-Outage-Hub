@@ -251,7 +251,7 @@ a.sum-chip::after{content:"";position:absolute;left:0;right:0;top:-8px;bottom:-8
   -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/18px 18px no-repeat;
           mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/18px 18px no-repeat
 }
-.self-checks{gap:var(--conh-space-3);padding:var(--conh-space-3) var(--conh-space-4);border-radius:var(--md-sys-shape-corner-medium)}
+.self-checks{gap:var(--conh-space-3);padding:var(--conh-space-3) var(--conh-space-4);border-radius:var(--hub-radius-card)}
 /* segmented control (F5 confirm) */
 .ub-seg{border-color:var(--md-sys-color-outline);border-radius:var(--conh-shape-button)}
 .ub-tab{min-height:40px;background-color:var(--md-sys-color-surface-container-lowest);color:var(--md-sys-color-on-surface-variant)}
@@ -271,7 +271,7 @@ a.sum-chip::after{content:"";position:absolute;left:0;right:0;top:-8px;bottom:-8
   margin:var(--conh-space-4) auto var(--conh-space-3)
 }
 /* inner status card sits flush on the sheet surface */
-.map-sheet .hero{--surface:var(--md-sys-color-surface-container-low);border-radius:var(--md-sys-shape-corner-large)}
+.map-sheet .hero{--surface:var(--md-sys-color-surface-container-low);border-radius:var(--hub-radius-card)}
 .map-sheet .sheet-empty{
   font-size:var(--md-sys-typescale-body-medium-size);line-height:var(--md-sys-typescale-body-medium-line-height);
   color:var(--md-sys-color-on-surface-variant)
@@ -302,7 +302,7 @@ a.wx-banner:active{background-color:var(--sce-color-weather-container)}
 /* PSPS — two-line M3 banner: 40dp supporting icon, headline, body, action */
 .psps-banner{
   display:grid;grid-template-columns:40px 1fr;column-gap:var(--conh-space-4);row-gap:0;align-items:start;
-  padding:var(--conh-space-4);border-radius:var(--md-sys-shape-corner-large);
+  padding:var(--conh-space-4);border-radius:var(--hub-radius-card);
   box-shadow:var(--md-sys-elevation-level1)
 }
 .psps-banner > *{grid-column:2}
@@ -320,7 +320,7 @@ a.wx-banner:active{background-color:var(--sce-color-weather-container)}
   color:var(--md-sys-color-on-surface-variant);margin-bottom:var(--conh-space-3)
 }
 .psps-banner > .btn{grid-column:1 / -1}
-.banner{border-radius:var(--md-sys-shape-corner-large);padding:var(--conh-space-4);box-shadow:var(--md-sys-elevation-level1)}
+.banner{border-radius:var(--hub-radius-card);padding:var(--conh-space-4);box-shadow:var(--md-sys-elevation-level1)}
 
 /* ---- Snackbar (M3: inverse-surface, 48dp, 4dp grid, action) ------------ */
 .stub-toast{
@@ -339,7 +339,7 @@ a.wx-banner:active{background-color:var(--sce-color-weather-container)}
 
 /* ---- Cards / containers: shape + elevation tokens ----------------------- */
 .hero,.mod,.afn,.timeline,.confirm-hero,.fpi-strip,.safety-card,.updates-block,.tile,.gallery .card{
-  border-radius:var(--md-sys-shape-corner-large)
+  border-radius:var(--hub-radius-card)
 }
 .hero,.mod,.timeline,.confirm-hero,.safety-card,.updates-block,.tile{box-shadow:var(--md-sys-elevation-level1)}
 .fpi-strip.nested,.map-sheet .hero{box-shadow:var(--md-sys-elevation-level0)}

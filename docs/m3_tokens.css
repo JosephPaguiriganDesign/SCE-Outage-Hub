@@ -150,7 +150,7 @@
   --link:var(--sce-color-link);
   --afn:var(--sce-color-211);
   --r-btn:var(--conh-shape-button);
-  --r-card:var(--md-sys-shape-corner-large);
+  --r-card:var(--hub-radius-card);   /* ut21: cards = Hub radius/card (8) */
   --shadow:var(--md-sys-elevation-level1);
 }
 /* Font lock: Open Sans only — strips Roboto from the legacy fallback stack */
@@ -183,8 +183,8 @@ html,body,button,input,textarea,select{font-family:var(--md-ref-typeface-plain)}
   --sce-status-na:#5B6575;            /* disconnected (assumption) */
   /* look and feel from the tested screens (status colours, header/footer frame) */
   /* Round 2: the mocks are design mocks only. Shape, link, ink and CTA values come from the prior M3/v0.03 system, not the mocks. */
-  --sce-ut-radius:var(--md-sys-shape-corner-large);         /* 16px: cards, status card, advisory row, map (= --r-card) */
-  --sce-ut-radius-sm:var(--md-sys-shape-corner-medium);     /* 12px: inner blocks, search, banners, map controls, legend */
+  --sce-ut-radius:var(--hub-radius-card);                   /* ut21: = Hub radius/card (8). cards, status card, advisory row, map (= --r-card) */
+  --sce-ut-radius-sm:var(--md-sys-shape-corner-medium);     /* 12px: search, banners, map controls, legend (ut21: inner blocks now use --hub-radius-card) */
   --sce-ut-radius-btn:var(--md-sys-shape-corner-extra-small);/* 4px: every button / CTA (SCE CTA radius) */
   --sce-ut-link:var(--sce-color-link);                      /* #1A76C5 */
   --sce-ut-ink:var(--md-sys-color-on-surface);              /* #101820 */
@@ -269,5 +269,6 @@ html,body,button,input,textarea,select{font-family:var(--md-ref-typeface-plain)}
   --hub-weather-icon:#C2410C;          /* WeatherAdvisory Wind-gusts glyph */
   --hub-help-grad-top:rgba(165,183,186,.2);    /* semantic/accent/sage */
   --hub-help-grad-bottom:rgba(245,245,245,.2); /* neutral/edison-heather */
-  --hub-radius-xs:4px; --hub-radius-sm:8px; --hub-radius-card:16px;
+  --hub-radius-xs:4px; --hub-radius-sm:8px;
+  --hub-radius-card:8px; /* ut21 (Joseph): Hub radius/card -> 1.7 Radius-Sm 8. THE single card radius: every card + inner block reads it. 1.7 card value 4 = change this one line. */
 }

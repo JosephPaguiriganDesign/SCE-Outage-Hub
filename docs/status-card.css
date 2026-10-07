@@ -112,7 +112,7 @@ html[data-advisory="on"] .adv[data-scn="none"]{display:none!important}
 
 /* ---- 4. Current Power Status card ---------------------------------------- */
 .cps{--c-bd:var(--sce-status-on-border);--c-tint:var(--sce-status-on-tint);--c-ink:var(--sce-status-on);
-  margin:0 16px;border:1px solid var(--c-bd);border-radius:var(--sce-ut-radius);background:var(--c-tint);padding:10px;color:var(--sce-ut-ink)}
+  margin:0 16px;border:1px solid var(--c-bd);border-radius:var(--hub-radius-card);background:var(--c-tint);padding:10px;color:var(--sce-ut-ink)}
 .cps[data-state="off"]{--c-bd:var(--sce-status-off);--c-tint:var(--sce-status-off-tint);--c-ink:var(--sce-status-off)}
 .cps[data-state="na"]{--c-bd:var(--sce-status-na);--c-tint:#F1F3F5;--c-ink:var(--sce-status-na)}
 .cps-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:2px 4px 10px}
@@ -122,7 +122,7 @@ html[data-advisory="on"] .adv[data-scn="none"]{display:none!important}
 /* Outer container = power state only (ON green / OFF red / grey).
    ut14: Likely/Potential inner blocks use 2px --status-*-border #CC6006 (Figma Hub/StatusCard; 4.01:1 on white).
    Other kinds keep the neutral hairline. */
-.cps-block{--b-bd:#8D959F;background:#fff;border:1px solid var(--b-bd);border-radius:var(--sce-ut-radius-sm);padding:14px}
+.cps-block{--b-bd:#8D959F;background:#fff;border:1px solid var(--b-bd);border-radius:var(--hub-radius-card);padding:14px}
 .cps[data-status="potential"] .cps-block,.cps-block[data-kind="potential"]{--b-bd:var(--status-potential-border);border-width:2px}
 .cps[data-status="likely"] .cps-block,.cps-block[data-kind="likely"]{--b-bd:var(--status-likely-border);border-width:2px}
 .cps-chiprow{margin:0 0 8px;display:flex}
@@ -158,7 +158,7 @@ html[data-advisory="on"] .adv[data-scn="none"]{display:none!important}
 .cps-ert .v{font-size:22px;line-height:28px;font-weight:700;color:var(--sce-ut-ink);margin:2px 0 0}
 .cps-note{font-size:13px;line-height:18px;color:var(--sce-ut-ink);margin-top:8px}
 .cps-note.ert-note{font-weight:600;color:var(--sce-status-off)}
-.cps-stale{margin:0 16px;padding:10px 12px;border:1px dashed var(--sce-status-off);border-radius:var(--sce-ut-radius-sm);background:#fff;font-size:13px;line-height:18px}
+.cps-stale{margin:0 16px;padding:10px 12px;border:1px dashed var(--sce-status-off);border-radius:var(--hub-radius-card);background:#fff;font-size:13px;line-height:18px}
 .cps-stale strong{display:block;font-size:14px}
 .cps[data-stale="1"]{border-style:dashed}
 .cps-stale .ut-btn{margin-top:8px;min-height:48px;font-size:14px}
@@ -228,7 +228,7 @@ body[data-page="s3"] .cps-actions .btn.primary{min-height:56px}
 .ut-banner p{margin:2px 0 0;font-size:14px;line-height:20px}
 
 /* ---- 8. Heat Advisory row (one collapsed line; only when advisory is active) */
-.adv{margin:0 16px;background:var(--sce-color-weather-container);border:1px solid var(--sce-color-weather-outline);border-radius:var(--sce-ut-radius)} /* weather = amber / neutral (locked), card radius */
+.adv{margin:0 16px;background:var(--sce-color-weather-container);border:1px solid var(--sce-color-weather-outline);border-radius:var(--hub-radius-card)} /* weather = amber / neutral (locked), card radius */
 .adv>summary{list-style:none;display:flex;align-items:center;gap:12px;min-height:56px;padding:0 12px;cursor:pointer}
 .adv>summary::-webkit-details-marker{display:none}
 .adv>summary::after{display:none!important}
@@ -263,7 +263,7 @@ body[data-page="s3"] .cps-actions .btn.primary{min-height:56px}
 .ut-foot p{margin:4px 0 0;font-size:12px;line-height:16px;color:#fff}
 
 /* ---- 11. map (screen 02): overlays, control stack, legend toggles ------------- */
-.ut-map{position:relative;margin:16px 16px 0;height:470px;border-radius:var(--sce-ut-radius);overflow:hidden;background:#E8E4DA;border:1px solid #CBD0D6}
+.ut-map{position:relative;margin:16px 16px 0;height:470px;border-radius:var(--hub-radius-card);overflow:hidden;background:#E8E4DA;border:1px solid #CBD0D6}
 .ut-map.is-expanded{height:min(640px,calc(100dvh - 140px))}
 .ut-map .leaflet-host{position:absolute;inset:0}
 .leaflet-container{font-family:inherit}
@@ -454,6 +454,7 @@ a.cps-prop .cps-addr{overflow-wrap:anywhere}
 .hx-banner-psps .hx-bp-body{flex:1;min-width:0}
 .hx-banner-psps .hx-bp-title{display:block;font-size:16px;line-height:22px;font-weight:700;margin:0 0 4px;color:var(--sce-ut-ink)}
 .hx-banner-psps .hx-bp-text{margin:0 0 10px;font-size:14px;line-height:20px;color:#4A525C}
+.hx-banner-psps .hx-bp-text:last-child{margin-bottom:0} /* ut21 (Kit): PSPS banner with the Hub/Banner Action switch off (no link box) */
 .hx-banner-psps .hx-bp-link{
   display:inline-flex;align-items:center;min-height:32px;padding:0 10px;
   border:1px solid #CBD0D6;border-radius:4px;background:#fff;
@@ -477,13 +478,13 @@ body[data-page="f0multi"] .ut-id b{font-size:16px}
 .hx-f0m-more{margin:0}
 /* Hub/StatusGroup: outer 2px status border, radius 8, padding 8, gap 12; header 16/24 + power word 20/28 */
 .hx-status-group{--c-bd:var(--hub-color-status-on);--c-tint:var(--hub-color-tint-on);--c-ink:var(--hub-text-status-on);
-  display:flex;flex-direction:column;gap:12px;border-width:2px;border-radius:var(--hub-radius-sm);padding:8px}
+  display:flex;flex-direction:column;gap:12px;border-width:2px;border-radius:var(--hub-radius-card);padding:8px}
 .hx-status-group[data-state="off"]{--c-bd:var(--hub-color-error);--c-tint:var(--hub-color-tint-off);--c-ink:var(--hub-text-status-off)}
 .hx-status-group .cps-head{padding:0 4px;align-items:center}
 .hx-status-group .cps-head h2{font-size:16px;line-height:24px}
 .hx-status-group .cps-state{line-height:28px;letter-spacing:0}
 /* inner block: white, 1px (Off error / Likely + Potential #CC6006), radius 4, padding 16, gap 16 */
-.hx-status-group .cps-block{--b-bd:var(--hub-color-error);border-width:1px;border-radius:var(--hub-radius-xs);padding:16px;display:flex;flex-direction:column;gap:16px}
+.hx-status-group .cps-block{--b-bd:var(--hub-color-error);border-width:1px;border-radius:var(--hub-radius-card);padding:16px;display:flex;flex-direction:column;gap:16px}
 .hx-status-group[data-status="likely"] .cps-block{--b-bd:var(--status-likely-border);border-width:1px}
 .hx-status-group[data-status="potential"] .cps-block{--b-bd:var(--status-potential-border);border-width:1px}
 .hx-status-group .cps-block>*+*{margin-top:0}
@@ -545,7 +546,7 @@ body[data-page="f0multi"] .ut-id b{font-size:16px}
 .hx-banner-title{font-size:16px;line-height:24px;font-weight:700}
 .hx-banner-text{margin:0;font-size:14px;line-height:21px;color:var(--sce-ut-ink-secondary)}
 /* Hub/WeatherAdvisory Kind=RedFlag */
-.adv.hx-adv{border:2px solid var(--sce-color-weather);border-radius:var(--hub-radius-sm)}
+.adv.hx-adv{border:2px solid var(--sce-color-weather);border-radius:var(--hub-radius-card)} /* ut21: WeatherAdvisory is a card (was --hub-radius-sm, also 8) */
 .hx-adv>summary{min-height:56px;padding:4px 4px 4px 12px;gap:12px}
 .hx-adv .adv-ico{color:var(--hub-weather-icon)}
 .hx-adv .adv-t{padding:0;font-size:14px;line-height:21px;color:var(--hub-text-weather)}
