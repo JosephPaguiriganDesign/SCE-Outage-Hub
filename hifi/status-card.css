@@ -602,7 +602,10 @@ body[data-page="f0multi"] .ut-id b{font-size:16px}
 
 /* ut18 icon set gallery */
 .gico-kit{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin:0 16px;max-width:100%;box-sizing:border-box}
-@media (max-width:639px){.ut-gal .gico.gico-kit{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}}   /* ut19: on phones the older .ut-gal .gico 4-col rule out-ranked this (375: 16px icons cut, words split); desktop keeps 4 cols */
+/* ut20: the gallery column (main.ut-gal) is <=430px wide at EVERY viewport, so the old .ut-gal .gico 4-col rule (90px tracks) clipped the 16px icon + split words at >=640 too.
+   Auto-fill at all widths; grid/flex children may shrink (gallery layout only, components unchanged). */
+.ut-gal .gico.gico-kit{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+.ut-gal .gico>*,.ut-gal .gtok>*,.ut-gal .gsw>*{min-width:0}
 .gico-kit .gico-row{min-width:0;overflow:hidden;word-break:break-word}
 .gico-row{padding:12px;border:1px solid #E7E8E9;border-radius:8px;background:#fff}
 .gico-sizes{display:flex;align-items:flex-end;gap:12px;margin-bottom:8px;min-height:28px}
