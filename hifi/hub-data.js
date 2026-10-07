@@ -1177,7 +1177,13 @@ window.HUB_DATA = {
   "restored_dur": " The outage lasted {d}.",
   "restored_end": " The shutoff is over.",
   "disc_line": "This is not an outage. Service at this address is disconnected.",
-  "multi_count": "Power is shut off at <b>3</b> of your addresses for a Public Safety Power Shutoff (PSPS).",
+  "sg_count_off": "3 of your service addresses have their power shutoff due to a PSPS event.",
+  "sg_count_likely": "A shutoff is likely at 1 of your addresses. Get ready now.",
+  "sg_count_potential": "A shutoff could happen at 1 of your addresses.",
+  "f0m_clear": "Clear search",
+  "sg_acct": "Account",
+  "help_mbl_hub": "Medical Baseline",
+  "f0m_portfolio": "View portfolio",
   "ert_label": "Estimate (may change)",
   "ert_changed": "Changed from",
   "ert_none": "Not known yet. We’ll post one after a crew checks the damage.",
@@ -1331,8 +1337,8 @@ window.HUB_DATA = {
   "f0m_find_aria": "Find one of your addresses",
   "f0m_opts": [
    "Active outage",
-   "Potential shut off",
-   "Likely shut off"
+   "Likely shut off",
+   "Potential shut off"
   ],
   "f7_sum_k": "Your addresses",
   "f7_need": "Needs attention",
@@ -1419,29 +1425,44 @@ window.HUB_DATA = {
  "status_group": {
   "order": [
    "off",
-   "potential",
-   "likely"
+   "likely",
+   "potential"
   ],
   "icon": {
-   "off": "active",
+   "off": "flash_off",
    "likely": "likely",
    "potential": "potential"
+  },
+  "defaults": {
+   "show_count": true,
+   "show_filters": true,
+   "show_row2": true,
+   "show_row3": true,
+   "show_list_toggle": true,
+   "row1_state": "expanded",
+   "row_cta": true
   },
   "variants": {
    "off": {
     "card_status": "psps_active",
     "tier": "off",
-    "kind": "active"
+    "kind": "active",
+    "layout": "list",
+    "count": "sg_count_off"
    },
    "likely": {
     "card_status": "likely",
     "tier": "likely",
-    "kind": "likely"
+    "kind": "likely",
+    "layout": "summary",
+    "count": "sg_count_likely"
    },
    "potential": {
     "card_status": "potential",
     "tier": "potential",
-    "kind": "potential"
+    "kind": "potential",
+    "layout": "summary",
+    "count": "sg_count_potential"
    }
   }
  },
