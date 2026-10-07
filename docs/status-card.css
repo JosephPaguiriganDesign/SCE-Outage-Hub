@@ -41,7 +41,11 @@ body{background:#fff}
 .ut-bar :focus-visible{outline:2px solid #fff;outline-offset:-4px}
 .ut-title{display:flex;align-items:stretch;gap:7px;padding:0 16px 9px;min-height:43px}
 .ut-title::before{content:"";width:6px;flex:0 0 6px;background:var(--sce-ut-accent);border-radius:1px}
-.ut-title h1{font-size:25px;line-height:34px;font-weight:700;text-transform:uppercase;letter-spacing:0;color:#fff;margin:0;flex:1;min-width:0}
+.ut-title h1,.ut-title h1.hub-name{font-size:25px;line-height:34px;font-weight:700;text-transform:uppercase;letter-spacing:0;color:#fff;margin:0;flex:1;min-width:0;overflow-wrap:anywhere;word-break:break-word}
+/* ut14: 1.7 Mobile/H1 below 768px (26/34 Bold, uppercase via text-transform; source text stays title case) */
+@media (max-width:767.98px){
+  .ut-title h1,.ut-title h1.hub-name{font-size:26px;line-height:34px;font-weight:700;text-transform:uppercase}
+}
 .ut-title .ut-back{align-self:center;color:#fff;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:4px;min-height:48px;padding:0 4px;text-decoration:none}
 .ut-title .ut-back svg{width:10px;height:14px;fill:none;stroke:#fff;stroke-width:2.2}
 .ut-menu{position:absolute;z-index:60;left:8px;right:8px;top:54px;background:#fff;color:var(--ink);border-radius:var(--sce-ut-radius-sm);box-shadow:0 8px 24px rgba(0,0,0,.28);padding:4px 0}
@@ -115,9 +119,12 @@ html[data-advisory="on"] .adv[data-scn="none"]{display:none!important}
 .cps-head h2{font-size:18px;line-height:24px;font-weight:700;margin:0;color:var(--sce-ut-ink)}
 /* state word: PLAIN BOLD TEXT. Never a toggle, pill or switch (user-testing finding) */
 .cps-state{font-size:20px;line-height:24px;font-weight:800;text-transform:uppercase;letter-spacing:.02em;color:var(--c-ink);background:none;border:0;padding:0;border-radius:0;box-shadow:none}
-/* round 6: the OUTER container carries power state only (ON green / OFF red / grey); the inner block border is ONE neutral hairline for every kind.
-   The event kind is shown by icon + ALL-CAPS label + type chip, never by border color alone (fixes the Likely 2.93:1 border, Scout CS-18). */
+/* Outer container = power state only (ON green / OFF red / grey).
+   ut14: Likely/Potential inner blocks use 2px --status-*-border #CC6006 (Figma Hub/StatusCard; 4.01:1 on white).
+   Other kinds keep the neutral hairline. */
 .cps-block{--b-bd:#8D959F;background:#fff;border:1px solid var(--b-bd);border-radius:var(--sce-ut-radius-sm);padding:14px}
+.cps[data-status="potential"] .cps-block,.cps-block[data-kind="potential"]{--b-bd:var(--status-potential-border);border-width:2px}
+.cps[data-status="likely"] .cps-block,.cps-block[data-kind="likely"]{--b-bd:var(--status-likely-border);border-width:2px}
 .cps-chiprow{margin:0 0 8px;display:flex}
 .cps-chip{display:inline-flex;align-items:center;min-height:24px;padding:0 10px;border-radius:4px;background:#E9ECF0;color:#2B323B;font-size:12px;line-height:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
 .cps-chiprow+.cps-top{margin-top:0}
@@ -418,3 +425,33 @@ a.cps-prop .cps-addr{overflow-wrap:anywhere}
 .rec-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .rec-head .rec-clear{background:none;border:0;padding:0 0 0 12px;min-height:48px;min-width:48px;font:inherit;font-size:14px;font-weight:700;color:var(--sce-ut-link);cursor:pointer;text-transform:none;letter-spacing:0}
 .lang-line{margin:8px 0 0}
+
+
+/* ==========================================================================
+   ut14: Hub/EventChip PSPS Watch|Warning + Hub/Banner PSPSWatch|Warning
+   Icons share ico(); borders/fills use --status-likely-border / --status-potential-border (#CC6006).
+   Mapping: Potential + PSPS Watch → potential-border; Likely + PSPS Warning → likely-border.
+   ========================================================================== */
+.hx-evchip{
+  display:inline-flex;align-items:center;gap:6px;min-height:26px;padding:0 10px 0 6px;
+  border:1.5px solid var(--status-potential-border);border-radius:999px;
+  background:#FFF7ED;color:var(--sce-ut-ink);
+  font-size:12px;line-height:16px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;white-space:nowrap
+}
+.hx-evchip[data-stage="warning"]{border-color:var(--status-likely-border)}
+.hx-evchip .cps-ico,.hx-evchip svg{flex:0 0 16px;width:16px;height:16px;display:block}
+.hx-banner-psps{
+  margin:0 16px;display:flex;align-items:flex-start;gap:12px;
+  border:1.5px solid var(--status-potential-border);border-radius:var(--sce-ut-radius-sm);
+  background:#FFF7ED;padding:16px;color:var(--sce-ut-ink)
+}
+.hx-banner-psps[data-stage="warning"]{border-color:var(--status-likely-border)}
+.hx-banner-psps .cps-ico,.hx-banner-psps > svg{flex:0 0 24px;width:24px;height:24px;display:block;margin-top:2px}
+.hx-banner-psps .hx-bp-body{flex:1;min-width:0}
+.hx-banner-psps .hx-bp-title{display:block;font-size:16px;line-height:22px;font-weight:700;margin:0 0 4px;color:var(--sce-ut-ink)}
+.hx-banner-psps .hx-bp-text{margin:0 0 10px;font-size:14px;line-height:20px;color:#4A525C}
+.hx-banner-psps .hx-bp-link{
+  display:inline-flex;align-items:center;min-height:32px;padding:0 10px;
+  border:1px solid #CBD0D6;border-radius:4px;background:#fff;
+  font-size:14px;font-weight:700;color:var(--sce-ut-link);text-decoration:underline;text-underline-offset:2px
+}

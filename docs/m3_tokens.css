@@ -169,9 +169,11 @@ html,body,button,input,textarea,select{font-family:var(--md-ref-typeface-plain)}
   --sce-status-off:#BA0000;           /* OFF text, active shut off icon, red border */
   --sce-status-off-tint:#F8E6E6;
   --sce-status-off-banner:#A80000;    /* global red banner fill (screen 04) */
-  --sce-status-likely:#DE6C0C;        /* likely power shut off (triangle) */
+  --sce-status-likely:#CC6006;        /* likely power shut off (triangle); ut14: unified with potential */
   --sce-status-potential:#CC6006;     /* potential power shut (circle) */
-  --sce-status-warn:#DE6C0C;
+  --status-likely-border:#CC6006;     /* ut14: Hub status/likely-border (Figma 134:2) */
+  --status-potential-border:#CC6006;  /* ut14: Hub status/potential-border (Figma 134:3 = alias of 134:2) */
+  --sce-status-warn:#CC6006;           /* ut14: was #DE6C0C; icon/border only — not used as text */
   --sce-status-warn-tint:#FFF3E6;     /* assumption: not visible in sources */
   --sce-status-scheduled:#0459D2;     /* scheduled shut off (calendar) */
   --sce-status-scheduled-tint:#E8F0FD;/* assumption */

@@ -1,11 +1,11 @@
 /* F6 interactive map (tested screen 02): Leaflet + four PSPS overlays + legend toggles + control stack.
-   Layers (order Active, Potential, Likely, Scheduled): active (red) / potential (ring, orange) / likely (triangle, orange) / scheduled (blue). Toggle changes call fitBounds. */
+   Layers (order Active, Potential, Likely, Scheduled): active (red) / potential (circle, orange) / likely (triangle, orange) / scheduled (blue). Toggle changes call fitBounds. */
 (function () {
   'use strict';
   var LAYERS = {
     active:    { center: [0, 0], r: 1, color: '#BA0000', fill: 0.22 },
     potential: { center: [0, 0], r: 1, color: '#CC6006', fill: 0.30 },
-    likely:    { center: [0, 0], r: 1, color: '#DE6C0C', fill: 0.22 },
+    likely:    { center: [0, 0], r: 1, color: '#CC6006', fill: 0.22 },
     scheduled: { center: [0, 0], r: 1, color: '#0459D2', fill: 0.22 }
   };
   /* overlay colors = the status icon colors, single-sourced from hub-data.js (HUB_DATA.status_colors) */

@@ -1501,7 +1501,7 @@ window.HUB_DATA = {
  "status_colors": {
   "active": "#BA0000",
   "potential": "#CC6006",
-  "likely": "#DE6C0C",
+  "likely": "#CC6006",
   "scheduled": "#0459D2",
   "on": "#0C7E3C",
   "disc": "#5F6672",
