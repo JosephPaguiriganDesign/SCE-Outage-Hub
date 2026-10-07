@@ -506,10 +506,10 @@ body[data-page="f0multi"] .ut-id b{font-size:16px}
 .hx-status-group .cps-find .hx-sg-clear{flex:none;width:48px;height:48px;margin-right:-12px;color:var(--sce-ut-ink)}
 .hx-status-group .cps-find .hx-sg-clear[hidden]{display:none}
 .hx-status-group .cps-find .hx-sg-clear svg{width:24px;height:24px;fill:currentColor;stroke:none}
-/* address list: gap 8; Hub/StatusGroupRow: white, 1px outline-control, radius 4, padding 12; gap 8 expanded / 4 collapsed */
+/* address list: gap 8; Hub/StatusGroupRow: white, radius 4; gap 8 expanded / 4 collapsed. ut19 (Joseph 328:13004, Kit 280:233): no border, padding 0; dividers below */
 .hx-sg-list{display:flex;flex-direction:column;gap:8px}
 .hx-sg-list[hidden],.hx-status-group-row[hidden],.hx-sgr-body[hidden]{display:none}
-.hx-sg-list>.hx-status-group-row,.hx-sg-list>.hx-status-group-row:first-child{margin:0;padding:12px;border:1px solid var(--hub-color-outline-control);border-radius:var(--hub-radius-xs);background:#fff}
+.hx-sg-list>.hx-status-group-row,.hx-sg-list>.hx-status-group-row:first-child{margin:0;padding:0;border:0;border-radius:var(--hub-radius-xs);background:#fff}
 .hx-status-group-row{display:flex;flex-direction:column;gap:4px}
 .hx-status-group-row[data-state="expanded"]{gap:8px}
 .hx-sgr-id{display:flex;flex-direction:column}
@@ -520,9 +520,25 @@ body[data-page="f0multi"] .ut-id b{font-size:16px}
 .hx-sgr-body .hx-sgr-acct{margin-top:-4px}        /* Meter > Account = Figma Meta gap 4 */
 .hx-status-group-row .hx-sgr-cta{margin:0}
 /* Hub/TextLink as disclosure (View details / Hide details / Show fewer): bold 16/24, link pacific, py 12, gap 4, Carbon chevron 24, left-aligned */
-.cps-link.hx-sg-link{align-self:flex-start;gap:4px;min-height:48px;padding:0;font-size:16px;line-height:24px;color:var(--hub-color-link)}
-.cps-link.hx-sg-link svg{width:24px;height:24px;fill:currentColor;stroke:none}
-.hx-sg-list+.hx-sg-link{margin-top:-8px}          /* Show fewer sits in the list's 8px rhythm */
+/* ut19 (Figma 280:225 / 280:230 / 281:132 / 281:144): every StatusGroup link fills the row/block width and sits flush right, chevron last,
+   py 12 (conh-space-3) + 24 line = 48 min tap height. Colour/type locked: #00789F, bold 16/24, no underline. */
+.cps-link.hx-sg-link{display:flex;align-self:stretch;justify-content:flex-end;text-align:right;width:100%;box-sizing:border-box;gap:4px;min-height:48px;padding:12px 0;
+  font-size:16px;line-height:24px;font-weight:700;text-decoration:none;color:var(--hub-color-link)}
+.cps-link.hx-sg-link .lbl{min-width:0;text-align:right}
+.cps-link.hx-sg-link svg{flex:none;width:24px;height:24px;fill:currentColor;stroke:none}
+/* ut19: Show fewer / Likely + Potential View details sit in the inner block's 16px gap after the list (Figma 281:133: last divider > 16 > link); ut18's -8px pull-up removed */
+/* ---- ut19 address-list dividers (1.7 Divider Variant=Dashed, Figma 22:336 inside 281:113): above row 1, between rows, after the last row.
+   ONE token: --hx-sg-divider (background) + --hx-sg-divider-h (thickness), tokens-ut2.css. Drawn as pseudo-elements so ul > li semantics stay clean.
+   Geometry = Figma (0-high divider, 1px stroke drawn above its slot, list gap 8): row > 7 > line > 8 > row. A hidden row (Show fewer, filter/search)
+   is display:none, so its ::after divider goes with it: never doubled, never orphaned. Lists with no visible row draw nothing. ---- */
+.hx-sg-list:not([data-dividers="off"]){position:relative;gap:16px;padding:8px 0}   /* 16 = 8 + 0-high divider + 8 (Figma list gap 8 around each divider) */
+.hx-sg-list:not([data-dividers="off"])::before,
+.hx-sg-list:not([data-dividers="off"])>.hx-status-group-row::after{content:"";position:absolute;left:0;right:0;height:var(--hx-sg-divider-h);background:var(--hx-sg-divider);pointer-events:none}
+.hx-sg-list:not([data-dividers="off"])::before{top:calc(-1 * var(--hx-sg-divider-h))}
+.hx-sg-list:not([data-dividers="off"])>.hx-status-group-row{position:relative}
+.hx-sg-list:not([data-dividers="off"])>.hx-status-group-row::after{top:calc(100% + 8px - var(--hx-sg-divider-h))}
+.hx-sg-list:not([data-dividers="off"]):not(:has(>.hx-status-group-row:not([hidden]))){padding:0}
+.hx-sg-list:not([data-dividers="off"]):not(:has(>.hx-status-group-row:not([hidden])))::before{content:none}
 /* Hub/Banner Kind=Off */
 .hx-banner{display:flex;align-items:flex-start;gap:12px;padding:16px;border:1px solid var(--hub-color-error);border-radius:var(--hub-radius-sm);background:var(--hub-color-tint-off);color:var(--sce-ut-ink)}
 .hx-banner-body{display:flex;flex-direction:column;gap:4px;min-width:0}
@@ -586,6 +602,7 @@ body[data-page="f0multi"] .ut-id b{font-size:16px}
 
 /* ut18 icon set gallery */
 .gico-kit{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin:0 16px;max-width:100%;box-sizing:border-box}
+@media (max-width:639px){.ut-gal .gico.gico-kit{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}}   /* ut19: on phones the older .ut-gal .gico 4-col rule out-ranked this (375: 16px icons cut, words split); desktop keeps 4 cols */
 .gico-kit .gico-row{min-width:0;overflow:hidden;word-break:break-word}
 .gico-row{padding:12px;border:1px solid #E7E8E9;border-radius:8px;background:#fff}
 .gico-sizes{display:flex;align-items:flex-end;gap:12px;margin-bottom:8px;min-height:28px}

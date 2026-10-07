@@ -258,6 +258,13 @@ html,body,button,input,textarea,select{font-family:var(--md-ref-typeface-plain)}
   --hub-color-outline-control:#758284; /* rows, Filter by, Find, Help card, dotted dividers (3.98:1) */
   --hub-color-placeholder:#5F646A;     /* Find an address placeholder (5.9:1) */
   --hub-color-link:var(--sce-link-pacific-700,#00789F);   /* Hub/TextLink (same token message-types already uses) */
+  /* ut19 StatusGroup address-list divider = 1.7 Divider Variant=Dashed (Figma 22:336): 1px Sage-700 #758284, 2px dash / 2px gap,
+     phase -1px so the run starts like Figma's (1px cap, then 2/2). Joseph LOCKED Dashed 2026-10-07. ONE token: swap both lines to restyle.
+     Hub dotted alternative (2px round dots, same colour; NOT used):
+       --hx-sg-divider:radial-gradient(circle,var(--hub-color-outline-control) 0 1px,transparent 1.2px) 0 0/4px 2px repeat-x;
+       --hx-sg-divider-h:2px; */
+  --hx-sg-divider:repeating-linear-gradient(90deg,var(--hub-color-outline-control) 0 2px,transparent 2px 4px) -1px 0/auto repeat-x;
+  --hx-sg-divider-h:1px;
   --hub-text-weather:#712607;          /* WeatherAdvisory text */
   --hub-weather-icon:#C2410C;          /* WeatherAdvisory Wind-gusts glyph */
   --hub-help-grad-top:rgba(165,183,186,.2);    /* semantic/accent/sage */
