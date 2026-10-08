@@ -338,9 +338,10 @@ a.wx-banner:active{background-color:var(--sce-color-weather-container)}
 }
 
 /* ---- Cards / containers: shape + elevation tokens ----------------------- */
-.hero,.mod,.afn,.timeline,.confirm-hero,.fpi-strip,.safety-card,.updates-block,.tile,.gallery .card{
+.hero,.mod,.afn,.timeline,.confirm-hero,.fpi-strip,.updates-block,.tile,.gallery .card{
   border-radius:var(--hub-radius-card)
 }
+.safety-card{border-radius:var(--hub-radius-sm)} /* ut22: SafetyCallout = notice radius/sm (8), not the card token */
 .hero,.mod,.timeline,.confirm-hero,.safety-card,.updates-block,.tile{box-shadow:var(--md-sys-elevation-level1)}
 .fpi-strip.nested,.map-sheet .hero{box-shadow:var(--md-sys-elevation-level0)}
 .section-label{padding:var(--conh-space-4) var(--conh-space-4) var(--conh-space-2)}

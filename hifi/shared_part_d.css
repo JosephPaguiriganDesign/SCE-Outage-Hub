@@ -44,7 +44,7 @@
 .safety-card{
   margin:8px var(--pad) 6px;padding:12px 14px;
   background:var(--surface);border:1px solid rgba(198,40,40,.35);
-  border-left:4px solid var(--st-off);border-radius:var(--r-card);
+  border-left:4px solid var(--st-off);border-radius:var(--hub-radius-sm); /* ut22: SafetyCallout = notice radius/sm */
   box-shadow:var(--shadow)
 }
 .safety-card .safety-title{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px;line-height:18px}

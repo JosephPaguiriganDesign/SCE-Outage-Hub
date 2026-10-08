@@ -102,9 +102,9 @@ html[data-advisory="on"] .adv[data-scn="off"]{display:block!important}
 html[data-advisory="on"] .adv[data-scn="none"]{display:none!important}
 
 /* ---- 3. search ----------------------------------------------------------- */
-.ut-search{margin:0 16px;display:flex;align-items:center;min-height:48px;background:#fff;border:1px solid #8D959F;border-radius:var(--sce-ut-radius-sm);padding:0}
+.ut-search{margin:0 16px;display:flex;align-items:center;min-height:48px;background:#fff;border:1px solid #8D959F;border-radius:var(--hub-radius-sm);padding:0} /* ut22 (Kit): input = 1.7 search radius/sm 8 (was 12); not the card token */
 .ut-search:focus-within{border-color:var(--sce-ut-link);outline:2px solid var(--sce-ut-link);outline-offset:1px}
-.ut-search button{width:48px;height:48px;flex:0 0 48px;border:0;background:transparent;color:#4A525C;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;border-radius:var(--sce-ut-radius-sm)}
+.ut-search button{width:48px;height:48px;flex:0 0 48px;border:0;background:transparent;color:#4A525C;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;border-radius:var(--hub-radius-sm)}
 .ut-search button svg{width:22px;height:22px;fill:currentColor}
 .ut-search button.ut-x svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
 .ut-search input{flex:1;min-width:0;height:48px;border:0;background:transparent;font:inherit;font-size:16px;color:var(--sce-ut-ink);outline:0;padding:0}
@@ -158,7 +158,7 @@ html[data-advisory="on"] .adv[data-scn="none"]{display:none!important}
 .cps-ert .v{font-size:22px;line-height:28px;font-weight:700;color:var(--sce-ut-ink);margin:2px 0 0}
 .cps-note{font-size:13px;line-height:18px;color:var(--sce-ut-ink);margin-top:8px}
 .cps-note.ert-note{font-weight:600;color:var(--sce-status-off)}
-.cps-stale{margin:0 16px;padding:10px 12px;border:1px dashed var(--sce-status-off);border-radius:var(--hub-radius-card);background:#fff;font-size:13px;line-height:18px}
+.cps-stale{margin:0 16px;padding:10px 12px;border:1px dashed var(--sce-status-off);border-radius:var(--hub-radius-sm);background:#fff;font-size:13px;line-height:18px} /* ut22 (Kit): StaleNotice is a notice = radius/sm (8, same pixels; was the card token) */
 .cps-stale strong{display:block;font-size:14px}
 .cps[data-stale="1"]{border-style:dashed}
 .cps-stale .ut-btn{margin-top:8px;min-height:48px;font-size:14px}
@@ -166,7 +166,7 @@ html[data-advisory="on"] .adv[data-scn="none"]{display:none!important}
 .cps-stale[hidden]{display:none}
 /* address list (screen 04: other service addresses under one account state) */
 .cps-filter{display:flex;flex-direction:column;gap:8px;margin-top:12px}
-.cps-sel,.cps-find{display:flex;align-items:center;min-height:48px;border:1px solid var(--sce-ut-field-border);border-radius:var(--sce-ut-radius-sm);background:#fff;padding:0 12px;font-size:14px;color:var(--sce-ut-field-ink);gap:8px}
+.cps-sel,.cps-find{display:flex;align-items:center;min-height:48px;border:1px solid var(--sce-ut-field-border);border-radius:var(--hub-radius-sm);background:#fff;padding:0 12px;font-size:14px;color:var(--sce-ut-field-ink);gap:8px} /* ut22 (Kit): select + search inputs = radius/sm (was 12; every rendered one sits in .hx-status-group, which sets its own radius) */
 .cps-sel{justify-content:space-between}
 .cps-sel svg{width:12px;height:8px;fill:none;stroke:var(--sce-ut-field-ink);stroke-width:2}
 /* ut15: was inline style on the F0-multi select / find icon (moved here, tokens only) */
@@ -221,7 +221,7 @@ body[data-page="s3"] .cps-actions .btn.primary{min-height:56px}
 .ut-help .btn211{width:100%;margin-bottom:var(--conh-space-2)}
 
 /* ---- 7. banners ------------------------------------------------------------- */
-.ut-banner{margin:0 16px;display:flex;align-items:center;gap:14px;border-radius:var(--sce-ut-radius-sm);padding:18px 16px;color:#fff;background:var(--sce-status-on-banner)}
+.ut-banner{margin:0 16px;display:flex;align-items:center;gap:14px;border-radius:var(--hub-radius-sm);padding:18px 16px;color:#fff;background:var(--sce-status-on-banner)} /* ut22 (Kit): every Hub/Banner Kind = 1.7 Radius-Sm 8 (was 12) */
 .ut-banner[data-tone="alert"]{background:var(--sce-status-off-banner)}
 .ut-banner svg{flex:0 0 44px;width:44px;height:44px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .ut-banner b{display:block;font-size:16px;line-height:22px;font-weight:700}
@@ -268,14 +268,14 @@ body[data-page="s3"] .cps-actions .btn.primary{min-height:56px}
 .ut-map .leaflet-host{position:absolute;inset:0}
 .leaflet-container{font-family:inherit}
 .ut-mc{position:absolute;z-index:500;right:12px;top:12px;display:flex;flex-direction:column;gap:10px}
-.ut-mc button{width:48px;height:48px;border:0;background:#fff;border-radius:var(--sce-ut-radius-sm);box-shadow:0 1px 4px rgba(0,0,0,.3);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:var(--sce-ut-ink)}
+.ut-mc button{width:48px;height:48px;border:0;background:#fff;border-radius:var(--hub-radius-sm);box-shadow:0 1px 4px rgba(0,0,0,.3);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:var(--sce-ut-ink)} /* ut22 (Kit): every Hub/MapControl = radius/sm 8 (was 12) */
 .ut-mc svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.ut-mc .grp{display:flex;flex-direction:column;border-radius:var(--sce-ut-radius-sm);box-shadow:0 1px 4px rgba(0,0,0,.3);background:#fff}
+.ut-mc .grp{display:flex;flex-direction:column;border-radius:var(--hub-radius-sm);box-shadow:0 1px 4px rgba(0,0,0,.3);background:#fff}
 .ut-mc .grp button{box-shadow:none;border-radius:0}
-.ut-mc .grp button:first-child{border-radius:var(--sce-ut-radius-sm) var(--sce-ut-radius-sm) 0 0;border-bottom:1px solid #E1E4E8}
-.ut-mc .grp button:last-child{border-radius:0 0 var(--sce-ut-radius-sm) var(--sce-ut-radius-sm)}
+.ut-mc .grp button:first-child{border-radius:var(--hub-radius-sm) var(--hub-radius-sm) 0 0;border-bottom:1px solid #E1E4E8}
+.ut-mc .grp button:last-child{border-radius:0 0 var(--hub-radius-sm) var(--hub-radius-sm)} /* ut22: zoom group = one 48x96 pill at 8; zoom in 8 8 0 0, zoom out 0 0 8 8 */
 .ut-mc button:focus-visible,.ut-sw:focus-visible{outline:3px solid var(--sce-ut-link);outline-offset:2px}
-.ut-legend{position:absolute;z-index:500;left:12px;right:72px;bottom:12px;background:#fff;border-radius:var(--sce-ut-radius-sm);box-shadow:0 2px 10px rgba(0,0,0,.28);padding:4px 12px}
+.ut-legend{position:absolute;z-index:500;left:12px;right:72px;bottom:12px;background:#fff;border-radius:var(--hub-radius-sm);box-shadow:0 2px 10px rgba(0,0,0,.28);padding:4px 12px} /* ut22 (Kit): MapLegend is a notice = radius/sm 8 (was 12) */
 .ut-legend[hidden]{display:none}
 .ut-legend ul{list-style:none;margin:0;padding:0}
 .ut-legend li{display:flex;align-items:center;gap:10px;min-height:48px}
@@ -446,7 +446,7 @@ a.cps-prop .cps-addr{overflow-wrap:anywhere}
 .hx-evchip .cps-ico,.hx-evchip svg{flex:0 0 16px;width:16px;height:16px;display:block}
 .hx-banner-psps{
   margin:0 16px;display:flex;align-items:flex-start;gap:12px;
-  border:1.5px solid var(--status-potential-border);border-radius:var(--sce-ut-radius-sm);
+  border:1.5px solid var(--status-potential-border);border-radius:var(--hub-radius-sm); /* ut22 (Kit): every Hub/Banner Kind = radius/sm 8 (was 12) */
   background:#FFF7ED;padding:16px;color:var(--sce-ut-ink)
 }
 .hx-banner-psps[data-stage="warning"]{border-color:var(--status-likely-border)}

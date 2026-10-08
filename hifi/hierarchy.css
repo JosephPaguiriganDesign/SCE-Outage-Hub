@@ -25,7 +25,7 @@ body{padding-bottom:0}
 .hx-iconbtn svg{width:24px;height:24px;fill:currentColor}
 .hx-search{
   margin:var(--conh-space-2) var(--conh-space-4) 0;display:flex;align-items:center;min-height:48px;background:var(--surface);
-  border:1.5px solid var(--line);border-radius:12px;padding:0 0 0 var(--conh-space-4)
+  border:1.5px solid var(--line);border-radius:var(--hub-radius-sm);padding:0 0 0 var(--conh-space-4) /* ut22: input radius/sm (was 12; .ut-search overrides on every page) */
 }
 .hx-search:focus-within{border-color:var(--ink);outline:3px solid var(--md-sys-color-tertiary);outline-offset:1px}
 .hx-search input{flex:1;min-width:0;height:44px;border:0;background:transparent;font:inherit;font-size:16px;color:var(--ink);outline:0}
@@ -138,7 +138,7 @@ body{padding-bottom:0}
 /* Refresh-failed: keep last known info, say so, never blank */
 .hx-stale{
   display:flex;gap:var(--conh-space-3);align-items:flex-start;margin:0 0 var(--conh-space-3);padding:var(--conh-space-3);
-  background:#FFF8E6;border:1px solid #F5D78E;border-radius:var(--md-sys-shape-corner-medium);font-size:13px;line-height:18px;color:#5C3300
+  background:#FFF8E6;border:1px solid #F5D78E;border-radius:var(--hub-radius-sm);font-size:13px;line-height:18px;color:#5C3300 /* ut22: StaleNotice = radius/sm (was 12; no page renders .hx-stale) */
 }
 .hx-stale[hidden]{display:none}
 .hx-stale strong{display:block;font-size:13px;color:#5C3300}
@@ -208,11 +208,11 @@ dl.kv dd{color:var(--ink);font-weight:500;overflow-wrap:anywhere}
 /* Safety callouts (S4 / S5 / S7) — ink + red rail, never gold */
 .hx-safety{
   margin:var(--conh-space-2) var(--conh-space-4);padding:var(--conh-space-3) var(--conh-space-4);background:var(--surface);
-  border:1px solid rgba(198,40,40,.35);border-left:4px solid var(--st-off);border-radius:var(--hub-radius-card);
+  border:1px solid rgba(198,40,40,.35);border-left:4px solid var(--st-off);border-radius:var(--hub-radius-sm); /* ut22: SafetyCallout = notice radius/sm (8; was the card token) */
   font-size:14px;line-height:20px;color:var(--ink)
 }
 .hx-safety strong{display:block;font-size:15px;line-height:20px;margin-bottom:2px}
-.hx-safety.sticky{position:sticky;top:var(--hx-chip-h,48px);z-index:20;margin-top:0;border-radius:0 0 var(--hub-radius-card) var(--hub-radius-card);margin-left:0;margin-right:0;border-left-width:4px}
+.hx-safety.sticky{position:sticky;top:var(--hx-chip-h,48px);z-index:20;margin-top:0;border-radius:0 0 var(--hub-radius-sm) var(--hub-radius-sm);margin-left:0;margin-right:0;border-left-width:4px}
 .hx-safety[hidden]{display:none}
 
 /* Placeholder markers */
@@ -294,7 +294,7 @@ html:not([data-aud="guest"]) .for-guest{display:none!important}
 .pf-break .bk b{font-size:16px;color:var(--ink);min-width:20px}
 .pf-break .bk i{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 .pf-ctl{margin:var(--conh-space-2) var(--conh-space-4);display:flex;flex-direction:column;gap:var(--conh-space-3)}
-.pf-ctl input[type="search"]{width:100%;min-height:48px;padding:0 var(--conh-space-4);border:1.5px solid var(--line);border-radius:12px;font:inherit;font-size:16px;background:var(--surface);color:var(--ink)}
+.pf-ctl input[type="search"]{width:100%;min-height:48px;padding:0 var(--conh-space-4);border:1.5px solid var(--line);border-radius:var(--hub-radius-sm);font:inherit;font-size:16px;background:var(--surface);color:var(--ink)} /* ut22 (Kit): search input = 1.7 Radius-Sm 8 (was 12) */
 .pf-ctl input[type="search"]:focus{outline:3px solid var(--md-sys-color-tertiary);outline-offset:1px;border-color:var(--ink)}
 .pf-chips{display:flex;flex-wrap:wrap;gap:var(--conh-space-2)}
 .pf-chips button,.pf-pg button{
@@ -316,7 +316,7 @@ html:not([data-aud="guest"]) .for-guest{display:none!important}
 /* ---- 7. Guest search (S8) ------------------------------------------------ */
 .gs-form{margin:var(--conh-space-3) var(--conh-space-4) var(--conh-space-2);display:flex;flex-direction:column;gap:var(--conh-space-2)}
 .gs-form .gs-row{display:flex;gap:var(--conh-space-2)}
-.gs-form input[type="search"]{flex:1;min-width:0;min-height:48px;padding:0 var(--conh-space-4);border:1.5px solid var(--ink);border-radius:12px;font:inherit;font-size:16px;background:var(--surface);color:var(--ink)}
+.gs-form input[type="search"]{flex:1;min-width:0;min-height:48px;padding:0 var(--conh-space-4);border:1.5px solid var(--ink);border-radius:var(--hub-radius-sm);font:inherit;font-size:16px;background:var(--surface);color:var(--ink)} /* ut22 (Kit): search input = 1.7 Radius-Sm 8 (was 12; no page renders .gs-form) */
 .gs-form input[type="search"]:focus{outline:3px solid var(--md-sys-color-tertiary);outline-offset:1px}
 .gs-form .btn{min-width:48px;padding:0 var(--conh-space-4)}
 .gs-try{display:flex;flex-wrap:wrap;gap:var(--conh-space-2);margin:0 var(--conh-space-4) var(--conh-space-2)}
