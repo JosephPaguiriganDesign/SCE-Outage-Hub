@@ -100,7 +100,7 @@
 .hx-rr-title{margin:8px 0 0;font-size:20px;line-height:28px;font-weight:700;letter-spacing:0;text-transform:none;color:var(--rs-ink)}
 /* the title only receives programmatic focus (tabindex=-1, not in the tab order), so it shows no ring */
 .hx-rr-title:focus,.hx-rr-title:focus-visible{outline:none}
-.hx-rr-receipt{margin:8px 0 0;padding:4px 16px;background:var(--rs-receipt);border-radius:8px}
+.hx-rr-receipt{margin:8px 0 0;padding:4px 16px;background:var(--rs-receipt);border-radius:var(--hub-radius-sm,8px)} /* ut22 (Kit): boxed ReportStatus = radius/sm (8, same pixels; was hard-coded 8px) */
 .hx-rr-receipt>div{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:8px 0}
 .hx-rr-receipt>div+div{border-top:2px dotted var(--rs-dash)}
 .hx-rr-receipt dt{flex:none;color:var(--rs-key);font-weight:400}
@@ -108,7 +108,7 @@
 .hx-rr-action{margin-top:8px}
 .hx-rr-action .btn{display:flex;align-items:center;justify-content:center;width:100%;box-sizing:border-box}
 /* pending */
-.hx-report[data-state="pending"]{display:flex;align-items:flex-start;gap:8px;padding:16px;background:#fff;border:2px dashed var(--rs-dash);border-radius:var(--hub-radius-card,8px)} /* ut21: card token (already 8) */
+.hx-report[data-state="pending"]{display:flex;align-items:flex-start;gap:8px;padding:16px;background:#fff;border:2px dashed var(--rs-dash);border-radius:var(--hub-radius-sm,8px)} /* ut22 (Kit): boxed ReportStatus state = radius/sm (8, same pixels; ut21 had it on the card token) */
 .hx-report[data-state="pending"][hidden]{display:none}
 .hx-rp-ico{display:block;flex:none;width:24px;height:24px;fill:none;stroke:var(--rs-pewter);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .hx-rp-title{font-weight:700}
