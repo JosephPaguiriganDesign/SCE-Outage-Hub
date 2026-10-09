@@ -306,37 +306,42 @@
     $$('.gs-try button').forEach(function (bt) { bt.addEventListener('click', function () { location.href = 'F1-lookup-result.html?q=' + encodeURIComponent(bt.getAttribute('data-q')); }); });
   }
 
-  /* ==== S10: portfolio — filter / search / sort / group / paginate / scroll restore ==== */
+  /* ==== S10: portfolio — ut23 grouped rows (J4 = C): filter / find / sort / ZIP / paginate over StatusGroup rows; scroll restore ==== */
   var list = $('#pfList');
   if (list) {
-    var tiles = $$('a.pf-tile', list), PER = 6, pageNo = 1;
+    var rows = $$('li.pf-item', list), groups = $$('section.pf-group-card', list), PER = 6, pageNo = 1;
     var st = { f: {}, s: 'attention', g: false, p: true, q: '' };
     try { var saved = JSON.parse(store('conh_pf') || 'null'); if (saved) st = Object.assign(st, saved.st || {}); } catch (e) {}
-    var rank = { active: 0, planned: 1, restored: 2, on: 3 };
+    var sortLab = { attention: CP.f7_attn_first, address: CP.f7_by_addr };
     function render() {
-      var qq = st.q.toLowerCase();
-      var vis = tiles.filter(function (t) {
-        var on = Object.keys(st.f).filter(function (k) { return st.f[k]; });
-        return (!on.length || on.indexOf(t.dataset.sstate) > -1) && (!qq || t.dataset.addr.indexOf(qq) > -1);
-      });
-      vis.sort(function (a, b) {
+      var qq = st.q.toLowerCase(), on = Object.keys(st.f).filter(function (k) { return st.f[k]; });
+      var vis = rows.filter(function (t) { return (!on.length || on.indexOf(t.dataset.sstate) > -1) && (!qq || t.dataset.addr.indexOf(qq) > -1); });
+      /* order inside each group: needs-attention rank, by address, or by ZIP; groups keep their urgency order (most urgent first) */
+      function cmp(a, b) {
+        if (st.g) { var z = a.dataset.zip.localeCompare(b.dataset.zip); if (z) return z; }
         if (st.s === 'address') return a.dataset.addr.localeCompare(b.dataset.addr, undefined, { numeric: true });
-        return rank[a.dataset.sstate] - rank[b.dataset.sstate] || (+a.dataset.rank) - (+b.dataset.rank);
-      });
-      if (st.g) vis.sort(function (a, b) { return a.dataset.zip.localeCompare(b.dataset.zip); });
-      var pages = st.p ? Math.max(1, Math.ceil(vis.length / PER)) : 1; if (pageNo > pages) pageNo = pages;
-      var shown = st.p ? vis.slice((pageNo - 1) * PER, pageNo * PER) : vis;
-      $$('.pf-group', list).forEach(function (g) { g.remove(); });
-      tiles.forEach(function (t) { t.hidden = shown.indexOf(t) < 0; });
-      var last = null; shown.forEach(function (t) {
-        if (st.g && t.dataset.zip !== last) { var h = d.createElement('div'); h.className = 'pf-group'; h.textContent = 'ZIP ' + t.dataset.zip; list.appendChild(h); last = t.dataset.zip; }
-        list.appendChild(t);
+        return (+a.dataset.rank) - (+b.dataset.rank);
+      }
+      var ordered = [];
+      groups.forEach(function (g) { var ul = $('.pf-rows', g); var gr = vis.filter(function (r) { return ul.contains(r); }).sort(cmp); ordered = ordered.concat(gr); });
+      var pages = st.p ? Math.max(1, Math.ceil(ordered.length / PER)) : 1; if (pageNo > pages) pageNo = pages;
+      var shown = st.p ? ordered.slice((pageNo - 1) * PER, pageNo * PER) : ordered;
+      $$('.pf-zip', list).forEach(function (h) { h.remove(); });
+      rows.forEach(function (t) { t.hidden = shown.indexOf(t) < 0; });
+      groups.forEach(function (g) {
+        var ul = $('.pf-rows', g), last = null, any = false;
+        shown.filter(function (r) { return ul.contains(r); }).forEach(function (r) {
+          if (st.g && r.dataset.zip !== last) { var h = d.createElement('li'); h.className = 'pf-zip'; h.setAttribute('aria-hidden', 'false'); h.textContent = 'ZIP ' + r.dataset.zip; ul.appendChild(h); last = r.dataset.zip; }
+          ul.appendChild(r); any = true;
+        });
+        g.hidden = !any;
       });
       var em = $('#pfEmpty'); if (em) em.hidden = vis.length > 0;
       var pg = $('#pfPg'); if (pg) { pg.hidden = !st.p || pages < 2; $('#pfPgLab').textContent = 'Page ' + pageNo + ' of ' + pages; $('#pfPrev').disabled = pageNo <= 1; $('#pfNext').disabled = pageNo >= pages; }
       $$('[data-filter]').forEach(function (b) { b.setAttribute('aria-pressed', String(!!st.f[b.dataset.filter])); });
       $$('[data-sort]').forEach(function (b) { b.setAttribute('aria-pressed', String(st.s === b.dataset.sort)); });
-      var g = $('#pfGroup'); if (g) g.setAttribute('aria-pressed', String(st.g)); var p = $('#pfPage'); if (p) p.setAttribute('aria-pressed', String(st.p));
+      var sl = $('#pfSortLab'); if (sl) sl.textContent = sortLab[st.s] || sortLab.attention;
+      var g2 = $('#pfGroup'); if (g2) g2.setAttribute('aria-pressed', String(st.g)); var p = $('#pfPage'); if (p) p.setAttribute('aria-pressed', String(st.p));
       var qi = $('#pfQ'); if (qi && qi.value !== st.q) qi.value = st.q;
     }
     function save() { store('conh_pf', JSON.stringify({ st: st })); }
@@ -350,8 +355,8 @@
     if (savedPos && savedPos.page) pageNo = savedPos.page;
     render();
     list.addEventListener('click', function (e) {
-      var a = e.target.closest('a.pf-tile'); if (!a) return;
-      store('conh_pf', JSON.stringify({ st: st, page: pageNo, y: window.scrollY, id: a.dataset.id }));
+      var a = e.target.closest('a.pf-cta'); if (!a) return; var li = a.closest('li.pf-item');
+      store('conh_pf', JSON.stringify({ st: st, page: pageNo, y: window.scrollY, id: li ? li.dataset.id : '' }));
     });
     function restore() {
       try {

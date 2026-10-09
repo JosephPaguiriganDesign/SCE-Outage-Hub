@@ -618,3 +618,165 @@ body[data-page="f0multi"] .ut-id b{font-size:16px}
 svg.cps-ico[data-ico-size="16"],.hx-evchip svg[data-ico-size="16"]{flex:0 0 16px;width:16px;height:16px}
 svg.cps-ico[data-ico-size="20"]{flex:0 0 20px;width:20px;height:20px}
 svg.cps-ico[data-ico-size="24"],.hx-banner-psps svg[data-ico-size="24"]{flex:0 0 24px;width:24px;height:24px}
+
+/* ==== ut23 Information Hierarchy v0.03 (Joseph approved, Oct 9 2026; Figma W5Nzqi1ALFmdBbuqMvyXYY, read-only) ==== */
+/* J11: single cards keep the power state on the OUTER shell only; the inner block is white + one neutral outline-control hairline (Figma StatusCard) */
+.cps:not(.hx-status-group)>.cps-block[data-kind]{--b-bd:var(--hub-color-outline-control);border-width:1px}
+/* EventChip (neutral): tint-neutral fill, 1px status-neutral, radius sm 8, 12/18 bold ink */
+.cps:not(.hx-status-group) .cps-top .cps-chip{min-height:0;padding:4px 8px;border:1px solid var(--hub-color-status-neutral);border-radius:var(--hub-radius-sm);
+  background:var(--hub-color-tint-neutral);color:var(--sce-ut-ink);font-size:12px;line-height:18px;letter-spacing:0}
+/* dotted divider = Kit divider/dotted (outline-control) */
+.cps-hr{border-top:2px dotted var(--hub-color-outline-control)}
+/* J3 two-part header (PSPS cards): POWER NOW | PSPS EVENT, equal cells, 1px outline-control divider */
+.cps-head.cps-head2{display:flex;align-items:stretch;justify-content:flex-start;gap:0;padding:0 4px 8px}
+.cps-head2 .cps-cell{flex:1 1 0;display:flex;flex-direction:column;gap:0;margin:0;min-width:0}
+.cps-head2 .cps-cell-ev{padding-left:12px;border-left:1px solid var(--hub-color-outline-control)}
+.cps-head2 .cps-k{font-size:12px;line-height:16px;font-weight:700;letter-spacing:0;text-transform:uppercase;color:#3B3D40}
+.cps-head2 .cps-state{line-height:28px;letter-spacing:0}
+.cps-head2 .cps-ev{font-size:20px;line-height:28px;font-weight:800;color:var(--sce-ut-ink);overflow-wrap:anywhere}
+.cps-last{margin:4px 0 0;font-size:16px;line-height:24px}
+.cps-last b{font-weight:700}
+.cps[data-state] .cps-block:is([data-kind="potential"],[data-kind="likely"]) b[data-f="win"]{font-weight:400}
+/* J7 ERT ledger: ESTIMATE (MAY CHANGE) > Back by .. > [clock] Changed from ~~old~~ · later + reason. Ink only (no #CC6006). One-time wash on S1. */
+.cps-ert .k{font-weight:700;letter-spacing:0;color:#3D3F42}
+.cps-ert[data-wash]{margin-left:-8px;margin-right:-8px;padding:6px 8px;border-radius:4px;background:#E6F6FC}
+.cps-ledger.ert-note{display:block;min-height:0;margin:4px 0 0;padding:0;border:0;border-radius:0;background:none;color:var(--sce-ut-ink);font-size:16px;line-height:24px;font-weight:400;animation:none}
+.cps-ert.ert-flash{animation-name:hx-flash-pacific}
+@keyframes hx-flash-pacific{0%{background-color:#C7EAF6}100%{background-color:transparent}}
+.cps-ledger[hidden]{display:none}
+.cps-ledger .lg-row{display:flex;align-items:flex-start;gap:6px;margin:0;font-size:16px;line-height:24px;color:var(--sce-ut-ink)}
+.cps-ledger .lg-row>span{min-width:0}
+.cps-ledger s{text-decoration:line-through}
+.cps-ledger .lg-why{margin:0;padding-left:22px;font-size:16px;line-height:24px;color:#3D3F42}
+svg.hx-clock{flex:0 0 16px;width:16px;height:16px;margin-top:4px;fill:currentColor;stroke:none}
+/* J6 stepper (Hub/Stepper 29:163): Done #0D6632, current #0051C3, pending = #4F5859 outline dot + "Not started"; CAPS pills; current pill ink on white */
+.steps .step.is-done{--s-c:#0D6632}
+.steps .step.is-current{--s-c:#0051C3}
+.steps .step.is-todo{--s-c:#4F5859}
+.steps .step.is-todo .step-dot{background:#fff;border:1.5px solid #4F5859;color:#4F5859;line-height:17px;box-sizing:border-box}
+.steps .step.is-todo::before{background:#4F5859;width:2px;left:9px}
+.steps .step-pill{text-transform:uppercase;border-radius:var(--hub-radius-sm)}
+.steps .step.is-current .step-pill{color:var(--sce-ut-ink);background:#fff}
+.cps .steps .step-t{justify-content:space-between}
+.steps .step-d.na{color:#3D3F42}
+.cps-cause{margin-top:8px}
+/* collapsed: current step title + NOW pill only (no description, no connector) */
+.cps[data-exp="0"]:not([data-moving]) .step.is-current .step-d{display:none}
+.cps[data-exp="0"]:not([data-moving]) .step.is-current::before{display:none}
+.cps[data-exp="0"]:not([data-moving]) .step.is-current{padding-bottom:0}
+/* Hub/StaleNotice: neutral notice + clock (was dashed red) */
+.cps-stale{position:relative;padding:12px 12px 12px 36px;border:1px solid var(--hub-color-status-neutral);background:var(--hub-color-tint-neutral);font-size:14px;line-height:20px;color:var(--sce-ut-ink)}
+.cps-stale svg.hx-clock{position:absolute;left:12px;top:14px;margin:0}
+/* page-order: NS rows, S7 safety tip and S12 weather hero sit between the card and the advisory/actions (Figma) */
+.ut-main>.hx-ns-h,.ut-main>.hx-event,.ut-main>#s7Safety,.ut-main>.hx-wh{order:15}
+.ut-main[data-adv="below-buttons"]>.hx-ns-h,.ut-main[data-adv="below-buttons"]>.hx-event,.ut-main[data-adv="below-buttons"]>#s7Safety,.ut-main[data-adv="below-buttons"]>.hx-wh{order:25}
+/* Hub/EventRow (NS1/NS2) */
+.hx-ns-h{margin:0 16px!important;font-size:16px;line-height:24px;font-weight:700;color:var(--sce-ut-ink)}
+.hx-event{display:flex;flex-direction:column;gap:8px;margin:0 16px!important;padding:16px;background:#fff;border:1px solid var(--hub-color-outline-control);border-radius:var(--hub-radius-card);color:var(--sce-ut-ink);min-width:0}
+.hx-ev-top{display:flex;align-items:center;flex-wrap:wrap;gap:8px;min-width:0}
+.hx-ev-top svg.hx-ev-ico,.hx-ev-top .cps-ico{flex:0 0 24px;width:24px;height:24px}
+.hx-ev-t{flex:1 1 auto;margin:0;min-width:0;font-size:16px;line-height:24px;font-weight:700}
+.hx-event .hx-ev-chip{flex:none;min-height:0;padding:4px 8px;border:1px solid #0057D2;border-radius:var(--hub-radius-sm);background:#E6F6FC;color:var(--sce-ut-ink);font-size:12px;line-height:18px;font-weight:700;letter-spacing:0}
+.hx-ev-win{margin:0;font-size:16px;line-height:24px;font-weight:700}
+.hx-ev-line{margin:0;font-size:16px;line-height:24px}
+.hx-ev-body{display:flex;flex-direction:column;gap:12px}
+.hx-ev-body[hidden]{display:none}
+.hx-ev-body>*{margin:0}
+.hx-event .cps-link.hx-sg-link{justify-content:flex-start;text-align:left;width:auto;align-self:flex-start;padding:12px 0 0;min-height:36px}
+.hx-event .cps-link.hx-sg-link .lbl{text-align:left}
+/* Hub/WeatherHero (S12) */
+.hx-wh{display:flex;flex-direction:column;gap:12px;margin:0 16px!important;padding:16px;background:#fff;border:1.5px solid #53565A;border-radius:var(--hub-radius-card);color:var(--sce-ut-ink);min-width:0}
+.hx-wh p,.hx-wh h2{margin:0}
+.wh-head{display:flex;flex-direction:column;gap:2px}
+.wh-loc{font-size:12px;line-height:16px;font-weight:700;letter-spacing:.48px;text-transform:uppercase;color:#3D3F42}
+.wh-t{font-size:20px;line-height:28px;font-weight:700}
+.wh-gauge{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.wh-seg{display:flex;flex-direction:column;gap:4px;min-width:0}
+.wh-seg i{display:block;height:12px;border-radius:2px;background:#E7E8E9}
+.wh-seg.on i{background:#DF6E0C}
+.wh-seg span{font-size:12px;line-height:16px;color:#3D3F42}
+.wh-seg.cur span{font-weight:700;color:#101820}
+.wh-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.wh-cell{min-width:0}
+.wh-k{font-size:12px;line-height:16px;font-weight:700;color:#3D3F42}
+.wh-v{display:flex;align-items:center;gap:2px;font-size:18px;line-height:26px;font-weight:700}
+.wh-sub{font-size:14px;line-height:20px;color:#3D3F42;overflow-wrap:anywhere}
+svg.wh-dir{flex:0 0 18px;width:18px;height:18px}
+.wh-impact{font-size:16px;line-height:24px}
+.wh-warn{padding:8px 12px;border:1px solid var(--hub-color-outline-control);border-radius:4px;font-size:14px;line-height:20px}
+.wh-warn-t{font-weight:700}
+.wh-upd{font-size:14px;line-height:20px;color:#3D3F42}
+/* Hub/RecentItem (F0-hub-home) */
+.hx-recent{display:flex;align-items:center;gap:8px;min-height:72px;box-sizing:border-box;padding:12px 12px 12px 16px;background:#fff;border:1px solid var(--hub-color-outline-control);border-radius:var(--hub-radius-card);color:var(--sce-ut-ink);text-decoration:none;min-width:0}
+.hx-recent+.hx-recent{margin-top:8px}
+.hx-recent:focus-visible{outline:3px solid var(--sce-ut-link);outline-offset:2px}
+.rc-main{flex:1 1 auto;display:flex;flex-direction:column;min-width:0}
+.rc-addr{font-size:16px;line-height:24px;font-weight:700;overflow-wrap:anywhere}
+.rc-meta{font-size:14px;line-height:20px;color:#3D3F42}
+.rc-st{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:4px;max-width:46%}
+.rc-st .rc-ico{flex:0 0 16px;width:16px;height:16px}
+.rc-lab{font-size:12px;line-height:16px;font-weight:700;text-transform:uppercase;text-align:right}
+.rc-st .cps-chip{min-height:0;padding:2px 6px;border:1px solid var(--hub-color-status-neutral);border-radius:var(--hub-radius-sm);background:var(--hub-color-tint-neutral);font-size:12px;line-height:16px}
+svg.hx-chevr{flex:0 0 24px;width:24px;height:24px;fill:currentColor;color:var(--hub-color-link)}
+/* S3 / S13 "Something else?" */
+.hx-else{display:flex;flex-direction:column;margin:0 16px!important}
+.hx-else-h{margin:0;font-size:16px;line-height:24px;font-weight:700;color:var(--sce-ut-ink)}
+.hx-else .hx-mt-link{min-height:48px}
+.hx-tel{color:var(--hub-color-link);font-weight:700;text-decoration:none;white-space:nowrap}
+/* F5 / F5c / F6 */
+.hx-f5-title{margin:0 16px!important;font-size:24px;line-height:32px;font-weight:700;color:var(--sce-ut-ink)}
+.hx-f5-safe{margin:0;font-size:16px;line-height:24px;font-weight:700;color:var(--sce-ut-ink)}
+.hx-f5c-screen{margin:0 16px!important;font-size:16px;line-height:24px;font-weight:700}
+.hx-f6-line{margin:0 16px!important;font-size:16px;line-height:24px;font-weight:700;color:var(--sce-ut-ink)}
+.hx-f0m-upd{margin:0;font-size:14px;line-height:20px;color:var(--sce-ut-ink-secondary)}
+/* F7 grouped rows (Hub/StatusGroup per status) */
+.pf-group-card[data-status="scheduled"],.pf-group-card[data-status="planned"]{--c-bd:#0057D2;--c-tint:#E6F6FC;--c-ink:var(--sce-ut-ink)}
+.pf-group-card[data-status="scheduled"] .cps-block,.pf-group-card[data-status="planned"] .cps-block{--b-bd:#0057D2}
+.pf-group-card[data-status="psps_active"] .cps-block,.pf-group-card[data-status="active"] .cps-block{--b-bd:var(--hub-color-error)}
+.pf-group-card[data-status="restored"]{--c-bd:var(--hub-color-status-neutral);--c-tint:var(--hub-color-tint-neutral);--c-ink:var(--sce-ut-ink)}
+.pf-group-card[data-status="restored"] .cps-block{--b-bd:var(--hub-color-outline-control)}
+.pf-group-card[data-status="normal"] .cps-block{--b-bd:var(--hub-color-status-on)}
+svg.pf-check{color:var(--sce-ut-ink)}
+.pf-group-card[hidden]{display:none}
+.pf-break{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px;margin:8px 0 0}
+.pf-break .bk{display:flex;flex-direction:column;padding:8px 12px;border:1px solid var(--hub-color-outline-control);border-radius:var(--hub-radius-card);background:#fff;min-width:0}
+.pf-break .bk b{font-size:20px;line-height:28px}
+.pf-break .bk span{font-size:14px;line-height:20px;overflow-wrap:anywhere}
+.pf-find{display:flex;align-items:center;gap:8px;min-height:48px;margin:8px 0 0;padding:0 16px;box-sizing:border-box;border:1px solid var(--hub-color-outline-control);border-radius:var(--hub-radius-sm);background:#fff}
+.pf-find svg{flex:0 0 24px;width:24px;height:24px;fill:var(--sce-ut-ink)}
+.pf-find input{flex:1 1 auto;min-width:0;height:46px;border:0;outline:0;background:transparent;font:inherit;font-size:16px;color:var(--sce-ut-ink)}
+.pf-find input::placeholder{color:var(--hub-color-placeholder);opacity:1}
+.pf-find:focus-within{outline:2px solid var(--sce-ut-link);outline-offset:1px}
+.pf-filters{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0}
+.pf-sortline{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:8px 0 0;font-size:16px;line-height:24px}
+.pf-also{margin:0;font-size:14px;line-height:20px;color:#3D3F42}
+.pf-zip{list-style:none;margin:0;padding:4px 0 0;font-size:12px;line-height:16px;font-weight:700;letter-spacing:.48px;text-transform:uppercase;color:#3D3F42}
+.pf-item[hidden],.pf-zip[hidden]{display:none}
+.pf-sortline p{margin:0}
+/* S6 / F0-signed "How to get ready" card (Figma 243:9287): 16 bold sentence-case title, 16/24 ink list, CAPS secondary button, bold Change link */
+.hx-card.hx-prep{border:1px solid var(--hub-color-outline-control);border-radius:var(--hub-radius-card)}
+.hx-prep>h3.k{margin:0 0 8px;font-size:16px;line-height:24px;font-weight:700;letter-spacing:0;text-transform:none;color:var(--sce-ut-ink)}
+.hx-prep .hx-list{font-size:16px;line-height:24px;color:var(--sce-ut-ink)}
+.hx-prep .hx-list li{color:var(--sce-ut-ink)}
+.hx-prep .btn.map{text-transform:uppercase}
+.hx-prep .lang-line{font-size:14px;line-height:20px;color:#3D3F42}
+.hx-prep .lang-line .hx-link{font-size:16px;font-weight:700;text-decoration:none;color:var(--hub-color-link)}
+/* Next update: date is not bold (Figma) */
+.cps-next b{font-weight:400}
+/* F7 (Figma final-F7): Find field owns the border; pager = Hub/TextLink pair; More options = bold 16 link */
+.pf-ctl .pf-find input[type="search"]{border:0;padding:0;min-height:46px;background:transparent;outline:0}
+.pf-ctl .pf-find input[type="search"]:focus{outline:0}
+.pf-pg{display:flex;align-items:center;justify-content:center;gap:12px}
+.pf-pg button.hx-mt-link{min-height:48px;padding:0 4px;border:0;border-radius:0;background:none;color:var(--hub-color-link);font-size:16px;line-height:24px;font-weight:700;cursor:pointer}
+.pf-pg button.hx-mt-link:disabled{color:#5F646A;cursor:default}
+.pf-pg #pfPgLab{font-size:16px;line-height:24px;color:var(--sce-ut-ink)}
+.pf-tert>summary{font-size:16px;line-height:24px;font-weight:700;color:var(--hub-color-link)}
+.pf-chips.pf-filters button{border-radius:var(--hub-radius-sm)}
+/* NS2: the "Earlier at this address" group (heading + restored row) is one lookback-gated wrapper, ordered with the NS rows */
+.ut-main>div[data-lookback-hide]{order:15;display:flex;flex-direction:column;gap:16px}
+.ut-main[data-adv="below-buttons"]>div[data-lookback-hide]{order:25}
+/* WeatherHero conditions: 2-column grid (Wind | Humidity, Temperature wraps), CAPS labels (Figma S12) */
+.wh-grid{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:8px}
+.wh-k{text-transform:uppercase;letter-spacing:0}
+.cps:not(.hx-status-group) .cps-block[data-kind="likely"] .cps-line:not(.cps-last) b{font-weight:400}  /* Figma F10: window not bold */
+.cps .steps .step-t{flex-wrap:nowrap}.cps .steps .step-pill{flex:none}  /* pill stays at the right edge (Figma Hub/Stepper) */

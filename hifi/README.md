@@ -118,13 +118,13 @@ New/changed on top of the screens above. All plain static files; `hierarchy.css`
 | S3 | `S3-no-outage.html` | Neutral "No outage known", Report = primary CTA |
 | S4 / S5 | `F5-report.html?aud=guest&intent=downed` / `&intent=hazard` | Three intents; hazard escalates to downed line |
 | S6 | `S6-psps-watch.html` | Power On + PSPS Watch |
-| S7 | `archive/S7-psps-active.html` | **Archived** — PSPS temporary restoration (use S9 / components) |
+| S7 | `S7-psps-power-back.html` | ut23: back as a page. POWER NOW ON · PSPS EVENT ACTIVE, POWER BACK FOR NOW, Safety tip callout |
 | S8 | `F1-lookup-result.html?q=...` | Address / outage # / meter #, out-of-area |
 | S9 | `S9-restored.html` (`?psps=temp`, `?psps=ended`) | Restored hero |
 | S10 | `F0-multi.html` -> `F7-portfolio.html` | Summary, tiles, filters, sort, ZIP, pages, scroll restore |
-| S12 | `archive/S12-weather.html` | **Archived** — weather hero (use S3) |
-| S13 | `archive/S13-disconnected.html` | **Archived** — disconnected service (use S3) |
-| NEW 1 / NEW 2 | `archive/N1-active-planned.html`, `archive/N2-active-planned-restored.html` | **Archived** — draft stack scenarios (use S1 / F0-multi) |
+| S12 | `S12-fire-weather.html` | ut23: back as a page. Hub/WeatherHero with fire-risk gauge (forecast hidden until an approved source) |
+| S13 | `S13-disconnected.html` | ut23: back as a page. Not an outage; customer-service number (VERIFY) |
+| NS1 / NS2 | `NS1-active-planned.html`, `NS2-active-planned-restored.html` (`?lookback=expired`) | ut23: draft scenarios, split by time (Coming up / Earlier at this address), compact Hub/EventRow rows |
 | P1 | `P1-psps-shutoff.html` (`?view=01` / `?view=05`) | Power OFF + ACTIVE OUTAGE + PSPS chip (tested screens 01 / 05); power-back line, next update |
 | P2 (ut10, NEW-02) | `archive/P2-psps-restoring.html` | **Archived** — remapped nav → P1 |
 | P3 (ut10, NEW-01) | `archive/P3-psps-canceled.html` | **Archived** — remapped nav → S9 |

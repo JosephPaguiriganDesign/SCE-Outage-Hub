@@ -364,6 +364,7 @@ window.HUB_DATA = {
   "short": "1338 Cedar Ave, Whittier",
   "meter_m": "••••3917",
   "service_account": "3105824821",
+  "updated": "6:45 AM",
   "service_account_m": "••••••4821"
  },
  "outage": {
@@ -383,7 +384,9 @@ window.HUB_DATA = {
   "updated": "10:28 AM",
   "updated_restored": "4:40 PM",
   "circuit": "LAKE-1247",
-  "update_note": "Crews found more damaged equipment. New estimate: 4:45 PM PT (was 2:30 PM PT)."
+  "update_note": "Crews found more damaged equipment. New estimate: 4:45 PM PT (was 2:30 PM PT).",
+  "change_reason": "Crews found more damaged equipment.",
+  "step": 2
  },
  "prior": {
   "id": "OUT-2026-093377",
@@ -431,7 +434,9 @@ window.HUB_DATA = {
   "cause_line": "Red Flag Warning: wind 34 mph from the northeast, gusts up to 52 mph, humidity 9%.",
   "circuit": "SOLEDAD-2208",
   "duration": "about 24–48 hours (estimate)",
-  "next_update": "Thu Sep 10 · 6:00 PM PT"
+  "next_update": "Thu Sep 10 · 6:00 PM PT",
+  "p1_off_at": "Wed Sep 9 · 6:00 PM",
+  "p1_step": 2
  },
  "likely": {
   "window": "Thu Sep 10 · 11:00 PM PT",
@@ -475,7 +480,7 @@ window.HUB_DATA = {
     "sub": "Fire risk: elevated",
     "note": "Heat Advisory in Pasadena until Fri Sep 11 · 8:00 PM PT. High demand may cause outages."
    },
-   "N1-active-planned.html": {
+   "NS1-active-planned.html": {
     "active": true,
     "kind": "heat",
     "key": "pasadena",
@@ -484,7 +489,7 @@ window.HUB_DATA = {
     "sub": "Fire risk: elevated",
     "note": "Heat Advisory in Pasadena until Fri Sep 11 · 8:00 PM PT. High demand may cause outages."
    },
-   "N2-active-planned-restored.html": {
+   "NS2-active-planned-restored.html": {
     "active": true,
     "kind": "heat",
     "key": "pasadena",
@@ -520,7 +525,7 @@ window.HUB_DATA = {
     "sub": "Fire risk: high",
     "note": "Red Flag Warning for the Santa Clarita Valley until Fri Sep 11 · 6:00 PM PT. Wind gusts up to 52 mph."
    },
-   "S7-psps-active.html": {
+   "S7-psps-power-back.html": {
     "active": true,
     "kind": "fire",
     "key": "santaclarita",
@@ -538,7 +543,7 @@ window.HUB_DATA = {
     "sub": "Fire risk: elevated",
     "note": "Heat Advisory in Pasadena until Fri Sep 11 · 8:00 PM PT. High demand may cause outages."
    },
-   "S12-weather.html": {
+   "S12-fire-weather.html": {
     "active": true,
     "kind": "heat",
     "key": "pasadena",
@@ -731,6 +736,7 @@ window.HUB_DATA = {
    "note": "Heat raises power use and can cause outages.",
    "risk": "elevated",
    "title": "Heat Advisory",
+   "until": "Fri Sep 11 · 8:00 PM PT",
    "wind_from": "12 mph from the west"
   },
   "agoura": {
@@ -757,6 +763,7 @@ window.HUB_DATA = {
    "note": "Strong, dry wind is why a shutoff may happen or continue.",
    "risk": "high",
    "title": "Red Flag Warning",
+   "until": "Fri Sep 11 · 6:00 PM PT",
    "wind_from": "34 mph from the northeast"
   },
   "glendale": {
@@ -1041,7 +1048,12 @@ window.HUB_DATA = {
    "S3-no-outage.html",
    "S6-psps-watch.html",
    "S9-restored.html",
-   "P1-psps-shutoff.html"
+   "P1-psps-shutoff.html",
+   "S7-psps-power-back.html",
+   "S12-fire-weather.html",
+   "S13-disconnected.html",
+   "NS1-active-planned.html",
+   "NS2-active-planned-restored.html"
   ],
   "pages": {
    "F1-lookup-result.html": {
@@ -1177,6 +1189,7 @@ window.HUB_DATA = {
   "restored_dur": " The outage lasted {d}.",
   "restored_end": " The shutoff is over.",
   "disc_line": "This is not an outage. Service at this address is disconnected.",
+  "disc_call": "To turn it back on, call customer service at {n}.",
   "sg_count_off": "Power is shut off at 3 of your addresses.",
   "sg_count_likely": "A shutoff is likely at 1 of your addresses. Get ready now.",
   "sg_count_potential": "A shutoff could happen at 1 of your addresses.",
@@ -1186,6 +1199,7 @@ window.HUB_DATA = {
   "f0m_portfolio": "View portfolio",
   "ert_label": "Estimate (may change)",
   "ert_changed": "Changed from",
+  "ert_later": "· later",
   "ert_none": "Not known yet. We’ll post one after a crew checks the damage.",
   "ert_range": "Back between 4:00 and 6:00 PM PT",
   "toggle_open": "Hide details",
@@ -1240,6 +1254,50 @@ window.HUB_DATA = {
   "pill_done": "Done",
   "pill_now": "Now",
   "pill_todo": "Not started",
+  "steps_repair": [
+   [
+    "Outage reported",
+    "We know about the outage in your area."
+   ],
+   [
+    "Crew assigned",
+    "A crew is assigned and on the way."
+   ],
+   [
+    "Crew on site",
+    "A crew is at the site checking the damage."
+   ],
+   [
+    "Repair in progress",
+    "A crew is fixing the problem."
+   ],
+   [
+    "Power restored",
+    "Power is back on."
+   ]
+  ],
+  "steps_psps": [
+   [
+    "Power shut off",
+    "Turned off {t} PT."
+   ],
+   [
+    "Waiting for safe weather",
+    "Power stays off until the strong, dry wind passes."
+   ],
+   [
+    "Checking the lines",
+    "Crews check the lines for damage before turning power back on. This can take up to 8 hours, or longer if they need daylight."
+   ],
+   [
+    "Turning power back on",
+    "Power comes back one section at a time. Some homes get power before others."
+   ],
+   [
+    "Power restored",
+    "Power is back on. We’ll tell you when the shutoff is over."
+   ]
+  ],
   "stale_title": "We can’t refresh right now.",
   "stale_body": "This is the last info we have, from today at {t} PT.",
   "snack_updated": "Updated today at {t} PT",
@@ -1262,6 +1320,19 @@ window.HUB_DATA = {
   "s12_impact_k": "How this could affect your power",
   "s12_impact": "Heat raises power use and can cause outages. Strong, dry wind can lead SCE to shut off power to help prevent a wildfire. This is called a Public Safety Power Shutoff (PSPS).",
   "s12_next": "Next few days",
+  "wh_loc": "Weather now · {p}",
+  "wh_risk": "Fire risk: {r}",
+  "wh_levels": [
+   "Low",
+   "Elevated",
+   "High"
+  ],
+  "wh_wind": "Wind",
+  "wh_hum": "Humidity",
+  "wh_temp": "Temperature",
+  "wh_gusts": "from the {d} · gusts up to {g}",
+  "wh_impact": "Strong, dry wind can damage power lines and start fires. If it gets worse, we may shut off power to help prevent a wildfire. This is called a Public Safety Power Shutoff (PSPS).",
+  "wh_src": "National Weather Service · until {u}",
   "prep_title": "How to get ready",
   "prep_list": [
    "Charge phones, batteries and medical devices.",
@@ -1291,6 +1362,11 @@ window.HUB_DATA = {
    "Keep backup power and medical equipment ready."
   ],
   "s7_aria": "Safety tips",
+  "s7_tip_rows": [
+   "See a downed line? Stay at least 100 feet away and call 911.",
+   "Power may go off and on while crews work on the lines.",
+   "Unplug anything that could turn on by itself when power comes back."
+  ],
   "s9_tl_k": "What happened today (PT)",
   "s9_reported": "Outage reported",
   "s9_assigned": "Crew assigned",
@@ -1300,6 +1376,22 @@ window.HUB_DATA = {
   "s9_past_btn": "Search past outages",
   "n1_planned_t": "PLANNED OUTAGE",
   "n1_sep": "This is separate from your current outage.",
+  "ns_coming_k": "Coming up at this address",
+  "ns_earlier_k": "Earlier at this address",
+  "ns_restored_line": "Power came back {t} PT. The outage lasted {d}.",
+  "pf_count": {
+   "active": "Power is out at {n} of your addresses.",
+   "psps_active": "Power is shut off at {n} of your addresses.",
+   "likely": "A shutoff is likely at {n} of your addresses. Get ready now.",
+   "potential": "A shutoff could happen at {n} of your addresses.",
+   "scheduled": "A shutoff is scheduled at {n} of your addresses. Power is on now.",
+   "planned": "A planned outage is coming at {n} of your addresses.",
+   "restored": "Power came back at {n} of your addresses.",
+   "normal": "No outage is known at {n} of your addresses."
+  },
+  "pf_sort_k": "Sort:",
+  "pf_also_planned": "Also: Planned outage {w}",
+  "pf_also_earlier": "Also: Earlier outage ended {t} PT.",
   "k_when": "When",
   "k_work": "Work",
   "k_plan_no": "Planned work number",
@@ -1313,12 +1405,14 @@ window.HUB_DATA = {
   "s13_l2": "Have your account number ready.",
   "s13_btn": "CALL CUSTOMER SERVICE",
   "s13_other": "You can still report a downed line or another hazard.",
+  "s3_other_k": "Something else?",
   "f0_guest": "Check any address, outage # or meter #. No account needed.",
   "f0_signin": "SIGN IN",
   "f0_recent_k": "Recent searches",
   "f0_clear": "Clear",
   "f0_none": "No recent searches.",
   "f0_checked": "Checked {w}: {s}",
+  "f0_checked_v": "Checked {w}",
   "f1_results": "Results for",
   "f1_results_outage": "Results for outage #",
   "f1_area": "Area match:",
@@ -1375,6 +1469,9 @@ window.HUB_DATA = {
   "f5_phone_hint": "We’ll only use it about this report. No account needed.",
   "f5_privacy": "Privacy notice",
   "f5_send": "SEND REPORT",
+  "f5_title": "Report an outage",
+  "f5_dl_line": "Stay at least 100 feet away and keep others away. If you haven’t called 911, call now.",
+  "f5c_screen": "Report status: Received",
   "f5_breaker_k": "Optional: check your breaker",
   "f5_breaker_hint": "If it’s safe, reset your breaker. If your power comes back, let us know.",
   "f5_breaker_note": "You still need to report this.",
@@ -1407,6 +1504,8 @@ window.HUB_DATA = {
   "f6_filter": "Map layers",
   "f6_expand": "Full-screen map",
   "f6_sw": "Show {l} areas",
+  "f6_line": "{a} · Active outage · Back by {e} (estimate)",
+  "f6_line_say": "{a}. Active outage. Back by {e}, estimate.",
   "f9_lead": "Stay safe. Save your backup power. Call 211 for local help.",
   "f9_mbl_t": "Medical Baseline program",
   "f9_mbl_rows": [
@@ -1480,7 +1579,8 @@ window.HUB_DATA = {
    "label": "SERVICE NORMAL",
    "legend": "Service normal",
    "chip": "PSPS",
-   "icon": "normal"
+   "icon": "normal",
+   "event": "CANCELED"
   },
   "restored": {
    "header": "ON",
@@ -1494,7 +1594,8 @@ window.HUB_DATA = {
    "label": "POWER BACK FOR NOW",
    "legend": "Power back for now",
    "chip": "PSPS",
-   "icon": "restoring"
+   "icon": "restoring",
+   "event": "ACTIVE"
   },
   "active": {
    "header": "OFF",
@@ -1508,28 +1609,32 @@ window.HUB_DATA = {
    "label": "ACTIVE OUTAGE",
    "legend": "Active outage",
    "chip": "PSPS",
-   "icon": "active"
+   "icon": "active",
+   "event": "ACTIVE"
   },
   "potential": {
    "header": "ON",
    "label": "POTENTIAL SHUT OFF",
    "legend": "Potential shut off",
    "chip": "PSPS",
-   "icon": "potential"
+   "icon": "potential",
+   "event": "POTENTIAL"
   },
   "likely": {
    "header": "ON",
    "label": "LIKELY SHUT OFF",
    "legend": "Likely shut off",
    "chip": "PSPS",
-   "icon": "likely"
+   "icon": "likely",
+   "event": "LIKELY"
   },
   "scheduled": {
    "header": "ON",
    "label": "SCHEDULED SHUT OFF",
    "legend": "Scheduled shut off",
    "chip": "PSPS",
-   "icon": "scheduled"
+   "icon": "scheduled",
+   "event": "SCHEDULED"
   },
   "disconnected": {
    "header": "OFF",
@@ -1573,16 +1678,16 @@ window.HUB_DATA = {
   "F2-active-detail.html": [
    "Repair"
   ],
-  "N1-active-planned.html": [
+  "NS1-active-planned.html": [
    "Repair"
   ],
-  "N2-active-planned-restored.html": [
+  "NS2-active-planned-restored.html": [
    "Repair"
   ],
   "S3-no-outage.html": [
    ""
   ],
-  "S12-weather.html": [
+  "S12-fire-weather.html": [
    ""
   ],
   "S13-disconnected.html": [
@@ -1591,7 +1696,7 @@ window.HUB_DATA = {
   "S6-psps-watch.html": [
    "PSPS"
   ],
-  "S7-psps-active.html": [
+  "S7-psps-power-back.html": [
    "PSPS"
   ],
   "S9-restored.html": [

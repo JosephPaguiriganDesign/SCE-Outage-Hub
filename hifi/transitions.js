@@ -23,7 +23,7 @@
     if (/^index\.html$/i.test(file)) return 0;
     if (/^F5-confirm/i.test(file)) return 3;
     if (/^F5-report/i.test(file)) return 2;
-    if (/^[SNP]\d+-/i.test(file)) return 3; /* v0.03 + round 1 scenario dashboards sit at detail depth */
+    if (/^(NS|[SNP])\d+-/i.test(file)) return 3; /* v0.03 + round 1 + ut23 NS scenario dashboards sit at detail depth */
     var m = file.match(/^F(\d+)/i);
     if (!m) return 1;
     var n = parseInt(m[1], 10);
