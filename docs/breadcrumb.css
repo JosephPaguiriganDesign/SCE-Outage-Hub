@@ -22,3 +22,11 @@
 .bc-sep svg{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 /* components.html: examples always visible, whatever the window width */
 .bc-demo{margin:4px 16px 12px;border:1px dashed #8D959F;max-width:calc(100% - 32px)}
+
+/* ut24 Kit F7 (final-F7-375): back-chevron variant 'Outage Center / Addresses' (shared .bc component, variant used on F7 only) */
+.bc.bc-back .bc-back-ico{display:inline-flex;margin-right:8px;color:#00789F}
+.bc.bc-back .bc-back-ico svg{fill:none;stroke:currentColor;stroke-width:1.6}
+.bc.bc-back .bc-slash{margin:0 6px;color:#53565A}
+.bc.bc-back a{text-decoration:none;color:#00789F;font-weight:400}
+.bc.bc-back li:first-child:not(:last-child){flex:0 1 auto;flex-shrink:1000;min-width:60px}   /* ut24: 'Outage Center' truncates first at 200% zoom */
+.bc.bc-back .bc-slash{width:auto}
