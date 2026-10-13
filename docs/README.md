@@ -164,8 +164,8 @@ Matches the SCE 1.7 Breadcrumb (Figma node 346:1119; the node could not be opene
 |---|---|
 | `F1-lookup-result.html` | Home > Outage Center > Outage Search |
 | `F2-active-detail.html` | Home > Outage Center > Outage Search > Outage details |
-| `F5-report.html` | Home > Outage Center > Report a Problem |
-| `F5-confirm.html` | Home > Outage Center > Report sent |
+| `F5-report.html` | Outage Center > Report |
+| `F5-confirm.html` | Outage Center > Report |
 | `F6-map-sheet.html` | Home > Outage Center > Outage map |
 | `F7-portfolio.html` | Outage Center > Addresses |
 | `F9-afn-help.html` | Home > Outage Center > Help & support |
