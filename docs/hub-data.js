@@ -1169,7 +1169,6 @@ window.HUB_DATA = {
    ]
   },
   "meter": {
-   "maple": "6120",
    "lincoln": "3398",
    "agoura": "2451",
    "elm": "5576",
