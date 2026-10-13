@@ -110,7 +110,7 @@
   function showErtChange(was, now) {
     var note = $('#ertNote'), ert = $('#hxErt'); if (!note || !ert) return;
     if (now) setF('ertText', now);
-    setF('ertWas', was + ' PT'); note.hidden = false;
+    note.hidden = false;   /* ut24: ledger line + sr-only sentence are single hub-data strings (outage.ert_change_line / ert_change_sr) */
     ert.classList.remove('ert-flash'); void ert.offsetWidth; ert.classList.add('ert-flash');
   }
   function setStale(on) {
@@ -141,6 +141,9 @@
   d.addEventListener('click', function (e) {
     var t = e.target.closest ? e.target.closest('[data-act]') : null; if (!t) return;
     var a = t.getAttribute('data-act');
+    if (a === 'remind-link') {   /* ut24 Kit Q10: 'Remind me before it starts' is a text link (button semantics, aria-pressed) */
+      var on = t.getAttribute('aria-pressed') !== 'true'; t.setAttribute('aria-pressed', String(on)); snack(on ? CP.snack_remind_on : CP.snack_remind_off); return;
+    }
     if (a === 'ert-change') {
       setF('ertText', 'Back by ' + HUB_DATA.outage.ert_was + ' PT'); var n = $('#ertNote'); if (n) n.hidden = true;
       snack(CP.snack_estimate);
@@ -249,7 +252,7 @@
       if (tt && it === 'downed') tt.textContent = CP.f5c_title_dl;
       /* ut13: on arrival, focus moves to the Received title (tabindex=-1). Not a live region. */
       if (tt) { try { tt.focus({ preventScroll: true }); } catch (x) { tt.focus(); } }
-      var lag = $('#cfLag'); if (lag && it === 'downed') lag.textContent = CP.dl_conf_next;
+      /* ut24 Q11: downed keeps the lag line (Figma F5-confirm downed); the next-step sentence lives only in 'What happens next' (was: lag -> dl_conf_next, a duplicate) */
       var sb = $('#backStatus'); if (sb && ra !== 'guest') sb.setAttribute('href', ra === 'multi' ? 'F7-portfolio.html' : 'S1-active.html');
       /* F5-confirm updates block (was inline) */
       var en = $('#updatesEnable'), body = $('#updatesBody'), skip = $('#updatesSkip');
@@ -309,7 +312,7 @@
   /* ==== S10: portfolio — ut23 grouped rows (J4 = C): filter / find / sort / ZIP / paginate over StatusGroup rows; scroll restore ==== */
   var list = $('#pfList');
   if (list) {
-    var rows = $$('li.pf-item', list), groups = $$('section.pf-group-card', list), PER = 6, pageNo = 1;
+    var rows = $$('li.pf-item', list), groups = $$('section.pf-group-card', list), PER = 7, pageNo = 1;   /* ut24: page 1 = the 7 rows of final-F7-375 */
     var st = { f: {}, s: 'attention', g: false, p: true, q: '' };
     try { var saved = JSON.parse(store('conh_pf') || 'null'); if (saved) st = Object.assign(st, saved.st || {}); } catch (e) {}
     var sortLab = { attention: CP.f7_attn_first, address: CP.f7_by_addr };

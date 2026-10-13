@@ -627,7 +627,7 @@ svg.cps-ico[data-ico-size="24"],.hx-banner-psps svg[data-ico-size="24"]{flex:0 0
   background:var(--hub-color-tint-neutral);color:var(--sce-ut-ink);font-size:12px;line-height:18px;letter-spacing:0}
 /* dotted divider = Kit divider/dotted (outline-control) */
 .cps-hr{border-top:2px dotted var(--hub-color-outline-control)}
-/* J3 two-part header (PSPS cards): POWER NOW | PSPS EVENT, equal cells, 1px outline-control divider */
+/* J3 two-part header (PSPS cards): POWER NOW | PSPS STATUS (ut24), equal cells, 1px outline-control divider */
 .cps-head.cps-head2{display:flex;align-items:stretch;justify-content:flex-start;gap:0;padding:0 4px 8px}
 .cps-head2 .cps-cell{flex:1 1 0;display:flex;flex-direction:column;gap:0;margin:0;min-width:0}
 .cps-head2 .cps-cell-ev{padding-left:12px;border-left:1px solid var(--hub-color-outline-control)}
@@ -780,3 +780,16 @@ svg.pf-check{color:var(--sce-ut-ink)}
 .wh-k{text-transform:uppercase;letter-spacing:0}
 .cps:not(.hx-status-group) .cps-block[data-kind="likely"] .cps-line:not(.cps-last) b{font-weight:400}  /* Figma F10: window not bold */
 .cps .steps .step-t{flex-wrap:nowrap}.cps .steps .step-pill{flex:none}  /* pill stays at the right edge (Figma Hub/Stepper) */
+
+/* ut24 Kit F5 Other hazard (399:916): plain safety line, Bold 16, ink (not red); top copy sits above the tips link */
+.hx-f5-hz{font-size:16px;line-height:1.35;font-weight:700;color:#000;margin:16px 16px 0}
+.hx-form .hx-f5-hz{margin:16px 0 8px}
+/* ut24 Kit Q10: Remind me before it starts = text link */
+.hx-remind-row{margin:12px 0 0}
+.hx-remind{background:none;border:0;padding:0;min-height:48px;font:inherit;font-size:16px;font-weight:700;color:#00789F;text-decoration:none;cursor:pointer;text-align:left}
+.hx-remind[aria-pressed="true"]::after{content:" \2713";}
+/* ut24 Kit Q1: Account disclosure under the address (text link + chevron, right-aligned as Figma) */
+.cps .cps-acct{position:static;margin:0}
+.cps .cps-acct>summary{position:static;gap:6px;justify-content:flex-end;min-height:48px;padding:0;font-size:16px;line-height:24px;font-weight:700;color:#00789F;text-decoration:none}
+.cps .cps-acct .kv{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;margin:0 0 8px;padding-top:8px;font-size:14px;line-height:20px}
+.cps .cps-acct .kv dt{color:#53565A}.cps .cps-acct .kv dd{margin:0;font-weight:700;text-align:right;color:#000}

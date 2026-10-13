@@ -118,7 +118,7 @@ New/changed on top of the screens above. All plain static files; `hierarchy.css`
 | S3 | `S3-no-outage.html` | Neutral "No outage known", Report = primary CTA |
 | S4 / S5 | `F5-report.html?aud=guest&intent=downed` / `&intent=hazard` | Three intents; hazard escalates to downed line |
 | S6 | `S6-psps-watch.html` | Power On + PSPS Watch |
-| S7 | `S7-psps-power-back.html` | ut23: back as a page. POWER NOW ON · PSPS EVENT ACTIVE, POWER BACK FOR NOW, Safety tip callout |
+| S7 | `S7-psps-power-back.html` | ut23: back as a page. POWER NOW ON · PSPS STATUS ACTIVE, POWER BACK FOR NOW, Safety tip callout |
 | S8 | `F1-lookup-result.html?q=...` | Address / outage # / meter #, out-of-area |
 | S9 | `S9-restored.html` (`?psps=temp`, `?psps=ended`) | Restored hero |
 | S10 | `F0-multi.html` -> `F7-portfolio.html` | Summary, tiles, filters, sort, ZIP, pages, scroll restore |
@@ -167,7 +167,7 @@ Matches the SCE 1.7 Breadcrumb (Figma node 346:1119; the node could not be opene
 | `F5-report.html` | Home > Outage Center > Report a Problem |
 | `F5-confirm.html` | Home > Outage Center > Report sent |
 | `F6-map-sheet.html` | Home > Outage Center > Outage map |
-| `F7-portfolio.html` | Home > Outage Center > Your addresses |
+| `F7-portfolio.html` | Outage Center > Addresses |
 | `F9-afn-help.html` | Home > Outage Center > Help & support |
 | `F10-psps-banner.html` | Home > Outage Center > Shutoff |
 

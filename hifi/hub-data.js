@@ -231,7 +231,7 @@ window.HUB_DATA = {
   },
   "magnolia": {
    "id": "magnolia",
-   "street": "1132 Magnolia Ave",
+   "street": "1120 Mission St",
    "city": "South Pasadena",
    "zip": "91030",
    "county": "Los Angeles",
@@ -244,10 +244,10 @@ window.HUB_DATA = {
    "ert": "",
    "when": "Power back today at 8:52 AM PT",
    "psps": null,
-   "label": "1132 Magnolia Ave",
+   "label": "1120 Mission St",
    "detail": "",
-   "full": "1132 Magnolia Ave, South Pasadena, CA 91030",
-   "short": "1132 Magnolia Ave, South Pasadena",
+   "full": "1120 Mission St, South Pasadena, CA 91030",
+   "short": "1120 Mission St, South Pasadena",
    "meter_m": "••••5362",
    "status_key": "restored",
    "chip": "",
@@ -386,6 +386,8 @@ window.HUB_DATA = {
   "circuit": "LAKE-1247",
   "update_note": "Crews found more damaged equipment. New estimate: 4:45 PM PT (was 2:30 PM PT).",
   "change_reason": "Crews found more damaged equipment.",
+  "ert_change_line": "Later than before: was 2:30 PM PT",
+  "ert_change_sr": "Estimate changed. Was 2:30 PM PT, now 4:45 PM PT.",
   "step": 2
  },
  "prior": {
@@ -436,6 +438,7 @@ window.HUB_DATA = {
   "duration": "about 24–48 hours (estimate)",
   "next_update": "Thu Sep 10 · 6:00 PM PT",
   "p1_off_at": "Wed Sep 9 · 6:00 PM",
+  "p1_off_line": "Turned off Wed Sep 9 · 6:00 PM PT.",
   "p1_step": 2
  },
  "likely": {
@@ -844,6 +847,18 @@ window.HUB_DATA = {
    "title": "Local weather",
    "wind_from": "9 mph from the northwest"
   },
+  "s12": {
+   "temp": "88°F",
+   "hum": "9%",
+   "wind": "NE 34 mph",
+   "gust": "52 mph",
+   "wind_say": "34 miles per hour from the northeast",
+   "note": "",
+   "risk": "high",
+   "title": "Red Flag Warning",
+   "until": "Fri Sep 11 · 10:00 PM PT",
+   "wind_from": "34 mph from the northeast"
+  },
   "forecast": [
    [
     "Thu Sep 10",
@@ -1104,9 +1119,10 @@ window.HUB_DATA = {
     "center_href": "F0-multi.html",
     "trail": [
      {
-      "label": "Your addresses"
+      "label": "Addresses"
      }
-    ]
+    ],
+    "style": "back"
    },
    "F9-afn-help.html": {
     "center_href": "F0-hub-home.html",
@@ -1124,6 +1140,31 @@ window.HUB_DATA = {
      }
     ]
    }
+  }
+ },
+ "f7": {
+  "order": [
+   "maple",
+   "lincoln",
+   "agoura",
+   "ojai",
+   "yucaipa",
+   "elm",
+   "magnolia"
+  ],
+  "also": {
+   "lincoln": [
+    [
+     "planned",
+     "Sat Sep 12 · 9:00 AM – 1:00 PM PT"
+    ]
+   ],
+   "elm": [
+    [
+     "earlier",
+     "Wed Sep 9 · 6:42 PM"
+    ]
+   ]
   }
  },
  "copy": {
@@ -1162,6 +1203,14 @@ window.HUB_DATA = {
   "search_aria": "Search by address, outage number or meter number",
   "acct_line": "Account ••••••3230",
   "acct_say": "Account ending in 3230",
+  "head2_now": "POWER NOW",
+  "head2_ev": "PSPS STATUS",
+  "head2_ev_say": "PSPS status",
+  "acct_cust": "Customer Account",
+  "acct_meter": "Meter Number",
+  "acct_link": "Account",
+  "acct_cust_f2": "Account number",
+  "acct_meter_f2": "Meter number",
   "k_holder": "Name on account",
   "k_acct": "Account number",
   "k_meter": "Meter number",
@@ -1246,6 +1295,8 @@ window.HUB_DATA = {
    "Need help getting ready? Call 211."
   ],
   "mb_link": "Medical Baseline and backup power",
+  "mb_link_s12": "Learn about Medical Baseline",
+  "f5_hz_line": "Stay away from the pole, wires and anything touching them. If you see sparks, fire or a wire on the ground, call 911.",
   "step1_d": "We know about the outage in your area and are working on it.",
   "step2_t": "Checking damage",
   "step2_d": "A crew is checking what caused the outage. Many outages are fixed at this step.",
@@ -1279,7 +1330,7 @@ window.HUB_DATA = {
   "steps_psps": [
    [
     "Power shut off",
-    "Turned off {t} PT."
+    "Turned off Wed Sep 9 · 6:00 PM PT."
    ],
    [
     "Waiting for safe weather",
@@ -1404,6 +1455,7 @@ window.HUB_DATA = {
   "s13_l1": "Call SCE customer service.",
   "s13_l2": "Have your account number ready.",
   "s13_btn": "CALL CUSTOMER SERVICE",
+  "s13_report": "Report an outage",
   "s13_other": "You can still report a downed line or another hazard.",
   "s3_other_k": "Something else?",
   "f0_guest": "Check any address, outage # or meter #. No account needed.",
